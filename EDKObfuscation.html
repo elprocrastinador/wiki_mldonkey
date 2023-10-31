@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/EDKObfuscation by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:13:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>EDKObfuscation - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-EDKObfuscation skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">EDKObfuscation</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Where_to_look_at"><span class="tocnumber">1</span> <span class="toctext">Where to look at</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#in_the_eMule_0.48a_sources"><span class="tocnumber">1.1</span> <span class="toctext">in the eMule 0.48a sources</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#The_eMule_encryption_state_machine_for_stream_sockets"><span class="tocnumber">2</span> <span class="toctext">The eMule encryption state machine for stream sockets</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Overview"><span class="tocnumber">2.1</span> <span class="toctext">Overview</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#The_protocol_state_machine_for_server_sockets"><span class="tocnumber">2.2</span> <span class="toctext">The protocol state machine for server sockets</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Transition_15:_Diffie-Hellman_exchange_1st_step"><span class="tocnumber">2.2.1</span> <span class="toctext">Transition 15: Diffie-Hellman exchange 1st step</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#Transition_16:_Diffie-Hellman_exchange_2nd_step"><span class="tocnumber">2.2.2</span> <span class="toctext">Transition 16: Diffie-Hellman exchange 2nd step</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Transition_17:_Verification_of_the_key_exchange_succeeded"><span class="tocnumber">2.2.3</span> <span class="toctext">Transition 17: Verification of the key exchange succeeded</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Transition_18:_Check_for_the_encryption_method_succeeded"><span class="tocnumber">2.2.4</span> <span class="toctext">Transition 18: Check for the encryption method succeeded</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Transition_19:_The_padding_has_been_read_from_the_socket"><span class="tocnumber">2.2.5</span> <span class="toctext">Transition 19: The padding has been read from the socket</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Transition_20:_Logging_into_the_server"><span class="tocnumber">2.2.6</span> <span class="toctext">Transition 20: Logging into the server</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#SemiRandomNotProtocolMarker"><span class="tocnumber">2.2.7</span> <span class="toctext">SemiRandomNotProtocolMarker</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#The_protocol_state_machine_for_outgoing_client_sockets"><span class="tocnumber">2.3</span> <span class="toctext">The protocol state machine for outgoing client sockets</span></a>
+<ul>
+<li class="toclevel-3 tocsection-14"><a href="#Inter-client_key_generation"><span class="tocnumber">2.3.1</span> <span class="toctext">Inter-client key generation</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Transition_11:_Initiating_an_outgoing_connection"><span class="tocnumber">2.3.2</span> <span class="toctext">Transition 11: Initiating an outgoing connection</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Transition_12:_Verification_of_the_key_exchange_succeeded"><span class="tocnumber">2.3.3</span> <span class="toctext">Transition 12: Verification of the key exchange succeeded</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Transition_13:_The_selected_encryption_method_has_been_verified_to_be_supported."><span class="tocnumber">2.3.4</span> <span class="toctext">Transition 13: The selected encryption method has been verified to be supported.</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#Transition_14:_The_padding_has_been_received"><span class="tocnumber">2.3.5</span> <span class="toctext">Transition 14: The padding has been received</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-19"><a href="#The_protocol_state_machine_for_incoming_client_connections"><span class="tocnumber">2.4</span> <span class="toctext">The protocol state machine for incoming client connections</span></a>
+<ul>
+<li class="toclevel-3 tocsection-20"><a href="#Transition_6:_The_random_part_has_been_received"><span class="tocnumber">2.4.1</span> <span class="toctext">Transition 6: The random part has been received</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#Transition_7:_Our_random-part_has_been_sent_to_the_initiator"><span class="tocnumber">2.4.2</span> <span class="toctext">Transition 7: Our random-part has been sent to the initiator</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#Transition_8:_It_has_been_verified_that_the_key_exchange_succeeded"><span class="tocnumber">2.4.3</span> <span class="toctext">Transition 8: It has been verified that the key exchange succeeded</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="#Transition_9:_List_of_supported_protocols_received_and_supported"><span class="tocnumber">2.4.4</span> <span class="toctext">Transition 9: List of supported protocols received and supported</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#Transition_10:_Encryption_succeeded_from_our_perspective."><span class="tocnumber">2.4.5</span> <span class="toctext">Transition 10: Encryption succeeded from our perspective.</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-25"><a href="#Links"><span class="tocnumber">3</span> <span class="toctext">Links</span></a>
+<ul>
+<li class="toclevel-2 tocsection-26"><a href="#Protocol_obfuscation"><span class="tocnumber">3.1</span> <span class="toctext">Protocol obfuscation</span></a></li>
+<li class="toclevel-2 tocsection-27"><a href="#Ocaml_and_RC4"><span class="tocnumber">3.2</span> <span class="toctext">Ocaml and RC4</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h1> <span class="mw-headline" id="Where_to_look_at"> Where to look at </span></h1>
+<h2> <span class="mw-headline" id="in_the_eMule_0.48a_sources"> in the eMule 0.48a sources </span></h2>
+<p>eMule 0.48a seems to have implemented the bigger part of the logic in <tt>EncryptedStreamSocket.h</tt> and <tt>EncryptedStreamSocket.cpp</tt>. The encryption is AFAIK implemented as a frontend to <tt>CAsyncSocketEx</tt>, supposedly because the latter is used for communication and extending it would make it compatible with existing code. An implementation in mldonkey could use the same techique. It could wrap the encryption code just around the existing "connections" infrastructure. It also makes understanding the algorithm comparably easy, since all we need to look at sits in <tt>EncryptedStreamSocket.cpp</tt> (well and <tt>EncryptedDatagramSocket</tt> respectively).
+</p><p>The file <tt>EncryptedStreamSocket.cpp</tt> also contains a brief introduction to protocol applied. The big encryption and decryption parts sit in the <tt>Receive()</tt> and the <tt>Send()</tt> methods. That's also where the larger part of the state machine inside those classes is handled. The encryption negotiation sits in the <tt>Negotiate()</tt> method. For the encryption itself RC4 seems to be used. The initial author of this section will provide a few UML graphs of his findings soon as well (in other words: stay tuned).
+</p>
+<h1> <span class="mw-headline" id="The_eMule_encryption_state_machine_for_stream_sockets"> The eMule encryption state machine for stream sockets </span></h1>
+<h2> <span class="mw-headline" id="Overview"> Overview </span></h2>
+<p>The encryption state machine is implemented as an extension to sockets eMule uses for up- and downloading as class <tt>CEncryptedStreamSocket</tt> in <tt>EncryptedStreamSocket.cpp</tt>. There are three possible connection types:
+</p>
+<ul><li> An outgoing connection to an eDonkey server
+</li><li> An outgoing connection to an eDonkey client
+</li><li> An incoming connection from an eDonkey client
+</li></ul>
+<p>As a result we find three possible flows through that state machine:
+<a href="File_CEncryptedStreamSocket-Statemachine.html" class="image"><img alt="CEncryptedStreamSocket-Statemachine.png" src="mediawiki/images/8/80/CEncryptedStreamSocket-Statemachine.png" width="1070" height="708" /></a>
+</p>
+<h2> <span class="mw-headline" id="The_protocol_state_machine_for_server_sockets"> The protocol state machine for server sockets </span></h2>
+<p>For server connections the initial keys are exchange via <a href="http://en.wikipedia.org/wiki/Diffie-Hellman_key_exchange" class="external text" rel="nofollow">Diffie-Hellman key exchange</a>. That type of key exchange ensures that only the exchanging peers will be able to read the traffic between each other and is widely used.
+</p>
+<h3> <span class="mw-headline" id="Transition_15:_Diffie-Hellman_exchange_1st_step"> Transition 15: Diffie-Hellman exchange 1st step </span></h3>
+<p>This is the first step in establishing a encrypted connection to an eDonkey server. In this transition our local key is calculated and send to the server using a DH exchange. Prior to sending any data the following numbers are calculated:
+</p>
+<ul><li> a is a random number
+</li><li> p is a prime number
+</li><li> e = a_exp_b_mod_c( 2, a, p )
+</li></ul>
+<p><i>In the Wikipedia page example g = 2</i>
+</p>
+<table>
+<caption> Data transmitted
+</caption>
+<tr>
+<th width="20%"> Length
+</th>
+<th> Content
+</th></tr>
+<tr>
+<td> 1 Byte </td>
+<td> SemiRandomNotProtocolMarker (see below)
+</td></tr>
+<tr>
+<td> 96 Bytes </td>
+<td> e
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> Padding length
+</td></tr>
+<tr>
+<td> n Byte </td>
+<td> Padding
+</td></tr></table>
+<h3> <span class="mw-headline" id="Transition_16:_Diffie-Hellman_exchange_2nd_step"> Transition 16: Diffie-Hellman exchange 2nd step </span></h3>
+<p>In the 2nd step, we receive the server exchange and calculate all the keys (see below).
+</p>
+<table>
+<caption> Data read
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 96 Bytes </td>
+<td> d
+</td></tr></table>
+<p>Now with the above received data the keys are calculated as follows:
+</p>
+<ul><li> a buffer is created that is one by longer than the key
+</li><li> the key is copied to the buffer and the <tt>MAGICVALUE_REQUESTER</tt> is appended
+</li><li> RC4SendKey = RC4CreateKey(md5sum(buffer))
+</li><li> the <tt>MAGICVALUE_REQUESTER</tt> in the buffer is replaced by <tt>MAGICVALUE_SERVER</tt>
+</li><li> RC4ReceiveKey = RC4CreateKey(md5sum(buffer))
+</li></ul>
+<h3> <span class="mw-headline" id="Transition_17:_Verification_of_the_key_exchange_succeeded"> Transition 17: Verification of the key exchange succeeded </span></h3>
+<p>From the 3rds step on, all the communication is sent in a RC4 encrypted stream. In the 3rd step, we verify that the server has the correct idea about what our keys are. It will have got a 4 byte value from the server that should equal to <tt>MAGICVALUE_SYNC</tt>.
+</p>
+<table>
+<caption> Data read
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 4 Byte </td>
+<td> dwValue
+</td></tr></table>
+<p>if dwValue will be decrypted and compared with <tt>MAGICVALUE_SYNC</tt>. If they're equal the key is known to the server, as it could encode it correctly.
+</p>
+<h3> <span class="mw-headline" id="Transition_18:_Check_for_the_encryption_method_succeeded"> Transition 18: Check for the encryption method succeeded </span></h3>
+<p>In the 4th step we check that the encryption method presented by the server is supported here. eMule 0.48a only supports <tt>ENM_OBFUSCATION</tt>.
+</p>
+<table>
+<caption> Data read
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 1 Byte </td>
+<td> Encryption supported
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> Encryption requested
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> Padding length
+</td></tr></table>
+<h3> <span class="mw-headline" id="Transition_19:_The_padding_has_been_read_from_the_socket"> Transition 19: The padding has been read from the socket </span></h3>
+<p>The 5th step of server encryption establishment is about reading the padding data from the socket and sending the server a confirmation that we have the right idea about its key. For that reason we send <tt>MAGICVALUE_SYNC</tt>. Further we select <tt>ENM_OBFUSCATION</tt> as the encryption method and send some garbage as padding.
+</p>
+<table>
+<caption> Data read
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> n Byte </td>
+<td> Padding
+</td></tr></table>
+<table>
+<caption> Data written
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 4 Byte </td>
+<td> <tt>MAGICVALUE_SYNC</tt>
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> <tt>ENM_OBFUSCATION</tt> ( the selected encryption method )
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> padding length
+</td></tr>
+<tr>
+<td> n Byte </td>
+<td> padding
+</td></tr></table>
+<h3> <span class="mw-headline" id="Transition_20:_Logging_into_the_server"> Transition 20: Logging into the server </span></h3>
+<p>Here we send our normal eDonkey login over the encrypted connection and if we did everything else right we'll receive a proper response from it.
+</p>
+<h3> <span class="mw-headline" id="SemiRandomNotProtocolMarker"> SemiRandomNotProtocolMarker </span></h3>
+<p>The SemiRandomNotProtocolMarker used above is to make sure that the protocol is not misunderstood as an unencrypted protocol. For that reason the first byte of the stream cannot be <tt>OP_EDONKEYPROT</tt>, <tt>OP_PACKEDPROT</tt> or <tt>OP_EMULEPROT</tt>. eMule will try up to 128 times to find a random number that is not equal to these three. So each number unequal to these three values is considered a protocol marker for an encrypted stream.
+</p>
+<h2> <span class="mw-headline" id="The_protocol_state_machine_for_outgoing_client_sockets"> The protocol state machine for outgoing client sockets </span></h2>
+<h3> <span class="mw-headline" id="Inter-client_key_generation"> Inter-client key generation </span></h3>
+<p>Unlike in the server handshake, where the intial key is exchange with Diffie-Hellman, the keys for the clients are generated based on their client hash. 
+</p>
+<h3> <span class="mw-headline" id="Transition_11:_Initiating_an_outgoing_connection"> Transition 11: Initiating an outgoing connection </span></h3>
+<p>Transition 11 happens when after connecting the socket, the encrypted handshake is initiated.
+</p><p>The inter-client key generation algorithm is performed:
+</p>
+<ul><li> Constructrt the following buffer:
+</li></ul>
+<table>
+<caption> Buffer for client key exchange
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 16 Bytes </td>
+<td> Client MD4 hash
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> Either MAGICVALUE_REQUESTER
+</td></tr>
+<tr>
+<td> 4 Byte </td>
+<td> Random key part
+</td></tr></table>
+<ul><li> Calculate the MD5 hash of the buffer
+</li><li> RC4SendKey = RC4CreateKey(md5 checksum)
+</li><li> Replace MAGICVALUE_REQUESTER with MAGICVALUE_SERVER in the buffer
+</li><li> Calculate the MD5 hash of the buffer
+</li><li> RC4ReceiveKey = RC4CreateKey(md5 checksum)
+</li></ul>
+<table>
+<caption> Data transmitted
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td>1 Byte</td>
+<td>SemiRandomNotProtocolMarker
+</td></tr>
+<tr>
+<td>4 Byte</td>
+<td>random part of the initiator
+</td></tr>
+<tr>
+<td>4 Byte</td>
+<td>MAGICVALUE_SYNC
+</td></tr>
+<tr>
+<td>1 Byte</td>
+<td>ENM_OBFUSCATION	(our supported encryption protocol)
+</td></tr>
+<tr>
+<td>1 Byte</td>
+<td>ENM_OBFUSCATION	(our preferred encryption protocol)
+</td></tr>
+<tr>
+<td>1 Byte</td>
+<td>padding length
+</td></tr>
+<tr>
+<td>n Byte</td>
+<td>padding
+</td></tr></table>
+<p>Since the initiator already knows the client MD4 hash of the outgoing connection, it can encrypt the traffic without any previous handshake. The encryption starts after the <i>random part of the initiator</i> and thus with byte 5.
+</p>
+<h3> <span class="mw-headline" id="Transition_12:_Verification_of_the_key_exchange_succeeded"> Transition 12: Verification of the key exchange succeeded </span></h3>
+<p>The received <tt>dwValue</tt> has been compared with MAGICVALUE_SYNC and was identical.
+</p>
+<table>
+<caption> Data received
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 4 Byte </td>
+<td> dwValue
+</td></tr></table>
+<h3> <span class="mw-headline" id="Transition_13:_The_selected_encryption_method_has_been_verified_to_be_supported."> Transition 13: The selected encryption method has been verified to be supported. </span></h3>
+<table>
+<caption> Data received
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 1 Byte </td>
+<td> EncryptionMethodSet
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> Padding length
+</td></tr></table>
+<h3> <span class="mw-headline" id="Transition_14:_The_padding_has_been_received"> Transition 14: The padding has been received </span></h3>
+<table>
+<caption> Data received
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> n Byte </td>
+<td> Padding
+</td></tr></table>
+<h2> <span class="mw-headline" id="The_protocol_state_machine_for_incoming_client_connections"> The protocol state machine for incoming client connections </span></h2>
+<h3> <span class="mw-headline" id="Transition_6:_The_random_part_has_been_received"> Transition 6: The random part has been received </span></h3>
+<table>
+<caption> Data received
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td>1 Byte</td>
+<td>SemiRandomNotProtocolMarker
+</td></tr>
+<tr>
+<td>4 Byte</td>
+<td>random part of the initiator
+</td></tr></table>
+<p>This is the companion of transition 11.
+</p>
+<h3> <span class="mw-headline" id="Transition_7:_Our_random-part_has_been_sent_to_the_initiator"> Transition 7: Our random-part has been sent to the initiator </span></h3>
+<p>Prior to sending the random-part the inter-client key generation takes place:
+</p>
+<ul><li> Create the buffer:
+</li></ul>
+<table>
+<caption> Incoming connection key exchange buffer
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 16 Byte </td>
+<td> My MD4 client hash
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> MAGICVALUE_REQUESTER
+</td></tr>
+<tr>
+<td> 4 Byte </td>
+<td> received random part from initiator
+</td></tr></table>
+<ul><li> ReceiveKey = RC4CreateKey(md5sum(buffer))
+</li><li> replace MAGICVALUE_REQUESTER with MAGICVALUE_SERVER
+</li><li> SendKey = RC4CreateKey(md5sum(buffer))
+</li></ul>
+<table>
+<caption> Data sent
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 4 Bytes </td>
+<td> Random part
+</td></tr></table>
+<h3> <span class="mw-headline" id="Transition_8:_It_has_been_verified_that_the_key_exchange_succeeded"> Transition 8: It has been verified that the key exchange succeeded </span></h3>
+<table>
+<caption> Data received
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 4 Bytes </td>
+<td> <tt>dwValue</tt>
+</td></tr></table>
+<p><tt>dwValue</tt> has been equal to MAGICVALUE_SYNC and thus had been encrypted correctly by the peer.
+</p>
+<h3> <span class="mw-headline" id="Transition_9:_List_of_supported_protocols_received_and_supported"> Transition 9: List of supported protocols received and supported </span></h3>
+<table>
+<caption> Data received
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 1 Byte </td>
+<td> EncryptionSupported
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> EncryptionRequested
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> Padding length
+</td></tr></table>
+<h3> <span class="mw-headline" id="Transition_10:_Encryption_succeeded_from_our_perspective."> Transition 10: Encryption succeeded from our perspective. </span></h3>
+<table>
+<caption> Data received
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> n Bytes </td>
+<td> Padding
+</td></tr></table>
+<table>
+<caption> Data sent
+</caption>
+<tr>
+<th width="20%"> Length </th>
+<th> Content
+</th></tr>
+<tr>
+<td> 4 Byte </td>
+<td> MAGICVALUE_SYNC
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> the selected encryption method: ENM_OBFUSCATION
+</td></tr>
+<tr>
+<td> 1 Byte </td>
+<td> padding length
+</td></tr>
+<tr>
+<td> n Byte </td>
+<td> padding
+</td></tr></table>
+<h1> <span class="mw-headline" id="Links"> Links </span></h1>
+<h2> <span class="mw-headline" id="Protocol_obfuscation"> Protocol obfuscation </span></h2>
+<ul><li> eMule on obfuscation: <a href="http://www.emule-project.net/home/perl/help.cgi?l=1&amp;topic_id=848&amp;rm=show_topic" class="external free" rel="nofollow">http://www.emule-project.net/home/perl/help.cgi?l=1&amp;topic_id=848&amp;rm=show_topic</a>
+</li><li> Protocol obfuscation in the eMule wiki: <a href="http://wiki.emule-web.de/index.php/Protocol_obfuscation#Technical_implementation" class="external free" rel="nofollow">http://wiki.emule-web.de/index.php/Protocol_obfuscation#Technical_implementation</a>
+</li></ul>
+<h2> <span class="mw-headline" id="Ocaml_and_RC4"> Ocaml and RC4 </span></h2>
+<ul><li> OCaml-SSL: <a href="http://caml.inria.fr/cgi-bin/hump.en.cgi?contrib=368" class="external free" rel="nofollow">http://caml.inria.fr/cgi-bin/hump.en.cgi?contrib=368</a>
+</li><li> RC4 in OcaML alone: <a href="http://abaababa.ouvaton.org/caml/rc4.ml" class="external free" rel="nofollow">http://abaababa.ouvaton.org/caml/rc4.ml</a>
+</li><li> ocaml code for a general stream cipher setup: <a href="http://www.matt-mcdonnell.com/blog/perm_2006_12_03_122324.html" class="external free" rel="nofollow">http://www.matt-mcdonnell.com/blog/perm_2006_12_03_122324.html</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 106/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2114-0!*!0!!en!2!edit=0 and timestamp 20230807163557 -->
+<div class="printfooter">
+Retrieved from "<a href="EDKObfuscation.html">http://mldonkey.sourceforge.net/EDKObfuscation</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=EDKObfuscation" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="EDKObfuscation.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:EDKObfuscation&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="EDKObfuscation.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=EDKObfuscation&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index9b22.html?title=EDKObfuscation&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/EDKObfuscation.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/EDKObfuscation.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexb45d.html?title=EDKObfuscation&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexc9f0.html?title=EDKObfuscation&amp;oldid=3948" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 24 June 2008, at 20:21.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 15,697 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "EDKObfuscation", "wgTitle": "EDKObfuscation", "wgAction": "view", "wgArticleId": 2114, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3948, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.119 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/EDKObfuscation by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:13:40 GMT -->
+</html>

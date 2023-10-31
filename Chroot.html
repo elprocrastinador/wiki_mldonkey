@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Chroot by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:45:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Chroot - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Chroot skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Chroot</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#General_information"><span class="tocnumber">1</span> <span class="toctext">General information</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Comments"><span class="tocnumber">2</span> <span class="toctext">Comments</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Freebsd_Jail"><span class="tocnumber">3</span> <span class="toctext">Freebsd Jail</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#JailKit"><span class="tocnumber">4</span> <span class="toctext">JailKit</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Chrootuid_is_your_friend"><span class="tocnumber">5</span> <span class="toctext">Chrootuid is your friend</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Adding_libraries_to_the_chrooted_jail"><span class="tocnumber">6</span> <span class="toctext">Adding libraries to the chrooted jail</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#See_Also"><span class="tocnumber">7</span> <span class="toctext">See Also</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="General_information"> General information </span></h2>
+<p>To run mldonkey chrooted is a rather simple procedure. This means that after some initial procedures mldonkey will lock itself into it's homedir and throw away the key. After that the executable cannot alter anything outside the directory, if there are no security holes at kernel level. Thus, it gives, if correctly configured, a very high level of security. But beware!!! a badly setup chroot might even be a security hole itself!! Use jailkit <a href="http://olivier.sessink.nl/jailkit/" class="external free" rel="nofollow">http://olivier.sessink.nl/jailkit/</a> to setup the jail if you want to be sure to have a secure jail.
+</p>
+<ol><li> Decide where to chroot your mldonkey, preferably on a dedicated disk or partition. In this example: /home/mldonkey/
+</li><li> Take care that the partition you chose for chroot is not mounted with option nodev
+</li><li> Edit the /etc/passwd for user mldonkey to reflect the location above for the homedir entry. Remember the uid number.
+</li><li> Install all mldonkey files into /home/mldonkey/ or make a copy from your current installation. You <b>must</b> use a <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Static_build&amp;action=edit&amp;redlink=1" class="new" title="Static build (page does not exist)">static build</a>, or else you'll have to copy all dependant libs into your new root. jk_cp from jailkit can automatically copy the dependencies.
+</li><li> create /dev/null and /dev/urandom in the chroot, example for Linux:
+<dl><dd><pre>
+</dd><dd>mkdir /chroot/dev
+</dd><dd>mknod /chroot/dev/null c 1 3
+</dd><dd>mknod /chroot/dev/urandom c 1 9
+</dd><dd></pre>
+</dd></dl>
+</li><li> Move the temp, the incoming and the shared directories to /home/mldonkey/ if you didn't do that allready. Nothing can be accessed above /home/mldonkey/
+</li></ol>
+<ol>
+ <li value="7">If you didn't make a fresh install, edit your downloads.ini to reflect the new root:
+<pre>
+incoming_directory = incoming
+
+temp_directory = temp
+
+shared_directories = [
+  shared1;
+  shared2;
+  shared3]
+
+run_as_user = &quot;&quot;
+</pre>
+ </li>
+ <li>execute the following <b>as root</b> or with sudo, replace UID with the uid number for the mldonkey user in /etc/passwd:
+<pre>
+export MLDONKEY_CHROOT=/home/mldonkey
+./mldonkey -run_as_useruid UID &gt; chlog &amp;
+</pre>
+ </li>
+</ol>
+<p>Much more secure is to use jk_chrootlaunch from jailkit to start the daemon. It does a safe chroot, checks for any possible problems, and then changes user id to the corect user and starts the daemon.
+</p><p>For troubleshooting add "-stdout true" and look at your log file. Note that you need to fire it up as root. Note also that you cannot use the option "run_as_user", instead you need to "run_as_useruid". This is because mldonkey cannot reach /etc/passwd anymore.
+</p>
+<h2> <span class="mw-headline" id="Comments"> Comments </span></h2>
+<p>Chroot REQUIRES root access.
+</p><p>The setuidgid is available at <a href="http://cr.yp.to/" class="external free" rel="nofollow">http://cr.yp.to/</a> in the daemontools package.
+setuidgid does not chroot nor jail the process, it only sets the uid of the process. Since it is not setuid itself (it <b>must not</b> have the setuid bit set), it must be run as root. Therefore 'setuidgid root' is a no-op. (note: almost a no-op, setuidgid throws away supplementary groups, but this seems almost irrelevant in this example as the euid root does not require supplementary group membership to 0Wn your server;) again jk_chrootlaunch from jailkit (<a href="http://olivier.sessink.nl/jailkit/" class="external free" rel="nofollow">http://olivier.sessink.nl/jailkit/</a>) is much better because it can do both things, and it will refuse to chroot() to a badly configured chroot jail.
+</p><p>It is only required, if you do not trust mldonkey to correctly setuid itself. If you are really paranoid follow on:
+</p><p>Replace step 8 with:
+</p>
+<ol start="8">
+ <li>put the setuidgid binary into /home/mldonkey/
+ </li>
+ <li>make an /home/mldonkey/etc/ directory containing fake <tt>passwd</tt> and <tt>group</tt> files and to get name resolution, <tt>hosts</tt>, <tt>resolv.conf</tt> and <tt>nsswitch.conf</tt>
+<dl><dd>
+</dd></dl>
+etc/passwd:
+<pre>
+root:*:0:0:Charlie &amp;:/root:/bin/false
+mldonkey:*:65530:65530:edonkey Daemon:/home/mldonkey:/bin/false
+</pre>
+<p>etc/group:
+</p>
+<pre>
+wheel:*:0:root
+mldonkey:*:65530:
+</pre>
+<p>Your mileage may vary depending on the os used. Make sure the uid/gid is the right one used for the real /home/mldonkey dir.
+</p><p>Maybe you'll need libc.so and ld-elf.so in /home/mldonkey/usr/lib and libexec on FreeBSD to run dynamic binary.
+</p>
+ </li>
+ <li>your start script may then look like this (/home/mldonkey/run):
+<pre>
+#!/bin/sh
+cd /home/mldonkey
+exec chroot . ./setuidgid mldonkey ./mldonkey.static &gt;mldonkey.log 2&gt;&amp;1
+</pre>
+<p>Make sure its executable bit is set (chmod 700 run). It must be run as root, since chroot and setuidgid require root privileges. These privileges are dropped immediately and mldonkey is started as user 'mldonkey' confined to /home/mldonkey/.
+</p>
+ </li>
+ <li>
+<ul><li>Now (since you installed daemontools&#160;:) make a symlink from /home/mldonkey to /service/mldonkey and supervise will fire up your client. This won't work for nfs mounted filesystems, see 9b then.
+</li></ul>
+
+See also <a href="UsingDaemonTools.html" title="UsingDaemonTools">UsingDaemonTools</a>
+
+<ul><li>If you prefer the sysV way, alternatively a start script in your rc.d could then look like this:
+</li></ul>
+<pre>
+#!/bin/sh
+case &quot;$1&quot; in
+start)
+  /usr/home/mldonkey/run &amp;
+ &#160;;;
+stop)
+  ( echo &quot;auth MYPASSWORD&quot;&#160;; echo &quot;kill&quot; ) || nc -w 1 127.0.0.1 4000
+ &#160;;;
+esac
+</pre>
+</li>
+</ol>
+<p>_White FrosT: I had to used 'expect' to control the telnet daemon. Try 'man expect' if you are unformiliar with this command._
+</p><p>Thats it.
+</p><p><b>Note:</b> Beware about the environment inherited from the parent. Like <tt><a href="Ulimit.html" title="Ulimit">ulimit</a></tt>, <tt><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Umask&amp;action=edit&amp;redlink=1" class="new" title="Umask (page does not exist)">umask</a></tt>, etc. Easier than to change the file and directory creation mask from <tt>umask 022</tt> to a more restrictive one will be to setup the <tt>downloads.ini</tt> options <tt>create_dir_mode</tt> and <tt>create_file_mode</tt> to avoid permission problems when the core creates new directories.
+</p>
+<h2> <span class="mw-headline" id="Freebsd_Jail"> Freebsd Jail </span></h2>
+<p>FreeBSD has a nice feature called jails. A jail is a semi-virtualized computer in which the program runs. Even the root user in the jail is much degraded in what He can do. Setting up a jail for MLDonkey is straightforward. First read the manpage jail(8). It tells you how to build a world and put the code into the jail location. Next it tells you how to start up a jail with a distinct IP.
+</p><p>Once you have the jail up and running, it is straightforward to create a user inside the jail with no privileges whatsoever, let him run the mldonkey binary with:
+</p>
+<pre>
+./mldonkey -allowed_ips &lt;your-jail-ip&gt;
+</pre>
+<p>Afther that the telnet daemon should be able to connect to mldonkey, providing a neat and convenient inteface to the backend.
+</p>
+<h2> <span class="mw-headline" id="JailKit"> JailKit </span></h2>
+<p>I found a simple and secure way to chroot MLDonkey thanks to <a href="http://olivier.sessink.nl/jailkit/" class="external text" rel="nofollow">Jailkit</a>.
+</p><p>When you get it ready. Preparing the Jail:
+</p>
+<ol><li>First, I created the user and modified:
+<dl><dd><pre>
+</dd><dd>adduser mldonkey
+</dd><dd></pre>
+</dd></dl>
+</li><li>edit <tt>/etc/passwd</tt>:
+<dl><dd><pre>
+</dd><dd>mldonkey:x:1050:1050::/home/mldonkey/./home/mldonkey:/usr/sbin/jk_chrootsh
+</dd><dd></pre>
+</dd></dl>
+</li><li>I created the directory:
+<dl><dd><pre>
+</dd><dd>mkdir /home/mldonkey
+</dd><dd>chown root:root /home/mldonkey 
+</dd><dd></pre>
+</dd></dl>
+</li><li>Add this to <tt>/etc/jailkit/jk_init.ini</tt>:
+<dl><dd><pre>
+</dd><dd>[mldonkey]
+</dd><dd>comment = MLDonkey P2P
+</dd><dd>libraries = /lib/libnss_files.so.2, /lib/libc.so.6, /lib/ld-linux.so.2, /lib/libnss_dns.so.2, /lib/libresolv.so.2
+</dd><dd>regularfiles = /etc/nsswitch.conf, /etc/resolv.conf, /etc/hosts
+</dd><dd>devices = /dev/urandom, /dev/null
+</dd><dd>emptydirs = /tmp
+</dd><dd></pre>
+</dd></dl>
+</li><li>I created the chroot:
+<dl><dd><pre>
+</dd><dd>jk_init -v -j /home/mldonkey basicshell mldonkey
+</dd><dd></pre>
+</dd></dl>
+</li><li>New <tt>/home/mldonkey/etc/passwd</tt>:
+<dl><dd><pre>
+</dd><dd>mldonkey:x:1050:1050::/home/mldonkey:/bin/bash
+</dd><dd></pre>
+</dd></dl>
+</li><li>and new <tt>/home/mldonkey/etc/group</tt>:
+<dl><dd><pre>
+</dd><dd>mldonkey:x:1050:
+</dd><dd></pre>
+</dd></dl>
+</li><li>We need a tmp dir writable for mldonkey, then I did:
+<dl><dd><pre>
+</dd><dd>chmod 1777 /home/mldonkey/tmp
+</dd><dd></pre>
+</dd></dl>
+</li><li>Also, I had to set permissions for <tt>dev/null</tt>:
+<dl><dd><pre>
+</dd><dd>chmod 777 /home/mldonkey/dev/null
+</dd><dd></pre>
+</dd></dl>
+</li><li>And set owner to our home directory:
+<dl><dd><pre>
+</dd><dd>chown mldonkey:mldonkey -R /home/mldonkey/home/mldonkey
+</dd><dd>chmod 755 /home/mldonkey/home/mldonkey
+</dd><dd></pre>
+</dd></dl>
+</li></ol>
+<p>We have the Jail ready for whatever, we have copied almost each needed library, that were added in jk_ini.ini (mldonkey profile).
+</p>
+<pre>su mldonkey</pre> should login in a minimalistic bash. If it does not work, check <tt>/var/log/daemons.log</tt>, <tt>/var/log/auth.log</tt> or <tt>/var/log/syslog</tt>.
+<p>Now we are ready to put mldonkey inside. I did it compiling it by myself, precompiled binary should work too.
+</p><p>For any problems or suggestions go to: <a href="http://mldonkey.sourceforge.net/forums/viewtopic.php?t=5007" class="external text" rel="nofollow">Forum:Chrooting mldonkey (jailkit) [not a problem</a>]
+</p><p>Startup Script, check <a href="ChrootuidWithSysV.html" title="ChrootuidWithSysV">chrootuidWithSysV</a>
+</p>
+<h2> <span class="mw-headline" id="Chrootuid_is_your_friend"> Chrootuid is your friend </span></h2>
+<p>After searching google extensively for ways to SU and CHROOT at the same time, I found a really spiffy program to do it all at once. Will not only perform as chroot, but it will also set the uid of the program mlnet.
+</p><p>The command puts mldonkey in background but the terminal needs to be keep online:
+</p>
+<pre>
+chrootuid /path/to/chroot/jail mlnet_username mlnet &amp;
+</pre>
+<p>chrootuid also works with other methods. See <a href="HowToStartMLdonkey.html" title="HowToStartMLdonkey">HowToStartMLdonkey</a>.
+</p><p>The command puts mldonkey in background and keep it running even after detaching the terminal:
+</p>
+<pre>
+nohup chrootuid /path/to/chroot/jail mlnet_username mlnet &amp;
+</pre>
+<p>Or in a <a href="Screen.html" title="Screen">screen</a> session, just detach with <b>Control-a d</b> and will keep it running:
+</p>
+<pre>
+screen chrootuid /path/to/chroot/jail mlnet_username mlnet
+</pre>
+<p>Find chrootuid here: <a href="http://www.mirrors.wiretapped.net/security/host-security/chrootuid/" class="external autonumber" rel="nofollow">[1]</a>
+</p><p>It is, however, basically the same as jk_chrootlaunch, which is even a bit better because it checks for the chroot security as well.
+</p><p>Here's a link to a <a href="ChrootuidWithSysV.html" title="ChrootuidWithSysV">wiki page on how to use it with sysV style init script that I wrote</a>
+</p>
+<h2> <span class="mw-headline" id="Adding_libraries_to_the_chrooted_jail"> Adding libraries to the chrooted jail </span></h2>
+<p>In some cases there are more libraries needed, even if the mlnet was compiled staticly. I've found out that for example the bittorent module does not work correct if there are no DNS related libraries loaded, because of <a href="http://sourceware.org/glibc/glibc-faq.html#s-2.22" class="external text" rel="nofollow">design choices</a> by glibc devs. Here's how to find out which libraries are needed in the chroot jail with the use of the lsof command:
+</p>
+<ol><li> First run mlnet in a not chrooted jail. Connections to the outside world are not necessary. Enable all the clients which are needed (in this case bittorent)
+</li><li> Check the needed files with the following commands:
+<dl><dd><pre>lsof -P -T -p MLNET_PID</pre>
+</dd><dd>and
+</dd><dd><pre>ldd /path/to/mldonkey</pre>
+</dd></dl>
+</li><li> Take note of the <tt>/lib</tt> files which show up and copy these files in the chroot jail <tt>/lib</tt> directory I had to copy the following files with the 'cp -p' command:
+<dl><dd><pre>
+</dd><dd>/lib/libnss_files.so.2
+</dd><dd>/lib/libc.so.6
+</dd><dd>/lib/ld-linux.so.2
+</dd><dd>/lib/libnss_dns.so.2
+</dd><dd>/lib/libresolv.so.2
+</dd><dd></pre>
+</dd></dl>
+</li><li> In the case of DNS there are also support files needed, make the <tt>/etc</tt> in the chroot jail and copy <tt>resolv.conf</tt>, hosts and <tt>nsswitch.conf</tt> files to the chroot directory <tt>/etc</tt> with <tt>passwd</tt> and <tt>group</tt> files (see above).
+<dl><dd>etc/hosts:
+</dd><dd><pre>127.0.0.1       localhost       localhost.localdomain</pre>
+</dd><dd>
+</dd><dd>etc/resolv.conf:
+</dd><dd><pre>nameserver your_nameserver_ip</pre>
+</dd></dl>
+</li><li> Create a <tt>/tmp</tt> directory inside the chroot, and give at least to the mldonkey user, write, read and execute privileges.
+<dl><dd><pre>
+</dd><dd>mkdir tmp
+</dd><dd>chmod 1775 tmp
+</dd><dd></pre>
+</dd></dl>
+</li><li> Restart the mlnet client and check with a recent torrent file if the construction is working. Look for errors at the terminal output and the <tt>mlnet.log</tt> file.
+</li></ol>
+<p><br />
+Currently for <tt>mldonkey-2.9.0.static.i386-Linux_glibc-2.3.2.tar.bz2</tt> these libraries with their symbolic links will be enought. These files can be found in many packages.
+</p>
+<pre>
+$ ls -l lib/
+-rwxr-xr-x    1 root     root        85420 Nov  5  2003 ld-2.2.5.so
+lrwxrwxrwx    1 root     root           11 Jul 27 21:33 ld-linux.so.2 -&gt; ld-2.2.5.so
+-rwxr-xr-x    1 root     root      1344152 Nov  5  2003 libc-2.2.5.so
+lrwxrwxrwx    1 root     root           13 Jul 27 21:33 libc.so.6 -&gt; libc-2.2.5.so
+-rwxr-xr-x    1 root     root        85262 Nov  5  2003 libnsl-2.2.5.so
+lrwxrwxrwx    1 root     root           15 Jul 27 21:33 libnsl.so.1 -&gt; libnsl-2.2.5.so
+-rwxr-xr-x    1 root     root        16023 Nov  5  2003 libnss_dns-2.2.5.so
+lrwxrwxrwx    1 root     root           19 Jul 27 21:33 libnss_dns.so.2 -&gt; libnss_dns-2.2.5.so
+-rwxr-xr-x    1 root     root        42897 Nov  5  2003 libnss_files-2.2.5.so
+lrwxrwxrwx    1 root     root           21 Jul 27 21:33 libnss_files.so.2 -&gt; libnss_files-2.2.5.so
+-rwxr-xr-x    1 root     root        44383 Nov  5  2003 libnss_nisplus-2.2.5.so
+lrwxrwxrwx    1 root     root           23 Jul 27 21:33 libnss_nisplus.so.2 -&gt; libnss_nisplus-2.2.5.so
+-rwxr-xr-x    1 root     root        64733 Nov  5  2003 libresolv-2.2.5.so
+lrwxrwxrwx    1 root     root           18 Jul 27 21:33 libresolv.so.2 -&gt; libresolv-2.2.5.so
+</pre>
+<p>For character conversion to work its support files also are needed:
+</p>
+<pre>
+$ ls -l usr/lib/gconv/
+-rwxr-xr-x    1 root     root         5412 Jul 11 13:32 ISO8859-1.so (or your language encoding library)
+-rwxr-xr-x    1 root     root         6516 Jul 11 13:33 UNICODE.so
+-rw-r--r--    1 root     root        43774 Jul 11 13:33 gconv-modules
+-rw-r--r--    1 root     root        20666 Jul 11 13:33 gconv-modules.cache
+</pre>
+<pre>
+$ ls -l usr/share/i18n/charmaps/
+-rw-r--r--    1 root     root         3150 Nov  5  2003 ISO-8859-1.gz
+-rw-r--r--    1 root     root       229052 Apr  7  2007 UTF-8.gz
+</pre>
+<p>Please, notice that character conversion may not work even when creating the <tt>usr/bin</tt> <tt>usr/lib</tt> <tt>usr/share</tt> tree and files.
+</p><p>You also may need some files from <tt>usr/share/i18n/locales/</tt> and <tt>usr/lib/locale/</tt>
+</p><p>You can check from within the chrooted jail that this works, and look with <tt>ldd</tt> for the files used by <tt>iconv</tt> as shown above in step 2:
+</p>
+<pre>
+echo &quot;ñ&quot; | iconv -f iso8859-1 -t utf-8
+</pre>
+<h2> <span class="mw-headline" id="See_Also"> See Also</span></h2>
+<ul><li><a href="HowToStartMLdonkey.html" title="HowToStartMLdonkey">How to start MLdonkey</a>
+</li><li><a href="Screen.html" title="Screen">Screen</a>
+</li><li>You dig unix and like elegant solutions: Controlling, logging and automatically relaunching MLdonkey <a href="UsingDaemonTools.html" title="UsingDaemonTools">UsingDaemonTools</a>
+</li><li>Using startup or control scripts (<a href="StartingSysVStyle.html" title="StartingSysVStyle">StartingSysVStyle</a>, <a href="ChrootuidWithSysV.html" title="ChrootuidWithSysV">chrootuidWithSysV</a>).
+</li><li><a href="Ulimit.html" title="Ulimit">Ulimit</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 317/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1330-0!*!0!!en!*!edit=0 and timestamp 20230807162759 -->
+<div class="printfooter">
+Retrieved from "<a href="Chroot.html">http://mldonkey.sourceforge.net/Chroot</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Chroot" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Chroot.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Chroot&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Chroot.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Chroot&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexe594.html?title=Chroot&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Chroot.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Chroot.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index5604.html?title=Chroot&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index0c48.html?title=Chroot&amp;oldid=5289" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 11 July 2019, at 12:25.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 48,365 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Chroot", "wgTitle": "Chroot", "wgAction": "view", "wgArticleId": 1330, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5289, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.117 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Chroot by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:45:15 GMT -->
+</html>

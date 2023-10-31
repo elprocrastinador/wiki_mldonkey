@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/DirectConnect_RU by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:27:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>DirectConnect RU - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-DirectConnect_RU skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">DirectConnect RU</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p><font size="5" color="#030355">Описание, настройка и история плагина <b>Direct connect</b> в MLdonkey</font>
+</p><p><br />
+</p><p><br />
+</p><p><br />
+<b>Direct connect</b> это протокол обмена файлами зависимый от серверов (правильнее их будет назвать хабами) которые  запускаются добровольцами. Таким образом вы расшариваете файлы (даёте в доступ) ваши файлы только тем пользователям которые подключены с вами на один хаб(сервер). 
+Люди запускающие хаб(сервер) обычно ставят некоторые правила для тех кто может(и не может) подключаться к их хабу(как вариант - подключаться с ограничениями), например условием может быть определённое количество расшаренных файлов, количество включённых открытых слоты для подключений, ban(запрет, выкидывание) за некоторые материалы(обсуждения) например за детскую порнографию, рекламу(спам) и т.п.
+И это хорошо ибо такие действия избавляют от личеров(эгоистов, людей которые хотят качать и ничего не дают взамен, не шаря свои файлы).
+</p><p>Поддержка DC++ появилась в MLDonkey начиная с версии 2.8.7.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#.D0.92.D0.BE.D0.B7.D0.BC.D0.BE.D0.B6.D0.BD.D0.BE.D1.81.D1.82.D0.B8"><span class="tocnumber">1</span> <span class="toctext">Возможности</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#.D0.9E.D0.BF.D0.B8.D1.81.D0.B0.D0.BD.D0.B8.D0.B5"><span class="tocnumber">2</span> <span class="toctext">Описание</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#.D0.A1.D0.BC._.D1.82.D0.B0.D0.BA.D0.B6.D0.B5"><span class="tocnumber">3</span> <span class="toctext">См. также</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#.D0.98.D1.81.D1.82.D0.BE.D1.80.D0.B8.D1.8F"><span class="tocnumber">4</span> <span class="toctext">История</span></a></li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id=".D0.92.D0.BE.D0.B7.D0.BC.D0.BE.D0.B6.D0.BD.D0.BE.D1.81.D1.82.D0.B8"> Возможности </span></h3>
+<table class="wikitable" border="1" cellspacing="0">
+
+<tr>
+<th> Возможность
+</th>
+<th> Описание
+</th>
+<th> Поддержка
+</th></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/ru:Direct_Connect" class="extiw" title="w:ru:Direct Connect">Сеть Direct Connect</a>
+</td>
+<td>&#160;?
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.8.7
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/ru:IPv6" class="extiw" title="w:ru:IPv6">Протокол IPv6</a>
+</td>
+<td>
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no"> Нет
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/ru:TTH" class="extiw" title="w:ru:TTH">Tiger Tree Hashing</a>
+</td>
+<td> TTH
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Да
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/ru:Advanced_Direct_Connect" class="extiw" title="w:ru:Advanced Direct Connect">Протокол Advanced Direct Connect</a>
+</td>
+<td> <a href="http://adc.sourceforge.net/" class="external text" rel="nofollow">ADC</a>
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no"> Нет
+</td></tr>
+<tr>
+<td> XML hublists
+</td>
+<td>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0.2
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/ru:Magnet-ссылка" class="extiw" title="w:ru:Magnet-ссылка">Magnet-ссылка</a>
+</td>
+<td>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0.3
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/ru:Universal_Plug_and_Play" class="extiw" title="w:ru:Universal Plug and Play">Автоматическое перенаправление портов</a>
+</td>
+<td> UPnP/NAT-PMP
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0.6
+</td></tr></table>
+<h3> <span class="mw-headline" id=".D0.9E.D0.BF.D0.B8.D1.81.D0.B0.D0.BD.D0.B8.D0.B5"> Описание </span></h3>
+<p>Получить список доступных кнопок или команд можно командой <b>dc</b> в консоли, в том числе в вэб-интерфейсе.
+</p><p>Основные способы использования:
+</p>
+<ul><li> добавьте ссылку на список хабов в опцию <a href="Web_infos.html" title="Web infos">web_infos(вэб_информация)</a> (по умолчанию ссылка там уже добавлена)
+</li><li> ввод команды <b>dc</b> в консоли(в вэб инт. это длинная строка ввода) откроет страницу управления DC функциями (в виде ряда кнопок)
+</li><li> увидев ряд кнопок нажмите кнопку hublist(рус = список хабов) и выбрите подходящий хаб (нажав кнопку 'add'(добавить), чтобы добавить этот хаб в общий список серверов)
+</li><li> также вы можете добавить хаб вручную, выполнив в вэб-консоли команду <b>dcn ip port</b> (вместо ip может быть также задан текстовый адрес хаба, пример <b>dcn coolhub.ru 411</b>
+</li><li> выполните dc, нажмите кнопку hubs и вы увидите все добавленные хабы (статус <i>waiting(ожидание)</i> означает, что хаб не подключён)
+</li><li> чтобы сделать автоматическое подключение к какому-либо хабу нажмите <b>Set(Уст)</b> в строке с ним, в колонке <b>Auto(Автоподк)</b>
+</li><li> перейдите на страницу серверов(servers), выбранные сервера будут там, перейдите на страницу <a href="Vma.html" title="Vma">all servers(все серверы)</a> и нажмите <b>conn(подкл)</b> для подключения к хабам вручную
+</li><li> подключённые хабы будут добавлены на страницу <a href="Vm.html" title="Vm">connected servers(подключённые сервера)</a> 
+</li><li> перейдите на главную страницу и ищите на вкладке <a href="S.html" title="S">search(поиск)</a> как обычно
+</li><li> дополнительно, вы также можете открыть панель управления DC и далее нажать кнопку Users(Пользователи), выбрать какого-нибудь пользователя и нажать <b>get list(получить список файлов)</b>, дождаться пока файл лист пользователя скачается, затем опять открыть панель управления DC и выбрать кнопку filelists (списки файлов) посмотреть все файлы выложенные пользователем в общий доступ.
+</li><li> dc-&gt;clients покажет текущую сетевую активность (отдача/скачивание, то же самое отобразится на основной странице передач)
+</li><li> dc-&gt;shared выдаст список расшаренных файлов
+</li><li> в dc-&gt;hubs начинает мигать ссылка <b>open chat</b> когда появляются новые сообщения в чате хаба к которому вы подключены. Вы можете нажать на нее и пообщаться с другими пользователями этого хаба.
+</li><li> dc-&gt;users(пользователи) выдаст список всех пользователей хаба, <b>open chat</b> будет мигать если есть непрочтенные сообщения.
+</li></ul>
+<h3> <span class="mw-headline" id=".D0.A1.D0.BC._.D1.82.D0.B0.D0.BA.D0.B6.D0.B5"> См. также </span></h3>
+<ul><li> <a href="http://forum.netgear.ru/viewtopic.php?id=3795" class="external text" rel="nofollow">Установка mldonkey DC++ на NETGEAR NAS</a>
+</li></ul>
+<h3> <span class="mw-headline" id=".D0.98.D1.81.D1.82.D0.BE.D1.80.D0.B8.D1.8F"> История </span></h3>
+<p>Ниже описан лог(журнал) IRC общения, что является первым шагом к созданию документации для этого модуля:
+<b><br />Апр 29 20:13:11 &lt;Alffa&gt;</b> Привет MLDonkey-еры (МЛданкейры - фанаты, и пользователи вообще MLdonkey)...
+<b><br />Апр 29 20:13:47 &lt;Alffa&gt;</b> я был удивлён тем что кто-то проявил интерес к поддержке DC++ в MLDonkey
+<b><br />Апр 29 20:15:07 &lt;Alffa&gt;</b> Я использую версию которую я разработал с начала этого года(прим.перев. речь о давнем достаточно годе, предположительно 2006-2007), но сейчас я оказался в сложной личной ситуации и не могу продолжать дальше заниматься этим&#160;:-( 
+<b><br />Апр 29 20:18:31 &lt;Alffa&gt;</b> так вот, если кто желает получить исходный код, он есть в в версии 2.8.3 CVS(коллективной сборки) MLdonkey, но я не знал как его ещё по другому можно было передать.
+<b><br />Апр 29 20:20:08 &lt;spiralvoice&gt;</b> Alffa: создайте патч для CVS версии и пошлите его в Savannah(Прим. перев. - Саванна, GNU Savannah — площадка Фонда свободного программного обеспечения для хостинга и совместной разработки свободного ПО.): <a href="http://savannah.nongnu.org/patch/?group=mldonkey" class="external free" rel="nofollow">http://savannah.nongnu.org/patch/?group=mldonkey</a>
+<b><br />Апр 29 20:20:52 &lt;spiralvoice&gt;</b> Alffa: я не могу гарантировать, что добавление в средство коллективной разработки (CVS) приведёт к обязательной дальнейшей разработке, но наличие исходного кода в Savannah("Саванне") откроет для этого благоприятную возможность.&#160;:-)
+<b><br />Апр 29 20:21:00 &lt;Alffa&gt;</b> Я нуждаюсь в непосредственной помощи так как я не помню, как использовать CVS(колл.средство разраб.) и как передать туда свой код
+<b><br />Апр 29 20:21:43 &lt;Alffa&gt;</b> Это работает вполне хорошо по моему мнению и моих нужд, но если кто-нибудь сможет сделать ещё больше и лучше, я буду только рад...
+<b><br />Апр 29 22:28:59 &lt;Alffa&gt;</b> Если при компиляции вы выбрали поддержку DC++(прим. переводчика, в готовых сборках, как правило DC++ надо включить), это работает в вэб интерфейсе, вызвать меню DC++ вы можете если введётся в консоли(<b>в вэб-консоли</b>) буквы "dc" и нажмёте кнопку <b>"ОК"</b>(<b>"ввод"</b> в русской версии)... 
+<b><br />Апр 29 22:32:53 &lt;Alffa&gt;</b> в файлах конфигурации(configs) много разных настроек... настройки хаб-листа, адресов и т.п.
+<b><br />Апр 29 22:35:36 &lt;Alffa&gt;</b> точнее в опциях, я имел в виду (прим.перев. если у вас включён и работает плагин DC++, то в каталоге MLdonkey должен быть файл direct_connect.ini)
+<b><br />Апр 29 22:39:29 &lt;Alffa&gt;</b> если у вас есть зарегестрированная учётная запись на хабах, вы можете задать пароль непосредственно в файле directconnect.ini
+<b><br />Апр 29 22:44:34 &lt;spiralvoice&gt;</b> Alffa: есть ли в твоём модуле ДЦ++ для MLDonkey отличия/недостатки возможностей сравнивая с официальными DC++ клиентами&#160;?
+<b><br />Апр 29 22:45:06 &lt;Alffa&gt;</b> Я пытался сделать копию windows клиента DC++ 
+<b><br />Апр 29 22:48:41 &lt;spiralvoice&gt;</b> Alffa: твой код требует Bzip2&#160;?(прим. перев: это алгоритм сжатия, архиватор, с открытым исходным кодом, а так же  библиотеки к нему)
+<b><br />Апр 29 22:48:48 &lt;Alffa&gt;</b> да
+<b><br />Апр 29 22:49:51 &lt;spiralvoice&gt;</b> Alffa: это обязательно для DC++&#160;? В программе MLDonkey bzip2 является опцией(на выбор), чтобы добавить код плагина ДЦ++ в основной код MLdonkey  я должен сделать выбор, изменить твой код чтобы он не требовал обязательно использовать bzip2 или же добавить библиотеки архиватора bzip2 в обязательный зависимости для MLdonkey
+<b><br />Апр 29 22:50:28 &lt;Alffa&gt;</b> без bzip2 вы не сможете открыть хаблисты (прим.перев: список Хабов(серверов) к которым можно подключиться)
+<b><br />Апр 29 22:51:02 &lt;Alffa&gt;</b> вдобавок файллисты с шарами пользователей тоже запакованы в формате bzip2
+<b><br />Апр 29 22:54:13 &lt;spiralvoice&gt;</b> хорошо, тогда я изменю файл configure.ini(прим. перев. файл насройки для сборки\компиляции mldonkey при сборке из исходного кода) на отключение плагина dc++ если библиотеки bzip2 не были найдены
+<b><br />Апр 29 22:55:00 &lt;spiralvoice&gt;</b> Alffa: твой код dc++ имеет ограничение на размеры файла&#160;? Ты загружал файлы больше 4GB им&#160;?
+<b><br />Апр 29 22:57:06 &lt;Alffa&gt;</b> самое большее, что я заружал было меньше &lt; 1G
+<b><br />Апр 29 22:58:03 &lt;Alffa&gt;</b> я не могу быть полностью уверян
+<b><br />Апр 29 22:58:31 &lt;Alffa&gt;</b> в тексте кода я не помню каких либо ограничений
+<b><br />Апр 29 23:00:13 &lt;spiralvoice&gt;</b> Alffa: содержит ли код хеширования поддержку больших файлов&#160;? Is che3 the hash code of dc++?
+<b><br />Апр 29 23:00:37 &lt;Alffa&gt;</b> В DC++ есть пользователи которые расшаривают 1-5 Tbytes данных, в таких случаях файллист настолько большой, что приводит к заеданию вэб-интерфейса 
+<b><br />Апр 29 23:17:15 &lt;Alffa&gt;</b> вы можете фильтровать список с помощью: dchublist show filteringword filteringword ...
+<b><br />Апр 30 00:27:07 &lt;spiralvoice&gt;</b> понятно. Я получил 2910-ть записей хабов
+<b><br />Апр 30 00:33:53 &lt;spiralvoice&gt;</b> я добавил несколько хабов, но они стоят в состоянии "ожидания"("Waiting")
+<b><br />Апр 30 21:57:13 &lt;spiralvoice&gt;</b> Alffa: у тебя есть утечки памяти в твоём патче "dc"?
+<b><br />Апр 30 21:57:56 &lt;spiralvoice&gt;</b> Alffa: Расшаренное - показывает в два раза больше, чем есть
+<b><br />Апр 30 21:59:40 &lt;Alffa&gt;</b> актуальных не замечал, в два раза больше показывает так как первое это глобальная шара, а второй лист это файлы зашаренные с помощью tigertree (прим.перев. TTH (Tiger Tree Hashing) один из типов хеша, используется в DC++ с версии 0.400.)
+<b><br />Апр 30 22:00:27 &lt;spiralvoice&gt;</b> Alffa: есть время когда списки не являются одинаковым деревом TTH(thLeafe)?
+<b><br />Апр 30 22:00:52 &lt;spiralvoice&gt;</b> Alffa: e2k шары показываются только один раз, пока хеш не известен, не показывается ссылка е2k  
+<b><br />Апр 30 22:02:42 &lt;Alffa&gt;</b> процесс расшаривания весьма запутан... это была худшая часть кода 
+<b><br />Апр 30 22:03:22 &lt;spiralvoice&gt;</b> тоже самое касается и e2k, я пробывал однажды выполнить сохранение всех значений отдачи , чтобы их можно было загрузить позже. 
+<b><br />Апр 30 22:03:36 &lt;spiralvoice&gt;</b> я уже видел, ты создал новый файл *.ini для шар(расшаренных файлов)&#160;;-)
+<b><br />Апр 30 22:03:44 &lt;Alffa&gt;</b> Я решил сделать дубликат системы для ДЦ++ шар(расшаренных фалов)... это лучший способ по унификации расшаренного
+<b><br />Апр 30 22:04:42 &lt;Alffa&gt;</b> с моей квалификацией и пониманием общего кода MLdonkey это было мои решением (реализацией)
+<b><br />Апр 30 22:05:06 &lt;Alffa&gt;</b> мне не нравиться этот способ, но как сделать по другому я не знаю
+<b><br />Апр 30 22:06:09 &lt;spiralvoice&gt;</b> Мне не нравится управление шарами в MLdonkey в целом, файл shared_files_new.ini только для е2к зашаривания, файл shared_files.ini  для Gnutella/G2/Fasttrack (обрабатывается общей шарой&#160;? - commonShares&#160;?)
+<b><br />Апр 30 22:06:18 &lt;spiralvoice&gt;</b> это бардак
+<b><br />Апр 30 22:06:28 &lt;spiralvoice&gt;</b> но если ваш код плагина ДЦ++ работает, этого достаточно для меня
+<b><br />Апр 30 22:07:36 &lt;spiralvoice&gt;</b> Alffa: ты можешь мне сейчас помочь пользоваться ДЦ++  плагином&#160;?  Я ранее никогда не пользовался этой сетью, хаблист загружен  и  часть моей шары(расшаренных файлов)  захеширована, что делать дальше&#160;?
+<b><br />Апр 30 22:07:42 &lt;Alffa&gt;</b> Я соглашусь с тем, что кто-нибудь из главных разработчиков  проверил код расшаривания... я убил много времени для понимания операция atm
+<b><br />Апр 30 22:07:50 &lt;spiralvoice&gt;</b> Alffa: порт дц+ открыт и перенаправлен
+<b><br />Апр 30 22:08:25 &lt;Alffa&gt;</b> тогда ты можешь подключиться к хабу(серверу)
+<b><br />Апр 30 22:08:41 &lt;Alffa&gt;</b> если вы про список хабов, то там есть кнопка "Добавить"
+<b><br />Апр 30 22:08:45 &lt;spiralvoice&gt;</b> Alffa: мне необходима регистрация на хабе, перед тем как подсоединяться к нему при помощи MLDonkey&#160;?
+<b><br />Апр 30 22:09:00 &lt;Alffa&gt;</b> когда вы добавите хаб, он станет виден в общем(глобальном) списке серверов
+<b><br />Апр 30 22:09:21 &lt;Alffa&gt;</b> нет, только если на самом хабе стоит такое ограничение(прим. перев: требование обязательной регистрации) 
+<b><br />Апр 30 22:09:25 &lt;spiralvoice&gt;</b> Alffa: я пробывал так вчера вечером, но хаб оставался в статусе "Waiting" ("ожидаю") несколько минут, я не дождался и пошёл спать&#160;;-)
+<b><br />Апр 30 22:09:26 &lt;Alffa&gt;</b> и там обычно так
+<b><br />Апр 30 22:09:55 &lt;Alffa&gt;</b> вы должны расшарить достаточно (прим. перев. в соответствии с лимитом на хабе) или же должны сделать\обеспечить больше свободных слотов и т.п. (прим.перев. вообщем соблюсти все условия, требуемые организатором хаба дц++).
+<b><br />Апр 30 22:10:44 &lt;spiralvoice&gt;</b> Alffa: я добавил 8 хабов, все они по прежнему в состоянии ожидания, мне нужно добавить больше хабов&#160;?
+<b><br />Апр 30 22:11:19 &lt;Alffa&gt;</b> надпись "waiting"(ожидаю) значит лишь только, что этот сервер/хаб добавлен в ваш список избранных хабов и больше ничего ни делает
+<b><br />Апр 30 22:12:21 &lt;Alffa&gt;</b> вам необходимо подключиться к нему(хабу) из общего(глобального) списка серверов нажав кнопку connect(подкл.), если статус подключения начнёт показывать "connected"(подключён) и в списке dc hub (дц++ хабы) будет написано "user"(пользователь) или "op"(оператор). 
+Прим. перев, глобальный список серверов это: вэб-интерфейс&gt;кнопка servers(серверы)&gt;подкнопка all servers(все серверы) )  
+<b><br />Апр 30 22:13:08 &lt;Alffa&gt;</b> там нету ограничений на количество хабов, вы можете добавить столько много, сколько будет удобно для вас
+<b><br />Апр 30 22:13:16 &lt;Alffa&gt;</b> тоже самое и для списка favourites(избранных) хабов...
+<b><br />Апр 30 22:14:04 &lt;Alffa&gt;</b> также если хаб действительно подключён, то будет мигать надпись\кнопка "open chat"(откр. чат) и нажав на неё вы сможете читать сообщения с сервера.
+<b><br />Апр 30 22:16:29 &lt;spiralvoice&gt;</b> я подключён к моей машине с внешнего сервера на порт клиента DC используя telnet, и должен был увидеть подключение, я могу увидеть это telnet подключение также на локальной машине запустив команду "ngrep port xxxx" (прим. перев. где xxxx - номер порта).
+<b><br />Апр 30 22:16:42 &lt;spiralvoice&gt;</b> но я не видел никаких попыток подключений MLDonkey к хабу
+<b><br />Апр 30 22:17:23 &lt;Alffa&gt;</b> оно будет пробывать подключиться, только когда вы нажмёте в глобальном (общем) списке серверов кнопку "conn" (подкл.)
+<b><br />Апр 30 22:18:06 &lt;Alffa&gt;</b> также, если вы установите autoconnect state(автоподключение) в списке хабов, оно будет всегда автоматически подключаться к серверу 
+<b><br />Апр 30 22:19:32 &lt;spiralvoice&gt;</b> теперь лучше, я вижу много трафика
+<b><br />Апр 30 22:20:37 &lt;spiralvoice&gt;</b> сейчас я подключён к 9 хаба, что дальше&#160;?
+<b><br />Апр 30 22:22:17 &lt;Alffa&gt;</b> тогда начинай искать&#160;:-)
+<b><br />Апр 30 22:22:26 &lt;Alffa&gt;</b> и наслаждаться полученными результатами 
+<b><br />Апр 30 22:22:40 &lt;Alffa&gt;</b> и наблюдайте за серверами, как они реагируют на вас...
+<b><br />Апр 30 22:23:02 &lt;Alffa&gt;</b> некоторые операторы хабов, очень недоверчивы к тем, кто подключается и что вы шарите&#160;:)
+<b><br />Апр 30 22:23:13 &lt;spiralvoice&gt;</b> [dcInt] Невыполнение исключения ("Buffer.add: не могу увеличить буфер") при выводе списка пользовалетей  (оригинал: [dcInt] Exception Failure("Buffer.add: cannot grow buffer") )
+<b><br />Апр 30 22:24:12 &lt;spiralvoice&gt;</b> провал вывода пользователей dc
+<b><br />Апр 30 22:24:46 &lt;spiralvoice&gt;</b> Alffa: это известное ограничение, буфер может хранить 16Мб, и не больше: <a href="https://savannah.nongnu.org/bugs/?17712" class="external free" rel="nofollow">https://savannah.nongnu.org/bugs/?17712</a>
+<b><br />Апр 30 22:25:35 &lt;Alffa&gt;</b> возможно, если вы имеете чудовищно большое количество пользователей в списке ДЦ++ (когда подключаетесь ко множетсву хабов). Я не тестировал это столь широко и дотошно.
+<b><br />Апр 30 22:25:45 &lt;Alffa&gt;</b> для меня 1500 пользователей много&#160;:)
+<b><br />Апр 30 22:26:07 &lt;Alffa&gt;</b> но я был на хабах, где люди расшаривали террабайты данных
+<b><br />Апр 30 22:26:07 &lt;spiralvoice&gt;</b> я был подключён к 10 хаба, и каждый примерно по 5000 пользователей.
+<b><br />Апр 30 22:26:24 &lt;Alffa&gt;</b> да, вероятно это черезчур много:)
+<b><br />Апр 30 22:26:24 &lt;spiralvoice&gt;</b> я отключился от нескольких хабов и теперь оно работает, но лист всё ещё невороятно огромен
+<b><br />Апр 30 22:26:43 &lt;Alffa&gt;</b> возможно там был запрограммирован некоторый вид лимита пользователей&#160;:)
+<b><br />Апр 30 22:26:46 &lt;spiralvoice&gt;</b> firefox использует 500MB RAM(оперативной памяти)
+<b><br />Апр 30 22:27:18 &lt;Alffa&gt;</b> dc++ использует МНОГО трафика если там много пользователей
+<b><br />Апр 30 22:27:28 &lt;Alffa&gt;</b> все поисковые запросы приходят ко всем пользователям
+<b><br />Апр 30 22:27:40 &lt;Alffa&gt;</b> потому что там проходит много данных для поиска
+<b><br />Апр 30 22:27:47 &lt;spiralvoice&gt;</b> хорошо, я отключился от всех хабов кроме одного
+<b><br />Апр 30 22:28:10 &lt;Alffa&gt;</b> попробуй найти хаб или парочку хабов где найдено достаточно искомого
+<b><br />Апр 30 22:28:39 &lt;Alffa&gt;</b> просто хабы где малое количество пользователей с большим количеством файлов (шарами) - лучше
+<b><br />Апр 30 22:28:57 &lt;Alffa&gt;</b> кроме того если вы расшариваете много в будете желанным "гостем" на любом хабе
+<b><br />Апр 30 22:29:05 &lt;Alffa&gt;</b> это есть культура(традиция, негласное правило) dc++
+<b><br />Апр 30 22:29:45 &lt;Alffa&gt;</b> also it wont hurt to "know" someone and get operator passwords to the best hubs
+<b><br />Апр 30 22:29:45 &lt;Alffa&gt;</b> также не помешало бы иметь знакомых которые дадут операторский пароль на лучших хабах
+<b><br />Апр 30 22:29:56 &lt;spiralvoice&gt;</b> я положил 460 Мб в мои расшаренные файлы для тестирования dc++ atm
+<b><br />Апр 30 22:30:27 &lt;Alffa&gt;</b> Я расшарил 450 Гб и всё ещё получаю от некоторых хабов собщение "Слишком мало файлов расшарено" 
+<b><br />Апр 30 22:31:42 &lt;Alffa&gt;</b> теперь я прошу меня извинять, я отправляюсь спать&#160;:) спокойной ночи
+<b><br />Апр 30 22:31:53 &lt;spiralvoice&gt;</b> Я увидел несколько предупреждений в ngrep полученных от клиентво: "ВНИМАНИЕ": Ваш клиент использует(пишет) IP 192.168.1.1 для скачки, в то время как вы используете IP 84....."
+<b><br />Апр 30 22:32:19 &lt;spiralvoice&gt;</b> the port is open and forwarded, do I need to setup something else?
+<b><br />Апр 30 22:32:19 &lt;spiralvoice&gt;</b> порт открыт и перенаправлен на роутере(форвардинг), мне нужно настраивать что-нибудь ещё&#160;?
+<b><br />Апр 30 22:32:55 &lt;spiralvoice&gt;</b> хм..., старая проблема, client_ip(ip адрес клиента) обновляется только через серверные соединения EDK
+<b><br />Апр 30 22:36:14 &lt;spiralvoice&gt;</b> ВАУ, получен первый файллист
+<b><br />Апр 30 22:37:06 &lt;spiralvoice&gt;</b> получен первый файл через dc++
+<b><br />Апр 30 22:50:47 &lt;spiralvoice&gt;</b> счастливого дня, до свидания<br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><a href="DirectConnect.html" title="DirectConnect">English</a></b>
+<span></span>
+<span></span>
+<span></span>
+&#160;&#8226;&#160;<span lang="ru"><strong class="selflink">Русский</strong></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 205/1000000
+Post-expand include size: 1822/2097152 bytes
+Template argument size: 581/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2285-0!*!0!!en!*!edit=0 and timestamp 20230806213258 -->
+<div class="printfooter">
+Retrieved from "<a href="DirectConnect_RU.html">http://mldonkey.sourceforge.net/DirectConnect_RU</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=DirectConnect_RU" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="DirectConnect_RU.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:DirectConnect_RU&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="DirectConnect_RU.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=DirectConnect_RU&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index802d.html?title=DirectConnect_RU&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/DirectConnect_RU.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/DirectConnect_RU.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index07f8.html?title=DirectConnect_RU&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index68e3.html?title=DirectConnect_RU&amp;oldid=5258" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 6 December 2011, at 13:39.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 27,397 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "DirectConnect_RU", "wgTitle": "DirectConnect RU", "wgAction": "view", "wgArticleId": 2285, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5258, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.067 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/DirectConnect_RU by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:27:47 GMT -->
+</html>

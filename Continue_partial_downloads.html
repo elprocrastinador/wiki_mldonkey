@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Continue_partial_downloads by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:38:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Continue partial downloads - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Continue_partial_downloads skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Continue partial downloads</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p><i>there's some overlap between that page and <a href="Recover_temp.html" title="Recover temp">recover_temp</a> //Pango</i>
+</p><p>A local partial file can be completed from p2p sources when the corresponding elink is known (or guessed). This is a useful technique when very large files are truncated that is the most common case found but also damaged files can be completed without having to redownload the full file when the corruption won't caused any shift in the data chunks. This may be the case if you downloaded some split files from Megaupload, Rapidshare or similar services as a free user and reached the daunting limits that impose if don't pay the fees.
+</p><p>Here are the main steps that show how to continue partial downloads:
+</p>
+<ul><li> extract file if needed and keep the broken file
+</li><li> locate the exact elink corresponding to the file
+</li><li> move partial file to the temp directory overwritting the corresponding urn_ed2k_&lt;hash&gt;
+</li><li> change permissions of the new partial file if needed
+</li><li> go to mldonkey console
+</li><li> verify_chunks &lt;num&gt;
+</li><li> recover_bytes &lt;num&gt;
+</li></ul>
+<p>This works fine with the linux version without needing any other action.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Extract_the_file"><span class="tocnumber">1</span> <span class="toctext">Extract the file</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Locate_the_exact_elink"><span class="tocnumber">2</span> <span class="toctext">Locate the exact elink</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Move_to_the_temp_directory"><span class="tocnumber">3</span> <span class="toctext">Move to the temp directory</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Recovering_the_data"><span class="tocnumber">4</span> <span class="toctext">Recovering the data</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Extract_the_file">Extract the file</span></h2>
+<p>If the partial file is compressed and the target available in the p2p network is the uncompresed one the first action must be to extract the greatest amount of data. The extraction process vary from application to application but basically all have the option to keep the partial data extracted instead of deleting the broken file.
+</p>
+<h2> <span class="mw-headline" id="Locate_the_exact_elink">Locate the exact elink</span></h2>
+<p>When the source of the incomplete file is a compressed one like rar or zip, can be useful to note the CRC32 sum and uncompressed file size to compare with any potential source available to select the better candidates to the elink. If the size doesn't match it is almost sure that you are looking at the wrong elink, if the file size matches there is no warranty that will be the same file but worth the try. In <a href="http://bitzi.com/" class="external free" rel="nofollow">http://bitzi.com/</a> some elinks has CRC32 sums also that could be helpful since if the CRC32 matches it is almost sure that you got it.
+</p>
+<ul><li> rar command line use -kb to keep broken files
+</li><li> zip recover to pkzipfix and extract
+</li></ul>
+<p>Send the elink to the core to create the temp file and fileinfo. Once some source is found, pause the file to avoid starting to download before completing the process.
+</p>
+<h2> <span class="mw-headline" id="Move_to_the_temp_directory">Move to the temp directory</span></h2>
+<p>Once located the potential elink of the partial file move it (or better copy it) to the temp directory overwritting the urn_ed2k_&lt;hash&gt; file created when the elink was sent to the core. With a truncated file the new temp file will be smaller than the initial but this is not a problem at all.
+</p><p>Check that the new temp file has adecuate permission, and set them if necessary.
+</p>
+<h2> <span class="mw-headline" id="Recovering_the_data">Recovering the data</span></h2>
+<p>In the console now just issue a <i><a href="Verify_chunks.html" title="Verify chunks">verify_chunks</a> &lt;num&gt;</i> command, where &lt;num&gt; is the download number reported with <i><a href="Vd.html" title="Vd">vd</a></i>, and wait until you get a reply from the core. If the reply is almost instantaneous then probably is that there is nothing to verify, so check that the partial hashes were downloaded from some source before trying again, and if not then remove the pause to search for sources and retrieve the needed file info. (Is not mandatory to pause the file, just to avoid potential problems).
+</p><p>Now the completed chunks that matches the partial hashes are verified, ready to upload and to complete the full file when will be fully downloaded. To recover part of any incomplete chunk like may be at the end of the truncated file, the <i><a href="Recover_bytes.html" title="Recover bytes">recover_bytes</a> &lt;num&gt;</i> command will search for a gap of 16 (configurable) 0x00 bytes to continue downloading from this starting point, but this gap may be due to the fact that the file is truncated or just that really the file has these bytes like the avi, iso and many other files. If you issue a <i>recover_bytes &lt;num&gt;</i> command before the <i>verify_chunks &lt;num&gt;</i> command with some of these files then some chunks at the start of the file won't be verified and will be marked as such, but after redownloading from a p2p source these small pieces (generally a few kb) the chunk will verify without problem.
+</p><p>At this point almost all the data must be reported as yet downloaded and verified, but if none are verified or a very small part did, then there is a high probability that the elink is not the right one and you should check for better luck with other one.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 15/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2134-0!*!0!!en!*!edit=0 and timestamp 20230806204746 -->
+<div class="printfooter">
+Retrieved from "<a href="Continue_partial_downloads.html">http://mldonkey.sourceforge.net/Continue_partial_downloads</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Continue_partial_downloads" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Continue_partial_downloads.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Continue_partial_downloads&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Continue_partial_downloads.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Continue_partial_downloads&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index2b25.html?title=Continue_partial_downloads&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Continue_partial_downloads.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Continue_partial_downloads.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexe404.html?title=Continue_partial_downloads&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index711f.html?title=Continue_partial_downloads&amp;oldid=3332" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 10 March 2007, at 12:59.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 11,100 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Continue_partial_downloads", "wgTitle": "Continue partial downloads", "wgAction": "view", "wgArticleId": 2134, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3332, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.069 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Continue_partial_downloads by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:38:37 GMT -->
+</html>

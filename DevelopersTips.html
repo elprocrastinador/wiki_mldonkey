@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/DevelopersTips by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:36:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>DevelopersTips - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-DevelopersTips skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">DevelopersTips</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Ocaml"><span class="tocnumber">1</span> <span class="toctext">Ocaml</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Learning_functional_programming"><span class="tocnumber">2</span> <span class="toctext">Learning functional programming</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Learning_Objective_Caml"><span class="tocnumber">3</span> <span class="toctext">Learning Objective Caml</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Contributions_in_C_to_mldonkey"><span class="tocnumber">4</span> <span class="toctext">Contributions in C to mldonkey</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Learning_the_GUI-Protocol"><span class="tocnumber">5</span> <span class="toctext">Learning the GUI-Protocol</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Guidelines_for_the_release_of_a_new_version"><span class="tocnumber">6</span> <span class="toctext">Guidelines for the release of a new version</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Developing_new_features"><span class="tocnumber">7</span> <span class="toctext">Developing new features</span></a></li>
+</ul>
+</td></tr></table>
+<h4> <span class="mw-headline" id="Ocaml"> Ocaml</span></h4>
+<p>MLdonkey is primarily developed in the ObjectiveCaml language.
+</p>
+<ul><li> the Ocaml standard distribution includes the Camlp4 preprocessor, a complete standard library, a backstep debugger (one can go back in time&#160;!), a toplevel interpreter, a bytecode compiler and a native code compiler, plus several other development tools. Distributions exist for a large number of platforms.
+</li></ul>
+<ul><li> For documentation, the ocamlbrowser class browser and the ocamldoc javadoc-like tool are included in the standard distrib. Ocamlp4 can also be used as a code beautifier.
+</li></ul>
+<ul><li> <a href="http://pauillac.inria.fr/~guesdon/software.en.html#cameleon" class="external text" rel="nofollow">cameleon</a> is a Linux IDE that integrates most Ocaml dev tools. There is also a GUI for the debugger. There is also a DLL for the Microsoft Visual dev environment.
+</li></ul>
+<ul><li> if you're another <a href="http://www.gnu.org/software/emacs/" class="external text" rel="nofollow">emacs</a> addict, the good <a href="http://www-rocq.inria.fr/~acohen/tuareg/" class="external text" rel="nofollow">tuareg mode</a> is strongly recommended.
+</li><li> <a href="http://www.vim.org/" class="external text" rel="nofollow">Vim</a> also has an Ocaml mode.
+</li><li> <a href="http://www.nedit.org/" class="external text" rel="nofollow">Nedit</a> also has an  <a href="http://caml.inria.fr/cgi-bin/hump.en.cgi?contrib=348" class="external text" rel="nofollow">Ocaml mode</a>.
+</li><li> <a href="http://ocaml.eclipse.ortsa.com:8480/ocaide/" class="external text" rel="nofollow">OcaIde</a> is a very nice, user-friendly Ocaml plugin for <a href="http://www.eclipse.org/" class="external text" rel="nofollow">Eclipse</a>, a good startpoint for ocaml's newbies
+</li><li> <a href="http://perso.wanadoo.fr/cuihtlauac.alvarado/otags-3.06.6.tar.gz" class="external text" rel="nofollow">otags</a> is a handy TAGS generator for ocaml sources.
+</li></ul>
+<ul><li> there's an amazing amount of ObjectiveCaml resources out there. <a href="http://www.ocaml.org/" class="external text" rel="nofollow">ocaml.org</a> is a good starting point.
+</li></ul>
+<h4> <span class="mw-headline" id="Learning_functional_programming"> Learning functional programming</span></h4>
+<ul><li> The <a href="http://www.wikipedia.org/wiki/Functional_programming" class="external text" rel="nofollow">wikipedia</a> functional programming entry
+</li><li> The <a href="http://www.cs.nott.ac.uk/~gmh/faq.html" class="external text" rel="nofollow">Functional programming FAQ</a>
+</li><li> A <a href="http://www.math.chalmers.se/~rjmh/tutorials.html" class="external text" rel="nofollow">list of tutorials</a>
+</li><li> Another <a href="http://www.soton.ac.uk/~fangohr/nsim/tutorial/ocaml" class="external text" rel="nofollow">tutorial</a>
+</li></ul>
+<h4> <span class="mw-headline" id="Learning_Objective_Caml"> Learning Objective Caml</span></h4>
+<ul><li> <a href="http://www.ocaml-tutorial.org/" class="external text" rel="nofollow">Objective CAML Tutorial</a>
+</li><li> <a href="http://caml.inria.fr/pub/old_caml_site/tutorials-eng.html" class="external text" rel="nofollow">Tutorials</a>
+</li></ul>
+<h4> <span class="mw-headline" id="Contributions_in_C_to_mldonkey"> Contributions in C to mldonkey</span></h4>
+<p>Extracts from the MLD users list by MLDonkey himself&#160;:
+</p><p>mldonkey really suffers from its lack of developers. Since the main
+problem is that a lot of people don't know ocaml, I think there is
+still a way for them to contribute to mldonkey development: simply by
+writting C code to perform the actions they want. The only problem
+will be that:
+</p>
+<ul><li> the C code has no access to mldonkey internals<br />
+</li><li> the C code cannot communicate (open sockets, read/write, etc)
+</li></ul>
+<p>However, a lot of things can be performed this way: for example, a
+parser for jigle pages or sharereactor html pages could be done like that:
+</p><p>a structure (C struct) containing the search would be passed to a
+first C function to generate the url to be queried:
+</p>
+<pre>struct search {
+  search_keywords: char*;
+  search_num&#160;: int;
+};
+
+void search_jiggle(struct search *s){
+   char *url;
+   ...
+
+   ... save somewhere the url with the search_num associated ...
+   mldonkey_download_url(url, \"jiggle_callback\");
+   free(url);
+}
+</pre>
+<p>We suppose here that mldonkey provides a function
+'mldonkey_download_url' to declare urls to
+be downloaded in the future.
+</p>
+<pre>void jiggle_callback(char <b>url, char </b>page)
+{
+  ... the page is the one that would be returned by wget for example ...
+
+  ... some code to find the search_num associated with the url ...
+
+
+  while(1){
+    ... parsing the page ...
+    mldonkey_add_search_result(search_num, result);
+    free_result(result)
+  }
+}
+</pre>
+<p>where we suppose that mldonkey provides a function
+'mldonkey_add_search_result' to add results to a search. Of course,
+the jiggle_callback function could also recall 'mldonkey_download_url'
+to recursively fetch other urls (but these urls will not be downloaded
+immediatly&#160;!)
+</p><p>Such 'mldonkey_' functions could easily be written by ocaml devs (on C
+devs requests), while the C code would be written by C devs. The stubs
+to call the C functions from the ocaml code would also be written by
+ocaml devs.  So, no need of ocaml knowledge to do that. The only
+requirements are:
+</p>
+<ul><li> The C functions must be called with well-defined arguments (strings,  int, simple structs)
+</li><li> The 'mldonkey_' functions cannot do anything except storing the results, until the C function code is completely executed (in this example, the URL will be downloaded after 'search_jiggle' has been executed, and the results will really be added when 'jiggle_callback' has completely been executed).
+</li><li> The C code is responsible for desallocating any data allocated by itself.
+</li></ul>
+<p>Sidenote&#160;:&#160;!! Adding C code is NOT the best way to contribute&#160;!!
+</p>
+<h4> <span class="mw-headline" id="Learning_the_GUI-Protocol"> Learning the GUI-Protocol</span></h4>
+<p>The GUI-Protocol is the way an external graphical interface communicate with MLDonkey using sockets and TCP/IP.
+You can program your own GUI in every language you like and use the <a href="GuiProtocol.html" title="GuiProtocol">GuiProtocol</a>
+to control your MLDonkey.
+Also may want to have a look at the others <a href="UserInterfaces.html" title="UserInterfaces">user interfaces</a>.
+</p>
+<h4> <span class="mw-headline" id="Guidelines_for_the_release_of_a_new_version"> Guidelines for the release of a new version </span></h4>
+<p>As example version 2.7.3 is used. --<a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=User:Spiralvoice&amp;action=edit&amp;redlink=1" class="new" title="User:Spiralvoice (page does not exist)">Spiralvoice</a> 15:53, 12 April 2006 (PDT)
+</p>
+<ul><li> check that the code compiles on several platforms
+</li><li> update config/configure.in, lines 23-25 and distrib/Changelog to reflect new version number, <a href="http://lists.gnu.org/archive/html/mldonkey-commits/2006-01/msg00046.html" class="external text" rel="nofollow">like this</a>
+</li><li> cvs commit -m "release-2-7-3"
+</li><li> cvs tag release-2-7-3
+</li><li> create sourcecode tarball
+</li></ul>
+<dl><dd><ul><li> this script is used to return the version number of used sourcecode used in other scripts
+</li></ul>
+</dd></dl>
+<pre>#!/bin/sh
+case $# in
+    1)
+        cdir=$1
+       &#160;;;
+    *)
+        cdir=`pwd`/mldonkey
+       &#160;;;
+esac
+major_version=`grep -m 1 MAJOR_VERSION= $cdir/config/configure.in | cut -c 15-17`
+minor_version=`grep -m 1 MINOR_VERSION= $cdir/config/configure.in | cut -c 15-17`
+sub_version=`grep -m 1 SUB_VERSION= $cdir/config/configure.in | cut -c 13-14`
+echo $major_version.$minor_version.$sub_version
+</pre>
+<dl><dd><ul><li> Now the tarball creation script
+</li></ul>
+</dd></dl>
+<pre>
+#!/bin/sh
+rm -rf ./mldonkey-cvs-create
+mkdir mldonkey-cvs-create
+cd mldonkey-cvs-create
+cvs -z3 -d:pserver:anonymous@cvs.savannah.nongnu.org:/sources/mldonkey co -P mldonkey
+version=`../mld_version.sh ./mldonkey`
+mv ./mldonkey ./mldonkey-$version
+cd ./mldonkey-$version/config
+if [ -f ./configure ]&#160;; then
+    rm ./configure
+fi
+if [ -f ../Makefile ]&#160;; then
+    rm ../Makefile
+fi
+autoconf
+m4 Makefile.in &gt; ../Makefile
+rm -rf ./autom4te.cache
+cd ../..
+tar --exclude=CVS --exclude=.cvsignore -cf ./mldonkey-$version.tar ./mldonkey-$version
+bzip2 -zv9 mldonkey-$version.tar
+</pre>
+<dl><dd><ul><li> Gentoo ~x86 is used with current autoconf/m4 to create the configure script.
+</li></ul>
+</dd></dl>
+<ul><li> unpack the tarball and test compile
+</li><li> upload the sourcecode to Sourceforge
+</li><li> post release notes on <a href="http://savannah.nongnu.org/projects/mldonkey" class="external text" rel="nofollow">Savannah</a>, <a href="http://sourceforge.net/projects/mldonkey/" class="external text" rel="nofollow">Sourceforge</a>, <a href="http://freshmeat.net/projects/mldonkey" class="external text" rel="nofollow">Freshmeat</a>, <a href="http://mldonkey.sourceforge.net/forums/viewforum.php?f=10" class="external text" rel="nofollow">english</a> and <a href="http://www.mldonkey.org/forum/viewforum.php?f=35" class="external text" rel="nofollow">german</a> forum.
+</li><li> build binaries
+</li></ul>
+<dl><dd><ul><li> the Linux x86, glibc-2.3.2 version is built on current Debian Sarge from a freshly downloaded sourcecode tarball
+</li></ul>
+</dd></dl>
+<pre>
+./configure --enable-checks --host=i386-pc-linux-gnu
+make release.mlnet.static
+make release.utils.static
+</pre>
+<dl><dd><ul><li> so it can be used on older platforms as well.
+</li><li> Using Debian has the advantage that, in contrast to highly optimized Gentoo, it produces i386 binaries.
+</li><li> upload mldonkey-2.7.3.static.i386-Linux_glibc-2.3.2.tar.bz2 to Sourceforge
+</li></ul>
+</dd></dl>
+<ul><li> Send Email Release Notice in Sourceforge file release admin panel
+</li></ul>
+<h4> <span class="mw-headline" id="Developing_new_features"> Developing new features </span></h4>
+<p><a href="EDK4GB.html" title="EDK4GB">eMule &gt;4GB support</a><br />
+<a href="EDKObfuscation.html" title="EDKObfuscation">eMule protocol obfuscation</a><br />
+<a href="EDKAich.html" title="EDKAich">eMule AICH support</a><br />
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 53/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1364-0!*!0!!en!*!edit=0 and timestamp 20230807162505 -->
+<div class="printfooter">
+Retrieved from "<a href="DevelopersTips.html">http://mldonkey.sourceforge.net/DevelopersTips</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=DevelopersTips" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="DevelopersTips.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:DevelopersTips&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="DevelopersTips.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=DevelopersTips&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexda42.html?title=DevelopersTips&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/DevelopersTips.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/DevelopersTips.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index4305.html?title=DevelopersTips&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index32e5.html?title=DevelopersTips&amp;oldid=3673" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 17 December 2007, at 20:18.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 43,762 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "DevelopersTips", "wgTitle": "DevelopersTips", "wgAction": "view", "wgArticleId": 1364, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3673, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.173 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/DevelopersTips by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:36:21 GMT -->
+</html>

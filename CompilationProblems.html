@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/CompilationProblems by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:35:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>CompilationProblems - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-CompilationProblems skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">CompilationProblems</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Non_OS_specific_tips"><span class="tocnumber">1</span> <span class="toctext">Non OS specific tips</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#configure_options"><span class="tocnumber">1.1</span> <span class="toctext">configure options</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Non_OS_specific_problems"><span class="tocnumber">2</span> <span class="toctext">Non OS specific problems</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#The_following_modules_will_not_be_compiled:_.7B_open_napster_direct_connect.28not_working.29_soulseek_openFT.28obsolete.29"><span class="tocnumber">2.1</span> <span class="toctext">The following modules will not be compiled: { open_napster direct_connect(not working) soulseek openFT(obsolete)</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#The_following_modules_will_not_be_compiled:_.7B_..._mldonkey_gui.24.28EXE.29_mldonkey_gui2.24.28EXE.29_mlchat.24.28EXE.29_.7D"><span class="tocnumber">2.2</span> <span class="toctext">The following modules will not be compiled: { ... mldonkey_gui$(EXE) mldonkey_gui2$(EXE) mlchat$(EXE) }</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#OS_specific_tips"><span class="tocnumber">3</span> <span class="toctext">OS specific tips</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Debian_Compile"><span class="tocnumber">3.1</span> <span class="toctext">Debian Compile</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#FreeBSD_Compile:"><span class="tocnumber">3.2</span> <span class="toctext">FreeBSD Compile:</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Microsoft_Windows_Compile:"><span class="tocnumber">3.3</span> <span class="toctext">Microsoft Windows Compile:</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#OpenBSD_Compile:"><span class="tocnumber">3.4</span> <span class="toctext">OpenBSD Compile:</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#OpenSolaris_Compile:"><span class="tocnumber">3.5</span> <span class="toctext">OpenSolaris Compile:</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Installation_instructions_for_Ubuntu"><span class="tocnumber">4</span> <span class="toctext">Installation instructions for Ubuntu</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Applying_a_Patch"><span class="tocnumber">5</span> <span class="toctext">Applying a Patch</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Non_OS_specific_tips"> Non OS specific tips</span></h2>
+<h3> <span class="mw-headline" id="configure_options"> configure options</span></h3>
+<p>This is summary of the main configure options, to get a full list try <code>./configure --help</code>
+</p>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr>
+<td> --enable-multinet
+</td>
+<td> <b>default</b>,  compiles the support for all networks but OpenNapster, DirectConnect, Soulseek and openFT
+</td></tr>
+<tr>
+<td> --disable-multinet
+</td>
+<td> only eDonkey2000, Overnet and Kademlia
+</td></tr></table>
+<p><br />
+In addition to the multinet option you can enable or disable support of specific networks, by using the following options. 
+All these options below also exist in the "--disable-..." flavor to remove the  network.
+</p>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr>
+<td> --enable-donkey </td>
+<td> allows you to add support for <a href="EDonkey2000.html" title="EDonkey2000">eDonkey2000</a>, <a href="Overnet.html" title="Overnet">Overnet</a> and <a href="Kademlia.html" title="Kademlia" class="mw-redirect">Kademlia</a>. These networks have lots of code in common, you can't compile them separately
+</td></tr>
+<tr>
+<td> --enable-bittorrent </td>
+<td> allows you to add support for BitTorrent
+</td></tr>
+<tr>
+<td> --enable-filetp </td>
+<td> allows you to add support for FileTP (http and ftp downloads)
+</td></tr>
+<tr>
+<td> --enable-opennap </td>
+<td> allows you to add support for OpenNapster
+</td></tr>
+<tr>
+<td> --enable-gnutella </td>
+<td> allows you to add support for <a href="Gnutella.html" title="Gnutella">Gnutella</a>/LimeWire
+</td></tr>
+<tr>
+<td> --enable-gnutella2 </td>
+<td> allows you to add support for <a href="Gnutella2.html" title="Gnutella2">Gnutella2</a>
+</td></tr>
+<tr>
+<td> --enable-fasttrack </td>
+<td> allows you to add support for <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Fasttrack&amp;action=edit&amp;redlink=1" class="new" title="Fasttrack (page does not exist)">Fasttrack</a>
+</td></tr>
+<tr>
+<td> --enable-directconnect </td>
+<td> allows you to add support for DirectConnect
+</td></tr>
+<tr>
+<td> --enable-soulseek </td>
+<td> allows you to add support for SoulSeek
+</td></tr></table>
+<p>Don't forget that network supports must be enabled with <a href="MLdonkeyOptionsExplained.html#other_nets" title="MLdonkeyOptionsExplained">runtime toggles</a>, so it's ok to compile protocols you will only use at times.
+</p><p><br />
+</p>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr>
+<td> --disable-gd </td>
+<td> remove support for graphical stats in <a href="WebUI.html" title="WebUI">Web Interface</a>
+</td></tr>
+<tr>
+<td> --disable-bzip2 </td>
+<td> remove support for bz2 zipped guarding.p2p, servers.met and other <a href="Web_infos.html" title="Web infos">web_infos</a>
+</td></tr>
+<tr>
+<td> --disable-magic </td>
+<td> no filetype recognition with libmagic (GNU file)
+</td></tr>
+<tr>
+<td> --enable-batch </td>
+<td> reply YES to all queries in this script
+</td></tr>
+<tr>
+<td> --enable-checks
+</td>
+<td> turn on bounds checking in ocaml it's safer, a bit slower, recommended for developers and paranoids
+</td></tr>
+<tr>
+<td> --disable-gui
+</td>
+<td> <b>default</b>, only compile MLdonkey core
+</td></tr>
+<tr>
+<td> --enable-gui=newgui2
+</td>
+<td>use GTK2 GUI
+</td></tr>
+<tr>
+<td> --enable-gui=newgui1
+</td>
+<td> use GTK1 newgui
+</td></tr>
+<tr>
+<td> --enable-gui=oldgui
+</td>
+<td> use GTK1 oldgui
+</td></tr>
+<tr>
+<td> --enable-ocamlver=?.??
+</td>
+<td> force/enable compiling with CVS or unsupported ocaml versions,&#160;?.?? is the ocaml version, e.g:3.11
+</td></tr>
+<tr>
+<td> --disable-donkeysui
+</td>
+<td> disables Secure User Identification, you'll obtain lighter cores  + SUI doesn't work on some HW
+</td></tr></table>
+<h2> <span class="mw-headline" id="Non_OS_specific_problems"> Non OS specific problems</span></h2>
+<h3> <span class="mw-headline" id="The_following_modules_will_not_be_compiled:_.7B_open_napster_direct_connect.28not_working.29_soulseek_openFT.28obsolete.29"> The following modules will not be compiled: { open_napster direct_connect(not working) soulseek openFT(obsolete)</span></h3>
+<p>Those network supports aren't developed (anymore), and won't even compile without some hacking. Forget about compiling them for now.
+</p><p><br />
+</p>
+<h3> <span class="mw-headline" id="The_following_modules_will_not_be_compiled:_.7B_..._mldonkey_gui.24.28EXE.29_mldonkey_gui2.24.28EXE.29_mlchat.24.28EXE.29_.7D"> The following modules will not be compiled: { ... mldonkey_gui$(EXE) mldonkey_gui2$(EXE) mlchat$(EXE) }</span></h3>
+<p>Install GTK headers files (usually in libgtk-dev package)
+</p>
+<h2> <span class="mw-headline" id="OS_specific_tips"> OS specific tips</span></h2>
+<h3> <span class="mw-headline" id="Debian_Compile"> Debian Compile</span></h3>
+<p>If you use Debian packages of Ocaml don't forget to install <a href="http://packages.debian.org/ocaml-native-compilers" class="external text" rel="nofollow">ocaml-native-compilers</a> to speed-up compilation significantly.
+</p>
+<h3> <span class="mw-headline" id="FreeBSD_Compile:"> FreeBSD Compile:</span></h3>
+<p>Basically follow the Howto on the mainpage - the cvspassword didn't work for me - I guess my box didn't accept an empty password so I just created the .cvspass file and left it empty. The needed tools (ocaml and ocaml_labgtk) should be installed by using the provided packages. I first tried the ports but this takes forever because they somehow manage to pull in every bit of software there is&#160;:)
+After the two packages (ocaml in lang; ocaml_labgtk in x11-toolkits) have been installed just do a configure and use gmake to run the compile process. The binary is in the ./ dir and is the only thing you need since mldonkey will created everything else from scratch.
+</p>
+<h3> <span class="mw-headline" id="Microsoft_Windows_Compile:"> Microsoft Windows Compile:</span></h3>
+<p>The whole Windows guide here was outdated, for current compile instructions go <a href="Windows.html" title="Windows">here</a>.
+</p>
+<h3> <span class="mw-headline" id="OpenBSD_Compile:"> OpenBSD Compile:</span></h3>
+<p>configure just as normal, but use gmake instead of make.
+</p><p>couldn't compile static until i replaced "-static" with "-static -cclib -L/usr/local/lib/ -cclib -liconv" in config/Makefile.in. <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kokamomi&amp;action=edit&amp;redlink=1" class="new" title="Kokamomi (page does not exist)">Kokamomi</a>
+</p>
+<h3> <span class="mw-headline" id="OpenSolaris_Compile:"> OpenSolaris Compile: </span></h3>
+<p>Tested on clean install of OpenSolaris 2009.06
+</p><p>Install dependencies&#160;:
+</p>
+<pre>
+pkg install SUNWocaml SUNWgmake SUNWgcc SUNWaconf
+</pre>
+<p>Install <a href="MLdonkeyGtkUi.html" title="MLdonkeyGtkUi">GTK2 GUI</a> dependencies&#160;:
+</p>
+<pre>
+pkg install SUNWgnome-common-devel SUNWGtk SUNWxwinc SUNWxorg-headers SUNWlablgtk
+</pre>
+<h2> <span class="mw-headline" id="Installation_instructions_for_Ubuntu"> Installation instructions for Ubuntu </span></h2>
+<p>(can be used for other Debian-based distros as well)
+</p><p><b>Which packages are needed to compile MLDonkey?</b>
+</p><p>First install packages to download MLDonkey CVS code:
+</p>
+<pre>
+sudo apt-get install ssh cvs
+</pre>
+<p>MLDonkey CVS checkout needs autoconf and m4:
+</p>
+<pre>
+sudo apt-get install autoconf
+</pre>
+<p><a href="http://sourceforge.net/projects/mldonkey/files" class="external text" rel="nofollow">Get MLDonkey source code</a> and start compiling:
+</p>
+<pre>
+cvs -d:pserver:anonymous@cvs.savannah.nongnu.org:/sources/mldonkey co -P mldonkey
+cd mldonkey
+./configure
+...
+checking for gcc... no
+checking for cc... no
+checking for cc... no
+checking for cl... no
+configure: error: no acceptable C compiler found in $PATH
+See `config.log' for more details.
+</pre>
+<p>We don't need more details, just install a compiler and a developer package:
+</p>
+<pre>
+sudo apt-get install gcc g++ libc-dev
+./configure
+...
+checking for gmake... no
+checking for make... no
+configure: error: GNU make not found
+</pre>
+<pre>
+sudo apt-get install make
+./configure
+...
+''''''''''''''''''''''''  Objective-Caml 3.09.1 is required  ''''''''''''''''''''''''*
+'''''''''''''''''''''  Check http://caml.inria.fr/  '''''''''''''''''''''*
+Do you want this script to try to download and install ocaml
+LOCALLY in mldonkey directory&#160;?
+</pre>
+<p>Now you have the choice to let MLDonkey compile Ocaml,
+this is convenient but you have to compile Ocaml everytime
+you compile a new MLDonkey version.
+You can say "no" here and install the Ocaml package
+</p>
+<pre>
+sudo apt-get install ocaml-nox ocaml-native-compilers
+./configure
+</pre>
+<p>or say "yes" here to go ahead and let MLDonkey compile a
+local copy of Ocaml.
+</p>
+<pre>
+...
+checking for inflate in -lz... no
+Zlib missing, did you install zlib and zlib-developer packages?
+</pre>
+<pre>
+sudo apt-get install zlib1g-dev
+</pre>
+<p>there are now enough packages installed to compile MLDonkey.<br />
+But some libraries are still missing for additional features.
+</p>
+<pre>
+buildinfo
+...
+Features: threads zlib-1.2.3 no-bzip2 no-gd no-magic iconv no-check-bounds
+</pre>
+<pre>
+checking bzlib.h usability... no
+checking bzlib.h presence... no
+checking for bzlib.h... no
+configure: WARNING: Your system lacks bzip2 support
+
+sudo apt-get install libbz2-dev
+</pre>
+<pre>
+checking for gdlib-config... no
+checking for gdImageCreate in -lgd... no
+checking for gdImageCreate in -lgd... no
+configure: libgd not available
+checking support for graphical statistics... no
+
+sudo apt-get install libgd2-noxpm-dev
+</pre>
+<p>libgd2 is needed to display nice bandwidth graphs in web interface. If you already have libgd2-xpm installed (check with <code>dpkg --get-selections libgd2-xpm</code>) then instead run
+</p>
+<pre>sudo apt-get install libgd2-xpm-dev</pre>
+<pre>
+checking magic.h usability... no
+checking magic.h presence... no
+checking for magic.h... no
+configure: libmagic not available
+
+sudo apt-get install libmagic-dev
+</pre>
+<p>Now all packages needed for a full-featured MLDonkey are present on the system.
+Just run
+</p>
+<pre>
+make
+</pre>
+<p>now to compile MLDonkey. After successful compile you will find the file mlnet.
+</p>
+<pre>
+&gt; buildinfo
+Version:	 MLNet Multi-Network p2p client version 2.7.6.CVS
+SCM version:	 2006-06-03 23:27:32
+Networks:	 Global Shares  Gnutella  G2  Fasttrack  FileTP  BitTorrent  Donkey (SUI)
+Ocaml version:	 3.09.1 - C compiler version: 4.0.3 - C++ compiler version: 4.0.3
+Build on:	 Linux i686 2.6.15-23-386 (little endian) with glibc 2.3.6
+Features:	 threads zlib-1.2.3 bzip2-1.0.3 gd(jpg/png-1.2.8) iconv magic(active) no-check-bounds
+</pre>
+<p>Now the instructions for manually compiling OCaml, you can either use a <a href="http://caml.inria.fr/download.en.html" class="external text" rel="nofollow">released version</a> or an SVN checkout.<br />
+Here we use SVN checkout:
+</p>
+<pre>
+svn co http://caml.inria.fr/svn/ocaml/release/3.12.0 ocaml
+cd ocaml
+./configure
+make world.opt
+make install
+</pre>
+<p>This installs OCaml in /usr/local, it can now be used when compiling MLDonkey.
+</p><p>If MLDonkey complains about OCaml version use --enable-ocamlver=3 as additional parameter for ./configure
+</p>
+<h2> <span class="mw-headline" id="Applying_a_Patch"> Applying a Patch </span></h2>
+<p>If there is a patch that you want to test that the developers have released, then the following will apply that patch to a clean CVS update (The patch chosen below is just for the example, you'll need to change the name obviously):
+</p><p>Firstly clean up and download the source from the CVS
+</p>
+<pre>
+rm -rf mldonkey
+cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/mldonkey co -P mldonkey
+</pre>
+<p>Then download the patch and apply it
+</p>
+<pre>
+wget ftp://ftp.berlios.de/pub/mldonkey/pango/remove_tar_output_size_limitation.patch
+cd mldonkey
+patch -p0 -E -i ../remove_tar_output_size_limitation.patch 
+</pre>
+<p>The patching process will give feedback about what files it is changing, once complete compile as normal.
+</p>
+<pre>
+./configure
+make
+</pre>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 221/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1349-0!*!0!!en!*!edit=0 and timestamp 20230807103026 -->
+<div class="printfooter">
+Retrieved from "<a href="CompilationProblems.html">http://mldonkey.sourceforge.net/CompilationProblems</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=CompilationProblems" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="CompilationProblems.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:CompilationProblems&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="CompilationProblems.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=CompilationProblems&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexfa8b.html?title=CompilationProblems&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/CompilationProblems.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/CompilationProblems.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexd1fb.html?title=CompilationProblems&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index05de.html?title=CompilationProblems&amp;oldid=5051" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 14 October 2010, at 19:51.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 71,511 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "CompilationProblems", "wgTitle": "CompilationProblems", "wgAction": "view", "wgArticleId": 1349, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5051, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.085 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/CompilationProblems by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:35:23 GMT -->
+</html>

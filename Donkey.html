@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Donkey.ini by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:30:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Donkey.ini - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Donkey_ini skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Donkey.ini</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Intro"><span class="tocnumber">1</span> <span class="toctext">Intro</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#List_of_options"><span class="tocnumber">2</span> <span class="toctext">List of options</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Edonkey_Options"><span class="tocnumber">2.1</span> <span class="toctext">Edonkey Options</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Overnet_Options"><span class="tocnumber">2.2</span> <span class="toctext">Overnet Options</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Kademila_Options"><span class="tocnumber">2.3</span> <span class="toctext">Kademila Options</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Advanced_Options"><span class="tocnumber">2.4</span> <span class="toctext">Advanced Options</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Deprecated.3F"><span class="tocnumber">2.5</span> <span class="toctext">Deprecated?</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Intro">Intro</span></h2>
+<p>All options that are found in donkey.ini file are mentioned here. Remember, - do not edit configuration files while mldonkey is running because your changes will be lost. Either you use one of the GUI's or you use the telnet interface. All options from donkey.ini need to be specified with the prefix "ED2K".
+</p><p>For example - to change the port option using the telnet interface or the commandline in the webinterface:
+</p>
+<pre>&gt; set ED2K_port 4661
+</pre>
+<p>If you know something about these options feel free to edit them.
+</p><p><br />
+</p>
+<h2> <span class="mw-headline" id="List_of_options">List of options</span></h2>
+<h3> <span class="mw-headline" id="Edonkey_Options">Edonkey Options</span></h3>
+<ul><li> <a href="Port.html" title="Port">port</a>
+</li><li> <a href="Max_connected_servers.html" title="Max connected servers">max_connected_servers</a>
+</li><li> <a href="Reliable_sources.html" title="Reliable sources">reliable_sources</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Emule_compression&amp;action=edit&amp;redlink=1" class="new" title="Emule compression (page does not exist)">emule_compression</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Ban_identity_thieves&amp;action=edit&amp;redlink=1" class="new" title="Ban identity thieves (page does not exist)">ban_identity_thieves</a>
+</li><li> <a href="Server_black_list.html" title="Server black list">server_black_list</a>
+</li><li> <a href="Force_high_id.html" title="Force high id" class="mw-redirect">force_high_id</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Force_client_high_id&amp;action=edit&amp;redlink=1" class="new" title="Force client high id (page does not exist)">force_client_high_id</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Update_server_list_server&amp;action=edit&amp;redlink=1" class="new" title="Update server list server (page does not exist)">update_server_list_server</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Update_server_list_met&amp;action=edit&amp;redlink=1" class="new" title="Update server list met (page does not exist)">update_server_list_met</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Update_server_list_client&amp;action=edit&amp;redlink=1" class="new" title="Update server list client (page does not exist)">update_server_list_client</a>
+</li><li> <a href="Max_sources_per_file.html" title="Max sources per file" class="mw-redirect">max_sources_per_file</a>
+</li><li> <a href="Client_md4.html" title="Client md4">client_md4</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Client_private_key&amp;action=edit&amp;redlink=1" class="new" title="Client private key (page does not exist)">client_private_key</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Enable_sui&amp;action=edit&amp;redlink=1" class="new" title="Enable sui (page does not exist)">enable_sui</a>
+</li><li> <a href="Random_order_download.html" title="Random order download">random_order_download</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Min_users_on_server&amp;action=edit&amp;redlink=1" class="new" title="Min users on server (page does not exist)">min_users_on_server</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Login&amp;action=edit&amp;redlink=1" class="new" title="Login (page does not exist)">login</a>
+</li><li> <a href="Old_files.html" title="Old files">old_files</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Brotherhood&amp;action=edit&amp;redlink=1" class="new" title="Brotherhood (page does not exist)">brotherhood</a>
+</li></ul>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="Overnet_Options">Overnet Options</span></h3>
+<ul><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_protocol_connectreply_version&amp;action=edit&amp;redlink=1" class="new" title="Overnet protocol connectreply version (page does not exist)">overnet_protocol_connectreply_version</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_protocol_connect_version&amp;action=edit&amp;redlink=1" class="new" title="Overnet protocol connect version (page does not exist)">overnet_protocol_connect_version</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_update_nodes&amp;action=edit&amp;redlink=1" class="new" title="Overnet update nodes (page does not exist)">overnet_update_nodes</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_md4&amp;action=edit&amp;redlink=1" class="new" title="Overnet md4 (page does not exist)">overnet_md4</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_exclude_peers&amp;action=edit&amp;redlink=1" class="new" title="Overnet exclude peers (page does not exist)">overnet_exclude_peers</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_republish&amp;action=edit&amp;redlink=1" class="new" title="Overnet republish (page does not exist)">overnet_republish</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_max_search_hits&amp;action=edit&amp;redlink=1" class="new" title="Overnet max search hits (page does not exist)">overnet_max_search_hits</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_query_peer_period&amp;action=edit&amp;redlink=1" class="new" title="Overnet query peer period (page does not exist)">overnet_query_peer_period</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_search_timeout&amp;action=edit&amp;redlink=1" class="new" title="Overnet search timeout (page does not exist)">overnet_search_timeout</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_search_keyword&amp;action=edit&amp;redlink=1" class="new" title="Overnet search keyword (page does not exist)">overnet_search_keyword</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_max_known_peers&amp;action=edit&amp;redlink=1" class="new" title="Overnet max known peers (page does not exist)">overnet_max_known_peers</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_store_size&amp;action=edit&amp;redlink=1" class="new" title="Overnet store size (page does not exist)">overnet_store_size</a>
+</li><li> <a href="Overnet_port.html" title="Overnet port">overnet_port</a>
+</li></ul>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="Kademila_Options">Kademila Options</span></h3>
+<ul><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_update_nodes&amp;action=edit&amp;redlink=1" class="new" title="Kademlia update nodes (page does not exist)">kademlia_update_nodes</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_md4&amp;action=edit&amp;redlink=1" class="new" title="Kademlia md4 (page does not exist)">kademlia_md4</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_exclude_peers&amp;action=edit&amp;redlink=1" class="new" title="Kademlia exclude peers (page does not exist)">kademlia_exclude_peers</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_republish&amp;action=edit&amp;redlink=1" class="new" title="Kademlia republish (page does not exist)">kademlia_republish</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_max_search_hits&amp;action=edit&amp;redlink=1" class="new" title="Kademlia max search hits (page does not exist)">kademlia_max_search_hits</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_query_peer_period&amp;action=edit&amp;redlink=1" class="new" title="Kademlia query peer period (page does not exist)">kademlia_query_peer_period</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_search_timeout&amp;action=edit&amp;redlink=1" class="new" title="Kademlia search timeout (page does not exist)">kademlia_search_timeout</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_search_keyword&amp;action=edit&amp;redlink=1" class="new" title="Kademlia search keyword (page does not exist)">kademlia_search_keyword</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_max_known_peers&amp;action=edit&amp;redlink=1" class="new" title="Kademlia max known peers (page does not exist)">kademlia_max_known_peers</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_store_size&amp;action=edit&amp;redlink=1" class="new" title="Kademlia store size (page does not exist)">kademlia_store_size</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_port&amp;action=edit&amp;redlink=1" class="new" title="Kademlia port (page does not exist)">kademlia_port</a>
+</li></ul>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="Advanced_Options">Advanced Options</span></h3>
+<ul><li> <a href="Initial_score.html" title="Initial score">initial_score</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Max_xs_packets&amp;action=edit&amp;redlink=1" class="new" title="Max xs packets (page does not exist)">max_xs_packets</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Max_dialog_history&amp;action=edit&amp;redlink=1" class="new" title="Max dialog history (page does not exist)">max_dialog_history</a>
+</li><li> <a href="Check_client_connections_delay.html" title="Check client connections delay">check_client_connections_delay</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Check_connections_delay&amp;action=edit&amp;redlink=1" class="new" title="Check connections delay (page does not exist)">check_connections_delay</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Client_timeout&amp;action=edit&amp;redlink=1" class="new" title="Client timeout (page does not exist)">client_timeout</a>
+</li><li> <a href="Max_udp_sends.html" title="Max udp sends">max_udp_sends</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Keep_best_server&amp;action=edit&amp;redlink=1" class="new" title="Keep best server (page does not exist)">keep_best_server</a>
+</li><li> <a href="Max_walker_servers.html" title="Max walker servers">max_walker_servers</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Walker_server_lifetime&amp;action=edit&amp;redlink=1" class="new" title="Walker server lifetime (page does not exist)">walker_server_lifetime</a>
+</li><li> <a href="Log_clients_on_console.html" title="Log clients on console">log_clients_on_console</a>
+</li><li> <a href="Propagate_sources.html" title="Propagate sources">propagate_sources</a>
+</li><li> <a href="Black_list.html" title="Black list">black_list</a>
+</li><li> <a href="Port_black_list.html" title="Port black list">port_black_list</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Queued_timeout&amp;action=edit&amp;redlink=1" class="new" title="Queued timeout (page does not exist)">queued_timeout</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Upload_timeout&amp;action=edit&amp;redlink=1" class="new" title="Upload timeout (page does not exist)">upload_timeout</a>
+</li><li> <a href="Upload_lifetime.html" title="Upload lifetime" class="mw-redirect">upload_lifetime</a>
+</li><li> <a href="Dynamic_upload_lifetime.html" title="Dynamic upload lifetime" class="mw-redirect">dynamic_upload_lifetime</a>
+</li><li> <a href="Dynamic_upload_threshold.html" title="Dynamic upload threshold" class="mw-redirect">dynamic_upload_threshold</a>
+</li><li> <a href="Connected_server_timeout.html" title="Connected server timeout">connected_server_timeout</a>
+</li><li> <a href="Upload_power.html" title="Upload power">upload_power</a>
+</li><li> <a href="Max_server_age.html" title="Max server age">max_server_age</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Remove_old_servers_delay&amp;action=edit&amp;redlink=1" class="new" title="Remove old servers delay (page does not exist)">remove_old_servers_delay</a>
+</li><li> <a href="Min_left_servers.html" title="Min left servers">min_left_servers</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Servers_walking_period&amp;action=edit&amp;redlink=1" class="new" title="Servers walking period (page does not exist)">servers_walking_period</a>
+</li><li> <a href="Keep_cancelled_in_old_files.html" title="Keep cancelled in old files">keep_cancelled_in_old_files</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Keep_downloaded_in_old_files&amp;action=edit&amp;redlink=1" class="new" title="Keep downloaded in old files (page does not exist)">keep_downloaded_in_old_files</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Send_warning_messages&amp;action=edit&amp;redlink=1" class="new" title="Send warning messages (page does not exist)">send_warning_messages</a>
+</li><li> <a href="Ban_queue_jumpers.html" title="Ban queue jumpers">ban_queue_jumpers</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Use_server_ip&amp;action=edit&amp;redlink=1" class="new" title="Use server ip (page does not exist)">use_server_ip</a>
+</li><li> <a href="Ban_period.html" title="Ban period">ban_period</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Good_client_rank&amp;action=edit&amp;redlink=1" class="new" title="Good client rank (page does not exist)">good_client_rank</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Immediate_master&amp;action=edit&amp;redlink=1" class="new" title="Immediate master (page does not exist)">immediate_master</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Become_master_delay&amp;action=edit&amp;redlink=1" class="new" title="Become master delay (page does not exist)">become_master_delay</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Options_version&amp;action=edit&amp;redlink=1" class="new" title="Options version (page does not exist)">options_version</a>
+</li></ul>
+<h3> <span class="mw-headline" id="Deprecated.3F">Deprecated?</span></h3>
+<ul><li> <a href="Sources_per_chunk.html" title="Sources per chunk">sources_per_chunk</a>
+</li><li> <a href="Max_indirect_connections.html" title="Max indirect connections">max_indirect_connections</a>
+</li><li> <a href="Master_server_min_users.html" title="Master server min users">master_server_min_users</a>
+</li><li> <a href="Update_server_list.html" title="Update server list">update_server_list</a>
+</li><li> <a href="Max_indirect_connections.html" title="Max indirect connections">max_indirect_connections</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Overnet_options_version&amp;action=edit&amp;redlink=1" class="new" title="Overnet options version (page does not exist)">overnet_options_version</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kademlia_options_version&amp;action=edit&amp;redlink=1" class="new" title="Kademlia options version (page does not exist)">kademlia_options_version</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Commit_in_subdir&amp;action=edit&amp;redlink=1" class="new" title="Commit in subdir (page does not exist)">commit_in_subdir</a>
+</li><li> <a href="Min_left_sources.html" title="Min left sources">min_left_sources</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Options_prefix&amp;action=edit&amp;redlink=1" class="new" title="Options prefix (page does not exist)">options_prefix</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 26/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1370-0!*!0!!en!*!edit=0 and timestamp 20230806202709 -->
+<div class="printfooter">
+Retrieved from "<a href="Donkey.html">http://mldonkey.sourceforge.net/Donkey.ini</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Donkey.ini" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Donkey.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Donkey.ini&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Donkey.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Donkey.ini&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index0def.html?title=Donkey.ini&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Donkey.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Donkey.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index9bd8.html?title=Donkey.ini&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index14d7.html?title=Donkey.ini&amp;oldid=3115" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 29 September 2006, at 03:46.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 8,338 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Donkey.ini", "wgTitle": "Donkey.ini", "wgAction": "view", "wgArticleId": 1370, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3115, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.059 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Donkey.ini by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:30:16 GMT -->
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/EMuleCreditSystem by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:27:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>EMuleCreditSystem - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-EMuleCreditSystem skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">EMuleCreditSystem</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#What_is_it_-_why_does_it_exist.3F"><span class="tocnumber">1</span> <span class="toctext">What is it - why does it exist?</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#How_it_works"><span class="tocnumber">2</span> <span class="toctext">How it works</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#The_positive_effects"><span class="tocnumber">3</span> <span class="toctext">The positive effects</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#The_negative_effects"><span class="tocnumber">4</span> <span class="toctext">The negative effects</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#What_can_be_done_instead.3F"><span class="tocnumber">5</span> <span class="toctext">What can be done instead?</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#How_can_it_be_exploited.3F"><span class="tocnumber">6</span> <span class="toctext">How can it be exploited?</span></a></li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id="What_is_it_-_why_does_it_exist.3F">What is it - why does it exist?</span></h3>
+<p>The <strong class="selflink">eMuleCreditSystem</strong> is a LocalCreditSystem.
+</p><p>The creditsystem was constructed to battle <a href="LeecherProblem.html" title="LeecherProblem">LeecherProblem</a>. This became or threatened to become a problem with <a href="EMule.html" title="EMule">the problem of freeloaders/leechers</a> being OpenSource
+</p>
+<h3> <span class="mw-headline" id="How_it_works">How it works</span></h3>
+<p>The emule developer tried to prevent this by implementing a credit system: if you download from me, you give me a higher ranking, so I can download from you easier than others can.
+</p><p>Here is additional information found in the forum (to be checked)
+</p>
+<dl><dd>Every client which connects to you for any reason is remembered by his userhash (this is not your ID or IP).
+</dd><dd>If this client allows you to download, or you upload to him, emule saves the amount of transfered bytes in a file (clients.met).
+</dd><dd>Everytime when a client asks you for a file the two transfer values are used to calculate a modifier, which directly affects the asking clients rating and his place in the queue.
+</dd></dl>
+<dl><dd>Here are the technical values:
+</dd><dd>modifier = (2*uploaded to you) / downloaded from you
+</dd></dl>
+<dl><dd>So if client X has downloaded 2 MB from you and you 3 MB from him, he gets a modifier of (3*2 /2) = 3.0. That means if he waits in your queue, his waiting time counts 3.0 times more than the waiting time of client Y.
+</dd></dl>
+<dl><dd>However the modifier can not be greater than 10.0 or smaller then 1.0.
+</dd></dl>
+<dl><dd>All clients with a modifier greater than 1 are indicated by a yellow icon in your eMule(?) upload window.
+</dd></dl>
+<h3> <span class="mw-headline" id="The_positive_effects">The positive effects</span></h3>
+<p>Possible bonuses from the credit system may include:
+</p>
+<ul><li>If two clients have different chunks of the same file, they can swap them pretty efficiently.
+</li><li>Discourages leech clients (at least psychologically)
+</li><li>Encourages well-behaved clients that upload full chunks
+</li></ul>
+<p>-- _As far as i can say, it \"encourages\" clients to upload lots of Bytes, not necessarily a full chunk._
+</p>
+<ul><li>Encourages users to properly configure their firewalls
+</li></ul>
+<p>-- _Servers \"encourages\" users to properly configure their firewalls,
+not emule credit system._
+</p>
+<ul><li>It is a simple and difficult to exploit solution (as opposed to kazaa) to an otherwise complex and damaging problem (winmx).
+</li></ul>
+<p>-- _In the bottom of this page there's a way to exploit this credit system and it's not very hard to
+share only the file you are downloading._
+</p>
+<h3> <span class="mw-headline" id="The_negative_effects">The negative effects</span></h3>
+<p>However, this looks like a pretty bad idea, because it is an interaction between only two clients. what if i upload tons of rare files that most emule users don't want? in effect, it could lead to the kazaafication of the donkey network, by giving a disadvantage to uploaders of rare goodies. The best (only&#160;?) way to improve your download rate with eMule peers is to increase your credits, By uploading to those sources. Uploading files to others sources, or files that don't interest them is a "waste of upload for building credits". Hence the optimal behavior with this credit system is to only share the files you're currently downloading; This behavior is bad for both diversity and availability of files. (See for example [<a href="http://mldonkey.berlios.de/modules.php?name" class="external text" rel="nofollow"><code>Forums&amp;file</code>viewtopic&amp;t=71 this thread</a>])
+</p><p>It's also bad for new comers, that may join the ranks of KaZaa users instead of using the eDonkey network:
+</p><p><i>First, the edonkey network is a zero-sum game. Once you realize that you should be able to figure out this is really a wash, they should be slowing themselves and the rest of the network by doing this.</i>
+</p><p><i>Let's say a network has 100 mldonkey clients and 100 emule clients. Client A comes on the network (doesn't matter which client, really) Since client A hasn't uploaded anything yet to the emule clients, client A has a disadvantage with that set of clients (who keep track) and have are equal with the edonkey clients (who don't care). Let's say that emule gives a 2:1 ratio over those that have uploaded to the particular emule client and those that haven't.</i>
+</p><p><i>Let P be the average probability of getting a segment from a regular edonkey client. Initially, A sees a probability of 100(P) for the edonkey clients and 100(0.67)(P) for the emule clients, or:</i>
+</p>
+<pre>ProbA <code> 100 (P) + 100 (.67)P </code> 167(P)
+</pre>
+<p><i>The probability of connecting to an emule client is lower than the edonkey client since A hasn't uploaded anything to the emule clients. After A shares a segment with 1 emule client, A now sees:</i>
+</p>
+<pre>ProbA = 100 (P) + 99 (.67) P + 1 (1.33) P
+</pre>
+<p><i>Now in this 200 client network if all the clients were regular edonkeys the equation would be:</i>
+</p>
+<pre>ProbA = 200(P)
+</pre>
+<p><i>And it takes 50 uploads to emule clients before the probabilities become equal.</i>
+</p>
+<pre>ProbA <code> 100 (P) + 50(.67)P + 50(1.33) P </code> 200 (P)
+</pre>
+<p><i>But now the question is, does it scale?</i>
+</p><p><i>If it takes uploading to half of all the peers to get the same effective probability that mldonkey offers, then no. In an emule network with 1500 emules, you would need to upload to 750 emules before you got the same chance with 1500 regular edonkey clients.</i>
+</p><p><i>So all they're really doing is just shifting the load from themselves to the other donkey clients. And no, they're not really leeches, but they're not exactly helping the network either.</i>
+<i>-- Guest in the [<a href="http://mldonkey.berlios.de/modules.php?name=Forums&amp;file=viewtopic&amp;t=7&amp;start=15" class="external text" rel="nofollow">forums</a>]</i>
+</p><p><small>(<i>I have a feeling this list will be longer than the one above /<a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Vaste&amp;action=edit&amp;redlink=1" class="new" title="Vaste (page does not exist)">Vaste</a></i>)</small>
+</p>
+<h3> <span class="mw-headline" id="What_can_be_done_instead.3F">What can be done instead?</span></h3>
+<p>a better solution would probably be to implement some kind of overall highscore, so that people that upload much can also have a good download. but noone has yet come up with a viable idea without centralizing the network, making it vulnerable to outside attack.
+</p><p>but the issue is much more complex. if someone feels spirited to give a more competent overview, go ahead&#160;:)
+</p><p>The most straight-forward and natural way would be the social rather than the technical one, e.g by fostering a sense of FileSharing. It has worked fine for years and will probably continue to do so. Click the link for more...
+</p>
+<h3> <span class="mw-headline" id="How_can_it_be_exploited.3F">How can it be exploited?</span></h3>
+<p>First, for those who says this is not an exploit:
+</p>
+<pre>
+From WordNet (r) 1.7 ~[[wn]] exploit:
+    n&#160;: a notable achievement: \&quot;he performed a great deed\&quot;; \&quot;the
+         book was her finest effort\&quot; ~[[syn: {deed}, {feat}, {effort}]]
+    v 1: use to one's advantage; \&quot;He exploit the new taxation system\&quot;; \&quot;She knows
+           how to work the system\&quot;; \&quot;he works his parents for sympathy\&quot; ~[[syn: {work}]]
+</pre>
+<p>Well, one easy exploit is to not share anything but the files you're downloading.
+</p><p>More complex would include uploading only to those who have the chunks you want and those who are capable of providing it (high upload etc.)
+</p><p>Maybe <a href="MLdonkey.html" title="MLdonkey">MLdonkey</a> should adapt these methods to convince <a href="EMule.html" title="EMule">eMule</a> that the system doesn't work?
+</p>
+<pre>
+From JargonFile 4.2.0 exploit:  n. ~[[originally cracker slang]]
+ 1. A vulnerability in software that can be used for breaking security
+    or otherwise attacking an Internet host over the network.
+    The Ping O' Death is a famous exploit.
+ 2. More grammatically, a program that exploits an exploit in sense 1,
+</pre>
+<p>_-- I don't consider those exploits, you aren't doing anything condemnable, you're just optimizing your behavior to the way the eMule credit system works (and this optimization itself <b>is</b> exploitable. Now clients that want to attrack your attention -and upload- just have to lie about chunks they really have...) Exploits involve identity theft &amp; such, but its not as easy to achieve..._
+</p><p>_-- So it's less of an exploit because the exploit is exploitable? The reasons I <b>do</b> consider those exploits as the behaviour <b>is</b> condemnable. The behaviour was not (I hope) intended when the creditsystem was built. It is also against the interest of the rest of the network. So as it can be seen as an vulnerability that this kind of \"attack\" works, I say those are exploits. /<a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Vaste&amp;action=edit&amp;redlink=1" class="new" title="Vaste (page does not exist)">Vaste</a>_
+</p><p><br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><strong class="selflink">English</strong></b>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 154/1000000
+Post-expand include size: 652/2097152 bytes
+Template argument size: 551/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1384-0!*!0!!en!*!edit=0 and timestamp 20230806201125 -->
+<div class="printfooter">
+Retrieved from "<a href="EMuleCreditSystem.html">http://mldonkey.sourceforge.net/EMuleCreditSystem</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=EMuleCreditSystem" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="EMuleCreditSystem.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:EMuleCreditSystem&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="EMuleCreditSystem.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=EMuleCreditSystem&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index4633.html?title=EMuleCreditSystem&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/EMuleCreditSystem.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/EMuleCreditSystem.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index1c8c.html?title=EMuleCreditSystem&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index783d.html?title=EMuleCreditSystem&amp;oldid=5066" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 22 October 2010, at 21:25.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 9,825 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "EMuleCreditSystem", "wgTitle": "EMuleCreditSystem", "wgAction": "view", "wgArticleId": 1384, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5066, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.074 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/EMuleCreditSystem by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:27:53 GMT -->
+</html>
