@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/StartingSysVStyle by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:13:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>StartingSysVStyle - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-StartingSysVStyle skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">StartingSysVStyle</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Debian"><span class="tocnumber">1</span> <span class="toctext">Debian</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Solutions"><span class="tocnumber">1.1</span> <span class="toctext">Solutions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="#Re-design_the_MLDonkey.27s_idea_of_where_to_store_files"><span class="tocnumber">1.1.1</span> <span class="toctext">Re-design the MLDonkey's idea of where to store files</span></a></li>
+<li class="toclevel-3 tocsection-4"><a href="#Start_the_core_from_a_wrapper"><span class="tocnumber">1.1.2</span> <span class="toctext">Start the core from a wrapper</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#.7ERedHat_.28-like.29"><span class="tocnumber">2</span> <span class="toctext">~RedHat (-like)</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Debian"> Debian </span></h2>
+<p>MLDonkey is a badly-behaving program for an unixish environment in
+that sense that it expects to find it's configuration and state files
+from it's <i>current work directory</i>. In the unix-world, this is not the
+way to do things. Configuration files ought to reside inside the
+<code>/etc</code> directory structure, and state in <code>/var</code>, and for locally installed programs that are not thought of to be a part of the
+operating system itself, the respective directories are <code>/local/etc</code> and <code>/local/var</code>.
+</p><p><b>Since version 2.6.1 MLDonkey stores its files in $HOME/.mldonkey</b>
+</p><p>Putting ini files in /etc and data in /var is not that easy because
+on a server system there can be several MLDonkey daemons
+working by different users.
+</p><p>Note that the "current work directory" is not the same thing as <i>path</i>
+of the executable file itself<i>; for example when running the <b>ls</b></i>
+program from <code>/bin/ls</code> while in directory <i>/foo/bar</i>, the work
+directory of the program is <i>/foo/bar</i>, not <i>/bin</i>.
+</p>
+<h3> <span class="mw-headline" id="Solutions">Solutions</span></h3>
+<h4> <span class="mw-headline" id="Re-design_the_MLDonkey.27s_idea_of_where_to_store_files">Re-design the MLDonkey's idea of where to store files</span></h4>
+<p>Like said, expecting to find or create configuration and state files
+in the current work directory is not the usual way to do things in the
+unix-world.
+</p><p>Also no clear distinction between state and configuration exists in
+the core design, or phrased another way, the configuration is a
+set of parameters of the core state. Thus every time the state is
+saved, either by automatically every now and then (every 11 minutes, I
+think), or manually with the <code>save</code> command by the user, the
+configuration files are also (unconditionally) overwritten. Thus all
+configuration of the core must be made through an interface to the
+core itself, not by fiddling with the configuration files themselves
+if there modifications are expected to last.
+</p><p>If the MLDonkey core was like any other unixy daemon, no special
+arrangements needed to be made to start it in the usual SysV vein.
+</p>
+<h4> <span class="mw-headline" id="Start_the_core_from_a_wrapper">Start the core from a wrapper</span></h4>
+<p>This is how I've set up MLDonkey core to start up SysV style, from
+<code>/etc/init.d</code>. I have a meta-user called <i>mldonkey</i> for running the core, and the MLDonkey related programs are in it's home directory,
+<code>/home/mldonkey</code>. A wrapper script exists in <code>/usr/local/bin</code>, and
+it's called <i>mldonkey.sh</i>. Another file is in <code>/etc/init.d</code>, and this is called <i>mldonkey</i> and is symlinked to from the runlevel-directories.
+</p><p>Both of these files are being used on a Debian system with core
+version 2.4-rc8, but should work on all relatively unixy systems with
+no or little modifications.
+</p><p>(editor's note: I've included the files inline here, but they propably
+ought to be split into their own files. also, if you fiddle with the
+files as seen here, do state so)
+</p><p>Here are the files.
+</p><p>/usr/local/bin/mldonkey.sh:
+</p>
+<pre>
+#!/bin/bash
+#
+# a script that chdir(2)s to a directory, exec(3)s the mldonkey core
+# passing all it's commandline parameters, and redirects the stdout to
+# file.
+#
+# created to be used from an init.d -script, because MLDonkey expects
+# the current work directory to be it's own, causing a lot of
+# configuration and state files to be created there (if permitted)
+#
+# This file is protected by the GNU General Public License.
+#
+# mace
+# ke touko 21 18:18:01 EEST 2003
+
+# i believe that mlnet could be moved to /usr/local/bin
+# MLBIN=&quot;/usr/local/bin/mlnet&quot;
+MLBIN=&quot;/home/mldonkey/mlnet&quot;
+MLDIR=&quot;/home/mldonkey&quot;
+MLOUT=&quot;$MLDIR/mldonkey.stdout&quot;
+MLOPT=&quot;$@ &gt;&gt;$MLOUT&quot;
+
+cd $MLDIR
+echo &quot;$(date)&quot; &gt;&gt;$MLOUT
+echo &quot;''''''* MLDonkey starting via $0&quot; &gt;&gt;$MLOUT
+eval exec $MLBIN $MLOPT &amp;
+</pre>
+<p>/etc/init.d/mldonkey
+</p>
+<pre>
+#! /bin/sh
+#
+# mldonkey      init.d script to start MLDonkey
+#
+#               Modified from &quot;skeleton&quot; by M. Smoorenberg and I.
+#               Murdock.
+#
+# This file is protected by the GNU General Public License.
+#
+# mace
+# ke touko 21 18:17:51 EEST 2003
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/mldonkey.sh
+NAME=MLDonkey
+DESC=&quot;MLDonkey, multinet peer-to-peer server/client&quot;
+
+test -x $DAEMON || exit 0
+
+set -e
+
+case &quot;$1&quot; in
+  start)
+        echo -n &quot;Starting $DESC: $NAME&quot;
+        start-stop-daemon --start --chuid mldonkey \
+                --pidfile /var/run/$NAME.pid --exec $DAEMON
+        echo &quot;.&quot;
+       &#160;;;
+  stop)
+        echo -n &quot;Stopping $DESC: $NAME &quot;
+        start-stop-daemon --stop --quiet --pidfile /var/run/$NAME.pid \
+                --exec $DAEMON
+        echo &quot;.&quot;
+       &#160;;;
+  #reload)
+        #
+        #       If the daemon can reload its config files on the fly
+        #       for example by sending it SIGHUP, do it here.
+        #
+        #       If the daemon responds to changes in its config file
+        #       directly anyway, make this a do-nothing entry.
+        #
+        # echo -n &quot;Reloading $DESC configuration...&quot;
+        # start-stop-daemon --stop --signal 1 --quiet --pidfile \
+        #       /var/run/$NAME.pid --exec $DAEMON
+        # echo &quot;done.&quot;
+  #;;
+  restart|force-reload)
+        #
+        #       If the &quot;reload&quot; option is implemented, move the &quot;force-reload&quot;
+        #       option to the &quot;reload&quot; entry above. If not, &quot;force-reload&quot; is
+        #       just the same as &quot;restart&quot;.
+        #
+        echo -n &quot;Restarting $DESC: $NAME&quot;
+        start-stop-daemon --stop --quiet --pidfile \
+                /var/run/$NAME.pid --exec $DAEMON
+        sleep 1
+        start-stop-daemon --start --quiet --pidfile \
+                /var/run/$NAME.pid --exec $DAEMON
+        echo &quot;.&quot;
+       &#160;;;
+  *)
+        N=/etc/init.d/$NAME
+        # echo &quot;Usage: $N {start|stop|restart|reload|force-reload}&quot; &gt;&amp;2
+        echo &quot;Usage: $N {start|stop|restart|force-reload}&quot; &gt;&amp;2
+        exit 1
+       &#160;;;
+esac
+
+exit 0
+</pre>
+<p>To launch this script automatically when machine boots up and to be able to execute <code>/etc/init.d/mldonkey {start|stop|restart|force-reload}</code>:
+</p>
+<pre>
+chmod +x /etc/init.d/mldonkey
+update-rc.d mldonkey start 98 2 3 4 5 . stop 20 0 1 6 .
+</pre>
+<hr />
+<p>To do about this page:
+</p>
+<ul><li> The init-script expects the MLDonkey core to die gracefully when signaled in the default way by the SysV system. This should be checked and if need be, the core should be sent a <code>kill</code> somehow, possibly with telnet and a <i>here-document</i>. 
+</li></ul>
+<p><i>The core should handle the TERM signal, sent by standard kill, just fine /Pango</i>
+</p>
+<ul><li> I wish people who've packaged MLDonkey would review and comment on this. At least a Debian-package does exists, even if it would be rather unmaintained at the moment.
+</li></ul>
+<ul><li> I'd also like to hear from the designers of MLDonkey why it was decided for the core to expect to find the configuration&amp;state files in the current work directory. 
+</li></ul>
+<p><i>I've seen at least another ocaml daemon working that way, so I guess it's a caml tradition vs unix tradition problem. It also has the advantage of being more platform agnostic (for the best and for the worse). Separating setup from state is another problem that has its roots in the use of the Options module. I'm not sure how to fix it (if it needs to be) /Pango</i>
+</p>
+<ul><li> Perhaps this issue about the core expecting to find the conf&amp;state files in the current work directory should be split to another file alltogether, it seems to take considerable space on this page.
+</li></ul>
+<h2> <span class="mw-headline" id=".7ERedHat_.28-like.29"> ~RedHat (-like)</span></h2>
+<p>/etc/rc.d/init.d/mldonkeyd:
+</p>
+<pre>
+#!/bin/bash
+#
+# mldonkeyd	This shell script takes care of starting and stopping
+#		the mldonkey file-sharing client.
+#
+# description:	mldonkey filesharing client.
+# processname: mldonkey
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Adjust these value to your needs
+prog=&quot;MlDonkey&quot;                 # Name of program
+nice_level=18                   # nice level
+user=mldonkey                   # Username to run mldonkey
+
+dl_rate_fast=90
+upload_rate_fast=12
+connections_fast=800
+dl_rate_slow=60
+upload_rate_slow=10
+connections_slow=400
+
+# Make sure the path to all of the binaries is right
+awk=/bin/awk			# awk
+grep=/bin/grep			# grep
+nc=/usr/bin/nc			# perhaps named netcat on your system
+renice=/usr/bin/renice		# renice
+sleep=/bin/sleep		# sleep
+sudo=/usr/bin/sudo		# sudo
+su=/bin/su			# su
+ddir=/home/mldonkey/bin		# path to mldonkey
+bin=mldonkey			# program name
+
+# The Script
+
+start(){
+  # cheching for another mldonkey session
+  status $ddir/$bin &gt; /dev/null
+  ret=$?
+
+  # if none found, start mldonkey
+  if [[ $ret -eq 3 ]]; then
+    cd $ddir
+
+    # Remove old servers
+    rm -Rf servers.ini*
+
+    # Remove tmp files
+    rm -Rf *.tmp
+
+    #  you should not change this lines...
+    $sudo -u $user $ddir/$bin &gt; /dev/null 2&gt;&amp;1 &amp;
+    ret=$?
+
+    if [[ $ret -eq 0 ]]; then
+      action $&quot;Starting $prog: &quot; /bin/true
+
+      $sleep 5
+      $renice $nice_level -u $user &gt; /dev/null
+
+      # Overnet Support
+      #OVER_IP1=resolveip overnet.dyndns.org || $awk '{print $6}'
+      #OVER_PR1=4665
+      #OVER_IP2=Resolveip fudge.punkcookies.com || $awk '{print $6}'
+      #OVER_PR2=12000
+      #boot $OVER_IP1 $OVER_PR1
+      #boot $OVER_IP2 $OVER_PR2
+
+      # you can change or add commands below the first STOPHERE and q
+      #
+      # open Connection to telnet interface
+      sh -c &quot;$nc localhost 4000 &gt; /dev/null &lt;&lt;STOPHERE
+        clh
+	ovweb
+	q
+      STOPHERE&quot;
+
+    else
+      action $&quot;Starting $prog: &quot; /bin/false
+    fi
+
+    [[ $ret -eq 0 ]] &amp;&amp; touch /var/lock/mldonkey-client
+    return $ret
+
+  else
+    action $&quot;Starting $prog failed (allready active) &quot; /bin/false
+    return $ret
+  fi
+}
+
+stop(){
+  sh -c &quot;$nc localhost 4000 &gt; /dev/null  &lt;&lt;STOPHERE
+    commit
+    close_fds
+    kill
+  STOPHERE&quot;
+  ret=$?
+
+  if [[ $ret -eq 0 ]]; then
+    # better sleep a while, before killing
+    $sleep 20
+
+    # kill mldonkey if it is still running
+      ps ax |$grep $ddir/$bin |$grep -v $grep |$awk '{print &quot;kill&quot; $1}'| sh
+
+      action $&quot;Stopping $prog: &quot; /bin/true
+  else
+      action $&quot;Stopping $prog: &quot; /bin/false
+  fi
+  #  for status
+  rm -f /var/lock/mldonkey-client
+  return $ret
+}
+
+restart(){
+  stop
+  start
+}
+
+fast(){
+  # cheching for mldonkey session
+  status $ddir/$bin &gt; /dev/null
+  ret=$?
+
+  # if none found, start mldonkey
+  if [[ $ret -eq 3 ]]; then
+    start
+  fi
+
+  sh -c &quot;$nc localhost 4000 &gt; /dev/null &lt;&lt; STOPHERE
+        set max_hard_download_rate $dl_rate_fast
+        set max_hard_upload_rate $upload_rate_fast
+        set max_opened_connections $connections_fast
+        q
+  STOPHERE&quot;
+}
+
+slow(){
+  # cheching for mldonkey session
+  status $ddir/$bin &gt; /dev/null
+  ret=$?
+
+  # if none found, start mldonkey
+  if [[ $ret -eq 3 ]]; then
+    start
+  fi
+
+  sh -c &quot;$nc localhost 4000 &gt; /dev/null &lt;&lt; STOPHERE
+        set max_hard_download_rate $dl_rate_slow
+        set max_hard_upload_rate $upload_rate_slow
+        set max_opened_connections $connections_slow
+        q
+  STOPHERE&quot;
+}
+
+
+
+# See how we were called.
+case &quot;$1&quot; in
+  start)
+    start
+   &#160;;;
+  stop)
+    stop
+   &#160;;;
+  status)
+    status $ddir/$bin
+   &#160;;;
+  restart)
+    restart
+   &#160;;;
+  slow)
+    slow
+   &#160;;;
+  fast)
+    fast
+   &#160;;;
+  *)
+    echo $&quot;Usage: $0 {start|stop|status|restart|slow|fast}&quot;
+    exit 1
+esac
+
+exit $?
+</pre>
+<p>(written by Christoph for RedHat 8.0, check thread [<a href="http://mldonkey.berlios.de/modules.php?name" class="external text" rel="nofollow"><code>Forums&amp;file</code>viewtopic&amp;t=902 here</a>])
+</p><p>For mldonkey 2.6.1 and later, you would also need to check whether mldonkey died not gracely (due to a power loss or whatever). Mldonkey creates a pid file with the process ID of mlnet process. The file is located in $HOME/.mldonkey/mlnet.pid. You should delete it BEFORE starting mldonkey.
+</p><p>Here it is a modified version of the start subcommand:
+</p>
+<pre>
+pid_file=$ddir/.mldonkey/mlnet.pid  # PID of mlnet
+
+# The Script
+
+start(){
+  # cheching for another mldonkey session
+  status $ddir/$bin &gt; /dev/null
+  ret=$?
+
+  # if none found, start mldonkey
+  if [[ $ret -eq 3 ]]; then
+    cd $ddir
+
+    # Remove old servers
+    rm -Rf servers.ini*
+
+    # Remove tmp files
+    rm -Rf *.tmp
+
+    # NEW!!
+    # Delete the PID file if mlnet is not running
+    [[ -f $pid_file ]] &amp;&amp;&#160;! pgrep mlnet 2&gt;&amp;1 &gt;/dev/null &amp;&amp; rm -Rf $pid_file
+
+    #  you should not change this lines...
+    $su - $user -c $ddir/$bin &gt; /dev/null 2&gt;&amp;1 &amp;
+    ret=$?
+
+    if [[ $ret -eq 0 ]]; then
+      action $&quot;Starting $prog: &quot; /bin/true
+
+      $sleep 5
+      $renice $nice_level -u $user &gt; /dev/null
+
+      # Overnet Support
+      #OVER_IP1=resolveip overnet.dyndns.org | $awk '{print $6}'
+      #OVER_PR1=4665
+      #OVER_IP2=Resolveip fudge.punkcookies.com | $awk '{print $6}'
+      #OVER_PR2=12000
+      #boot $OVER_IP1 $OVER_PR1
+      #boot $OVER_IP2 $OVER_PR2
+
+      # you can change or add commands below the first STOPHERE and q
+      #
+      # open Connection to telnet interface
+      sh -c &quot;$nc localhost 4000 &gt; /dev/null &lt;&lt;STOPHERE
+        auth admin mypassword
+        clh
+        ovweb
+        q
+      STOPHERE&quot;
+
+    else
+      action $&quot;Starting $prog: &quot; /bin/false
+    fi
+
+    [[ $ret -eq 0 ]] &amp;&amp; touch /var/lock/mldonkey-client
+    return $ret
+
+  else
+    action $&quot;Starting $prog failed (already active) &quot; /bin/false
+    return $ret
+  fi
+}
+</pre>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 51/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1676-0!*!0!!en!*!edit=0 and timestamp 20230806184155 -->
+<div class="printfooter">
+Retrieved from "<a href="StartingSysVStyle.html">http://mldonkey.sourceforge.net/StartingSysVStyle</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=StartingSysVStyle" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="StartingSysVStyle.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="Talk_StartingSysVStyle.html"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="StartingSysVStyle.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=StartingSysVStyle&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index07b8.html?title=StartingSysVStyle&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/StartingSysVStyle.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/StartingSysVStyle.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexd198.html?title=StartingSysVStyle&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index57ce.html?title=StartingSysVStyle&amp;oldid=3296" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 17 February 2007, at 19:20.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 12,290 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "StartingSysVStyle", "wgTitle": "StartingSysVStyle", "wgAction": "view", "wgArticleId": 1676, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3296, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.068 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/StartingSysVStyle by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:13:25 GMT -->
+</html>

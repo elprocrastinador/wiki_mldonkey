@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Simple_configuration by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:44:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Simple configuration - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Simple_configuration skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Simple configuration</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Simple_configuration_guide"><span class="tocnumber">1</span> <span class="toctext">Simple configuration guide</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Tune_Bandwith_settings"><span class="tocnumber">2</span> <span class="toctext">Tune Bandwith settings</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Edonkey_settings"><span class="tocnumber">3</span> <span class="toctext">Edonkey settings</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Tune_Memory_Usage"><span class="tocnumber">4</span> <span class="toctext">Tune Memory Usage</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Tune_CPU_Usage"><span class="tocnumber">5</span> <span class="toctext">Tune CPU Usage</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Tune.2C_a_NAS_example"><span class="tocnumber">6</span> <span class="toctext">Tune, a NAS example</span></a></li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id="Simple_configuration_guide"> Simple configuration guide </span></h3>
+<p>Mldonkey and p2p application in general are complex tools.
+</p><p>Your computer has limited memory and CPU time resources.The memory is the space the application needs to work, memory is like an office: in a big office  a lot of clerks(applications) are able to work at same time and in comfortable way.
+CPU is the processor unit which could execute instructions or operation with a limited frequency.When more applications are using this resource, slower will be their execution.You have to tune the CPU need of your application in order to not "saturate" CPU which could left your PC to run slow and not responsive.
+Another limited resource is the bandwidth of your network connections, your connection is like an highway you can give(upload) or receive(download) a limited amount of Bytes/sec.
+Sometimes you have heard about 20Mbit connections and so on, this is related to your download connection speed, sometimes upload speed is far less (you have to ask to your Internet Provider in order to find out the upload limit).
+You have to tune your p2p applications in order to not saturate your "highway": With a 20Mbit Down/ 1Mbit Up connections means you have about 2,5Mbyte/sec down/120Kbytes/sec maximum throughput.You have not to use all this power because this connection should be also used to navigate, email or by other users in your home and your computer needs to reserve part of your bandwidth in order to exchange control packets.
+By saturating the connection (free upload is very very important) 'll simply create congestion and a negative impact to connection capacity.
+With the over mentioned example limit the mldonkey application to only use 60 Kbyte/sec in upload and 1Mbyte/sec down could be reasonable.
+</p>
+<h3> <span class="mw-headline" id="Tune_Bandwith_settings"> Tune Bandwith settings </span></h3>
+<h3> <span class="mw-headline" id="Edonkey_settings"> Edonkey settings </span></h3>
+<p>In order to operate well in emule-edonkey network you need
+</p>
+<ul><li> Good Serverlist
+</li><li> Good IPFilter
+</li></ul>
+<p>About serverslist you can configure mldonkey in order to get the best ones automatically at boot.
+You can add Peerates and gruk 's serverlist URL to the web_infos list for example (and could suffice for all needs).
+If you like more servers, add Gruk list too.
+Good IPFilter or guarding p2p database is emule-security(reccomended) 's one(Bluetack is good but a bit too much selective about servers).
+In order to configure and add these resources  you can use Webinterface -&gt; Options -&gt; <a href="Web_infos.html" title="Web infos">Web_infos</a>
+</p><p>If your connection and your computer's resources agree it is a good idea to enable Kad.
+</p><p>About dangerous options it is important to verify these:
+</p>
+<ul><li>set option ED2K-update_server_list_server 	to <b>false</b>	
+</li><li>set option ED2K-update_server_list_server_met 	to <b>true</b>	
+</li><li>set option ED2K-update_server_list_client 	to <b>false</b>
+</li></ul>
+<p><br />
+more to come
+</p>
+<h3> <span class="mw-headline" id="Tune_Memory_Usage"> Tune Memory Usage </span></h3>
+<p>Note that under no circumstances you can expect MLdonkey to use less than let's say 15MB,
+although some versions run stable at significantly more.
+This is the list of options-features which you can look at for reducing memory usage, If you are experiencing memory problems try with this suggestions starting from the first respecting order.
+Disable GeoIP is the first try cause it is not a fundamental feature; IpFilters uses resources but is an important security/performance feature:
+</p>
+<ul><li> disable Overnet... it is useless.
+</li><li> disable GeoIP by editing web_infos in downloads.ini and removing the maxmind URL.
+</li></ul>
+<p><i>In case GeoIP still work perhaps you need to manually delete GeoIP database file from ./mldonkey</i>
+</p>
+<ul><li> disable unused networks from the options. 
+</li><li> When compiling, disable all unused networks; secure user identification (Donkey SUI) can be disabled as well.
+</li><li> MLDonkey BT module is sometimes a CPU hog.If this problem triggers on your box use another BT application and disable BT module.
+</li><li> use telnet or web interfaces instead of GTK GUIs
+</li><li> disable options "emule_mods_count"and "emule_mods_showall" setting them to false
+</li><li> Reduce value of option ED2K-max_sources_per_file,
+</li></ul>
+<p>default is 5000 but you can live with 2500 or less, for boxes with memory&lt;=128Mbytes 1250 could be considered a reasonable value.
+</p>
+<ul><li> set option "ip_blocking_descriptions" to false, this will not cache IP blocking data, reducing memory usage and raising CPU and Disk Usage.
+</li><li> download fewer (popular) files at once or reduce the value of max sources
+</li><li> try reducing the size of your shared list. For example, try sharing 200 files instead of 1000
+</li><li> searches with large result lists use lots of RAM, take care to <a href="Forget.html" title="Forget">forget</a> searches when finished
+</li><li> GC tunings: decrease "compaction delay" and "space_overhead" options
+</li></ul>
+<p><i>compaction_delay</i> is the maximum time interval between two garbage collections in hours.
+</p><p><i>space_overhead</i> is the percentage of tolerated wasted memory, then GC is call.
+Decreasing this values gives higher CPU usage.
+</p>
+<ul><li> Disable Kademlia (you are still connected to Emule network  servers)
+</li><li> Disable IpFilter, set ip_blocking_descriptions to false, but that should only be done if security is no concern.
+</li></ul>
+<h3> <span class="mw-headline" id="Tune_CPU_Usage"> Tune CPU Usage </span></h3>
+<p>You can monitor mldonkey's CPU and MEMORY usage on *nix  using commandline command <b>top</b> which visualize informations similar to windows's task manager.
+Things are fine when mlnet (mldonkey application) uses CPU in a range between 2%-20%.When mlnet eats more than 50% CPU you can try to tune mldonkey configuration in order to make your box more responsive. 
+A bunch of solutions for reducing memory usage are also solutions for too much CPU usage; there are other ways for reducing  CPU load which raise memory consumption.
+You have to find out a tradeoff between usability, memory usage and cpu usage.
+These are tips for reducing CPU usage:
+</p>
+<ul><li> Disable Overnet (Useless)
+</li><li> Disable GeoIP
+</li></ul>
+<p><i>In case GeoIP still work perhaps you need to manually delete GeoIP database file from ./mldonkey</i>
+</p>
+<ul><li> Raise option "share scan interval", example set 120 means 2 hours,  set 0 to disable automatic scan of shares
+</li><li> Disable SUID (Emule Secure Identification)
+</li><li> GC tunings: raise "compaction delay" and "space_overhead" options
+</li></ul>
+<p><i>compaction_delay</i> is the maximum time interval between two garbage collections in hours.
+<i>space_overhead</i> is the percentage of tolerated wasted memory, then GC is call.
+Raising this values gives higher memory usage.
+</p>
+<ul><li> Set option "ip_blocking_descriptions" to true.You'll use little more memory reducing CPU and disk usage.
+</li></ul>
+<h3> <span class="mw-headline" id="Tune.2C_a_NAS_example"> Tune, a NAS example </span></h3>
+<p>NAS boxes are little computers with low power consumtion build with weak CPUs and an amount of memory currently around 128MBytes.
+These boxes usually provide other services and it is better to not use all resources for mldonkey's sake.
+These NASes has usually an integrated BT client and Wget(HTTP-FTP) application.Assuming you are using Mldonkey only for the edonkey network it is better to use a core compiled with only edonkey network module and features, you will obtain a lighter executable.
+On PowerPC based NAS you can enable and compile SUID, on ARM and MIPsel boxes I suggest to compile cores without SUID cause the SUID feature sometimes fails to work on those architectures.
+</p>
+<ul><li> disable Overnet... it is useless.
+</li><li> use only edonkey/emule network module (it is the most memory efficient) on boxes with Memory &lt;= 128MBytes.You can also disable the other networks thru options. 
+</li><li> disable GeoIP by editing web_infos in downloads.ini and removing the maxmind URL.
+</li></ul>
+<p><i>In case GeoIP still work perhaps you need to manually delete GeoIP database file from ./mldonkey</i>
+</p>
+<ul><li> disable options "emule_mods_count"and "emule_mods_showall" setting them to false.
+</li><li> Raise option "share scan interval", set 120 or 180 are good, use 0 only in order to disable automatic scan of shares and save more CPU.
+</li><li> Reduce value of option ED2K-max_sources_per_file.
+</li></ul>
+<p><i>default is 5000 but you can live with 2500 or less, for boxes with memory&lt;=128Mbytes, 1250 could be considered a reasonable value.</i>
+</p>
+<ul><li>Set option "ip_blocking_descriptions" to true for NAS with memory &gt;=128Mbytes.
+</li></ul>
+<p>Set option "ip_blocking_descriptions" to false for NAS with memory &lt;=128Mbytes.
+</p>
+<ul><li> decrease "space_overhead".
+</li></ul>
+<p>default is still good but if you need more memory( on a box with memory &lt;128MB?) for your box operations, you can decrease "space_overhead", example space_overhead = 60 or less. 
+please give feedback about this point.
+</p>
+<ul><li> disable Kad on boxes with Memory &lt;128 Mbytes.
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 31/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2257-0!*!0!!en!*!edit=0 and timestamp 20230807162738 -->
+<div class="printfooter">
+Retrieved from "<a href="Simple_configuration.html">http://mldonkey.sourceforge.net/Simple_configuration</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Simple_configuration" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Simple_configuration.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Simple_configuration&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Simple_configuration.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Simple_configuration&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexb228.html?title=Simple_configuration&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Simple_configuration.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Simple_configuration.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index5efa.html?title=Simple_configuration&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index2f5c.html?title=Simple_configuration&amp;oldid=3961" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 28 July 2008, at 07:51.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 71,097 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Simple_configuration", "wgTitle": "Simple configuration", "wgAction": "view", "wgArticleId": 2257, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3961, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.083 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Simple_configuration by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:44:16 GMT -->
+</html>

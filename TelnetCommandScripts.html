@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/TelnetCommandScripts by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:46:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>TelnetCommandScripts - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-TelnetCommandScripts skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">TelnetCommandScripts</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>the telnet gui may seem awkward to some people. however, combined with the unix shell, it can be a powerful tool to extract data you want.
+for that, you need the nc (netcat, see <a href="http://www.atstake.com/research/tools/network_utilities/" class="external autonumber" rel="nofollow">[1]</a>] or to get a rpm package go [<a href="http://www.rpmfind.net/linux/rpm2html/search.php?query=netcat" class="external autonumber" rel="nofollow">[2]</a>) tool.
+</p><p>Remark: depending on distros, netcat is either available under the name <code>nc</code>, <code>ncat</code> (comes with nmap tool), or only <code>netcat</code>.  In the next examples, we will use the name <code>nc</code> (because we're lazy) but if that name doesn't exist in your box, replace <code>nc</code> (or <code>ncat</code>) by <code>netcat</code> in all examples.
+</p><p>for example, you can write a script that gives only the files that are currently downloaded to stdout:
+</p>
+<pre>(echo vd; echo q) | nc &lt;mldonkey-telnet-IP&gt; 4000 | sed &quot;/Paused/d&quot; | sed &quot;/- *$/d&quot;</pre>
+<p>or you can make a script for invoking any command:
+</p>
+<pre>(echo $1;echo q) | nc &lt;mldonkey-telnet-IP&gt; 4000</pre>
+<p>which would be used like this:
+</p>
+<pre># &lt;name of script&gt; &quot;&lt;[[MLdonkeyCommandsExplained|donkey_command]]&gt;&quot;</pre>
+<p>by the way, a script like this is available with the mldonkey distribution. it is called <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Mldonkey_command&amp;action=edit&amp;redlink=1" class="new" title="Mldonkey command (page does not exist)">mldonkey_command</a>.
+But you have to edit it and set the right IP.
+</p><p>of course, this can become arbitrarily complex&#160;;)
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Program_to_check_net_stats"><span class="tocnumber">1</span> <span class="toctext">Program to check net stats</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Program_to_submit_torrent_files:"><span class="tocnumber">2</span> <span class="toctext">Program to submit torrent files:</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Wget-like_sh_script_for_http_downloads"><span class="tocnumber">3</span> <span class="toctext">Wget-like sh script for http downloads</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#See_also"><span class="tocnumber">4</span> <span class="toctext">See also</span></a></li>
+</ul>
+</td></tr></table>
+<h4> <span class="mw-headline" id="Program_to_check_net_stats"> Program to check net stats</span></h4>
+<p>tells you every five seconds seen peers, download, upload, banned peers.
+</p>
+<pre>while sleep 5; do (echo cs;echo q)|nc &lt;mldonkey-telnet-IP&gt; 4000|grep Total;done</pre>
+<p>you can let this run in a minimal telnet (one line high), if you <b>have</b> to know how your donkey is doing while you're away&#160;;)
+</p>
+Alternate code: <pre>watch -n5 'echo -e &quot;cs\nq\n&quot;|nc &lt;mldonkey-telnet-IP&gt; 4000|grep Total'</pre>
+<p>note: if you've set a password don't forget to do an 'echo "auth user password"' before.
+</p>
+<h4> <span class="mw-headline" id="Program_to_submit_torrent_files:"> Program to submit torrent files:</span></h4>
+<p>(just chmod +x it and put it into your $PATH, then simply associate this script .torrent files in your browser)
+</p>
+<pre>
+#!/bin/sh
+#
+# /usr/local/bin/mldonkey_torrent_handler
+#
+# note: this scripts requires a mount to your mldonkey box, because netcat has some problems with some special strings,
+# but i guess almost all of you got the temp/incoming directories mounted
+
+SERVER=server
+USER=username
+PASSWD=password
+LINK=&quot;$@&quot;
+WORKDIR=/mnt/cube/bigdata/p2p ## local dir
+SRVDIR=/mnt/bigdata/p2p ## server-side dir
+LOGFILE=&quot;$WORKDIR&quot;/torrent_log
+for i in &quot;$@&quot;; do
+TORRENTFILE=torrent`date +%s`
+cp &quot;$i&quot; &quot;$WORKDIR&quot;/&quot;$TORRENTFILE&quot;.torrent -v &gt;&gt; $LOGFILE
+chmod 665 &quot;$WORKDIR&quot;/&quot;$TORRENTFILE&quot;.torrent
+(echo auth $USER $PASSWD;echo dllink &quot;$SRVDIR&quot;/&quot;$TORRENTFILE&quot;.torrent; echo q) | nc $SERVER 4000
+echo &quot;added \&quot;$i\&quot; to mldonkey&quot; &gt;&gt; &quot;$LOGFILE&quot;
+done
+</pre>
+<p>Here is another one, which should work, even if you don't have a mount to your mldonkey box.
+This script requires netcat.  It imitates an http-server to transmit the torrent-file.  Mldonkey will show the torrent as a number.torrent --&gt; 21312.torrent.  Don't be intimitated; as soon as mldonkey starts downloading the file the name will be corrected.
+</p>
+<pre>
+#!/bin/sh
+# I haven't tested this script very often, but it is IMO safe to use
+#
+
+SERVER=yourServerIPOrName
+USER=yourUsername
+PASS=yourPassword
+TMP_DIR=/tmp/
+
+# you don't need to change anything below this line
+
+# we choose a random port above 10000, where our &quot;http-server&quot; will listen
+declare -i PORT
+PORT=$RANDOM+10000
+
+function printHeaders
+{
+        echo &quot;HTTP/1.0 200 OK&quot;
+        echo &quot;Content-Type: application/x-bittorrent&quot;
+        echo &quot;Content-Length: $1&quot;
+        echo
+}
+
+# stolen from: http://www.cyberciti.biz/nixcraft/vivek/blogger/2006/01/read-unixlinux-system-ip-address-in.php
+LOCAL_ADDRESS=$(/sbin/ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | head -n 1)
+
+FILE=$TMP_DIR/torrent$(date +%s)
+cp &quot;$@&quot; $FILE
+
+FSIZE=$(du -b &quot;$FILE&quot; | cut -f 1)
+
+# this starts our http-server.
+((printHeaders $FSIZE; echo; echo; echo; echo; echo; echo) | netcat -l -p $PORT; (printHeaders $FSIZE; cat &quot;$FILE&quot;; echo; echo; echo; echo) | netcat -l -p $PORT) &amp;
+
+# and this tells mldonkey to get the torrent from the http-server
+(echo &quot;auth $USER $PASS&quot;;
+ echo &quot;dllink http://${LOCAL_ADDRESS}:$PORT/$RANDOM.torrent&quot;;
+ echo &quot;q&quot;) | netcat $SERVER 4000
+
+#echo &quot;dllink http://${LOCAL_ADDRESS}:$PORT/$RANDOM.torrent&quot; &gt; /tmp/pro1
+
+# you could probably remove the sleep
+sleep 300
+</pre>
+<h4> <span class="mw-headline" id="Wget-like_sh_script_for_http_downloads"> Wget-like sh script for http downloads </span></h4>
+<p>Starts http download, given the http url and optional referrer url.
+Can be used as a drop-in wget/curl replacement and with browser plugins like flashgot for firefox (see <a href="Browser_Integration.html" title="Browser Integration">Browser_Integration</a>).
+</p><p>Substitute &lt;login&gt; &lt;password&gt; &lt;server&gt; and/or 4000 (port) with appropriate values.
+It is quite handy to have a separate user/group for such downloads, so they can be easily separated from regular p2p and have custom limits set.
+</p>
+<pre>#!/bin/sh
+echo -e &quot;auth &lt;login&gt; &lt;password&gt;\nhttp $1 $2\nexit&quot; |\
+ ncat &lt;server&gt; 4000 2&gt;&amp;1 &gt;/dev/null</pre>
+<h3> <span class="mw-headline" id="See_also"> See also</span></h3>
+<p><a href="File_completed_cmd.html" title="File completed cmd">file_completed_cmd</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 87/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1683-0!*!0!!en!*!edit=0 and timestamp 20230806210019 -->
+<div class="printfooter">
+Retrieved from "<a href="TelnetCommandScripts.html">http://mldonkey.sourceforge.net/TelnetCommandScripts</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=TelnetCommandScripts" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="TelnetCommandScripts.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:TelnetCommandScripts&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="TelnetCommandScripts.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=TelnetCommandScripts&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index498c.html?title=TelnetCommandScripts&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/TelnetCommandScripts.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/TelnetCommandScripts.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index515f.html?title=TelnetCommandScripts&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index0f2d.html?title=TelnetCommandScripts&amp;oldid=4562" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 22 October 2009, at 10:10.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 24,526 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "TelnetCommandScripts", "wgTitle": "TelnetCommandScripts", "wgAction": "view", "wgArticleId": 1683, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4562, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.093 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/TelnetCommandScripts by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:46:42 GMT -->
+</html>

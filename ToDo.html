@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/ToDo by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:38:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>ToDo - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-ToDo skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">ToDo</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>You always dreamed of a new feature, or are annoyed by the lack of a feature.
+</p><p>You have coding skills and want to help the MLdonkey project, but don't know where to start&#160;?
+</p><p>Look no further!
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Bug_reports"><span class="tocnumber">1</span> <span class="toctext">Bug reports</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Current_tasks"><span class="tocnumber">2</span> <span class="toctext">Current tasks</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Suggestions_of_improvements.2C_the_list"><span class="tocnumber">3</span> <span class="toctext">Suggestions of improvements, the list</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Mldonkey_options_naming_convention_project"><span class="tocnumber">4</span> <span class="toctext">Mldonkey options naming convention project</span></a></li>
+</ul>
+</td></tr></table>
+<h4> <span class="mw-headline" id="Bug_reports"> Bug reports</span></h4>
+<p>Bug reports should be submitted to <a href="http://savannah.nongnu.org/bugs/?group=mldonkey" class="external text" rel="nofollow">bugtracker</a> instead.
+</p>
+<h4> <span class="mw-headline" id="Current_tasks"> Current tasks</span></h4>
+<p>Check the <a href="http://cvs.savannah.gnu.org/viewvc/*checkout*/mldonkey/distrib/TODO?root=mldonkey" class="external text" rel="nofollow">internal TODO list</a>.
+</p><p>However, it appears to no longer be used, and is most likely outdated. Instead, look at <a href="https://savannah.nongnu.org/task/?group=mldonkey" class="external text" rel="nofollow">task manager</a>.
+</p>
+<h4> <span class="mw-headline" id="Suggestions_of_improvements.2C_the_list"> Suggestions of improvements, the list</span></h4>
+<ul><li> Include more fine grained control over the download and upload rates, like uTorrent. For a start individual speed limits per download/upload would be very usefull, along with a configurable policy for completed downloads (should they be seeded after completion, up to what U/L ratio, with what maximum speed etc). In addition individual file selection within a multifile torrent is nice (has been mentioned before here), especially with the file priority system used by uTorrent. When and if this is included automatic filters for setting files' priority will be nice, like setting any *sample* file to high priority for preview purposes etc. Automatic filters (based on tracker, size, # of files, ip range (for discrimination between fast wan and not-so-fast internet with different speed limits, file type etc) for setting upload policy and speed limits, along with a scheduler like the one in uTorrent would make mlDonkey truly awesome!
+</li><li> The Comment function from eMule: Helps to identify fakes and gives extra information.
+</li><li> For M$-Windows XP/NT/2K allow mldonkey to be run as service (autostart at boot, no need to be logged in, just set and forget it.) I have boilerplate C / C++ code that i could donate / add to do this. contact me via \"mail (at) thomas (minus) vogler (dot) de\" if interested. // What's wrong with <a href="HowToRunAsWinService.html" title="HowToRunAsWinService">HowToRunAsWinService</a>? // Cumbersome for the end-user. <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=User:Ygrek&amp;action=edit&amp;redlink=1" class="new" title="User:Ygrek (page does not exist)">Ygrek</a> 15:21, 21 April 2010 (UTC)
+</li><li> Improve upload statistics (<a href="Upstats.html" title="Upstats">upstats</a>): Keep track of total amount <b>each file</b> has been uploaded over <b>all sessions</b>, <b>not</b> just in the current session. (This would be useful in order to know whether a file has been re-shared adequately. This is a feature which eMule has but MLdonkey doesn't.)
+</li><li> upload my shared file list to a web server. i'm behind firewall, so it cant be accessed from my.server:port. so, mldonkey (or some other addon) should make list of links to my files and upload the list to a webserver so everyone can now see what files i share
+</li><li> connect to mnet, freenet, gnunet and grapevine networks for better privacy and security // Connecting to those networks <b>and</b> to another network (or even several of those secured networks), you'll lose most of the gained privacy (plausible deniability, for example). Unless people are very fond of MLdonkey interface, to connect to those networks you'll have to use the official client.
+</li><li> connection through firewall / http proxy
+</li><li> A Jigle search Interface in the web-interface would be nice, just as in maurice's webdonkey.
+</li><li> What about the Fastrack Network? // IIRC discussions about Fastrack with b8_bavard on #mldonkey, he's waiting for specifications to settle a bit (=&gt; not change every other day) before updating the current support implementation
+</li><li> The mlsubmit.reg (mingw binaries) doesn't work look <a href="Mlsubmit.html" title="Mlsubmit.reg">here</a> how it should be.
+</li><li> GUI: Rememer which top-tab was displayed before last exit, so that the same is showing on a new startup instead of always \"Servers\" as default.
+</li><li> GUI: The various search-term fields could be combo boxes and hold # previous search terms. Thus it would be easy to redo a certain search.
+</li><li> DirectConnect: Allow a setting to connect to most poular hubs instead of a random set of hubs. E.g. start trying with hub that has 500 users, then the other one with 500 users, then the one with 499 users etc.
+</li><li> GUI: Add a preference to have the mlnet core automatically started at mlgui startup, if there is no mlnet running. Using a wrapper script for mlgui?
+</li><li> GUI: Someone was kind and made the settings-&gt;plugins tabs sorted. Could the same be done for the menubar's \"Display\" and \"Network\" contents? That is A-Z (BitTorrent, Direct Connect, ..., Soulseek)
+</li><li> Auto list download: Create a list where the user enters more than 1 file for download. These can then be automatically searched for, and according to some semi-intelligent rules, one can be automatically picked and downloaded. This way, the user can download a list of files, without having to select them one-by-one.
+</li><li> GUI: file sizes should be right-aligned (or aligned to a imagined decimal point) rather than as currently left-aligned. Also, applying both to the gui and to the finished-notification-email - use local number format from glib (like 1,234,567 instead of 1234567)
+</li><li> Mail-notification: could the messages be multipart with html also? If so, the filename could be a link so that you could start a preview right from the mail reader.
+</li><li> Multi User: Create a separation between the different users logged in. Every user should have a different view of his downloads, with his own commit directory. If a user tries to download an already existing dowload, just copy the file to his commit directory (or link it). If the file is still downloading just add a reference to the download. A user should be allowed to manage (add/remove) his shared files, and view files shared by other users. Of course if a file is shared by more than one user there should be a reference count mechanism. It should also be important to check users against the OS authentication, so local users don't need to manage another password for mldonkey.
+</li><li> Selection Stats: If you select multiple entries in the Downloads tab of mlgui, show the average resp. sum of the files stats, instead of displaying one arbitrary file info. e.g. the sum of downloaded data, the average percentage, etc. this would be helpful to estimate the progress in a collection of associated files.
+</li><li> Downloads Filter: A quick filter (similar to the one in the bookmarks sidebar of mozilla 1.4) in the downloads tab. e.g. typing 'dark' shows only those downloads which have 'dark' in its name.
+</li><li> When you select a lot of files to cancel, the confirm window becomes too high due to all the lines, so you can't reach the OK button. Make this instead as some sort of scrollable frame.
+</li><li> Firewall checker: See if connections are ok, and warn if not.
+</li><li> Web UI: In Transfers =&gt; Downloads. Show somewhere how much space is left in incoming directory disk (like df ~mldonkey/incoming).
+</li><li> Neworks health monitor: Determine a "usefulness" value of each network by evaluating the average number of user connected, the # of file found when searching and the # of downloaded files. Let the user decide if a network needs some tweaking or is simply dead.
+</li><li> MLDonkey server cluster: let some MLDonker instances running on diferent IPs work together searching and downloading a file requested by one of them.
+</li><li> SSH user interface: obsoletes Telnet interface, wich is widely insecure. Use a <a href="SshTunnel.html" title="SshTunnel">SshTunnel</a>
+</li><li> Improve the internal command interpreter so that <a href="Non-scalar_options.html" title="Non-scalar options">non-scalar options</a> can be typed and displayed.
+</li><li> eDonkey: Implement <b>webcache</b> to increase download speed <a href="http://webcache-emule.sourceforge.net/index.php?show=howItWorks" class="external autonumber" rel="nofollow">[1]</a> (however, we'll have to think ten times before we do that. Webcaching like this might be beneficial for ISP's incoming traffic (which, honestly, is not our problem), but on a bad side, it immediately puts the complete log of what and from where you're downloading into ISP's hands; they don't have to sniff traffic for eDonkey data anymore; they can simply sift through their cache logs.)
+</li></ul>
+<h2> <span class="mw-headline" id="Mldonkey_options_naming_convention_project"> Mldonkey options naming convention project</span></h2>
+<p>i ve found this on pango's site at:
+</p><p><a href="http://ftp.berlios.de/pub/mldonkey/pango/goodies/rename_settings.txt" class="external free" rel="nofollow">http://ftp.berlios.de/pub/mldonkey/pango/goodies/rename_settings.txt</a>
+</p><p>i think it is a good idea!
+</p><p>todo for us:
+1. put here all mldonkey options and rename them
+2. code the mldonkey to upgrade options to this naming convention
+</p>
+<pre>
+
+client_name                             network:client_name
+client_md4                              network:client_md4
+client_ip                               network:client_ip
+force_client_ip                         network:force_client_ip
+max_hard_upload_rate                    network:max_upload_rate
+max_hard_download_rate                  network:max_download_rate
+max_opened_connections                  network:max_opened_connections
+max_upload_slots                        network:max_upload_slots
+strict_bandwidth                        network:strict_bandwidth
+tcpip_packet_size                       network:tcpip_packet_size
+ip_cache_timeout                        network:ip_cache_timeout
+black_list                              network:black_list
+                                          (edonkey specific&#160;?)
+
+enable_donkey                           donkey:enable
+donkey_bind_addr                        donkey:bind_addr
+port                                    donkey:port
+retry_delay                             donkey:retry_delay
+features                                donkey:features
+protocol_version                        donkey:protocol_version
+sources_per_chunk                       donkey:sources_per_chunk
+min_reask_delay                         donkey:peers:min_reask_delay
+max_reask_delay                         donkey:peers:max_reask_delay
+client_timeout                          donkey:peers:client_timeout
+max_source_age                          donkey:peers:max_source_age
+max_clients_per_second                  donkey:peers:max_connections_per_second
+client_buffer_size                      donkey:peers:buffer_size
+upload_quantum                          donkey:peers:upload_quantum (obsolete)
+propagate_sources                       donkey:peers:propagate_sources
+max_sources_per_file                    donkey:peers:max_sources_per_file
+good_sources_threshold                  donkey:peers:good_sources_threshold
+min_left_sources                        donkey:peers:min_left_sources
+queued_timeout                          donkey:peers:queued_timeout
+upload_timeout                          donkey:peers:upload_timeout
+random_order_download                   donkey:peers:random_order_download
+upload_power                            donkey:peers:upload_power
+reward_power                            donkey:peers:reward_power (obsolete)
+new_upload_system                       donkey:peers:new_upload_system
+send_warning_messages                   donkey:peers:send_warning_messages
+ban_queue_jumpers                       donkey:peers:ban_queue_jumpers
+ban_period                              donkey:peers:ban_period
+max_emule_slots                         donkey:peers:max_emule_slots
+initial_score                           donkey:servers:initial_score
+max_xs_packets                          donkey:servers:max_xs_packets
+server_connection_timeout               donkey:servers:connection_timeout
+max_connected_servers                   donkey:servers:max_connected
+max_udp_sends                           donkey:servers:max_udp_sends
+max_server_age                          donkey:servers:max_age
+master_server_min_users                 donkey:servers:master_server_min_users
+force_high_id                           donkey:servers:force_high_id
+update_server_list                      donkey:servers:update_server_list
+network_update_url                      donkey:servers:network_update_url
+redirector                              donkey:servers:redirector
+connected_server_timeout                donkey:servers:connected_server_timeout
+propagate_servers                       donkey:servers:propagate_servers
+files_queries_per_minute                donkey:servers:files_queries_per_minute
+files_queries_initial_delay             donkey:servers:
+                                            files_queries_initial_delay
+check_client_connections_delay          donkey:servers:loc_queries_delay
+check_connections_delay                 donkey:servers:check_connections_delay
+min_left_servers                        donkey:servers:min_left_servers
+
+overnet_store_size                      overnet:store_size
+overnet_port                            overnet:port
+overnet_max_known_peers                 overnet:max_known_peers
+overnet_search_keyword                  overnet:search_keywords
+overnet_search_timeout                  overnet:search_timeout
+overnet_query_peer_period               overnet:query_peers_period
+                                         (\&quot;query_peers_delay\&quot;&#160;?)
+overnet_max_search_hits                 overnet:max_search_hits
+
+enable_server                           donkeyserver:enable
+server-port                             donkeyserver:port
+server-name                             donkeyserver:name
+server-description                      donkeyserver:description
+server-seedIP                           donkeyserver:servers:seed_ip
+server-seedPort                         donkeyserver:servers:seed_port
+server-maxClients                       donkeyserver:clients:max_clients
+server-maxFiles                         donkeyserver:max_files
+server-server_ip                        donkeyserver:server_ip
+server-server_md4                       donkeyserver:server_md4
+server-save_log                         donkeyserver:save_log
+server-log_time_out                     donkeyserver:log_timeout
+server-change_log_file                  donkeyserver:change_log_file
+server-send_server_stat_delay           donkeyserver:clients:
+                                            send_server_stat_delay
+server-ping_known_servers               donkeyserver:servers:
+                                            ping_known_servers
+server-limite_udp_received_sec          donkeyserver:clients:
+                                            max_received_udp_per_sec
+server-process_udp_loc                  donkeyserver:clients:process_udp_loc
+server-process_udp_req                  donkeyserver:clients:process_udp_req
+server-relais_cooperation_protocol      donkeyserver:group:
+                                            relais_cooperation_protocol
+                                          (??)
+server-relais_master                    donkeyserver:group:relais_master
+server-max_servers                      donkeyserver:servers:max_servers
+server-max_group_clients                donkeyserver:group:max_clients
+server-max_group_files                  donkeyserver:group:max_files
+server-notify_time_out                  donkeyserver:notify_timeout
+server-connect_time_out                 donkeyserver:clients:connect_timeout
+server-server_dead_time_out             donkeyserver:servers:dead_timeout
+server-server_group_connection_timeout  donkeyserver:group:connection_timeout
+server-commit_in_subdir                 donkeyserver:commit_in_subdir
+server-max_subs_lifetime                donkeyserver:max_subs_lifetime
+
+enable_opennap                          opennap:enable
+OpenNap-client_port                     opennap:port
+OpenNap-max_connected_servers           opennap:servers:max_connected
+OpenNap-client_password                 opennap:password
+OpenNap-client_port                     (interesting, found twice!!)
+OpenNap-client_info                     opennap:client_info
+OpenNap-use_napigator                   opennap:use_napigator
+OpenNap-servers_list_url                opennap:servers:servers_list_url
+OpenNap-server_connection_timeout       opennap:servers:connection_timeout
+OpenNap-commit_in_subdir                opennap:commit_in_subdir
+
+enable_soulseek                         soulseek:enable
+slsk-max_connected_servers              soulseek:servers:max_connected
+slsk-ip_cache_timeout                   soulseek:ip_cache_timeout
+                                       (why not use network:ip_cache_timeout&#160;?)
+slsk-load_serverlist                    soulseek:servers:load_serverlist
+slsk-main_server_name                   soulseek:servers:main_server_name
+slsk-main_server_port                   soulseek:servers:main_server_port
+slsk-client_port                        soulseek:port
+slsk-login                              soulseek:login
+slsk-password                           soulseek:password
+slsk-query_serverlist_limit             soulseek:query_serverlist_limit
+slsk-commit_in_subdir                   soulseek:commit_in_subdir
+slsk-next_token                         soulseek:next_token
+
+enable_audiogalaxy                      audiogalaxy:enable
+(the audiogalaxy support looks in bad shape, it even doesn't compile
+out of the box in CVS head release)
+
+enable_limewire                         limewire:enable
+LW-max_ultrapeers                       limewire:ultrapeers:max_ultrapeers
+LW-client_port                          limewire:port
+LW-commit_in_subdir                     limewire:commit_in_subdir
+LW-max_known_ultrapeers                 limewire:ultrapeers:max_known
+                                        (what's the difference with
+                                          LW-max_ultrapeers&#160;?)
+LW-max_known_peers                      limewire:peers:max_known_peers
+LW-server_connection_timeout            limewire:servers:connection_timeout
+
+enable_directconnect                    directconnect:enable
+DC-max_connected_servers                directconnect:servers:max_connected
+DC-search_timeout                       directconnect:search_timeout
+DC-load_hublist                         directconnect:load_hublist
+DC-shared_offset                        directconnect:shared_offset
+DC-client_port                          directconnect:port
+DC-login                                directconnect:login
+DC-query_hublist_limit                  directconnect:query_hublist_limit
+DC-commit_in_subdir                     directconnect:commit_in_subdir
+DC-servers_list_url                     directconnect:servers:list_url
+DC-client_description                   directconnect:client_description
+DC-client_speed                         directconnect:client_speed
+DC-client_keyinfo                       directconnect:client_keyinfo
+
+enable_openft                           openft:enable
+OpenFT-max_ultrapeers                   openft:ultrapeers:max_ultrapeers
+OpenFT-client_port                      openft:port
+OpenFT-http_port                        openft:http_port
+OpenFT-commit_in_subdir                 openft:commit_in_subdir
+OpenFT-max_known_ultrapeers             openft:ultrapeers:max_known
+OpenFT-max_known_peers                  openft:peers:max_known_peers
+OpenFT-server_connection_timeout        openft:servers:connection_timeout
+
+interface_buffer                        interface:buffer
+password                                interface:password
+allowed_ips                             interface:allowed_ips
+previewer                               interface:previewer
+max_name_len                            interface:max_name_len
+max_dialog_history                      interface:max_dialog_history
+display_downloaded_results              interface:display_downloaded_results
+                                          (?)
+new_print_search                        interface:new_print_search
+                                          (?)
+max_displayed_results                   interface:max_displayed_results
+download_sample_rate                    interface:download_sample_rate
+download_sample_size                    interface:download_sample_size
+                                          (are those used for anything
+                                           but interfaces&#160;?)
+gui_bind_addr                           interface:gui:bind_addr
+gui_port                                interface:gui:port
+ask_for_gui                             interface:gui:ask_for_gui
+start_gui                               interface:gui:start_gui
+update_gui_delay                        interface:gui:update_delay
+http_bind_addr                          interface:http:bind_addr
+http_port                               interface:http:port
+http_login                              interface:http:login
+http_password                           interface:http:password
+http_realm                              interface:http:realm
+use_html_frames                         interface:http:use_html_frames
+commands_frame_height                   interface:http:commands_frame_height
+html_checkbox_file_list                 interface:http:html_checkbox_file_list
+vd_reload_delay                         interface:http:vd_reload_delay
+telnet_bind_addr                        interface:telnet:bind_addr
+telnet_port                             interface:telnet:port
+chat_bind_addr                          interface:chat:bind_addr
+chat_port                               interface:chat:port
+chat_app_port                           interface:chat:app_port
+chat_app_host                           interface:chat:app_host
+chat_console_id                         interface:chat:console_id
+chat_warning_for_downloaded             interface:chat:warning_for_downloaded
+
+(I really don't know where to put that...)
+use_file_history                        index:use_file_history
+save_file_history                       index:save_file_history
+filters                                 index:filters
+filter_search                           index:filter_search
+filter_search_delay                     index:filter_search_delay
+filter_table_threshold                  index:filter_table_threshold
+
+smtp_server                             smtp:server
+smtp_port                               smtp:port
+mail                                    smtp:email
+
+mldonkey_bin                            mldonkey_directory
+temp_directory                          temp_directory
+incoming_directory                      incoming_directory
+commit_in_subdir                        commit_in_subdir
+file_completed_cmd                      file_completed_cmd
+local_index_find_cmd                    local_index_find_cmd
+local_index_add_cmd                     local_index_add_cmd
+mldonkey_gui                            mldonkey_gui_cmd
+save_options_delay                      save_options_delay
+compute_md4_delay                       compute_md4_delay
+run_as_user                             run_as_user
+options_version                         options_version
+keep_cancelled_in_old_files             cancelled_files_require_force_download
+                                          (edonkey specific&#160;?)
+initialized                             initialized
+                                          (obsolete&#160;?)
+
+options_prefix                          prefix:options
+server-options_prefix                   prefix:donkeyserver
+DC-network_options_prefix               prefix:directconnect
+slsk-options_prefix                     prefix:soulseek
+OpenFT-options_prefix                   prefix:openft
+LW-options_prefix                       prefix:limewire
+OpenNap-options_prefix                  prefix:opennap
+
+verbose                                 debug:verbose
+debug_net                               debug:net
+verbose_overnet                         debug:overnet
+slsk-verbose_clients                    debug:soulseek_clients
+slsk-verbose_servers                    debug:soulseek_servers
+OpenFT-verbose_clients                  debug:openft_clients
+OpenFT-verbose_servers                  debug:openft_servers
+LW-verbose_clients                      debug:limewire_clients
+LW-verbose_servers                      debug:limewire_servers
+
+compaction_overhead                     gc:compaction_overhead
+minor_heap_size                         gc:minor_heap_size
+compaction_delay                        gc:compaction_delay
+(could have used \&quot;memory\&quot; instead of \&quot;gc\&quot;, but using cryptic names
+discourage tweaking, that may be better that way&#160;;) )
+
+(still missing: non scalar options, most GUI options,...)
+
+</pre>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 18/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1689-0!*!0!!en!*!edit=0 and timestamp 20230807162501 -->
+<div class="printfooter">
+Retrieved from "<a href="ToDo.html">http://mldonkey.sourceforge.net/ToDo</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=ToDo" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="ToDo.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:ToDo&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="ToDo.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=ToDo&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index25c6.html?title=ToDo&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/ToDo.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/ToDo.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexdfda.html?title=ToDo&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index0f01.html?title=ToDo&amp;oldid=4741" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 21 April 2010, at 15:21.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 28,496 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "ToDo", "wgTitle": "ToDo", "wgAction": "view", "wgArticleId": 1689, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4741, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.089 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/ToDo by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:38:47 GMT -->
+</html>

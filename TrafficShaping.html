@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/TrafficShaping by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:46:21 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>TrafficShaping - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-TrafficShaping skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">TrafficShaping</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>An effective way to limit the impact mldonkey has on your usual internet surfing/online gaming habits is to use the netfilter package found in the linux kernel 2.4.20 and above to control your outbound traffic. If setup correctly it should let mldonkey have most of the bandwidth when the computer is idle, but will automatically cut back to make room for more important tasks, such as surfing or playing online games. This is roughly described here for a single machine, if mldonkey is on a different machine it will get a bit more complicated.
+</p><p><br />
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#First_things_first"><span class="tocnumber">1</span> <span class="toctext">First things first</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#The_script"><span class="tocnumber">2</span> <span class="toctext">The script</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Taking_it_apart"><span class="tocnumber">3</span> <span class="toctext">Taking it apart</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Classes_and_subclasses"><span class="tocnumber">3.1</span> <span class="toctext">Classes and subclasses</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Iptables_and_marking"><span class="tocnumber">3.2</span> <span class="toctext">Iptables and marking</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#mldonkey_setup"><span class="tocnumber">3.3</span> <span class="toctext">mldonkey setup</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Testing"><span class="tocnumber">3.4</span> <span class="toctext">Testing</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Traffic_shaping_in_FreeBSD"><span class="tocnumber">4</span> <span class="toctext">Traffic shaping in FreeBSD</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="First_things_first">First things first</span></h2>
+<p>The first thing to be sure of is that your kernel supports netfilter and HTB (Hierarchical Token Buckets). It's best (and most of the time necessary) to compile your own kernel, there are not many stock kernels out there that come with this support built-in by default, especially when you also want support for marking packets by UID - it's still marked as experimental.
+</p><p>In your kernel menuconfig, make sure the following options are checked:
+</p>
+<pre>
+Networking options  ---&gt;
+              [[*]] Network packet filtering (replaces ipchains)
+              IP: Netfilter Configuration  ---&gt;
+                           [[*]] IP tables support (required for filtering/masq/NAT)
+                           [[*]]   netfilter MARK match support
+                           [[*]]   Owner match support (EXPERIMENTAL)
+                           [[*]]   Packet filtering
+                           [[*]]   Packet mangling
+                           [[*]]     MARK target support
+              QoS and/or fair queueing  ---&gt;
+                            [[*]]   HTB packet scheduler
+                            [[*]]     Traffic policing (needed for in/egress)
+</pre>
+<p>Make the kernel, boot, and check what's broken. The next things that need to be installed are iproute2 and iptables. These two packages should be in your distros favored package management system, if not you can get iproute2 at <a href="http://www.worldbank.ro/ip-routing/" class="external autonumber" rel="nofollow">[1]</a>] and iptables at [<a href="http://www.iptables.org/" class="external autonumber" rel="nofollow">[2]</a>. iptables is used to manipulate the mangling table of your kernel, and tc will do the actual bandwidth control.
+</p>
+<h2> <span class="mw-headline" id="The_script"> The script</span></h2>
+<p>To start things off, here's a sample traffic control script:
+</p>
+<pre>
+#!/bin/sh -x
+# be verbose!
+
+tc qdisc add dev eth0 root handle 1: htb default 20
+# add new htb handler on eth0, default for traffic is 20
+
+tc class add dev eth0 parent 1: classid 1:1 htb rate 100mbit ceil 100mbit
+# root class
+
+tc class add dev eth0 parent 1:1 classid 1:10 htb rate 99mbit ceil 100mbit
+# ethernet class 1:10
+
+tc class add dev eth0 parent 1:1 classid 1:11 htb rate 1mbit ceil 100mbit
+# internet
+
+tc class add dev eth0 parent 1:11 classid 1:20 htb rate 20kbps ceil 30kbps
+# we use this class for the bulk traffic
+
+tc class add dev eth0 parent 1:11 classid 1:21 htb rate 5kbps ceil 30kbps
+# high priority internet traffic
+
+tc class add dev eth0 parent 1:11 classid 1:22 htb rate 5kbps ceil 30kbps
+# mldonkey's class
+
+# The above commands set up the HTB queues where we will \&quot;dump\&quot; our packets in
+# Now it's time to mark the packets:
+
+iptables -A POSTROUTING -t mangle -o eth0 -p tcp -m length --length&#160;:64 -j MARK --set-mark 21
+# high priority (small packets), used for ACKs  (allows regular transfers with no slowdown)
+
+iptables -A POSTROUTING -t mangle -o eth0 -p tcp --dport 22 -j MARK --set-mark 21
+iptables -A POSTROUTING -t mangle -o eth0 -p tcp --sport 22 -j MARK --set-mark 21
+# SSH traffic  (port 22) - only use this if you have an ssh server running or ssh a lot
+
+iptables -A OUTPUT -t mangle -o eth0 -m owner --uid-owner 1001 -j MARK --set-mark 22
+# This marks all packages sent by user 1001, change this to the user  mldonkey is running under
+# (there should ONLY mldonkey be running with this UID)
+
+# at the end, mark all traffic that is for the local LAN to be put into 10
+iptables -A POSTROUTING -t mangle -o eth0 -p tcp -d 192.168.1.0/24 -j MARK --set-mark 10
+
+# flow handling (after marking)
+tc filter add dev eth0 parent 1:0 prio 0 protocol ip handle 21 fw flowid 1:21
+tc filter add dev eth0 parent 1:0 prio 0 protocol ip handle 22 fw flowid 1:22
+tc filter add dev eth0 parent 1:0 prio 0 protocol ip handle 10 fw flowid 1:10
+</pre>
+<h2> <span class="mw-headline" id="Taking_it_apart"> Taking it apart</span></h2>
+<p>This shell script is what I use at home to control mldonkey, I strongly recommend you read it and that start writing your own from scratch. Now the dissection:
+</p>
+<h3> <span class="mw-headline" id="Classes_and_subclasses"> Classes and subclasses</span></h3>
+<p>The first section creates a new qdisc on eth0 (if you are on dial-up like DSL you might have to change that to ppp0). A root class named 1:1 is created after that and we will name all its children 1:x, starting with 1:10. Notice the \"default 20\": This means that all traffic on eth0, if not classified different, will go through 1:20.
+</p><p>Two subclasses are created, one for ethernet traffic (1:10) and one for internet traffic (1:11). The internet traffic class has three subclasses itself, 1:20, 1:21 and 1:22; for the \"normal\" internet traffic, for high priority, and for low priority stuff like mldonkey. Each of them gets assigned a <b>rate</b> and a <b>ceil</b> value. tc has a strange way to measuring traffic, mbit and kbit are what one would expect, Mbit and KBit, but to represent K (kilobyter per second) or M (megabytes per second), tc uses \"kbps\" or \"mbps\". The \"rate\" sets the minimum amount of bandwidth the class will get if all classes are running at (or over) maximum capacity. If there is extra capacity avaible because one class does not use up its bandwidth, its remaining bandwith will be redistributed to the other classes. The ceil value defines the maximum amount of network traffic a class can have at any given time, and for the internet classes it should be equal to the size of your internet connection (unless you want to put a hard limit on a certain class).
+</p>
+<h3> <span class="mw-headline" id="Iptables_and_marking"> Iptables and marking</span></h3>
+<p>After the the queues are set up, iptables entries are made (the \"mangle\" table is used here) to mark the packets. A mark is a certain number that can be set \"on\" the packet, so it can be identified later. The beginning of the iptable commands is always the same: \"iptables -A POSTROUTING -t mangle -o eth0\". This means an entry is written to the POSTROUTING chain (or in one case the OUTPUT chain), on the device eth0. Then end is also always similiar, \"-j MARK\" means that the action to be taken upon a match is to mark, and \"--set-mark\" specifies which number to brand onto the packet.
+</p><p>The interesting part is in the center: \"-p tcp\" allows for a variety of criteries to be used for matching such as source port (--sport), destination port (--dport) or destination address (this is used at the end of the script, to put all LAN traffic into 1:10, where it goes \"around\" all the internet traffic. The destination IP is simply checked against 192.168.1.0, with a subnet mask of 255.255.255.0 - here written as /24 - which will match every IP from 192.168.1.0 to 192.168.1.255). Knowing that the lines should be pretty self-explanatory. UDP traffic can also be matched by specifying \"-p udp\" instead of \"-p tcp\", with otherwise the same options. This way you can also catch mldonkey traffic (or at least parts of it) with port ranges if the uid-approach (below) does not work for you.
+</p>
+<h3> <span class="mw-headline" id="mldonkey_setup"> mldonkey setup</span></h3>
+<p>The setup for mldonkey deserves a little more explanation. The -m option of the iptables command loads a module of iptables, capable of certain matching methods different from trivial port/address/etc. matches. \"-m owner\" loads uid, gid, pid or sid based matching and \"--uid-owner 1001\" tells the module to match (and mark) all packets originating from processes with the UID 1001. This works only if you have a user on your system dedicated to running mldonkey (or mlnet). To find out your UID, login as that user and type in \"id\".
+</p>
+<h3> <span class="mw-headline" id="Testing"> Testing</span></h3>
+<p>At the end the marked packets are assigned to their respective queues. Marking alone doesn't do anything to the packets, so this step is necessary. Once your script is finished and tested (you can test it by setting mldonkey to a 0 upload limit, monitoring your bandwidth usage with iptraf and bwmon and then enabling the script. For better defined test results I recommend setting the ceil values very low (~ 3kpbs) while testing your settings. That will quickly show you whether it is working or not) your ping times should significantly decrease while uploading or, to be more exact, return to their old values without heavy network usage through mldonkey.
+</p><p><br />
+</p>
+<h2> <span class="mw-headline" id="Traffic_shaping_in_FreeBSD"> Traffic shaping in FreeBSD</span></h2>
+<p>To get traffic shaping to work on mldonkey in FreeBSD, you need to make sure you have a DUMMYNET-enabled ipfw firewall. 
+</p><p>DUMMYNET is enabled in your kernconf, and should look something like this: 
+</p>
+<pre> 
+# For ipfw/natd 
+
+options         IPFIREWALL 
+options         IPDIVERT 
+options         IPFIREWALL_DEFAULT_TO_ACCEPT 
+options         IPFIREWALL_VERBOSE 
+
+# For DUMMYNET packet shaping 
+options         DUMMYNET 
+options         HZ=1000 
+</pre> 
+<p>If you don't know how to build yourself a new kernel/world, now would be an excellent time to learn. 
+</p><p>Once the new kernel is in place, you will want to add the following to /boot/loader.conf 
+</p>
+<pre> 
+debug.mpsafenet=0 
+</pre> 
+<p>Without it, ipfw *will* take down your machine when your mldonkey DUMMYNET pipe starts to get packets coming through it. This is a known issue with ipfw, and will one day get fixed, I imagine. 
+</p><p>And make sure the firewall is able to run by tweaking /etc/rc.conf along the lines of: 
+</p>
+<pre> 
+# Firewall 
+firewall_enable=&quot;YES&quot; 
+firewall_type=&quot;/etc/rc.firewall&quot; 
+firewall_method=&quot;dummynet&quot; 
+log_in_vain=&quot;NO&quot; 
+tcp_drop_synfin=&quot;NO&quot; 
+icmp_drop_redirect=&quot;YES&quot; 
+</pre> 
+<p>And add the ipfw rules to /etc/rc.firewall: 
+</p><p>(Mine is a fancyish script that invokes ipfw rules in order, with common variables such as $WAN, $LAN etc, yours may not be) 
+</p>
+<pre> 
+# DLMonkey's dummynet rules
+/sbin/ipfw add pipe 101 ip from any to any uid DLMonkey via $WAN in
+/sbin/ipfw add pipe 102 ip from any to any uid DLMonkey via $WAN out
+/sbin/ipfw pipe 101 config delay 100ms
+/sbin/ipfw pipe 102 config delay 100ms
+</pre> 
+<p>A more standard sort of ruleset would look like: 
+</p>
+<pre> 
+ipfw add 9001 pipe 101 ip from any to any uid mldonkey via rl0 in 
+ipfw add 9002 pipe 102 ip from any to any uid mldonkey via rl0 out 
+ipfw pipe 101 config bw 512 kbit/s delay 100 ms 
+ipfw pipe 102 config bw 64 kbit/s delay 100 ms 
+</pre> 
+<p>Both of these assume the user 'mldonkey' is running your mldonkey, which is probably going to be for the best if you're planning on shaping the traffic by UID - 'uid mldonkey' can be the username or UID number of the user who runs mldonkey, 'rl0' is the interface you connect out to the internets on. 
+</p><p>Now you ought to be able to start up mldonkey (as the mldonkey user) and have it gracefully step aside a little when someone else wants to use the bandwidth. It's not a perfect solution, but it goes a long way towards keeping the donkey from eating *all* your e-carrots, so to speak.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 64/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1692-0!*!0!!en!*!edit=0 and timestamp 20230807162813 -->
+<div class="printfooter">
+Retrieved from "<a href="TrafficShaping.html">http://mldonkey.sourceforge.net/TrafficShaping</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=TrafficShaping" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="TrafficShaping.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:TrafficShaping&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="TrafficShaping.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=TrafficShaping&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index340c.html?title=TrafficShaping&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/TrafficShaping.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/TrafficShaping.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index6e1f.html?title=TrafficShaping&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index0a3f.html?title=TrafficShaping&amp;oldid=3232" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 24 December 2006, at 23:07.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 17,238 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "TrafficShaping", "wgTitle": "TrafficShaping", "wgAction": "view", "wgArticleId": 1692, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3232, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.095 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/TrafficShaping by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:46:27 GMT -->
+</html>
