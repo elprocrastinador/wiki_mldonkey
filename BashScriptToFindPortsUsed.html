@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/BashScriptToFindPortsUsed by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:54:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>BashScriptToFindPortsUsed - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-BashScriptToFindPortsUsed skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">BashScriptToFindPortsUsed</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<h3> <span class="mw-headline" id="Which_TCP_or_UDP_ports_are_opened_by_MLDonkey_.3F">Which TCP or UDP ports are opened by MLDonkey&#160;?</span></h3>
+<p>Maybe you're looking for which ports are opened by MLDonkey?
+</p><p>This small bash script will try to find and display TCP and UDP ports by parsing MLDonkey's configuration files.
+</p><p><b>How to use this script&#160;?</b>
+</p>
+<ul><li> Open your favorite editor and copy/paste the code below.<br />
+</li><li> Edit the var "BASEDIR=" to point to where MLDonkey stores its configuration files.<br />
+</li><li> Do a _chmod u+x_ to make the script executable.<br />
+</li><li> Execute the script&#160;:)
+</li></ul>
+<pre>
+#!/bin/bash
+#######################################################################
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2  of  the  License, or
+# (at your option) any later version
+#
+# This program  is  distributed in  the  hope that it will  be  useful
+# but WITHOUT ANY  WARRANTY; without  even  the  implied  warranty  of
+# MERCHANTABILITY  or  FITNESS  FOR  A  PARTICULAR  PURPOSE.  See  the
+# GNU General Public License for more details
+#
+# You should have received a copy of the GNU  General  Public  License
+# along  with  this  program; if  not,  write  to  the  Free  Software
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA
+#######################################################################
+# This script check what networks are enabled/disabled and display port
+# numbers binded by the clients
+#######################################################################
+# Changelog:
+# * Sun Nov 29 2009 - v0.4
+# - Attempt to find the MLdonkey installation, or let them specify it
+#   in the BASEDIR variable on the command line.
+# - Rewrite checkNetwork() and findPort() for efficiency and handling
+#   of newer version of MLDonkey.
+#
+# * Sun Aug 08 2004 - v0.3
+# - Added an error message when the network configuration file exist
+#   but no port number was found.
+#
+# * Sat Aug 07 2004 - v0.2
+# - Bugfix, ${BASEDIR} was missing when calling the findPort() function
+# - Code cleanup
+#
+# * Sat Aug 07 2004 - v0.1
+# - Initial Release
+#######################################################################
+# (C)2004/08 - GCN (http://gcnweb.free.fr/) - gcnweb(at)free(dot)fr
+#######################################################################
+
+## Some vars
+# MLDonkey config dir
+# See if it's already set
+[ -n &quot;${BASEDIR}&quot; ] &amp;&amp; [ &quot;${BASEDIR: -1}&quot;&#160;!= &quot;/&quot; ] &amp;&amp; BASEDIR=&quot;${BASEDIR}/&quot;
+# Try user's .mldonkey dir
+[ -z &quot;${BASEDIR}&quot;  -o &#160;! -e &quot;${BASEDIR}downloads.ini&quot; ] &amp;&amp; BASEDIR=&quot;${HOME}/.mldonkey/&quot;
+# Look in the directory containing this script
+[ -e &quot;${BASEDIR}downloads.ini&quot; ] || BASEDIR=&quot;$(dirname $0)/&quot;
+# Try the current directory
+[ -e &quot;downloads.ini&quot; ] &amp;&amp; BASEDIR=&quot;$(pwd)/&quot;
+# No dice...
+if [&#160;! -e &quot;${BASEDIR}downloads.ini&quot; ]; then
+  echo &quot;Can't find your MLdonkey data directory!  Re-invoke the script as:&quot;
+  echo &quot;BASEDIR=\&quot;path_to_mldonkey_inis\&quot; $0&quot;
+  exit 255
+fi
+
+########### YOU SHOULD NOT MODIFY SOMETHING BELOW THIS LINE ###########
+
+# Colors and positionning
+MOVE_TO_COL=&quot;\\033[22G&quot;
+COLOR_ENABLED=&quot;\\033[1;32m&quot;
+COLOR_DISABLED=&quot;\\033[1;31m&quot;
+COLOR_WARNING=&quot;\\033[1;33m&quot;
+COLOR_NORMAL=&quot;\\033[0;39m&quot;
+
+# MLDonkey main configuration file
+MAINCFGFILE=&quot;${BASEDIR}downloads.ini&quot;
+
+## Network section
+cnt=0
+# NAME     == Network name
+# GSECTION == Section name in the main configuration file
+# FILE     == Network's configuration file
+# FESCTION == Section name in the network configuration file
+# TCP      == Unused
+# UDP      == Tell if the network also needs UDP
+#             value: 0      =&gt; UDP not used
+#             value: 1      =&gt; UDP used. Port number is equal to TCP Port
+#             value: +/-xxx =&gt; UDP port value is +/- relative to TCP port
+
+# BitTorrent - Client
+let cnt++
+NAME[$cnt]=&quot;BitTorrent [Client]&quot;
+GSECTION[$cnt]=&quot;enable_bittorrent&quot;
+FILE[$cnt]=&quot;${BASEDIR}bittorrent.ini&quot;
+FSECTION[$cnt]=&quot;client_port&quot;
+TCP[$cnt]=1
+UDP[$cnt]=0
+
+# BitTorrent - Tracker
+let cnt++
+NAME[$cnt]=&quot;BitTorrent [Tracker]&quot;
+GSECTION[$cnt]=&quot;enable_bittorrent&quot;
+FILE[$cnt]=&quot;${BASEDIR}bittorrent.ini&quot;
+FSECTION[$cnt]=&quot;tracker_port&quot;
+TCP[$cnt]=1
+UDP[$cnt]=0
+
+# Direct Connect
+let cnt++
+NAME[$cnt]=&quot;Direct Connect&quot;
+GSECTION[$cnt]=&quot;enable_directconnect&quot;
+FILE[$cnt]=&quot;${BASEDIR}directconnect.ini&quot;
+FSECTION[$cnt]=&quot;client_port&quot;
+TCP[$cnt]=1
+UDP[$cnt]=1
+
+# eDonkey 2000
+let cnt++
+NAME[$cnt]=&quot;eDonkey 2000&quot;
+GSECTION[$cnt]=&quot;enable_donkey&quot;
+FILE[$cnt]=&quot;${BASEDIR}donkey.ini&quot;
+FSECTION[$cnt]=&quot;port&quot;
+TCP[$cnt]=1
+UDP[$cnt]=+4
+
+# FastTrack
+let cnt++
+NAME[$cnt]=&quot;FastTrack&quot;
+GSECTION[$cnt]=&quot;enable_fasttrack&quot;
+FILE[$cnt]=&quot;${BASEDIR}fasttrack.ini&quot;
+FSECTION[$cnt]=&quot;client_port&quot;
+TCP[$cnt]=1
+UDP[$cnt]=0
+
+# Gnutella
+let cnt++
+NAME[$cnt]=&quot;Gnutella&quot;
+GSECTION[$cnt]=&quot;enable_gnutella&quot;
+FILE[$cnt]=&quot;${BASEDIR}gnutella.ini&quot;
+FSECTION[$cnt]=&quot;client_port&quot;
+TCP[$cnt]=1
+UDP[$cnt]=1
+
+# Gnutella2
+let cnt++
+NAME[$cnt]=&quot;Gnutella2&quot;
+GSECTION[$cnt]=&quot;enable_gnutella2&quot;
+FILE[$cnt]=&quot;${BASEDIR}gnutella2.ini&quot;
+FSECTION[$cnt]=&quot;client_port&quot;
+TCP[$cnt]=1
+UDP[$cnt]=1
+
+# Open Napster
+let cnt++
+NAME[$cnt]=&quot;Open Napster&quot;
+GSECTION[$cnt]=&quot;enable_opennap&quot;
+FILE[$cnt]=&quot;${BASEDIR}opennap.ini&quot;
+FSECTION[$cnt]=&quot;client_port&quot;
+TCP[$cnt]=1
+UDP[$cnt]=0
+
+# Overnet
+let cnt++
+NAME[$cnt]=&quot;Overnet&quot;
+GSECTION[$cnt]=&quot;enable_overnet&quot;
+FILE[$cnt]=&quot;${BASEDIR}donkey.ini&quot;
+FSECTION[$cnt]=&quot;overnet_port&quot;
+TCP[$cnt]=1
+UDP[$cnt]=1
+
+# SoulSeek
+let cnt++
+NAME[$cnt]=&quot;SoulSeek&quot;
+GSECTION[$cnt]=&quot;enable_soulseek&quot;
+FILE[$cnt]=&quot;${BASEDIR}soulseek.ini&quot;
+FSECTION[$cnt]=&quot;client_port&quot;
+TCP[$cnt]=1
+UDP[$cnt]=0
+
+
+## Functions
+# Test if a network is Enabled / Disabled
+# $1 == network number
+function checkNetwork() {
+  sed -n -r -e 's@^[[:space:]]*\&lt;'&quot;${GSECTION[$1]}&quot;'\&gt;[[:space:]]*=[[:space:]]*(true|false)@\1@Ip' &quot;$MAINCFGFILE&quot;
+}
+
+# Find the reserved port number
+# $1 == network number
+function findPort() {
+  # Look first in a section matching the name (with spaces removed)
+  ret=&quot;$(sed -n -r -e '
+    /[[:space:]]*\&lt;'&quot;${NAME[$1]// /}&quot;'\&gt;[[:space:]]*=[[:space:]]*\{/I {
+     &#160;:find_section
+      /^[[:space:]]*\&lt;'&quot;${FSECTION[$1]}&quot;'\&gt;[[:space:]]*=[[:space:]]*([0-9]+)$/I {
+        s@^[[:space:]]*\&lt;'&quot;${FSECTION[$1]}&quot;'\&gt;[[:space:]]*=[[:space:]]*([0-9]+)$@\1@Ip
+        q
+      }
+      /}/ q
+      n; b find_section
+    }' &quot;${FILE[$1]}&quot;)&quot;
+
+  # If we didn't find it, try looking for just &quot;port&quot;
+  if [ -z &quot;$ret&quot; ]; then
+    ret=&quot;$(sed -n -r -e '
+      /[[:space:]]*\&lt;'&quot;${NAME[$1]// /}&quot;'\&gt;[[:space:]]*=[[:space:]]*\{/I {
+       &#160;:find_section
+        /^[[:space:]]*\&lt;port\&gt;[[:space:]]*=[[:space:]]*([0-9]+)$/I {
+          s@^[[:space:]]*\&lt;port\&gt;[[:space:]]*=[[:space:]]*([0-9]+)$@\1@Ip
+          q
+        }
+        /}/ q
+        n; b find_section
+      }' &quot;${FILE[$1]}&quot;)&quot;
+  fi
+
+  # If we still didn't find it, look for the name not in a section
+  if [ -z &quot;$ret&quot; ]; then
+    ret=&quot;$(sed -n -r -e '
+     &#160;:find_fsection
+       &#160;:find_section_end
+          /\{/ {
+            n
+            /\}/ b find_section_end
+          }
+        /^[[:space:]]*\&lt;'&quot;${FSECTION[$1]}&quot;'\&gt;[[:space:]]*=[[:space:]]*([0-9]+)$/I {
+          s@^[[:space:]]*\&lt;'&quot;${FSECTION[$1]}&quot;'\&gt;[[:space:]]*=[[:space:]]*([0-9]+)$@\1@Ip
+          q
+        }
+        n; b find_fsection' &quot;${FILE[$1]}&quot;)&quot;
+  fi
+
+  echo $ret
+}
+
+#
+# Main Routine
+#
+echo -e &quot;\nChecking MLDonkey configuration files:\n&quot;
+
+for (( i=1; $i &lt;= $cnt; i++ )); do
+
+  echo -en &quot;${NAME[$i]}${MOVE_TO_COL}: &quot;
+  VALUE=`checkNetwork $i`
+
+  # If $VALUE == True, check if the configuration file exists
+  if [ &quot;$VALUE&quot; == &quot;true&quot; ]; then
+
+    if [&#160;! -f ${FILE[$i]} ]; then
+      echo -en ${COLOR_WARNING}
+      echo -en &quot;WARNING  Configuration file \&quot;${FILE[$i]}\&quot; is missing&quot;
+      echo -e  ${COLOR_NORMAL}
+    else
+
+      # Assume there is _ALWAYS_ a TCP port
+      PORTNUMBER=`findPort $i`
+
+      if [ &quot;x${PORTNUMBER}&quot; == &quot;x&quot; ]; then
+
+        echo -en ${COLOR_WARNING}
+        echo -en &quot;WARNING  No ports found in the file \&quot;${FILE[$i]}\&quot;&quot;
+        echo -e  ${COLOR_NORMAL}
+
+      else
+
+        echo -en ${COLOR_ENABLED}
+        echo -en &quot;ENABLED &quot;
+        echo -en &quot;${COLOR_NORMAL} [&quot;
+
+        echo -n &quot;TCP: ${PORTNUMBER}&quot;
+
+        # Check if a UDP port exists and display it
+        if [ ${UDP[$i]} -eq 1 ]; then
+          echo -n &quot; / UDP: ${PORTNUMBER}&quot;
+        elif [ ${UDP[$i]} -ne 0 ]; then
+          echo -n &quot; / UDP: $(( ${PORTNUMBER} ${UDP[$i]} ))&quot;
+        fi
+
+        echo &quot;]&quot;
+
+      fi
+
+    fi
+
+  else
+      echo -en ${COLOR_DISABLED}
+      echo -en &quot;DISABLED&quot;
+      echo -e  ${COLOR_NORMAL}
+  fi
+
+done
+</pre>
+<h3> <span class="mw-headline" id="Interesting_pages">Interesting pages</span></h3>
+<p>You can check this page about <a href="WhatFirewallPortsToOpen.html" title="WhatFirewallPortsToOpen">WhatFirewallPortsToOpen</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 15/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1305-0!*!0!!*!*!edit=0 and timestamp 20230807041056 -->
+<div class="printfooter">
+Retrieved from "<a href="BashScriptToFindPortsUsed.html">http://mldonkey.sourceforge.net/BashScriptToFindPortsUsed</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=BashScriptToFindPortsUsed" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="BashScriptToFindPortsUsed.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:BashScriptToFindPortsUsed&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="BashScriptToFindPortsUsed.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=BashScriptToFindPortsUsed&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index6d96.html?title=BashScriptToFindPortsUsed&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/BashScriptToFindPortsUsed.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/BashScriptToFindPortsUsed.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexa256.html?title=BashScriptToFindPortsUsed&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexb6da.html?title=BashScriptToFindPortsUsed&amp;oldid=4609" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 4 January 2010, at 22:55.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 22,582 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "BashScriptToFindPortsUsed", "wgTitle": "BashScriptToFindPortsUsed", "wgAction": "view", "wgArticleId": 1305, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4609, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.083 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/BashScriptToFindPortsUsed by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:54:36 GMT -->
+</html>

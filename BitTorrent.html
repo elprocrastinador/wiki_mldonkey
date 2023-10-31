@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/BitTorrent by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:42:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>BitTorrent - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-BitTorrent skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">BitTorrent</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>BitTorrent doesn't look like other P2P networks: it uses peer-to-peer FileSharing mechanisms to help release huge files without the hassle and price of setting up big links, big servers, and mirrors (or in addition to that expensive approach). (?)
+</p><p>It divides shared data (a single file or a directory) into pieces, typically of 256 KiB. A SHA-1 checksum is computed for each piece, and used to check the piece has been correctly downloaded. The checksums are stored in a .torrent file, along with filenames and other metadata. The .torrent file also nominates a tracker, a Web resource that introduces peers to each other.
+Peers contact each other, learn what pieces they have available, request the rarest (least commonly seen) pieces first, and send requested pieces.
+(How similar is this to edonkey?)
+</p><p>Protocol description is <a href="http://bittorrent.org/" class="external text" rel="nofollow">freely available</a> and extensions are publicly discussed and summarized as <a href="http://www.bittorrent.org/beps/bep_0000.html" class="external text" rel="nofollow">BitTorrent Enhancement Proposals</a>.
+</p>
+<h3> <span class="mw-headline" id="How_to_use_BitTorrent_in_MLDonkey"> How to use BitTorrent in MLDonkey</span></h3>
+<p><a href="DownloadBitTorrents.html" title="DownloadBitTorrents">Download</a> and <a href="SeedBitTorrents.html" title="SeedBitTorrents">seed</a> files.
+</p><p>Additionally you can <a href="Compute_torrent.html" title="Compute torrent">create torrents</a> from local files and they will be automatically seeded and also <a href="TrackBitTorrents.html" title="TrackBitTorrents">tracked by builtin tracker</a> (useful for example to share newly created torrents with friends in the local subnet without using external trackers).
+</p><p>How to <a href="RecoverBittorrentDownload.html" title="RecoverBittorrentDownload">RecoverBittorrentDownloads</a>.
+</p>
+<h3> <span class="mw-headline" id="Features"> Features</span></h3>
+<table class="wikitable" border="1" cellspacing="0">
+
+<tr>
+<th> Feature
+</th>
+<th> Reference
+</th>
+<th> Support
+</th></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/BitTorrent_(protocol)" class="extiw" title="w:BitTorrent (protocol)">BitTorrent</a>
+</td>
+<td> <a href="http://www.bittorrent.org/beps/bep_0003.html" class="external text" rel="nofollow">BEP 3</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td></tr>
+<tr>
+<td> Compact Peer List
+</td>
+<td> <a href="http://www.bittorrent.org/beps/bep_0023.html" class="external text" rel="nofollow">BEP 23</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/UDP_tracker" class="extiw" title="w:UDP tracker">UDP trackers</a>
+</td>
+<td> <a href="http://www.bittorrent.org/beps/bep_0015.html" class="external text" rel="nofollow">BEP 15</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0.5
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/Distributed_hash_table" class="extiw" title="w:Distributed hash table">DHT</a>
+</td>
+<td> <a href="http://www.bittorrent.org/beps/bep_0005.html" class="external text" rel="nofollow">BEP 5</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">CVS
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/IPv6" class="extiw" title="w:IPv6">IPv6</a>
+</td>
+<td>
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no"> No
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/Peer_exchange" class="extiw" title="w:Peer exchange">Peer exchange</a>
+</td>
+<td> <a href="http://wiki.theory.org/BitTorrentPeerExchangeConventions" class="external text" rel="nofollow">PEX</a>
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no"> No
+</td></tr>
+<tr>
+<td> Multitracker
+</td>
+<td> <a href="http://www.bittorrent.org/beps/bep_0012.html" class="external text" rel="nofollow">BEP 12</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/BitTorrent_protocol_encryption" class="extiw" title="w:BitTorrent protocol encryption">Encryption</a>
+</td>
+<td> <a href="http://wiki.vuze.com/w/Message_Stream_Encryption" class="external text" rel="nofollow">MSE/PE</a>
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no"> No
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/Universal_Plug_and_Play" class="extiw" title="w:Universal Plug and Play">Port forwarding</a>
+</td>
+<td> UPnP
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0.6
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/NAT_Port_Mapping_Protocol" class="extiw" title="w:NAT Port Mapping Protocol">Port forwarding</a>
+</td>
+<td> <a href="http://files.dns-sd.org/draft-cheshire-nat-pmp.txt" class="external text" rel="nofollow">NAT-PMP</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0.6
+</td></tr>
+<tr>
+<td> <a href="http://en.wikipedia.org/wiki/Local_Peer_Discovery" class="extiw" title="w:Local Peer Discovery">Local Peer Discovery</a>
+</td>
+<td> <a href="http://forum.utorrent.com/viewtopic.php?id=63567#p433785" class="external text" rel="nofollow">LPD</a>
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no"> No
+</td></tr>
+<tr>
+<td> Selective multi-file downloads
+</td>
+<td>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">CVS
+</td></tr></table>
+<p><br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><strong class="selflink">English</strong></b>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 177/1000000
+Post-expand include size: 1867/2097152 bytes
+Template argument size: 355/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1307-0!*!0!!*!*!edit=0 and timestamp 20230806221318 -->
+<div class="printfooter">
+Retrieved from "<a href="BitTorrent.html">http://mldonkey.sourceforge.net/BitTorrent</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=BitTorrent" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="BitTorrent.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:BitTorrent&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="BitTorrent.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=BitTorrent&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index42eb.html?title=BitTorrent&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/BitTorrent.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/BitTorrent.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index1599.html?title=BitTorrent&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index3b29.html?title=BitTorrent&amp;oldid=5226" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 18 May 2011, at 08:42.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 50,296 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "BitTorrent", "wgTitle": "BitTorrent", "wgAction": "view", "wgArticleId": 1307, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5226, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.065 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/BitTorrent by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:42:47 GMT -->
+</html>

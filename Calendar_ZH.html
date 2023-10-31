@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Calendar_ZH by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:33:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Calendar ZH - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Calendar_ZH skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Calendar ZH</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<hr />
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#.E6.8E.92.E7.A8.8B"><span class="tocnumber">1</span> <span class="toctext">排程</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#.E8.AF.AD.E6.B3.95"><span class="tocnumber">2</span> <span class="toctext">语法</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#.E5.85.A5.E9.97.A8"><span class="tocnumber">3</span> <span class="toctext">入门</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#.E8.8C.83.E4.BE.8B"><span class="tocnumber">4</span> <span class="toctext">范例</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#.E7.AE.80.E5.8D.95"><span class="tocnumber">4.1</span> <span class="toctext">简单</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#.E5.A4.8D.E6.9D.82"><span class="tocnumber">4.2</span> <span class="toctext">复杂</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id=".E6.8E.92.E7.A8.8B"> 排程 </span></h2>
+<hr />
+<p>排程可以让你的mldonkey的 <a href="MLdonkeyCommandsExplained.html" title="MLdonkeyCommandsExplained"> 命令</a> 按时间表（即排程）来定期运行(类似 <a href="http://en.wikipedia.org/wiki/Crontab" class="external text" rel="nofollow">cron</a>)
+</p>
+<h1> <span class="mw-headline" id=".E8.AF.AD.E6.B3.95"> 语法 </span></h1>
+<p>排程是存储在您的<a href="Downloads.html" title="Downloads.ini">Downloads.ini</a>文件中的，它的语法是：
+</p>
+<pre>
+calendar = [
+            ([0;1;...;6;], [0;1;...;23;], &quot;command1&quot; );
+            ([0;1;...;6;], [0;1;...;23;], &quot;command2&quot; );
+             ... ]
+</pre>
+<ul><li> 第一个参数包含一个将被执行的星期参数上的命令(<code>星期日= 0，星期一= 1，星期二= 2，...，星期六= 6</code>).
+</li><li> 第二个参数包含一个列表的时间在24小时格式（）在该命令将被执行 (<code>0 ... 24</code>).
+</li><li> 第三个也是最后一个参数是<a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=MLdonkey%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90&amp;action=edit&amp;redlink=1" class="new" title="MLdonkey命令解析 (page does not exist)">命令</a>本身。
+</li></ul>
+<p>日期，时间和命令可以指定由分号分隔它们。
+</p>
+<h1> <span class="mw-headline" id=".E5.85.A5.E9.97.A8"> 入门 </span></h1>
+<p>You can quickly schedule commands to execute every day with the <a href="Calendar_add.html" title="Calendar add">calendar_add</a> command:
+</p>
+<pre>
+   calendar_add hour &quot;command&quot;
+</pre>
+<p>编辑downloads.ini之前请尝试使用calendar_add命令，以确保您得到正确的格式。
+</p>
+<h1> <span class="mw-headline" id=".E8.8C.83.E4.BE.8B"> 范例 </span></h1>
+<h2> <span class="mw-headline" id=".E7.AE.80.E5.8D.95"> 简单 </span></h2>
+<p>若你运行如下命令:
+</p>
+<pre>
+&gt; calendar_add 8 &quot;set max_upload_rate 10&quot;
+&gt; calendar_add 22 &quot;set max_upload_rate 0&quot;
+</pre>
+<p>你将从你的排程中，在你的downloads.ini文件中得到如下:
+</p>
+<pre>
+ calendar = [
+  ([
+      0;
+      1;
+      2;
+      3;
+      4;
+      5;
+      6;], [
+      22;], &quot;set max_upload_rate 0&quot;);
+  ([
+      0;
+      1;
+      2;
+      3;
+      4;
+      5;
+      6;], [
+      8;], &quot;set max_upload_rate 10&quot;);]
+</pre>
+<p>请注意mldonkey的排程命令的格式。每次您运行命令它都将为此而停止mldonkey的守护进程/服务。
+</p>
+<h2> <span class="mw-headline" id=".E5.A4.8D.E6.9D.82"> 复杂 </span></h2>
+<p>经过一些试验和调整，我想出了我个人的复杂的日历。不要试图去了解它！
+</p>
+这是由命令返回的vCal摘要：<pre>
+&gt; vcal
+weekdays / hours / command&#160;:
+1 2 3 4 5
+6
+set max_hard_download_rate 1
+1 2 3 4 5
+6
+set max_hard_upload_rate 10
+1 2 3 5
+9
+set max_hard_download_rate 0
+1 2 3 5
+9
+set max_hard_upload_rate 0
+4
+10
+set max_hard_download_rate 0
+4
+10
+set max_hard_upload_rate 0
+1 2 3 4 5
+13
+set max_hard_download_rate 1
+1 2 3 4 5
+13
+set max_hard_upload_rate 10
+1 2 3 4 5
+22
+set max_hard_download_rate 0
+1 2 3 4 5
+22
+set max_hard_upload_rate 0
+6
+7
+set max_hard_upload_rate 10
+6
+7
+set max_hard_download_rate 1
+6
+22
+set max_hard_upload_rate 0
+6
+22
+set max_hard_download_rate 0
+0
+14
+set max_hard_upload_rate 10
+0
+14
+set max_hard_download_rate 1
+0
+20
+set max_hard_upload_rate 0
+0
+20
+set max_hard_download_rate 0
+</pre>
+<p>这是downloads.ini文件的实际内容：
+</p>
+<pre>
+ calendar = [
+  ([
+      1;
+      2;
+      3;
+      4;
+      5;], [
+      6;], &quot;set max_hard_download_rate 1&quot;);
+  ([
+      1;
+      2;
+      3;
+      4;
+      5;], [
+      6;], &quot;set max_hard_upload_rate 10&quot;);
+  ([
+      1;
+      2;
+      3;
+      5;], [
+      9;], &quot;set max_hard_download_rate 0&quot;);
+  ([
+      1;
+      2;
+      3;
+      5;], [
+      9;], &quot;set max_hard_upload_rate 0&quot;);
+  ([
+      4;], [
+      10;], &quot;set max_hard_download_rate 0&quot;);
+  ([
+      4;], [
+      10;], &quot;set max_hard_upload_rate 0&quot;);
+  ([
+      1;
+      2;
+      3;
+      4;
+      5;], [
+      13;], &quot;set max_hard_download_rate 1&quot;);
+  ([
+      1;
+      2;
+      3;
+      4;
+      5;], [
+      13;], &quot;set max_hard_upload_rate 10&quot;);
+  ([
+      1;
+      2;
+      3;
+      4;
+      5;], [
+      22;], &quot;set max_hard_download_rate 0&quot;);
+  ([
+      1;
+      2;
+      3;
+      4;
+      5;], [
+      22;], &quot;set max_hard_upload_rate 0&quot;);
+  ([
+      6;], [
+      7;], &quot;set max_hard_upload_rate 10&quot;);
+  ([
+      6;], [
+      7;], &quot;set max_hard_download_rate 1&quot;);
+  ([
+      6;], [
+      22;], &quot;set max_hard_upload_rate 0&quot;);
+  ([
+      6;], [
+      22;], &quot;set max_hard_download_rate 0&quot;);
+  ([
+      0;], [
+      14;], &quot;set max_hard_upload_rate 10&quot;);
+  ([
+      0;], [
+      14;], &quot;set max_hard_download_rate 1&quot;);
+  ([
+      0;], [
+      20;], &quot;set max_hard_upload_rate 0&quot;);
+  ([
+      0;], [
+      20;], &quot;set max_hard_download_rate 0&quot;);]
+</pre>
+<p><br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><a href="Calendar.html" title="Calendar">English</a></b>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+&#160;&#8226;&#160;<span lang="zh"><strong class="selflink">中文</strong></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 200/1000000
+Post-expand include size: 765/2097152 bytes
+Template argument size: 294/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2379-0!*!0!!en!*!edit=0 and timestamp 20230806203405 -->
+<div class="printfooter">
+Retrieved from "<a href="Calendar_ZH.html">http://mldonkey.sourceforge.net/Calendar_ZH</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Calendar_ZH" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Calendar_ZH.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Calendar_ZH&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Calendar_ZH.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Calendar_ZH&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index6d7f.html?title=Calendar_ZH&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Calendar_ZH.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Calendar_ZH.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index2fc6.html?title=Calendar_ZH&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index49aa.html?title=Calendar_ZH&amp;oldid=4809" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 17 May 2010, at 14:34.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 2,730 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Calendar_ZH", "wgTitle": "Calendar ZH", "wgAction": "view", "wgArticleId": 2379, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4809, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.067 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Calendar_ZH by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:33:10 GMT -->
+</html>

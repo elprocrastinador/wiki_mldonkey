@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Broadcatch by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:46:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Broadcatch - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Broadcatch skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Broadcatch</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p><b>Broadcatching</b> is the automation of queuing of files, usually <a href="BitTorrent.html" title="BitTorrent">BitTorrents</a> files.  For idea, complaints, or feature requests discuss it on the talk page or <a href="Special_EmailUser/Bashcatcher.html" title="Special:EmailUser/Bashcatcher">Email</a> me.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Background"><span class="tocnumber">1</span> <span class="toctext">Background</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Installation"><span class="tocnumber">2</span> <span class="toctext">Installation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Requirements"><span class="tocnumber">2.1</span> <span class="toctext">Requirements</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Files"><span class="tocnumber">2.2</span> <span class="toctext">Files</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Crontab_Installation"><span class="tocnumber">2.3</span> <span class="toctext">Crontab Installation</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#To_do_list"><span class="tocnumber">3</span> <span class="toctext">To do list</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#See_also"><span class="tocnumber">4</span> <span class="toctext">See also</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Background"> Background </span></h2>
+<p>About a half year ago I was look for a way to broadcatch my anime.  At the time Azureus was slow, memory hungry, and the web GUI just sucked.  I being working on a bash script to automatically check and queue torrent files into mldonkey.  This is the third version the of script (in continual beta), it can handles various formats of RSS files.  
+</p>
+<h2> <span class="mw-headline" id="Installation"> Installation </span></h2>
+<p>It probably is a good idea to place these files into its own directory.  The files <i>debug.log</i>, <i>rssdata</i>, and <i>cast.log</i> will be created on run.
+</p>
+<h3> <span class="mw-headline" id="Requirements"> Requirements </span></h3>
+<ul><li> bash?
+</li><li> wget 
+</li><li> sed
+</li><li> xsltproc
+</li><li> mldonkey (with the web interface enabled)
+</li></ul>
+<h3> <span class="mw-headline" id="Files"> Files </span></h3>
+<dl><dt>broadcatch.sh
+</dt></dl>
+<p>The script, still is development phase so there's still debugging function active.  The <b>mlnethost</b> var will need configure to provide communicate to the mldonkey server.
+</p>
+<pre>
+#!/bin/sh
+# Script based on http://linc.homeunix.org:8080/scripts/bashpodder
+# Last revision 10/15/2006 
+# Released Dec 31, 2006
+# Release Notes: as you can see I've been testing it for quite a
+#  while, so it should be fairly stable; config name has changed and 
+#  debugging is much less verbose only reporting matches.  As always
+#  you can look to see what exactly was changed between releases. 
+#  And
+#                      A Happy New Year to Everyone!
+
+# User Vars
+# Address to contact the web GUI of mldonkey with username and password
+MLHOST=username:password@localhost:4080
+CONFG=&quot;bc.conf&quot;
+
+# Debug Log (set to /dev/null to turn off)
+DEBUG=&quot;debug.log&quot;
+
+# Make script crontab friendly:
+cd $(dirname $0)
+echo -e &quot;\nExecuting $0 on $(date)&quot; &gt;&gt; $DEBUG
+
+# feed dump reset
+rm -f rssdata
+
+# Read the bp.conf file and wget any url not already in the catch.log file:
+while read subscription
+     do
+     xmldata=$(wget $(echo &quot;$subscription&quot; | sed 's/[^@]*@\(.*\)/\1/') -q -O -)
+     expression=$(echo &quot;$subscription&quot; | sed 's/\([^@]*\)@.*/\1/')
+     
+     # If $expression is blank or is the same as the source then use a wildcard
+     if [ &quot;$expression&quot; = &quot;$subscription&quot; ] || [ -z &quot;$expression&quot; ];
+         then
+         expression=&quot;.&quot;
+     fi
+     
+     # Parsing xml depending on where the torrent url is located inside &lt;link&gt; tags or as the value for the attribute enclosure
+     if  fgrep -iq enclosure &lt;&lt;&lt; &quot;$xmldata&quot;
+         then
+         file=$(echo &quot;$xmldata&quot; | xsltproc parse_enclosure.xsl - 2&gt; /dev/null)
+     else
+         file=$(echo &quot;$xmldata&quot; | xsltproc parse_link.xsl - 2&gt; /dev/null)
+     fi
+     
+     # Protect against the white space gotchas
+     file=$(tr ' \\\t\r' '_/__' &lt;&lt;&lt; &quot;$file&quot;)
+     
+     for url in $file
+         do
+         if  echo &quot;$url&quot; | egrep --color -i $expression &amp;&gt; /dev/null
+             then
+             torrent=$(sed 's/\([^#]*\)#.*/\1/' &lt;&lt;&lt; &quot;$url&quot;)
+             if&#160;! fgrep -i &quot;$torrent&quot; catch.log &gt; /dev/null
+                 then
+                 # URL and Mininova fixer
+                 torrent=$(echo &quot;$torrent&quot; | sed -e &quot;s/:/%3A/g&quot; | sed -e &quot;s/mininova.org\/tor/mininova.org\/get/g&quot;)
+                 
+                 echo -e &quot;Submitting URL $torrent to $MLHOST on $(date '+(%r&#160;%D)')\n$url&quot; &gt;&gt; $DEBUG
+                 
+                 # Submit torrent URL to mldonkey for downloading and log if sucessful 
+                 wget -q -O /dev/null &quot;http://$MLHOST/submit?q=dllink+$torrent&quot; &amp;&amp; echo $url &gt;&gt; catch.log
+             fi
+         fi
+         # rssdata is for test matching
+         echo &quot;$url&quot; &gt;&gt; rssdata
+     done
+done &lt; $CONFG
+</pre>
+<dl><dt>bp.conf
+</dt></dl>
+<p>Sample configuration file, this one will downloads from using mininova.org and revision3.com (diggnation feed).  The case-<i>in</i>sensitive <a href="http://en.wikipedia.org/wiki/Regular_expression" class="external text" rel="nofollow">regular expression</a> string is placed before the delimiter @, if empty (or removed) it will proform a wildcard match (<code>.*</code>) and queue all files in the feed. It should also be possible (<a href="FileTP.html" title="FileTP">FileTP</a> needs to be enable) to download regular podcasts too.
+</p>
+<pre>
+daily.show.*(ds|TV)rip@http://www.mininova.org/rss.xml?cat=8&amp;num=50
+tw.*death.*note|eclipse.*kanon@http://www.animesuki.com/rss.php
+http://revision3.com/diggnation/feed/large.xvid.avi.torrent.xml
+</pre>
+<p>General RSS feeds
+</p>
+<ul><li> <a href="http://www.mininova.org/faq" class="external text" rel="nofollow">mininova</a>
+<ul><li> <a href="http://www.tvtorrent.info/#" class="external text" rel="nofollow">tvtorrent.info</a>
+</li></ul>
+</li><li> <a href="http://thepiratebay.org/info_rss.php" class="external text" rel="nofollow">The Pirate Bay</a>
+</li><li> <a href="http://www.baka-updates.com/" class="external text" rel="nofollow">baka-updates</a>
+</li></ul>
+<p>See the sites respective FAQ and policies for information and use on their RSS feeds.  See also <a href="http://en.wikipedia.org/wiki/List_of_BitTorrent_RSS_feeds" class="external text" rel="nofollow">List of BitTorrent RSS feeds (Wikipedia)</a> 
+</p>
+<dl><dt>parse_enclosure.xsl
+</dt></dl>
+<p>The XSL parse for RSS feeds which use the &lt;enclosure url="..."&gt; tag.
+</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;stylesheet version=&quot;1.0&quot;
+	xmlns=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+	&lt;output method=&quot;text&quot;/&gt;
+	&lt;template match=&quot;/&quot;&gt;
+		&lt;apply-templates select=&quot;/rss/channel/item&quot;/&gt;
+	&lt;/template&gt;
+	&lt;template match=&quot;item&quot;&gt;
+		&lt;apply-templates select=&quot;enclosure&quot;/&gt;
+		&lt;text&gt;#&lt;/text&gt;
+		&lt;value-of select=&quot;title&quot;/&gt;
+		&lt;text&gt;&amp;#10;&lt;/text&gt;
+	&lt;/template&gt;
+	&lt;template match=&quot;enclosure&quot;&gt;
+		&lt;value-of select=&quot;@url&quot;/&gt;
+	&lt;/template&gt;
+&lt;/stylesheet&gt;
+</pre>
+<dl><dt>parse_link.xsl
+</dt></dl>
+<p>The XSL parse for RSS feeds which use the &lt;link&gt;...&lt;/link&gt;
+</p>
+<pre>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;stylesheet version=&quot;1.0&quot;
+	xmlns=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+	&lt;output method=&quot;text&quot;/&gt;
+	&lt;template match=&quot;/&quot;&gt;
+		&lt;apply-templates select=&quot;/rss/channel/item&quot;/&gt;
+	&lt;/template&gt;
+	&lt;template match=&quot;item&quot;&gt;
+		&lt;value-of select=&quot;link&quot;/&gt;
+		&lt;text&gt;#&lt;/text&gt;
+		&lt;value-of select=&quot;title&quot;/&gt;
+		&lt;text&gt;&amp;#10;&lt;/text&gt;
+	&lt;/template&gt;
+&lt;/stylesheet&gt;
+</pre>
+<h3> <span class="mw-headline" id="Crontab_Installation"> Crontab Installation </span></h3>
+<p>You will need to install into your crontab file for automation.  Bellow is a sample corntab that runs at different time on weekday for morning viewing (bias).
+</p>
+<pre>
+# m hour           dom mon dow  command
+00  4,7,10,14,18    *   *  1-5  /home/user/bc/broadcatch.sh
+30  */3             *   *  0,6 /home/user/bc/broadcatch.sh
+</pre>
+<h2> <span class="mw-headline" id="To_do_list"> To do list </span></h2>
+<ul><li> Rewrite the configuration system
+<ul><li> Commenting
+</li><li> A NOT regex option
+</li><li> Episode Counter (so it doesn't re-download from different groups)
+</li></ul>
+</li><li> Options to test configuration
+</li><li> <s>Allow regex-less config</s>
+</li><li> <s>Use # as a separator instead of "?" (Nicer log files)</s>
+</li></ul>
+<h2> <span class="mw-headline" id="See_also"> See also </span></h2>
+<ul><li> <a href="TipsAndTricks.html" title="TipsAndTricks">TipsAndTricks</a>
+</li><li> <a href="http://en.wikipedia.org/wiki/Broadcatching" class="external text" rel="nofollow">Broadcatching</a> (Wikipedia) 
+</li><li> <a href="http://en.wikipedia.org/wiki/Podcasting" class="external text" rel="nofollow">Podcasting</a> (Wikipedia)
+</li></ul>
+<p><br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><strong class="selflink">English</strong></b>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 197/1000000
+Post-expand include size: 561/2097152 bytes
+Template argument size: 334/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2083-0!*!0!!en!*!edit=0 and timestamp 20230807162816 -->
+<div class="printfooter">
+Retrieved from "<a href="Broadcatch.html">http://mldonkey.sourceforge.net/Broadcatch</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Broadcatch" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Broadcatch.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="Talk_Broadcatch.html"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Broadcatch.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Broadcatch&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexc41e.html?title=Broadcatch&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Broadcatch.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Broadcatch.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index6dad.html?title=Broadcatch&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexe917.html?title=Broadcatch&amp;oldid=4408" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 21 April 2009, at 13:55.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 26,802 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Broadcatch", "wgTitle": "Broadcatch", "wgAction": "view", "wgArticleId": 2083, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4408, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.123 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Broadcatch by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:46:49 GMT -->
+</html>

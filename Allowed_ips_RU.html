@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Allowed_ips_RU by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:52:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Allowed ips RU - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Allowed_ips_RU skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Allowed ips RU</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p><font size="5" color="#030355">Допустимые IP адреса</font>
+</p><p><br />
+</p><p><br />
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#.D0.9E.D0.BF.D0.B8.D1.81.D0.B0.D0.BD.D0.B8.D0.B5"><span class="tocnumber">1</span> <span class="toctext">Описание</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#.D0.97.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BF.D0.BE_.D1.83.D0.BC.D0.BE.D0.BB.D1.87.D0.B0.D0.BD.D0.B8.D1.8E"><span class="tocnumber">2</span> <span class="toctext">Значение по умолчанию</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#.D0.A0.D0.B0.D0.B7.D0.BC.D0.B5.D1.89.D0.B5.D0.BD.D0.B8.D0.B5"><span class="tocnumber">3</span> <span class="toctext">Размещение</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#.D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D1.80.D1.8B"><span class="tocnumber">4</span> <span class="toctext">Примеры</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#.D0.9E.D0.B1.D0.BE.D0.B7.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D1.8F_CIDR_.28.D0.91.D0.B5.D1.81.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.B2.D0.B0.D1.8F_.D0.B0.D0.B4.D1.80.D0.B5.D1.81.D0.B0.D1.86.D0.B8.D1.8F.29"><span class="tocnumber">5</span> <span class="toctext">Обозначения CIDR (Бесклассовая адресация)</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#.D0.A1.D0.BC.D0.BE.D1.82.D1.80.D0.B8.D1.82.D0.B5_.D1.82.D0.B0.D0.BA.D0.B6.D0.B5"><span class="tocnumber">6</span> <span class="toctext">Смотрите также</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id=".D0.9E.D0.BF.D0.B8.D1.81.D0.B0.D0.BD.D0.B8.D0.B5"> Описание </span></h2>
+<p>Этот список содержит IP адреса компьютеров которым разрешено управлять MLdonkey клиентом (т.е. подключаться через порты интерфейсов). По умолчанию при первой установке разрешён доступ только с адреса локальной машины \localhost\ (ip адрес 127.0.0.1).
+</p><p><strong class="selflink"> allowed_ips</strong> является <a href="Non-scalar_option.html" title="Non-scalar option" class="mw-redirect"> не скалярной опцией</a> в ней поддерживается список опций(значений\values). Для полного понимания того, как устанавливать множественные (несколько\multiple) значения опций, смотрите <a href="EnteringMultipleValues.html" title="EnteringMultipleValues">EnteringMultipleValues</a>.
+</p><p>Помимо отдельных IP адресов, также вы можете указать определённый <a href="NetworkRange.html" title="NetworkRange"> диапазон сетей</a>. Тем не менее дважды подумайте перед тем как делать так, это серьёзная угроза безопасности. 
+</p><p>Если вы предпочитаете иметь доступ к ядру через процесс аутефикации(проверки имя-пароль), шифрование трафика и как опцию сжатие передаваемых данных, настройте [[SshTunnel| Ssh туннелирование]
+</p>
+<h2> <span class="mw-headline" id=".D0.97.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BF.D0.BE_.D1.83.D0.BC.D0.BE.D0.BB.D1.87.D0.B0.D0.BD.D0.B8.D1.8E"> Значение по умолчанию </span></h2>
+<p><strong class="selflink"> Допустимым IP </strong>адресом по умолчанию является <b>127.0.0.1</b>.
+</p>
+<h2> <span class="mw-headline" id=".D0.A0.D0.B0.D0.B7.D0.BC.D0.B5.D1.89.D0.B5.D0.BD.D0.B8.D0.B5"> Размещение </span></h2>
+<p>Эта опция находиться в основном файле конфигурации <a href="Downloads.html" title="Downloads.ini">downloads.ini</a>
+</p>
+<h2> <span class="mw-headline" id=".D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D1.80.D1.8B"> Примеры </span></h2>
+<p>Командой в консоли телнета или вэб-интерфейса:
+</p>
+<pre>
+&gt; set allowed_ips &quot;127.0.0.1 192.168.15.255&quot;
+</pre>
+<p>будут установлены допустимые(разрешённые) ip адреса подключающихся компьютеров.
+</p>
+В формате рассчитанном для записи в файл <a href="Downloads.html" title="Downloads.ini">downloads.ini</a> это будет выглядеть так:<pre>
+[&quot;127.0.0.1&quot;; &quot;192.168.15.255&quot;]</pre>. Такие настройки позволят подключаться через порт интерфейса с локальной машины (адрес 127.0.0.1) и подсети 192.168.15.0/24 (это всё множество компьютеров начинающихся с <b>192.168.15.</b> в вашей локальной сети.
+<p>Если вы захотите добавить весь интернет. ВНИМАНИЕ: это потенциально опасно, мы предупредили! То вам необходимо указать следующий промежуток командой в консоли: 
+</p>
+<pre> &gt; set allowed_ips &quot;0.0.0.0-255.255.255.255&quot; </pre>
+<p>Также его можно прописать в разделе Allowed IPs файла <a href="Downloads.html" title="Downloads.ini">downloads.ini</a>
+</p>
+<h2> <span class="mw-headline" id=".D0.9E.D0.B1.D0.BE.D0.B7.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D1.8F_CIDR_.28.D0.91.D0.B5.D1.81.D0.BA.D0.BB.D0.B0.D1.81.D1.81.D0.BE.D0.B2.D0.B0.D1.8F_.D0.B0.D0.B4.D1.80.D0.B5.D1.81.D0.B0.D1.86.D0.B8.D1.8F.29"> Обозначения CIDR (<a href="http://ru.wikipedia.org/wiki/CIDR" class="external text" rel="nofollow">Бесклассовая адресация</a>) </span></h2>
+<p>Начиная с версии 2.8.0 поддерживает другой синтаксис (перевод правилен&#160;?)
+</p>
+<pre>
+5264: allowed_ips: Поддерживает CIDR формат адреса/маски и IP диапазона (pango)
+* старый синтаксис преобразуется в формат CIDR:
+  - 192.168.000.255 -&gt; 192.168.000.000/24
+  - 192.168.255.255 -&gt; 192.168.000.000/16
+  - 192.255.255.255 -&gt; 192.000.000.000/8
+  - 255.255.255.255 -&gt; 000.000.000.000/0
+* для подсчёта по новому синтаксису используйте онлайн калькулятор: http://www.subnet-calculator.com/cidr.php для
+  - CIDR, на подобии 192.168.0.106/30 (192.168.0.104 - 192.168.0.107)
+  - IP диапазонов, подобных 192.168.1.123 - 192.168.1.133
+</pre>
+<p>Когда вы ставите новую версию, файл конвертируется автоматически под новые настройки, это не работает если вы возвращаетесь с более новой на старую версию, старые версии не понимают нового синтаксиса и вам придётся настраивать файл разрешённых IP адресов ( allowed_ips ) снова.
+</p>
+<h2> <span class="mw-headline" id=".D0.A1.D0.BC.D0.BE.D1.82.D1.80.D0.B8.D1.82.D0.B5_.D1.82.D0.B0.D0.BA.D0.B6.D0.B5"> Смотрите также  </span></h2>
+<p><a href="MultiUser.html" title="MultiUser">MultiUser</a>, <a href="SshTunnel.html" title="SshTunnel">SshTunnel</a>, <a href="Http_password.html" title="Http password">http_password</a>, <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Http_login&amp;action=edit&amp;redlink=1" class="new" title="Http login (page does not exist)">http_login</a>, <a href="Bind_addr.html" title="Bind addr">bind_addr</a>, <a href="Password.html" title="Password">password</a>
+</p><p><br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><a href="Allowed_ips.html" title="Allowed ips">English</a></b>
+<span></span>
+<span></span>
+<span></span>
+&#160;&#8226;&#160;<span lang="ru"><strong class="selflink">Русский</strong></span>
+&#160;&#8226;&#160;<span lang="zh"><a href="Allowed_ips_ZH.html" title="Allowed ips ZH">中文</a></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 210/1000000
+Post-expand include size: 1189/2097152 bytes
+Template argument size: 457/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2321-0!*!0!!en!*!edit=0 and timestamp 20230807162953 -->
+<div class="printfooter">
+Retrieved from "<a href="Allowed_ips_RU.html">http://mldonkey.sourceforge.net/Allowed_ips_RU</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Allowed_ips_RU" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Allowed_ips_RU.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Allowed_ips_RU&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Allowed_ips_RU.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Allowed_ips_RU&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexe31a.html?title=Allowed_ips_RU&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Allowed_ips_RU.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Allowed_ips_RU.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index278d.html?title=Allowed_ips_RU&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index5e9f.html?title=Allowed_ips_RU&amp;oldid=5102" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 23 October 2010, at 02:28.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 11,099 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Allowed_ips_RU", "wgTitle": "Allowed ips RU", "wgAction": "view", "wgArticleId": 2321, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5102, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.167 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Allowed_ips_RU by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:52:51 GMT -->
+</html>

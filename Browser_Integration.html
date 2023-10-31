@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Browser_Integration by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:46:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Browser Integration - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Browser_Integration skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Browser Integration</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>How to add files to MLDonkey from various browsers.
+</p><p><b>TODO</b> gather all browser extensions into nice table (as for <a href="Gui.html" title="Gui">Gui</a>).
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Mozilla_Firefox"><span class="tocnumber">1</span> <span class="toctext">Mozilla Firefox</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Gnome"><span class="tocnumber">2</span> <span class="toctext">Gnome</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Gnome_compliant_browsers_.28Galeon.2CEpiphany.2C....29_GNOME_2.8_and_older"><span class="tocnumber">2.1</span> <span class="toctext">Gnome compliant browsers (Galeon,Epiphany,...) GNOME 2.8 and older</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#New_GNOME_2_integration_using_gconf_.28GNOME_2.10_and_newer.29"><span class="tocnumber">2.2</span> <span class="toctext">New GNOME 2 integration using gconf (GNOME 2.10 and newer)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Konqueror"><span class="tocnumber">3</span> <span class="toctext">Konqueror</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Opera"><span class="tocnumber">4</span> <span class="toctext">Opera</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Unix"><span class="tocnumber">4.1</span> <span class="toctext">Unix</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Unix_v_8_Beta_2_.28tested_in_Gentoo_Linux-2.6.11-r4.2C_Gnome_2.8.3.29"><span class="tocnumber">4.1.1</span> <span class="toctext">Unix v 8 Beta 2 (tested in Gentoo Linux-2.6.11-r4, Gnome 2.8.3)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-9"><a href="#Windows"><span class="tocnumber">4.2</span> <span class="toctext">Windows</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#elinks"><span class="tocnumber">5</span> <span class="toctext">elinks</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#All_browsers_using_Sancho_.28only_BitTorrent.29"><span class="tocnumber">6</span> <span class="toctext">All browsers using Sancho (only BitTorrent)</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#All_browsers_using_MLDonkey_daemon_running_as_user_mldonkey_.28only_BitTorrent.29"><span class="tocnumber">7</span> <span class="toctext">All browsers using MLDonkey daemon running as user mldonkey (only BitTorrent)</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Internet_Explorer"><span class="tocnumber">8</span> <span class="toctext">Internet Explorer</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Google_Chrome"><span class="tocnumber">9</span> <span class="toctext">Google Chrome</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Android"><span class="tocnumber">10</span> <span class="toctext">Android</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#See_also"><span class="tocnumber">11</span> <span class="toctext">See also</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Mozilla_Firefox"> Mozilla Firefox </span></h2>
+<p>Extensions integrate FireFox with your MLDonkey server, allowing you to add torrents and other links (e.g., magnet, sigdat and ed2k) to the server's download queue with a single click&#160;:
+</p>
+<ul><li> <a href="https://addons.mozilla.org/en-US/firefox/addon/14043" class="external text" rel="nofollow">Torrent Server Handler</a> (works with Firefox 3.0 - 3.5)
+</li><li> <a href="https://addons.mozilla.org/en-US/firefox/addon/mldonkeyfox-protocols-handl/" class="external text" rel="nofollow">MldonkeyFox</a> (works with Firefox 4.0.*)
+</li><li> <a href="http://donkeyfire.mozdev.org/" class="external text" rel="nofollow">Donkeyfire</a> adds a progress bar in Firefox's Status Bar (abandoned?)
+</li></ul>
+<p><br />
+A more complex method that works even for ancient versions of Firfox is a <a href="Firefox_handler_hacks.html" title="Firefox handler hacks"> handler based hack</a>.
+</p><p>Alternative to the above <a href="Firefox_handler_hacks.html" title="Firefox handler hacks"> handler based hack</a> is to use <a href="http://flashgot.net/" class="external text" rel="nofollow">FlashGot extension</a> and add a custom download manager, passing <code>[URL] [REFERER]</code> to a similar script (<a href="TelnetCommandScripts.html#Wget-like_sh_script_for_http_downloads" title="TelnetCommandScripts">example for http URLs</a>).
+</p>
+<h2> <span class="mw-headline" id="Gnome">Gnome</span></h2>
+<h3> <span class="mw-headline" id="Gnome_compliant_browsers_.28Galeon.2CEpiphany.2C....29_GNOME_2.8_and_older"> Gnome compliant browsers (Galeon,Epiphany,...) GNOME 2.8 and older</span></h3>
+<p><b>Galeon Users</b> and users of other Gnome compliant applications, just install [<a href="http://www.usher.com.pl/romek/download/mlurlslave-v2.tar.gz" class="external text" rel="nofollow">mlurlslave for GTK+ http://ircnet.de/home/cru/ed2k_urlslave/mlurlslave.html</a>] or <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Mlurlslave_for_GTK2&amp;action=edit&amp;redlink=1" class="new" title="Mlurlslave for GTK2 (page does not exist)">mlurlslave for GTK2</a><br />
+Alternately use instructions at mlurlslave but use /usr/bin/mldonkey_command instead of mlurlslave
+</p><p>However, if you happen to not have <code>gnomecc</code> --as is true for gnome2-- you still can set it up. Here goes: (we start at 4)
+</p><p><b> start </b>gnome-control-center*
+<b> go to </b>complex<b> (</b>Komplex* in German)
+<b> double-click on </b>File Types and Programs<b> (</b>Dateitypen und Programme* in German)
+<b> highlight </b>Internet Services*
+<b> click on </b>Add Service...*
+</p>
+<ul><li> for protocol type <code>ed2k</code>
+</li><li> for program to run type <code>mlurlslave \"%s\"</code>
+</li><li> add whatever description you want (I have none)
+</li></ul>
+<p><b> make sure </b>Run in Terminal<b> is </b>unchecked*
+<b>click </b>OK*
+</p><p>You're done! Well <b>I</b> was... Now I can click on ed2k://-links and they are added to the queue.
+</p><p><br />
+If you have problems _please_ come by the IRC channel and look for me --housetier--, so we can sort it out. (Channel is #mldonkey on irc.freenode.net; see also the HomePage, under FAQs)
+</p>
+<h3> <span class="mw-headline" id="New_GNOME_2_integration_using_gconf_.28GNOME_2.10_and_newer.29"> New GNOME 2 integration using gconf (GNOME 2.10 and newer)</span></h3>
+<p>Just install [<a href="http://home.ircnet.de/cru/ed2k_urlslave/dist/mlurlslave-1.0.tar.gz" class="external text" rel="nofollow">mlurlslave for GTK+</a>] or [<a href="http://home.ircnet.de/cru/ed2k_urlslave/dist/mlurlslave-1.1.tar.gz" class="external text" rel="nofollow">mlurlslave for GTK2</a>] <br />
+</p><p>The filetypes and Programs capplet does not exist anymore in newer GNOME versions, so you'd have to add the handler directly to the  gconf database. To do this you type:
+</p>
+<ul><li> <code>gconftool-2 -s -t string /desktop/gnome/url-handlers/ed2k/command "/usr/local/bin/mlurlslave&#160;%s"</code> (if you installed in /usr/local/bin)
+</li><li> <code>gconftool-2 -s -t bool /desktop/gnome/url-handlers/ed2k/enabled true</code>
+</li><li> <code>gconftool-2 -s -t bool /desktop/gnome/url-handlers/ed2k/need-terminal false</code>
+</li></ul>
+<p>(Oh yeah, I noticed that the telnet protocol changed somewhat, so you have to edit the mlurlslave file (/usr/local/bin/mlurlslave) and change the line <code>elsif(/download started/){</code> to <code>elsif(/Added link/){</code>. If you don't do this, mlurlslave will give you an error message. The download is still started though. Test reaction with dllink in console when in doubt.)
+</p>
+<h2> <span class="mw-headline" id="Konqueror"> Konqueror </span></h2>
+<p>Here is the code for konqueror_submit:
+</p>
+<pre>
+#!/usr/bin/perl
+
+#Creates a link to submit to MLdonkey and submits using Konqueror
+
+use URI::Escape;
+$uri  = $ARGV[0];
+# change these as needed
+$username = &quot;admin&quot;;
+$password = &quot;&quot;;
+$server_addr = &quot;localhost&quot;;
+$server_port = &quot;4080&quot;;
+
+$link = sprintf(&quot;http://%s:%s@%s:%s/submit?q=dllink+%s&quot;,
+        $username,$password,$server_addr,$server_port,uri_escape($uri));
+
+exec ('konqueror',$link);
+</pre>
+<p>Edit and put in your path.  Make sure you chmod +x konqueror_submit or it won't work.
+</p><p>This works for .torrent-files/links. To use it with the edk2 protocol, do:
+</p><p>Here is the protocol handler file that goes in .kde/shar/services/edk2.protocol
+</p>
+<pre>
+[Protocol]
+exec=konqueror_submit '%u'
+protocol=ed2k
+input=none
+output=none
+helper=true
+listing=false
+reading=false
+writing=false
+makedir=false
+deleting=false
+Icon=remote
+Description=Handles eDonkey2000 ed2k://-links
+</pre>
+<p><i>RedZeus, source <a href="http://mldonkey.berlios.de/modules.php?name" class="external text" rel="nofollow"><code>Forums&amp;file</code>viewtopic&amp;t=2462</a></i>
+</p>
+<h2> <span class="mw-headline" id="Opera">Opera</span></h2>
+<h3> <span class="mw-headline" id="Unix"> Unix</span></h3>
+<p>(~HowTo found on the web @ <a href="http://knowledge.martignier.net/MlDonkey" class="external free" rel="nofollow">http://knowledge.martignier.net/MlDonkey</a> in german - translated by fob)
+</p><p><br />
+</p>
+<ul><li> close opera
+</li><li> open \"opera6.ini\"
+</li></ul>
+<p><b> in the section </b>~<a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=%7EUser_Prefs&amp;action=edit&amp;redlink=1" class="new" title="~User Prefs (page does not exist)">~User Prefs</a>* add:
+</p>
+<pre>TrustedExternalURLProtocols=ed2k
+</pre>
+<p><b> Find section </b>~<a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=%7ETrusted_Applications&amp;action=edit&amp;redlink=1" class="new" title="~Trusted Applications (page does not exist)">~Trusted Applications</a>* (create it if it does not exist) and add:
+</p>
+<pre>ed2k=/usr/bin/ed2kopera
+</pre>
+<pre> or for Opera 7:
+</pre>
+<pre>ed2k=/usr/bin/ed2kopera&#160;%u
+</pre>
+<ul><li> save and close the file
+</li><li> install \"[<a href="http://www.atstake.com/research/tools/network_utilities/" class="external text" rel="nofollow">netcat</a>]\" (for Debian: apt-get install nc on woody apt-get install netcat)
+</li></ul>
+<p><b> create the file </b>/usr/bin/ed2kopera* and insert the following text:
+</p>
+<pre>#!/bin/sh
+echo dllink ed2k://$1 || nc -q 1 127.0.0.1 4000
+</pre>
+<p>(Change \"127.0.0.1\" and \"4000\" to fit the IP-Address and Portnumber that your mldonkey-core uses)
+</p>
+<h4> <span class="mw-headline" id="Unix_v_8_Beta_2_.28tested_in_Gentoo_Linux-2.6.11-r4.2C_Gnome_2.8.3.29"> Unix v 8 Beta 2 (tested in Gentoo Linux-2.6.11-r4, Gnome 2.8.3)</span></h4>
+<ul><li> In the Settings-&gt;Applications and path:
+</li></ul>
+<pre>Add protocol \&quot;ed2k\&quot;
+Open with \&quot;/home/userdir/ed2kopera\&quot;
+</pre>
+<ul><li> Install \"netcat\" (for Debian: apt-get install nc on woody apt-get install netcat)
+</li><li> Create the file /home/userdir/ed2kopera and insert the following text:
+</li></ul>
+<pre>#!/bin/sh
+echo dllink $1 || nc -q 1 127.0.0.1 4000
+</pre>
+<p>(Change \"127.0.0.1\" and \"4000\" to fit the IP-Address and Portnumber that your mldonkey-core uses)
+</p>
+<h3> <span class="mw-headline" id="Windows"> Windows</span></h3>
+<p>In the root folder of the Opera installation (most probably C:\Program Files\Opera7) find the file 'opera6.ini'.
+</p><p>+Add in this file under ~<a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=%7EUser_Prefs&amp;action=edit&amp;redlink=1" class="new" title="~User Prefs (page does not exist)">~User Prefs</a>
+</p>
+<pre>TrustedExternalURLProtocols=ed2k
+</pre>
+<p>Find the same file in the subfolder 'profile' (most probably C:\Program Files\Opera7\profile).
+</p><p>+Add in this file under ~<a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=%7ETrusted_Protocols&amp;action=edit&amp;redlink=1" class="new" title="~Trusted Protocols (page does not exist)">~Trusted Protocols</a>
+</p>
+<pre>ed2k&lt;code&gt;0,0,opera.EXE ~http://admin:@127.0.0.1:4080/submit?q&lt;/code&gt;dllink+%1
+</pre>
+<p>And you are ready to click your favourite Ed2k links.
+</p><p>_(by White FrosT, only tested on Opera 7+)_
+</p><p><br />
+As a Side note with the particular version of opera I have (7.21) I had to use the following:
+</p>
+<pre>
+~[[~User Prefs]]
+TrustedExternalURLProtocols=ed2k
+...
+~[[~Trusted Protocols]]
+ed2k=0,0, /usr/bin/ed2kopera&#160;%u
+</pre>
+<p>and <code>nc -q</code> wasn't valid so i changed that in the script above to <code>nc -i</code>
+</p><p>_/cotyer_
+</p>
+<h2> <span class="mw-headline" id="elinks"> elinks</span></h2>
+<p><b>elinks browser</b> (<a href="http://elinks.or.cz/" class="external free" rel="nofollow">http://elinks.or.cz/</a>) can be customized with Lua scripts, so for this you need lua support enabled. Then, you have to modify your ~~/.elinks/hooks.lua file. In this file you can find the function called follow_url_hook. All web petitions go through this hook, which receives the URL the user has selected and it is either returned like that, or modified. We will modify it to detect ed2k and bittorrent links, and redirect them to our local mldonkey daemon.
+</p><p>First, somewhere add the following function used to reencode some <i>bad</i> characters found in URLs:
+</p>
+<pre>
+function url_encode(text)
+    text = gsub(text, \&quot; \&quot;, \&quot;%%20\&quot;)
+    text = gsub(text, \&quot;%:\&quot;, \&quot;%%3A\&quot;)
+    text = gsub(text, \&quot;%/\&quot;, \&quot;%%2F\&quot;)
+    text = gsub(text, \&quot;%||\&quot;, \&quot;%%7C\&quot;)
+    text = gsub(text, \&quot;%!\&quot;, \&quot;%%21\&quot;)
+    text = gsub(text, \&quot;%�\&quot;, \&quot;%%AA\&quot;)
+    text = gsub(text, \&quot;%&amp;\&quot;, \&quot;%%26\&quot;)
+    return gsub(text, \&quot;%#\&quot;, \&quot;%%23\&quot;)
+end
+</pre>
+<p>And now, before any processing is done in follow_url_hook, detect the urls. Example:
+</p>
+<pre>
+function follow_url_hook (url)
+
+    -- Detecting ed2k links
+    if strfind(url,'ed2k.*%||file%||') then
+      text = url_encode(gsub(url, \&quot;(.-)ed2k.'''file%||(~[[^]]''')%||(%d''')%||(%x''').*\&quot;, \&quot;dllink ed2k://||file||%2%||%3%||%4%||\&quot;))
+      return \&quot;~http://127.0.0.1:4080/submit?q=\&quot;..text
+    end
+
+    -- Detecting ~BitTorrent links
+    if strfind(url,'.*%.torrent$') then
+      return \&quot;~http://127.0.0.1:4080/submit?q=dllink%20\&quot;..url_encode(url)
+    end
+
+    -- Return url without changes.
+    return url
+end
+</pre>
+<h2> <span class="mw-headline" id="All_browsers_using_Sancho_.28only_BitTorrent.29"> All browsers using Sancho (only BitTorrent) </span></h2>
+<p><b>Sancho</b> (<a href="http://sancho-gui.sourceforge.net/" class="external free" rel="nofollow">http://sancho-gui.sourceforge.net/</a>) supports remote and local loading of a torrent direct from
+browser to mlnet.  Assign browser to launch \"sancho -l&#160;%s\" for browser integration.
+</p>
+<pre>
+/usr/bin/sancho -l /home/username/somefile.torrent
+</pre>
+<p>Thats right this works even if the mlnet sancho is configured to access is on a remote machine.
+</p>
+<h2> <span class="mw-headline" id="All_browsers_using_MLDonkey_daemon_running_as_user_mldonkey_.28only_BitTorrent.29"> All browsers using MLDonkey daemon running as user mldonkey (only BitTorrent) </span></h2>
+<p><b>Bash script to load local torrent</b>
+</p><p>Another way to click on a bittorrent link and have it load in mldonkey is via a secondary script.
+Save this bash script as an executable in $HOME/bin.  Assign your browser to launch the file
+when torrents are clicked on.  Script and mldonkey must be on same system to work.
+</p><p>Note:  The permissions and group may need to be fiddled with to get this script to work
+</p><p>Note:  For mlnet on remote machine have torrent go to SMB shared directory and launch script on mlnet
+machine via auto ssh login and execution of script.
+</p>
+<pre>
+#!/bin/bash
+#
+# Script to be called by web browser to load torrents to mldonkey
+#
+# Created by ProteusMoteus
+#
+# This is setup for mldonkey running as daemon process as
+# user mldonkey.  As configured by mldonkey-init.
+
+MLCMD=\&quot;/usr/bin/mldonkey_command\&quot;
+# Directory to move the .torrent to
+CLOSET=\&quot;/var/lib/mldonkey/torrents/downloads\&quot;
+
+if [[ [&#160;! -w \&quot;$CLOSET\&quot; |&#160;! -s \&quot;$1\&quot; ]] ||] |||&#160;! $MLCMD; then
+ [[&#160;! -s \&quot;$1\&quot; ]] &amp;&amp; echo \&quot;usage: mlbittorrent-script &lt;torrent file&gt;\&quot;
+ [[&#160;! -w \&quot;$CLOSET\&quot; ]] &amp;&amp; echo ERR. Not writeable directory $CLOSET
+else
+ echo Given: $1
+ CLOSET=\&quot;$CLOSET/`basename \&quot;$1\&quot;`\&quot;
+ mv \&quot;$1\&quot; \&quot;$CLOSET\&quot;
+ echo Moved to: $CLOSET
+ ls -la \&quot;$CLOSET\&quot;
+# Two lines below may need to be tweaked to get script to work
+ chmod 660 \&quot;$CLOSET\&quot;
+ chgrp mldonkey \&quot;$CLOSET\&quot;
+ echo Changed permissions and group
+ ls -l \&quot;$CLOSET\&quot;
+ $MLCMD dllink \&quot;$CLOSET\&quot;
+ echo Check downloads for file:
+ echo \&quot;$MLCMD vd || grep `basename \&quot;$CLOSET\&quot; .torrent`\&quot;
+ [[[ \&quot;$CLOSET\&quot;&#160;!= *.torrent ]]] &amp;&amp; echo WARNING. No torrent extension for $CLOSET
+fi
+
+#enable for troubleshooting
+#echo Press [[ENTER]] to continue
+#read
+</pre>
+<h2> <span class="mw-headline" id="Internet_Explorer"> Internet Explorer </span></h2>
+<p>It seems to be possible to hack the registry to support ed2k links. See <a href="Mlsubmit.html" title="Mlsubmit.reg">mlsubmit.reg</a>
+</p><p><a href="http://kennethxu.blogspot.com/2009/10/mldonkey-internet-explorer-integration.html#DonkeyInput" class="external text" rel="nofollow">DonkeyInput</a> registers itself as e2dk protocol handler and works under Windows. Tested with IE and FireFox.
+</p>
+<h2> <span class="mw-headline" id="Google_Chrome"> Google Chrome </span></h2>
+<p><strike><a href="http://sinolog.it/?p=1662" class="external text" rel="nofollow">DonkeyBuddy</a></strike>
+</p><p><a href="https://chrome.google.com/extensions/detail/elhjkiooaefodnfcbmhklcakmgiolmdh" class="external text" rel="nofollow">Chronkey</a>
+</p>
+<h2> <span class="mw-headline" id="Android"> Android </span></h2>
+<p><a href="https://market.android.com/details?id=org.anacletus.geted2k" class="external text" rel="nofollow">GetEd2k</a> - Android application to handle ed2k links
+</p>
+<h2> <span class="mw-headline" id="See_also"> See also</span></h2>
+<p><a href="http://mldonkey.sourceforge.net/forums/viewtopic.php?t=1390" class="external text" rel="nofollow">Forum: how to download bittorrent with mldonkey?</a>
+<br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><strong class="selflink">English</strong></b>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 323/1000000
+Post-expand include size: 678/2097152 bytes
+Template argument size: 613/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1311-0!*!0!!en!*!edit=0 and timestamp 20230807130259 -->
+<div class="printfooter">
+Retrieved from "<a href="Browser_Integration.html">http://mldonkey.sourceforge.net/Browser_Integration</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Browser_Integration" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Browser_Integration.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Browser_Integration&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Browser_Integration.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Browser_Integration&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index9532.html?title=Browser_Integration&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Browser_Integration.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Browser_Integration.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexef5f.html?title=Browser_Integration&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexe0f1.html?title=Browser_Integration&amp;oldid=5263" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 25 March 2012, at 23:28.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 81,557 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Browser_Integration", "wgTitle": "Browser Integration", "wgAction": "view", "wgArticleId": 1311, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5263, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.081 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Browser_Integration by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:46:16 GMT -->
+</html>
