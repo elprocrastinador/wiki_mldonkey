@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/GuiProtocol_ZH by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:24:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>GuiProtocol ZH - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-GuiProtocol_ZH skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">GuiProtocol ZH</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>这个网页和连接都来源于:<a href="http://www.g2gui.net/wiki/index.php/GuiProtocol" class="external free" rel="nofollow">http://www.g2gui.net/wiki/index.php/GuiProtocol</a>
+一直被维护者维护 --<a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=User:Spiralvoice&amp;action=edit&amp;redlink=1" class="new" title="User:Spiralvoice (page does not exist)">Spiralvoice</a> 06:47, 8 February 2006 (PST)
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#.E8.BF.9E.E6.8E.A5.E8.BF.87.E7.A8.8B"><span class="tocnumber">1</span> <span class="toctext">连接过程</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#.E6.B6.88.E6.81.AF.E5.9F.BA.E6.9C.AC.E6.A0.BC.E5.BC.8F"><span class="tocnumber">2</span> <span class="toctext">消息基本格式</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#.E4.BB.8Ecore.E6.94.B6.E5.88.B0.E7.9A.84Opcodes"><span class="tocnumber">3</span> <span class="toctext">从core收到的Opcodes</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#.E5.8F.91.E7.BB.99core.E7.9A.84Opcodes"><span class="tocnumber">4</span> <span class="toctext">发给core的Opcodes</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#.E4.BB.8E.E6.BA.90.E7.A0.81.E7.9A.84.E5.88.B0.E7.9B.B8.E5.85.B3.E7.9A.84.E4.BF.A1.E6.81.AF"><span class="tocnumber">5</span> <span class="toctext">从源码的到相关的信息</span></a></li>
+</ul>
+</td></tr></table>
+<h4> <span class="mw-headline" id=".E8.BF.9E.E6.8E.A5.E8.BF.87.E7.A8.8B">连接过程</span></h4>
+<p>从MLDonkey2.5-4+2(也可能更早),连接的过程规则:
+</p><p>一旦你从socket连接到server:
+</p>
+<ul><li>Core发送一个<a href="GuiCoreProtocol.html" title="GuiCoreProtocol">CoreProtocol</a>信息
+</li><li>GUI发送一个<a href="GuiProtocolVersion.html" title="GuiProtocolVersion">ProtocolVersion</a>带有协议版本的信息
+</li><li>如果想poll模式,GUI发送一个<a href="GuiGuiExtensions.html" title="GuiGuiExtensions">Extensions</a>消息(可选的)
+</li><li>GUI发送一个<a href="GuiPassWord.html" title="GuiPassWord">PassWord</a>消息
+</li><li>Core回应(一系列消息,出现2次)
+<ul><li>为每个插件的<a href="GuiNetworkInfo.html" title="GuiNetworkInfo">NetworkInfo</a>消息
+</li><li>一个<a href="GuiConsoleMessage.html" title="GuiConsoleMessage">ConsoleMessage</a>,包括motd
+</li></ul>
+</li><li>连接被确定.如果不是poll模式,core发送许多当前状态信息
+</li><li>Core将周期性的发送<a href="GuiClientStats.html" title="GuiClientStats">ClientStats</a>消息,即使poll模式也是一样的
+</li></ul>
+<p><br />
+更早的连接过程:
+</p>
+<ul><li>GUI发送一个<a href="GuiProtocolVersion.html" title="GuiProtocolVersion">ProtocolVersion</a>带有协议版本的信息
+</li><li>Core回应:
+<ul><li><a href="GuiCoreProtocol.html" title="GuiCoreProtocol">CoreProtocol</a> 包括最大协议版本的消息
+</li><li>为每个插件的<a href="GuiNetworkInfo.html" title="GuiNetworkInfo">NetworkInfo</a>消息
+</li><li>一个<a href="GuiConsoleMessage.html" title="GuiConsoleMessage">ConsoleMessage</a>,包括motd
+</li></ul>
+</li><li>果想poll模式,GUI发送一个<a href="GuiGuiExtensions.html" title="GuiGuiExtensions">Extensions</a>消息
+</li><li>GUI发送一个<a href="GuiPassWord.html" title="GuiPassWord">PassWord</a>消息
+</li><li>连接被确定.如果不是poll模式,core发送许多当前状态信息
+</li></ul>
+<h4> <span class="mw-headline" id=".E6.B6.88.E6.81.AF.E5.9F.BA.E6.9C.AC.E6.A0.BC.E5.BC.8F">消息基本格式</span></h4>
+<p>所有的整型都被小端的方式解码<a href="http://en.wikipedia.org/wiki/Endianness" class="external text" rel="nofollow">小端</a> (least significant byte first).
+</p>
+<table border="1" width="40%">
+<tr>
+<td>Size of Content (Header)
+</td>
+<td><a href="GuiOpcode.html" title="GuiOpcode">Opcode</a>
+</td>
+<td><a href="GuiPayload.html" title="GuiPayload">Payload</a>
+</td></tr>
+<tr>
+<td valign="top">
+<p><a href="GuiInt32.html" title="GuiInt32">int32</a>
+</p>
+</td>
+<td valign="top">
+<p><a href="GuiInt16.html" title="GuiInt16">int16</a>
+</p>
+</td>
+<td valign="top">
+<p>variable-size
+</p>
+</td></tr></table>
+<h4> <span class="mw-headline" id=".E4.BB.8Ecore.E6.94.B6.E5.88.B0.E7.9A.84Opcodes">从core收到的Opcodes</span></h4>
+<table border="1" width="100%">
+<tr>
+<td><a href="GuiOpcode.html" title="GuiOpcode">GuiOpcode</a>
+</td>
+<td>Name
+</td>
+<td>Notes
+</td></tr>
+<tr>
+<td>00</td>
+<td><a href="GuiCoreProtocol.html" title="GuiCoreProtocol">CoreProtocol</a></td>
+<td>
+</td></tr>
+<tr>
+<td>01</td>
+<td><a href="GuiOptionsInfo.html" title="GuiOptionsInfo">OptionsInfo</a></td>
+<td>
+</td></tr>
+<tr>
+<td>03</td>
+<td><a href="GuiDefineSearches.html" title="GuiDefineSearches">DefineSearches</a></td>
+<td>
+</td></tr>
+<tr>
+<td>04</td>
+<td><a href="GuiResultInfo.html" title="GuiResultInfo">ResultInfo</a></td>
+<td>
+</td></tr>
+<tr>
+<td>05</td>
+<td><a href="GuiSearchResult.html" title="GuiSearchResult">SearchResult</a></td>
+<td>
+</td></tr>
+<tr>
+<td>09</td>
+<td><a href="GuiFileUpdateAvailability.html" title="GuiFileUpdateAvailability">FileUpdateAvailability</a></td>
+<td>
+</td></tr>
+<tr>
+<td>10</td>
+<td><a href="GuiFileAddSource.html" title="GuiFileAddSource">FileAddSource</a></td>
+<td>
+</td></tr>
+<tr>
+<td>12</td>
+<td><a href="GuiServerUser.html" title="GuiServerUser">ServerUser</a></td>
+<td>
+</td></tr>
+<tr>
+<td>13</td>
+<td><a href="GuiServerState.html" title="GuiServerState">ServerState</a></td>
+<td>
+</td></tr>
+<tr>
+<td>15</td>
+<td><a href="GuiClientInfo.html" title="GuiClientInfo">ClientInfo</a></td>
+<td>
+</td></tr>
+<tr>
+<td>16</td>
+<td><a href="GuiClientState.html" title="GuiClientState">ClientState</a></td>
+<td>only the state of the client has changed
+</td></tr>
+<tr>
+<td>19</td>
+<td><a href="GuiConsoleMessage.html" title="GuiConsoleMessage">ConsoleMessage</a></td>
+<td>
+</td></tr>
+<tr>
+<td>20</td>
+<td><a href="GuiNetworkInfo.html" title="GuiNetworkInfo">NetworkInfo</a></td>
+<td>
+</td></tr>
+<tr>
+<td>21</td>
+<td><a href="GuiUserInfo.html" title="GuiUserInfo">UserInfo</a></td>
+<td>
+</td></tr>
+<tr>
+<td>22</td>
+<td><a href="GuiRoomInfo.html" title="GuiRoomInfo">RoomInfo</a></td>
+<td>for protocol version &lt;=3
+</td></tr>
+<tr>
+<td>23</td>
+<td><a href="GuiRoomMessage.html" title="GuiRoomMessage">RoomMessage</a></td>
+<td>
+</td></tr>
+<tr>
+<td>24</td>
+<td><a href="GuiRoomAddUser.html" title="GuiRoomAddUser">RoomAddUser</a></td>
+<td>
+</td></tr>
+<tr>
+<td>26</td>
+<td><a href="GuiServerInfo.html" title="GuiServerInfo">ServerInfo</a></td>
+<td>
+</td></tr>
+<tr>
+<td>27</td>
+<td><a href="GuiMessageFromClient.html" title="GuiMessageFromClient">MessageFromClient</a></td>
+<td>
+</td></tr>
+<tr>
+<td>28</td>
+<td><a href="GuiConnectedServers.html" title="GuiConnectedServers">ConnectedServers</a></td>
+<td>
+</td></tr>
+<tr>
+<td>31</td>
+<td><a href="GuiRoomInfo.html" title="GuiRoomInfo">RoomInfo</a></td>
+<td>for protocol version &gt;3
+</td></tr>
+<tr>
+<td>34</td>
+<td><a href="GuiSharedFileUpload.html" title="GuiSharedFileUpload">SharedFileUpload</a></td>
+<td>
+</td></tr>
+<tr>
+<td>35</td>
+<td><a href="GuiSharedFileUnshared.html" title="GuiSharedFileUnshared">SharedFileUnshared</a></td>
+<td>
+</td></tr>
+<tr>
+<td>36</td>
+<td><a href="GuiAddSectionOption.html" title="GuiAddSectionOption">AddSectionOption</a></td>
+<td>define a new option to appear in the Settings panel
+</td></tr>
+<tr>
+<td>38</td>
+<td><a href="GuiAddPluginOption.html" title="GuiAddPluginOption">AddPluginOption</a></td>
+<td>define a new option to appear in the Settings panel
+</td></tr>
+<tr>
+<td>46</td>
+<td><a href="GuiFileDownloadUpdate.html" title="GuiFileDownloadUpdate">FileDownloadUpdate</a></td>
+<td>
+</td></tr>
+<tr>
+<td>47</td>
+<td><a href="GuiBadPassword.html" title="GuiBadPassword">BadPassword</a></td>
+<td>
+</td></tr>
+<tr>
+<td>48</td>
+<td><a href="GuiSharedFileInfo.html" title="GuiSharedFileInfo">SharedFileInfo</a></td>
+<td>also opcodes 33 for old protocol versions
+</td></tr>
+<tr>
+<td>49</td>
+<td><a href="GuiClientStats.html" title="GuiClientStats">ClientStats</a></td>
+<td>also opcodes 25,37,39 for old protocol versions
+</td></tr>
+<tr>
+<td>50</td>
+<td><a href="GuiFileRemoveSource.html" title="GuiFileRemoveSource">FileRemoveSource</a></td>
+<td>
+</td></tr>
+<tr>
+<td>51</td>
+<td><a href="GuiCleanTables.html" title="GuiCleanTables">CleanTables</a></td>
+<td>
+</td></tr>
+<tr>
+<td>52</td>
+<td><a href="GuiFileInfo.html" title="GuiFileInfo">FileInfo</a></td>
+<td>also opcodes 7,40, 43 for old protocol versions
+</td></tr>
+<tr>
+<td>53</td>
+<td><a href="GuiDownloadingFiles.html" title="GuiDownloadingFiles">DownloadingFiles</a></td>
+<td>also old opcodes 29, 41, 44 for old protocol versions
+</td></tr>
+<tr>
+<td>54</td>
+<td><a href="GuiDownloadedFiles.html" title="GuiDownloadedFiles">DownloadedFiles</a></td>
+<td>also opcodes 30, 42, 45 for old protocol versions
+</td></tr>
+<tr>
+<td>55</td>
+<td><a href="GuiUploaders.html" title="GuiUploaders">Uploaders</a></td>
+<td>
+</td></tr>
+<tr>
+<td>56</td>
+<td><a href="GuiPending.html" title="GuiPending">Pending</a></td>
+<td>
+</td></tr>
+<tr>
+<td>57</td>
+<td><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=GuiSearch&amp;action=edit&amp;redlink=1" class="new" title="GuiSearch (page does not exist)">Search</a></td>
+<td>
+</td></tr>
+<tr>
+<td>58</td>
+<td><a href="GuiVersion.html" title="GuiVersion">Version</a></td>
+<td>
+</td></tr>
+<tr>
+<td>59</td>
+<td><a href="GuiStats.html" title="GuiStats">Stats</a></td>
+<td>protocol &gt; 40
+</td></tr></table><br />
+<h4> <span class="mw-headline" id=".E5.8F.91.E7.BB.99core.E7.9A.84Opcodes">发给core的Opcodes</span></h4>
+<table border="1" width="100%">
+<tr>
+<td><a href="GuiOpcode.html" title="GuiOpcode">GuiOpcode</a>
+</td>
+<td>Name
+</td>
+<td>Notes
+</td></tr>
+<tr>
+<td>00</td>
+<td><a href="GuiProtocolVersion.html" title="GuiProtocolVersion">ProtocolVersion</a></td>
+<td>
+</td></tr>
+<tr>
+<td>01</td>
+<td><a href="GuiConnectMore.html" title="GuiConnectMore">ConnectMore</a></td>
+<td>
+</td></tr>
+<tr>
+<td>02</td>
+<td><a href="GuiCleanOldServers.html" title="GuiCleanOldServers">CleanOldServers</a></td>
+<td>
+</td></tr>
+<tr>
+<td>03</td>
+<td><a href="GuiKillServer.html" title="GuiKillServer">KillServer</a></td>
+<td>
+</td></tr>
+<tr>
+<td>04</td>
+<td><a href="GuiExtendedSearch.html" title="GuiExtendedSearch">ExtendedSearch</a></td>
+<td>
+</td></tr>
+<tr>
+<td>08</td>
+<td><a href="GuiDlLink.html" title="GuiDlLink">DlLink</a></td>
+<td>
+</td></tr>
+<tr>
+<td>09</td>
+<td><a href="RemoveServer.html" title="RemoveServer">RemoveServer</a></td>
+<td>
+</td></tr>
+<tr>
+<td>10</td>
+<td><a href="GuiSaveOptions.html" title="GuiSaveOptions">SaveOptions</a></td>
+<td>
+</td></tr>
+<tr>
+<td>11</td>
+<td><a href="GuiRemoveDownload.html" title="GuiRemoveDownload">RemoveDownload</a></td>
+<td>
+</td></tr>
+<tr>
+<td>12</td>
+<td><a href="GuiGetServerUsers.html" title="GuiGetServerUsers">GetServerUsers</a></td>
+<td>
+</td></tr>
+<tr>
+<td>13</td>
+<td><a href="SaveFileAs.html" title="SaveFileAs">SaveFileAs</a></td>
+<td>rename file
+</td></tr>
+<tr>
+<td>14</td>
+<td><a href="GuiAddClientFriend.html" title="GuiAddClientFriend">AddClientFriend</a></td>
+<td>
+</td></tr>
+<tr>
+<td>15</td>
+<td><a href="GuiAddUserFriend.html" title="GuiAddUserFriend">AddUserFriend</a></td>
+<td>
+</td></tr>
+<tr>
+<td>16</td>
+<td><a href="GuiRemoveFriend.html" title="GuiRemoveFriend">RemoveFriend</a></td>
+<td>
+</td></tr>
+<tr>
+<td>17</td>
+<td><a href="GuiRemoveAllFriends.html" title="GuiRemoveAllFriends">RemoveAllFriends</a></td>
+<td>
+</td></tr>
+<tr>
+<td>18</td>
+<td><a href="GuiFindFriend.html" title="GuiFindFriend">FindFriend</a></td>
+<td>
+</td></tr>
+<tr>
+<td>19</td>
+<td><a href="GuiViewUsers.html" title="GuiViewUsers">ViewUsers</a></td>
+<td>
+</td></tr>
+<tr>
+<td>20</td>
+<td><a href="GuiConnectAll.html" title="GuiConnectAll">ConnectAll</a></td>
+<td>
+</td></tr>
+<tr>
+<td>21</td>
+<td><a href="GuiConnectServer.html" title="GuiConnectServer">ConnectServer</a></td>
+<td>
+</td></tr>
+<tr>
+<td>22</td>
+<td><a href="GuiDisconnectServer.html" title="GuiDisconnectServer">DisconnectServer</a></td>
+<td>
+</td></tr>
+<tr>
+<td>23</td>
+<td><a href="GuiSwitchDownload.html" title="GuiSwitchDownload">SwitchDownload</a></td>
+<td>
+</td></tr>
+<tr>
+<td>24</td>
+<td><a href="GuiVerifyAllChunks.html" title="GuiVerifyAllChunks">VerifyAllChunks</a></td>
+<td>
+</td></tr>
+<tr>
+<td>25</td>
+<td><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=GuiQueryFormat&amp;action=edit&amp;redlink=1" class="new" title="GuiQueryFormat (page does not exist)">QueryFormat</a></td>
+<td>
+</td></tr>
+<tr>
+<td>26</td>
+<td><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=GuiModifyMp3Tags&amp;action=edit&amp;redlink=1" class="new" title="GuiModifyMp3Tags (page does not exist)">ModifyMp3Tags</a></td>
+<td>
+</td></tr>
+<tr>
+<td>27</td>
+<td><a href="GuiCloseSearch.html" title="GuiCloseSearch">CloseSearch</a></td>
+<td>
+</td></tr>
+<tr>
+<td>28</td>
+<td><a href="GuiSetOption.html" title="GuiSetOption">SetOption</a></td>
+<td>
+</td></tr>
+<tr>
+<td>29</td>
+<td><a href="GuiConsoleCommand.html" title="GuiConsoleCommand">ConsoleCommand</a></td>
+<td>
+</td></tr>
+<tr>
+<td>30</td>
+<td><a href="GuiPreview.html" title="GuiPreview">Preview</a></td>
+<td>
+</td></tr>
+<tr>
+<td>31</td>
+<td><a href="GuiConnectFriend.html" title="GuiConnectFriend">ConnectFriend</a></td>
+<td>
+</td></tr>
+<tr>
+<td>32</td>
+<td><a href="GuiGetServerUsers.html" title="GuiGetServerUsers">GetServerUsers</a></td>
+<td>
+</td></tr>
+<tr>
+<td>33</td>
+<td><a href="GuiGetClientFiles.html" title="GuiGetClientFiles">GetClientFiles</a></td>
+<td>
+</td></tr>
+<tr>
+<td>34</td>
+<td><a href="GuiGetFileLocations.html" title="GuiGetFileLocations">GetFileLocations</a></td>
+<td>
+</td></tr>
+<tr>
+<td>35</td>
+<td><a href="GuiGetServerInfo.html" title="GuiGetServerInfo">GetServerInfo</a></td>
+<td>
+</td></tr>
+<tr>
+<td>36</td>
+<td><a href="GuiGetClientInfo.html" title="GuiGetClientInfo">GetClientInfo</a></td>
+<td>
+</td></tr>
+<tr>
+<td>37</td>
+<td><a href="GuiGetFileInfo.html" title="GuiGetFileInfo">GetFileInfo</a></td>
+<td>
+</td></tr>
+<tr>
+<td>38</td>
+<td><a href="GuiGetUserInfo.html" title="GuiGetUserInfo">GetUserInfo</a></td>
+<td>
+</td></tr>
+<tr>
+<td>40</td>
+<td><a href="GuiEnableNetwork.html" title="GuiEnableNetwork">EnableNetwork</a></td>
+<td>
+</td></tr>
+<tr>
+<td>41</td>
+<td><a href="GuiBrowseUser.html" title="GuiBrowseUser">BrowseUser</a></td>
+<td>
+</td></tr>
+<tr>
+<td>42</td>
+<td><a href="GuiSearchQuery.html" title="GuiSearchQuery">SearchQuery</a></td>
+<td>
+</td></tr>
+<tr>
+<td>43</td>
+<td><a href="GuiMessageToClient.html" title="GuiMessageToClient">MessageToClient</a></td>
+<td>
+</td></tr>
+<tr>
+<td>44</td>
+<td><a href="GuiGetConnectedServers.html" title="GuiGetConnectedServers">GetConnectedServers</a></td>
+<td>
+</td></tr>
+<tr>
+<td>45</td>
+<td><a href="GuiGetDownloadingFiles.html" title="GuiGetDownloadingFiles">GetDownloadingFiles</a></td>
+<td>
+</td></tr>
+<tr>
+<td>46</td>
+<td><a href="GuiGetDownloadedFiles.html" title="GuiGetDownloadedFiles">GetDownloadedFiles</a></td>
+<td>
+</td></tr>
+<tr>
+<td>47</td>
+<td><a href="GuiGuiExtensions.html" title="GuiGuiExtensions">GuiExtensions</a></td>
+<td>
+</td></tr>
+<tr>
+<td>49</td>
+<td><a href="GuiRefreshUploadStats.html" title="GuiRefreshUploadStats">RefreshUploadStats</a></td>
+<td>
+</td></tr>
+<tr>
+<td>50</td>
+<td><a href="GuiDownload.html" title="GuiDownload">Download</a></td>
+<td>
+</td></tr>
+<tr>
+<td>51</td>
+<td><a href="GuiSetFilePriority.html" title="GuiSetFilePriority">SetFilePriority</a></td>
+<td>
+</td></tr>
+<tr>
+<td>52</td>
+<td><a href="GuiPassWord.html" title="GuiPassWord">PassWord</a></td>
+<td>protocol_version &gt; 14
+</td></tr>
+<tr>
+<td>53</td>
+<td><a href="GuiCloseSearch.html" title="GuiCloseSearch">CloseSearch</a></td>
+<td>
+</td></tr>
+<tr>
+<td>54</td>
+<td><a href="GuiAddServer.html" title="GuiAddServer">AddServer</a></td>
+<td>
+</td></tr>
+<tr>
+<td>55</td>
+<td><a href="GuiMessageVersions.html" title="GuiMessageVersions">MessageVersions</a></td>
+<td>only for protocol 18
+</td></tr>
+<tr>
+<td>56</td>
+<td><a href="GuiRenameFile.html" title="GuiRenameFile">RenameFile</a></td>
+<td>
+</td></tr>
+<tr>
+<td>57</td>
+<td><a href="GuiGetUploaders.html" title="GuiGetUploaders">GetUploaders</a></td>
+<td>
+</td></tr>
+<tr>
+<td>58</td>
+<td><a href="GuiGetPending.html" title="GuiGetPending">GetPending</a></td>
+<td>
+</td></tr>
+<tr>
+<td>59</td>
+<td><a href="GuiGetSearches.html" title="GuiGetSearches">GetSearches</a></td>
+<td>
+</td></tr>
+<tr>
+<td>60</td>
+<td><a href="GuiGetSearch.html" title="GuiGetSearch">GetSearch</a></td>
+<td>
+</td></tr>
+<tr>
+<td>61</td>
+<td><a href="GuiConnectClient.html" title="GuiConnectClient">ConnectClient</a></td>
+<td>
+</td></tr>
+<tr>
+<td>62</td>
+<td><a href="GuiDisconnectClient.html" title="GuiDisconnectClient">DisconnectClient</a></td>
+<td>
+</td></tr>
+<tr>
+<td>63</td>
+<td><a href="GuiNetworkMessage.html" title="GuiNetworkMessage">NetworkMessage</a></td>
+<td>
+</td></tr>
+<tr>
+<td>64</td>
+<td><a href="GuiInterestedInSources.html" title="GuiInterestedInSources">InterestedInSources</a></td>
+<td>
+</td></tr>
+<tr>
+<td>65</td>
+<td><a href="GuiGetVersion.html" title="GuiGetVersion">GetVersion</a></td>
+<td>
+</td></tr>
+<tr>
+<td>68</td>
+<td><a href="GuiGetStats.html" title="GuiGetStats">GetStats</a></td>
+<td>protocol &gt; 40
+</td></tr></table><br />
+<h4> <span class="mw-headline" id=".E4.BB.8E.E6.BA.90.E7.A0.81.E7.9A.84.E5.88.B0.E7.9B.B8.E5.85.B3.E7.9A.84.E4.BF.A1.E6.81.AF">从源码的到相关的信息</span></h4>
+<p>从mldonkey源码中得到gui协议信息可以参考以下文件:
+</p>
+<ul><li>./src/daemon/common/guiDeconding.ml
+<ul><li>receive opcode -&gt; action
+</li></ul>
+</li><li>./src/daemon/common/guiEnconding.ml
+<ul><li>action -&gt; send opcode
+</li></ul>
+</li><li>./src/daemon/common/guiProto.ml
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 19/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2225-0!*!0!!en!*!edit=0 and timestamp 20230806200609 -->
+<div class="printfooter">
+Retrieved from "<a href="GuiProtocol_ZH.html">http://mldonkey.sourceforge.net/GuiProtocol_ZH</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=GuiProtocol_ZH" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="GuiProtocol_ZH.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:GuiProtocol_ZH&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="GuiProtocol_ZH.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=GuiProtocol_ZH&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexb2b1.html?title=GuiProtocol_ZH&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/GuiProtocol_ZH.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/GuiProtocol_ZH.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexc4a5.html?title=GuiProtocol_ZH&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexcaae.html?title=GuiProtocol_ZH&amp;oldid=4251" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 9 April 2009, at 20:48.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 9,920 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "GuiProtocol_ZH", "wgTitle": "GuiProtocol ZH", "wgAction": "view", "wgArticleId": 2225, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4251, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.064 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/GuiProtocol_ZH by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:24:22 GMT -->
+</html>
