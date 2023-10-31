@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/LowID by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:49:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>LowID - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-LowID skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">LowID</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#LOWID_explained"><span class="tocnumber">1</span> <span class="toctext">LOWID explained</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#LOWID_in_MLdonkey_interface"><span class="tocnumber">2</span> <span class="toctext">LOWID in MLdonkey interface</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#See_also"><span class="tocnumber">3</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#ERROR:_Your_port_4662_is_not_reachable._You_have_a_LOWID"><span class="tocnumber">4</span> <span class="toctext">ERROR: Your port 4662 is not reachable. You have a LOWID</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#LOWID_Overnet_peer_.3F"><span class="tocnumber">5</span> <span class="toctext">LOWID Overnet peer&#160;?</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#ulimit_problems"><span class="tocnumber">6</span> <span class="toctext">ulimit problems</span></a></li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id="LOWID_explained">LOWID explained</span></h3>
+<p>After succesfully connecting a donkey server, a donkey peer receives a 32bits integer identifier, assigned by this server, that is either a <b>HighID</b> or a <b>LowID</b>.
+</p><p>Corollary: Until a peer connects to a server, it has neither a HighID nor a LowID to talk about (see <a href="Enable_servers.html" title="Enable servers">enable_servers</a>)
+</p><p>A <b>HighID</b> is just the peer's IP address quad interpreted in little-endian order (i.e. with bytes reversed). Peers that are directly connected to the Internet (and thus can be reached directly by other peers) should receive a HighID (matching their external IP address) from the connected servers.
+</p><p>Peers that cannot be reached directly (they are firewalled or located behind a router) are assigned a <b>LowID</b> by the server(s) they're connected to. LowIDs are opaque integers that only make sense to the server that assigned them.
+</p><p>The highest byte of LowID identifiers is always 0 (hence the name: they're usually smaller than their HighID counterparts). A consequence of that poor network design choice is that peers whose IP address ends with a 0 cannot get a HighID (because their HighID would be interpreted as a LowID).
+</p><p><br />
+If HighID peer 'A' wants to connect to LowID peer 'B':
+</p>
+<ul><li> it asks the server for a 'callback' (remember only the server can contact 'B').
+</li><li> The server forwards this connection request to LowID peer 'B' (obv. telling 'B' the address of peer 'A').
+</li><li> Peer 'B' then 'calls back'/connects peer 'A'.
+</li></ul>
+<p>So there are the following connection combinations of peers:
+</p>
+<ul><li> HighID &lt;--&gt; HighID: no problem, full destination address known
+</li><li> HighID &lt;--&gt; LowID: no problem, either full destination address known or initiated as callback
+</li><li> LowID &lt;--&gt; LowID: <b>no connection possible, two LowID peers are unable to communicate with each other</b>
+</li></ul>
+<p>Beside that, another drawback associated with LowIDs stems from the fact that servers must spend a certain amount of time relaying connection requests to LowID peers; to avoid excessive loads, many servers only allow a small number of LowID clients, if any. That said, it's quite obvious that situations in which your client gets LowID should be avoided by all means.
+</p><p>Lugdunum Servers (the majority of eDonkey servers) attempt to verify if your advertised port is really open before assigning a HighID or LowID to your peer. If the test fails for whatever reason (including the 8 seconds timeout), you'll get a LowID.
+</p>
+<h3> <span class="mw-headline" id="LOWID_in_MLdonkey_interface"> LOWID in MLdonkey interface</span></h3>
+<p>You can see your ID for each server you're connected to using the <a href="Id.html" title="Id">id</a> command.
+</p><p>In sources lists, HighID sources are marked as "Direct" while LowID sources aren't.
+</p>
+<h3> <span class="mw-headline" id="See_also"> See also</span></h3>
+<p><a href="Enable_servers.html" title="Enable servers">enable_servers</a>, <a href="Id.html" title="Id">id</a>, <a href="Force_high_id.html" title="Force high id" class="mw-redirect">force_high_id</a>. <a href="WhatFirewallPortsToOpen.html" title="WhatFirewallPortsToOpen">WhatFirewallPortsToOpen</a>
+</p>
+<h3> <span class="mw-headline" id="ERROR:_Your_port_4662_is_not_reachable._You_have_a_LOWID">ERROR: Your port 4662 is not reachable. You have a LOWID</span></h3>
+<p>First, check that your client port is really open using this test: <a href="http://www.thedonkeynetwork.com/connection_test" class="external autonumber" rel="nofollow">[1]</a>] (or, if that one isn't available, [<a href="http://www.preinheimer.com/cgi-bin/connectiontest/connectiontest.cgi" class="external autonumber" rel="nofollow">[2]</a>).
+If this test fails, check that your port is not firewalled (See <a href="Ports.html" title="Ports">Ports</a> for all ports you should open in your firewall).
+If you're behind some gateway, be sure to map those ports to your box. Enabling <a href="Force_client_ip.html" title="Force client ip">force_client_ip</a> and setting <a href="Client_ip.html" title="Client ip">client_ip</a> to your gateway public address may help too.
+</p><p>Often changing one of the options does the job: Either your mld is hashing and can't reply quick enough to server questions or <a href="Server_connection_timeout.html" title="Server connection timeout">server_connection_timeout</a> may be to low (my setting is 30)
+<i>thx to Meikel (Mailing-list)</i>
+</p><p>Also, do not saturate your device (and specifically your uplink). Saturated devices add some lag, and it can be enough to trigger the 8 seconds timeout. Try reducing your <a href="Max_hard_upload_rate.html" title="Max hard upload rate">max_hard_upload_rate</a>, until you don't saturate anymore (or only seldomly).
+</p><p>If you use Linux TrafficShaping, you can see if your uplink is saturated, and even evaluate the lag:
+</p>
+<pre>
+$ /sbin/tc -s class ls dev ppp0
+~[[...]]
+class htb 1:30 parent 1:1 leaf 30: prio 3 rate 24Kbit ceil 114Kbit burst 2Kb cburst 1744b
+ Sent 7665915 bytes 21421 pkts (dropped 11, overlimits 0)
+ rate 9978bps 9pps backlog 6p
+ lended: 10441 borrowed: 10974 giants: 0
+ tokens: -393346 ctokens: -151543
+</pre>
+<p>If you see "backlog" (as in this example), you're saturating. The added delay is roughly backlog/pps: <code> 6/9 = 0.66 s</code>. That should be fine, but if your delay never goes below 1s, it could be enough to fail the test and get a LowID.
+</p>
+<h3> <span class="mw-headline" id="LOWID_Overnet_peer_.3F">LOWID Overnet peer&#160;?</span></h3>
+<p>Firewalled Overnet peer use a trick similar to the LowID one, but adapted to the lack of servers. Instead, they pick a random non-firewalled peer (a "buddy") that will forward the incoming connection queries.
+</p>
+<h3> <span class="mw-headline" id="ulimit_problems">ulimit problems</span></h3>
+<p>LOWID can also be a side effect of a too small <i>ulimit</i> value set (see <a href="http://savannah.nongnu.org/bugs/?func=detailitem&amp;item_id=985" class="external autonumber" rel="nofollow">[3]</a>).
+</p><p>If after connecting to <a href="http://www.thedonkeynetwork.com/connection_test" class="external text" rel="nofollow">Connection test</a> you get a message like this&#160;: "sent hello but the answer doesn't seem to come from an edonkey client", then try this&#160;:
+</p>
+<pre>
+$ ulimit -n 1024
+</pre>
+<p>before running mldonkey. <i>ulimit -n</i> sets the maximum file descriptor.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 34/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1481-0!*!0!!en!*!edit=0 and timestamp 20230807041021 -->
+<div class="printfooter">
+Retrieved from "<a href="LowID.html">http://mldonkey.sourceforge.net/LowID</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=LowID" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="LowID.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:LowID&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="LowID.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=LowID&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexac2e.html?title=LowID&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/LowID.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/LowID.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index1cf8.html?title=LowID&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index8cbd.html?title=LowID&amp;oldid=3482" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 16 June 2007, at 09:49.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 38,197 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "LowID", "wgTitle": "LowID", "wgAction": "view", "wgArticleId": 1481, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3482, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.113 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/LowID by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:49:27 GMT -->
+</html>

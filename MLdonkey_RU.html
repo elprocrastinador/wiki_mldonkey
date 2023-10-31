@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/MLdonkey_RU by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:43:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>MLdonkey RU - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-MLdonkey_RU skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">MLdonkey RU</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p><font size="5" color="#030355">Описание и история создания MLDonkey</font>
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p>
+<h3> <span class="mw-headline" id=".D0.A5.D0.B0.D1.80.D0.B0.D0.BA.D1.82.D0.B5.D1.80.D0.B8.D1.81.D1.82.D0.B8.D0.BA.D0.B8:">Характеристики:</span></h3>
+<ul><li> 100% открытый код, лицензия GPL.
+</li><li> Запускается под <a href="Linux.html" title="Linux">Linux</a>, <a href="Unix.html" title="Unix">Unix</a>, Solaris, <a href="MacOSX.html" title="MacOSX">MacOSX</a>, <a href="MorphOS.html" title="MorphOS">MorphOS</a> и <a href="Windows.html" title="Windows">Windows</a>
+</li><li> <a href="Core.html" title="Core"> Ядро</a>  программы  может быть запущено на маломощных компьютерах, с возможностью удалённого доступа через сеть и управляться посредством графической оболочки удаленно.
+<ul><li>  Ядро программы встраивается как демон (сервис, служба) и работает дни, ночи, недели, мно-о-о-ого дней... не беспокоя вас.
+</li></ul>
+</li><li> Доступно много различных графических оболочек, разрабатываемых разными авторами, для работы с MLdonkey.
+</li><li> Поддержка многопользовательского режима работы: одно ядро может управлять разными очередями и процессами скачки для разных пользователей, при этом они не будут видеть что качают другие пользователи.
+</li><li> Поддержка нескольких различных пиринговых сетей одновременно:
+<ul><li> ED2K (и Kademlia, и Overnet)
+</li><li> BitTorrent
+</li><li> DC++
+</li><li> (FastTrack, SoulSeek, Gnutella и G2)
+</li></ul>
+</li><li> Ядро программы может качать один файл, с различных сетей одновременно (экспериментальная возможность) .
+</li><li> Доступен интерфейс командной строки, есть возможность использования скриптов.  Это делает доступ к управлению всеми возможностям MLdonkey из интерфейса командной строки (CLI).
+</li><li> Написан на языке <a href="ObjectiveCaml.html" title="ObjectiveCaml">ObjectiveCaml</a>, частично на языке <a href="C.html" title="C">C</a> и немножко на <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Assembler&amp;action=edit&amp;redlink=1" class="new" title="Assembler (page does not exist)">Асемблере</a>.
+</li></ul>
+<h3> <span class="mw-headline" id=".D0.98.D1.81.D1.82.D0.BE.D0.BA.D0.B8_.28.D1.80.D0.BE.D0.B4.D0.BE.D1.81.D0.BB.D0.BE.D0.B2.D0.BD.D0.B0.D1.8F_.D0.BF.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D1.8B.29">Истоки (родословная программы) </span></h3>
+<p>MLDonkey была разработана в начале января 2002 года <a href="http://forum.overnet.com/viewtopic.php?t=23860" class="external autonumber" rel="nofollow">[1]</a> и была размещена на сайте <a href="http://savannah.nongnu.org/" class="external free" rel="nofollow">http://savannah.nongnu.org</a>, сайт разработчиков свободного программного обеспечения которое не является частью GNU-проекта, с 19 февраля 2002 года. Оно было запущено программистами <a href="http://www.lefessant.net/" class="external text" rel="nofollow">Fabrice Le Fessant</a> и <a href="http://patarin.info/" class="external text" rel="nofollow">Simon Patarin</a> которые работали в <a href="http://www.inria.fr/" class="external text" rel="nofollow">INRIA</a>, целью показать потенциал языка программирования <a href="http://caml.inria.fr/" class="external text" rel="nofollow">Ocaml</a>.<br />
+</p>
+<dl><dd>Цитата со страницы <a href="http://pauillac.inria.fr/~lefessan/papers/#icfp2003" class="external free" rel="nofollow">http://pauillac.inria.fr/~lefessan/papers/#icfp2003</a>
+<dl><dd> Многие создатели функциональных языков программирования жили одной мечтой: найти "убийственное" решение, за пределами мира символического программирования (компиляторов, математических программ, предметно-ориентированных языков программирования), они хотели сделать их язык распространённым в сообществе "открытого кода". Год назад мы решили эту проблемму и решили использовать язык программирования Objective-Caml для создания программ в мире пиринговых систем. Результат нашей работы нас приятно удивил: в настоящее время (прим.перев.: настоящее на тот момент) <strong class="selflink">MLdonkey</strong> одна из самых популярных программ-клиентов для пиринговых сетей по мнению известного сайта <a href="http://freshmeat.net/" class="external text" rel="nofollow">freshmeat.net</a>, с примерно десятитысячной аудиторией пользователей. <strong class="selflink">MLdonkey</strong> единственный клиент способный подключаться сразу к нескольким пиринговым сетям, загружать из них и отдавать файлы. Работает в качестве <a href="http://ru.wikipedia.org/wiki/Демон_(программа" class="external text" rel="nofollow">демона</a>, не требует присмотра на компьютере и может управляться удаленно с использованием трех различных типов интерфейса (веб-интерфейс, Telnet, из графической программы (отдельной) локально и через сеть). В этом руководстве мы представляем вам уроки, основанные на том, чему мы сами научились при проектировании и разработке.
+</dd></dl>
+</dd></dl>
+<p>MLDonkey был изначально задуман как клон программы(и одноимённой сети) <a href="EDonkey2000.html" title="EDonkey2000">eDonkey2000</a>, работающий на <a href="Unix.html" title="Unix">Unix</a> и <a href="Linux.html" title="Linux">Linux</a>, так как оригинальный клиент никогда на них хорошо не работал. После выхода MLdonkey версии 2, была разработана  <a href="OtherNetworksSupported.html" title="OtherNetworksSupported"> поддержка других сетей</a>, особенно сетей <a href="EDonkey2000.html" title="EDonkey2000">eDonkey2000</a>-семейства, таких как <a href="Overnet.html" title="Overnet">Overnet</a>, <a href="BitTorrent.html" title="BitTorrent">BitTorrent</a>, <a href="Kademlia.html" title="Kademlia" class="mw-redirect">Kademlia</a> и <a href="DirectConnect.html" title="DirectConnect">DirectConnect</a>.
+</p><p>История MLdonkey всегда была на грани споров, в основном основанных на том факте, что оригинальный клиент, так и сам протокол <a href="Overnet.html" title="Overnet">Overnet</a> был коммерческий. Это принуждало разработчиков MLDonkey использовать при разработке метод  [<a href="http://ru.wikipedia.org/wiki/обратная_инженерия" class="external text" rel="nofollow">обра́тной разрабо́тки</a>], чтобы реализовать основные функции, но они не останавливались на этом. И ввели много разных дополнительных возможностей, - иногда полезных, иногда не очень, вплоть до совсем сомнительных.
+</p><p>Например одно из первых противоречий касалось серверов. Команда разработчиков MLDonkey ввела способ подключения к нескольким сервера одновременно, тем самым значительно увеличивая эффективность поиска. Это было в те времена, когда серверов было относительно мало и те которые были, работали на грани возможности в том числе из-за ботов. Было слишком много пользователей, мало серверов - требовались новые решения.
+</p><p>Позднее администраторы определённых серверов, стали эгоистично заинтересованы в большем количестве пользователей только на их сервере, чтобы увеличить свой рейтинг относительно других серверов, но это не было полезно для эффективности сети в целом, программы-клиенты умеющие подключаться более чем к одному серверу, стали потенциальной угрозой для их рейтинга.
+</p><p>Стало проявляться недовольство и приходить жалобы на MLdonkey, якобы от пользователей [eDonkey2000], связанное с тем, что MLdonkey работает эффективнее, чем eDonkey из-за неправильного использования сетевых ресурсов(якобы личерство). Скорее всего, такая клевета была связана с крайним нежеланием разработчиков программы [eDonkey2000] вкладывать дополнительные силы и средства в улучшение своего продукта, в частности в сторону улучшения работы сети в целом, что стало в итоге приводить к всё большей и большей зависимости от больших серверов, необходимости все большего и большего размера сервера к которому подключаешься. Противоположно подходу разработчиков MLdonkey - увеличить качество и надёжность всей сети в целом. Впрочем совершенствование сети [eDonkey2000], не сходилось с планами создать сеть <a href="Overnet.html" title="Overnet">Overnet</a>, которая обеспечивала прекрасную работу пиринговых сетей, совершенно без серверов.
+</p><p>В MLDonkey включена возможность обмениваться источниками между пользователями, что ещё больше снизило роль серверов, и создало ещё большую угрозу для эгоистичного тщеславия администраторов серверов <a href="EDonkey2000.html" title="EDonkey2000">eDonkey2000</a>. Вскоре образовался корыстный, анти-MLdonkey альянс из популярных (прим.перев.: тогда) серверов <a href="LugdunumServers.html" title="LugdunumServers"> Lugdunum</a> и компании MetaMachine (разработчика программы <a href="EDonkey2000.html" title="EDonkey2000">eDonkey2000</a>). В результате последовали массовые репрессии в отношении MLdonkey, блокирование ей доступа к серверам и всяческим козням стремящимся ухудшить работу программы MLdonkey, тем не менее благодаря специфичности проектов с открытым кодом и благодаря отклику множества пользователей эти препятствия работе MLdonkey легко были обойдены.
+</p><p>Важно отметить, что будучи проектом с открытым исходным кодом, команда разработчиков MLDonkey всегда предлагала свои прогрессивные и качественные решения разработчикам <a href="EDonkey2000.html" title="EDonkey2000">eDonkey2000</a> и всему сообществу, на пользу всем. Эти добрые предложения помощи, были категорически и грубо отвергнуты, несмотря на многократные попытки улучшить программу <a href="EDonkey2000.html" title="EDonkey2000">eDonkey2000</a> открытым сообществом. Наоборот, MetaMachine категорически настаивала на том, чтобы сохранять код программы и протокола в закрытом состоянии.
+</p><p>Позднее, так как MetaMachine прекратила все сои усилия создать клиент xMule, был  разработан [<a href="http://www.amule.org/" class="external autonumber" rel="nofollow">[2]</a>], на основе исходного текста xMule, большая часть принявших участие разработчиков перечислено на главной странице eMule для linux. Вместе с клиентом <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=EMule_Overnet&amp;action=edit&amp;redlink=1" class="new" title="EMule Overnet (page does not exist)">eMule Overnet</a>, появился другой eDonkey клиент: [eMule]. Создание программы [eMule] было результатом частого требования от пользователей обеспечить (a) хорошую графику и (б), сбалансированные скачку и отдачу. Портируя eMule на платформу Linux, был создан <a href="LMule.html" title="LMule">| http://lmule.sf.net/</a>,  доступный на Sourceforge, который потом стал, новым ответвлением <a href="XMule.html" title="XMule">| http://www.xmule.org</a>, но затем программа [aMule] произвела полное изменения понимания термина "совместное использование файлов" в сторону крайне либеральных требований преобразовать сеть в файло-торговую модель(купи-продай), используя политику кредитов, сложных систем ожидания в очереди и внутреннего предпочтения. Обязательность кредитной системы отменена после eMule релиза версии 0.28а, самая большая неполноценность(недостаток) программы eMule - в том, что она не может использоваться с удалённым графическим интерфейсом пользователя, делая её непрактичной для использования на сервере. Правда в последние версии eMule и aMule разработчики частично добавили возможность удалённого управления функциями поиска\загрузки\настройки. В программе aMule также отделили графический интерфейс пользователя от ядра программы, но эта возможность находится в весьма и весьма начальной стадии разработки и осуществляет самые минимальные функции. В настоящее время MLdonkey (прим.перев. в том числе и на 20 марта 2009 года) - единственная программа, обеспечивающая полноценное дистанционное управление ядром через сеть благодаря веб-интерфейсу и различными графическими интерфейсами пользователя.
+...
+Последная разработка (прим.перев.: речь о недалёком прошлом) заключается в возможности MLdonkey работать с <a href="Overnet.html" title="Overnet">Overnet</a>. Тем не менее компания MetaMachine упорно метила и блокировала (банила) MLDonkey-клиент как жулика(личера, обманщика), чтобы попытаться оживить их собственное детище. Мое объяснение этого параноидального действия заключается в том, что скорость роста их собственной сети <a href="Overnet.html" title="Overnet">Overnet</a> не нравится компании MetaMachine, что не позволяет соблюдать им их бизнес-план и они делают все возможные отчаянные попытки переманить пользователей сети e2k (прим.перев: в 2006 году компания MetaMachine, создавшая пиринговую есть eDonkey прекратила своё существование, как и её детище Overnet).
+</p>
+<hr />
+<p>В настоящее время, MLDonkey все еще имеет <a href="OTfun.html" title="OTfun">плохую репутацию</a> среди пользователей, из-за заблуждений прошлых лет, причины, по которым возникло такое ошибочное мнение, были озвучены выше (прим. перев: речь о прошлом, сейчас к MLdonkey относятся вполне хорошо).  MLDonkey - все еще единственный клиент (прим.перев.: на текущий момент уже не единственный, но по прежнему лучший), поддерживающий операционную систему [MacOSX] и единственный встроенный клиент для [MorphOS]. 
+</p><p>Часть <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=MLDonkey_design_choices&amp;action=edit&amp;redlink=1" class="new" title="MLDonkey design choices (page does not exist)"> из многочисленных возможных вариантов дизайна MLdonkey</a> координально отличаются от <a href="EMule.html" title="EMule">eMule</a>, и часто пользователи ошибочно видят в этом недостаток.
+</p><p><br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><a href="MLdonkey.html" title="MLdonkey">English</a></b>
+<span></span>
+&#160;&#8226;&#160;<span lang="fr"><a href="MLdonkey_FR.html" title="MLdonkey FR">Français</a></span>
+<span></span>
+&#160;&#8226;&#160;<span lang="ru"><strong class="selflink">Русский</strong></span>
+&#160;&#8226;&#160;<span lang="zh"><a href="MLdonkey_ZH.html" title="MLdonkey ZH">中文</a></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 168/1000000
+Post-expand include size: 1392/2097152 bytes
+Template argument size: 398/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2272-0!*!0!!*!*!edit=0 and timestamp 20230807162733 -->
+<div class="printfooter">
+Retrieved from "<a href="MLdonkey_RU.html">http://mldonkey.sourceforge.net/MLdonkey_RU</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=MLdonkey_RU" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="MLdonkey_RU.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:MLdonkey_RU&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="MLdonkey_RU.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=MLdonkey_RU&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexb1e7.html?title=MLdonkey_RU&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/MLdonkey_RU.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/MLdonkey_RU.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index0d4a.html?title=MLdonkey_RU&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index17c3.html?title=MLdonkey_RU&amp;oldid=5117" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 23 October 2010, at 04:40.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 26,020 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "MLdonkey_RU", "wgTitle": "MLdonkey RU", "wgAction": "view", "wgArticleId": 2272, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5117, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.135 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/MLdonkey_RU by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:43:33 GMT -->
+</html>

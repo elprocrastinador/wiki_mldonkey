@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Max_opened_connections by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:57:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Max opened connections - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Max_opened_connections skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Max opened connections</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>Is the number of the file descriptors that the MLdonkey core process is allowed to open for sockets (not local disk files).
+</p><p>Since rejecting incoming connections can have bad side effects (mainly getting <a href="LowID.html" title="LowID">LowID</a> from servers), they're not limited by that setting. See <a href="Max_indirect_connections.html" title="Max indirect connections">max_indirect_connections</a> if you really want to limit those.<br />
+_Not sure I understand that limitation. Maybe the number of simultaneous lowID connections /CamaradeTux_
+The LowID happenss when the opened connections limit has been reached by mldonkey and the server tries to open a new connection to your client. If you are connected to only one/a few server(s) at a time and don't change, you won't get any lowID because there will be no connection to any source before mldonkey connects to at leat one server.
+(Eventually, if you got more friends, that are really connected, than the value in max_opened-connections, it is possible that you get lowID, since mldonkey will contact them at startup.)
+If you deserve a <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=HighID&amp;action=edit&amp;redlink=1" class="new" title="HighID (page does not exist)">HighID</a> but sometimes don't get it, see <a href="Force_high_id.html" title="Force high id" class="mw-redirect">force_high_id</a>
+</p><p>The default was usually 924 (default usually 1024 file descriptors per process allowed depending of the operating system, less 100 file descriptors reserved for other uses, like local files), but should be much lower in recent versions (around 200), since some reports indicate that lower values gives better results for most users.
+</p><p>Very low values (=30) do not seem to alter download rate for some users (and even might give better results). (must be confirmed)
+I confirme that low values, under 80 are good. But very low values do alter download speed&#160;: you got 30 connections max. 1 server connected and on average 1 guy uploads at 2&#160;: max download rate will be 58. Oh, I forgot (did I&#160;?) guys in uploaders list&#160;: 5 upload slots and you are down to 48Ko/s. But you also need to find new sources and maybe that you are using Overnet, so you are conected to more servers......
+In the end, very low values are good when you got a few files with a few sources.
+</p><p>The reason why it can be good is that many personnal hardware routers can't handle efficiently too many opened connections more than a few minutes (5 min), then they will suck and give bad transfert rates, some would even totally bug and would need a hard reboot.
+You can think about lower values, but remember it has to be higher than <a href="Max_indirect_connections.html" title="Max indirect connections">max_indirect_connections</a>.
+One advantage is that it \"could run under windows 98\". To do that, you will need very low values around 30, I think.
+</p><p>From HighTime on the forum: an Alcatel Speed Touch Home modem converted as a Pro won't handle more than 250 connetions at the same time.
+</p><p>Linux boxes used as modems (is it possible with cable or ADSL&#160;?) don't seem to be limited to a certain number of simultaneous connections.
+</p><p>(required: find good values of max_opened_connections,  <a href="Max_clients_per_second.html" title="Max clients per second">max_clients_per_second</a>, depending on available bandwidth and hardware)
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Show_the_number_of_currently_used_file_descriptors"><span class="tocnumber">1</span> <span class="toctext">Show the number of currently used file descriptors</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Linux_.28using_lsof.29"><span class="tocnumber">1.1</span> <span class="toctext">Linux (using lsof)</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Linux_.28manually_thru_.2Fproc.29"><span class="tocnumber">1.2</span> <span class="toctext">Linux (manually thru /proc)</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#BSD:"><span class="tocnumber">1.3</span> <span class="toctext">BSD:</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id="Show_the_number_of_currently_used_file_descriptors"> Show the number of currently used file descriptors</span></h3>
+<h4> <span class="mw-headline" id="Linux_.28using_lsof.29"> Linux (using lsof)</span></h4>
+<p><code>$ lsof -c mlnet -n</code>
+</p>
+<h4> <span class="mw-headline" id="Linux_.28manually_thru_.2Fproc.29">Linux (manually thru /proc)</span></h4>
+<p>1. <code>&gt; ps aux | grep mlnet</code>
+</p><p>you see a line like this
+</p><p><code>root     <b>14157</b> 10.4  6.8 18908 17608 tty4    R    Feb01 355:46 ./mlnet</code>
+</p><p>the process is 14157
+</p><p>(<b>Caution</b> when using threads, you may find several mlnet running. Pick any one, they share the same connections.)
+</p><p>then
+</p><p>2. <code>&gt; cd /proc/14157/fd</code>
+</p><p>If you make a
+</p><p>3. <code>&gt; ls -l | wc -l</code>
+</p><p>it returns you a number of file descriptor process open now (<code>wc -l</code> counts the numbers of lines)
+</p><p>you can also have a more accurate number by counting only the <b>sockets</b> file descriptor with a
+</p><p>3. (bis) <code>&gt; ls -l | grep socket:\~[[~[0-9]]\\+\]\$ | wc -l</code>
+</p>
+<h4> <span class="mw-headline" id="BSD:">BSD:</span></h4>
+<p>1. <code>&gt; fstat | grep -c mlnet</code>
+<br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><strong class="selflink">English</strong></b>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 140/1000000
+Post-expand include size: 717/2097152 bytes
+Template argument size: 706/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1511-0!*!0!!en!*!edit=0 and timestamp 20230807163128 -->
+<div class="printfooter">
+Retrieved from "<a href="Max_opened_connections.html">http://mldonkey.sourceforge.net/Max_opened_connections</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Max_opened_connections" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Max_opened_connections.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Max_opened_connections&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Max_opened_connections.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Max_opened_connections&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexeb96.html?title=Max_opened_connections&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Max_opened_connections.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Max_opened_connections.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexa394.html?title=Max_opened_connections&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index6024.html?title=Max_opened_connections&amp;oldid=4604" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 2 January 2010, at 19:32.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 14,799 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Max_opened_connections", "wgTitle": "Max opened connections", "wgAction": "view", "wgArticleId": 1511, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4604, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.126 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Max_opened_connections by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:57:18 GMT -->
+</html>

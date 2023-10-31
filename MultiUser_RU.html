@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/MultiUser_RU by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:53:23 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>MultiUser RU - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-MultiUser_RU skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">MultiUser RU</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p><font size="5" color="#030355">Многопользовательский режим</font>
+</p><p><br />
+</p><p><br />
+</p><p><br />
+Начиная с версии 2.03, MLdonkey получил возможность работать как многопользовательская (MultiUser) система.
+</p><p>Раннее MLdonkey использовал разные системы хранения пароля для каждого интерфейса. Теперь же используется общая база пар логин\пароль для <b>всех</b> интерфейсов (telnet, http, gui).
+</p><p>Многопользовательская аутентификация может быть пока использована для ограничения доступа пользователя к информации и доступным командам для каждого отдельного пользователя, но это пока не реализовано.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#.28.D0.9F.D0.B5.D1.80.D0.B5.29_.D0.B8_.D0.BE.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BF.D0.B0.D1.80.D0.BE.D0.BB.D0.B5.D0.B9"><span class="tocnumber">1</span> <span class="toctext">(Пере) и определение паролей</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#.D0.90.D1.83.D1.82.D0.B5.D0.BD.D1.82.D0.B8.D1.84.D0.B8.D0.BA.D0.B0.D1.86.D0.B8.D1.8F"><span class="tocnumber">2</span> <span class="toctext">Аутентификация</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#.D0.A1.D0.BF.D0.B8.D1.81.D0.BE.D0.BA_.D0.BA.D0.BE.D0.BC.D0.B0.D0.BD.D0.B4_.D1.81.D0.B2.D1.8F.D0.B7.D0.BD.D1.8B.D1.85_.D1.81_.D0.BC.D0.BD.D0.BE.D0.B3.D0.BE.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D1.82.D0.B5.D0.BB.D1.8C.D1.81.D0.BA.D0.B8.D0.BC.D0.B8_.D1.84.D1.83.D0.BD.D0.BA.D1.86.D0.B8.D1.8F.D0.BC.D0.B8"><span class="tocnumber">3</span> <span class="toctext">Список команд связных с многопользовательскими функциями</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#.D0.92.D1.80.D0.B5.D0.BC.D0.B5.D0.BD.D0.BD.D0.BE.D0.B5_.D1.80.D0.B5.D1.88.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B4.D0.BB.D1.8F_.D0.BE.D0.B3.D1.80.D0.B0.D0.BD.D0.B8.D1.87.D0.B5.D0.BD.D0.B8.D1.8F_.D0.B4.D0.BE.D1.81.D1.82.D1.83.D0.BF.D0.B0_.D0.BA_.D0.B0.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B8.D1.80.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D1.8E.2C_.D0.B5.D1.81.D0.BB.D0.B8_.D1.83_.D0.B2.D0.B0.D1.81_.D0.B5.D1.81.D1.82.D1.8C_.D0.B2.D1.8D.D0.B1-.D1.81.D0.B5.D1.80.D0.B2.D0.B5.D1.80.2C_.D0.BD.D0.B0_.D1.82.D0.BE.D0.B9_.D0.B6.D0.B5_.D0.BC.D0.B0.D1.88.D0.B8.D0.BD.D0.B5.2C_.D1.87.D1.82.D0.BE_.D0.B8_MLdonkey:"><span class="tocnumber">4</span> <span class="toctext">Временное решение для ограничения доступа к администрированию, если у вас есть вэб-сервер, на той же машине, что и MLdonkey:</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#.D0.9A.D0.BE.D0.BC.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.80.D0.B8.D0.B8_.D0.BA_.D0.BD.D0.BE.D0.B2.D0.BE.D0.B9_.D0.BC.D0.BD.D0.BE.D0.B3.D0.BE.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D1.82.D0.B5.D0.BB.D1.8C.D1.81.D0.BA.D0.BE.D0.B9_.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D0.B5"><span class="tocnumber">5</span> <span class="toctext">Комментарии к новой многопользовательской системе</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#.D0.A5.D0.BE.D1.82.D0.B5.D0.BB.D0.BE.D1.81.D1.8C_.D0.B1.D1.8B_.D1.81.D0.B4.D0.B5.D0.BB.D0.B0.D1.82.D1.8C"><span class="tocnumber">6</span> <span class="toctext">Хотелось бы сделать</span></a></li>
+</ul>
+</td></tr></table>
+<h4> <span class="mw-headline" id=".28.D0.9F.D0.B5.D1.80.D0.B5.29_.D0.B8_.D0.BE.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D0.B5.D0.BD.D0.B8.D0.B5_.D0.BF.D0.B0.D1.80.D0.BE.D0.BB.D0.B5.D0.B9"> (Пере) и определение паролей</span></h4>
+<p>Изначально, определена только специальная учётная запись пользователя <b>admin</b>, с <b>пустым паролем</b>. Пользователь admin может добавлять пользователей с паролями или изменять их прежние пароли на новые, используя команду
+<code><a href="Useradd.html" title="Useradd">useradd</a> &lt;<a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=User&amp;action=edit&amp;redlink=1" class="new" title="User (page does not exist)">пользователь</a>&gt; &lt;<a href="Password.html" title="Password">пароль</a>&gt;</code>
+Пример: 
+<code>useradd admin secret</code>
+для создания или смены пароля пользователю admin, в данном случае пароль будет secret
+</p><p>Пользователи не являющиеся администраторами (не имеют прав admin) могут сменять свой пароль командой <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Passwd&amp;action=edit&amp;redlink=1" class="new" title="Passwd (page does not exist)">passwd</a> 
+</p><p>Удалить пользователя можно командой <code><a href="Userdel.html" title="Userdel">userdel</a></code>.
+</p><p>Пример: 
+<code>[userdel]] baduser </code> - удалит пользователя с именем baduser
+</p>
+<h4> <span class="mw-headline" id=".D0.90.D1.83.D1.82.D0.B5.D0.BD.D1.82.D0.B8.D1.84.D0.B8.D0.BA.D0.B0.D1.86.D0.B8.D1.8F"> Аутентификация </span></h4>
+<p>Синтаксис команды <a href="Auth.html" title="Auth">auth</a>, используемой для соединения через телнет интерфейс, такой(квад. скобки не писать в команде)
+</p><p><code>auth [пользователь] [пароль]</code> <br />
+Пример:<br />
+<code>auth myuser [пароль]</code> - где myuser это созданный вами новый пользователь.
+</p><p><a href="http://en.wikipedia.org/wiki/ru:GUI" class="extiw" title="w:ru:GUI">GUI(ГИП)</a> был расширен так, что вы можете указать логин в дополнение к паролю.
+Вэб интерфейс спрашивает комбинацию логин\пароль сразу.
+</p><p>Замечание: пользователь "admin" подразумевается в telnet или графическом(gui) интерфейсах только если <tt>пароль</tt> указан.
+</p>
+<h4> <span class="mw-headline" id=".D0.A1.D0.BF.D0.B8.D1.81.D0.BE.D0.BA_.D0.BA.D0.BE.D0.BC.D0.B0.D0.BD.D0.B4_.D1.81.D0.B2.D1.8F.D0.B7.D0.BD.D1.8B.D1.85_.D1.81_.D0.BC.D0.BD.D0.BE.D0.B3.D0.BE.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D1.82.D0.B5.D0.BB.D1.8C.D1.81.D0.BA.D0.B8.D0.BC.D0.B8_.D1.84.D1.83.D0.BD.D0.BA.D1.86.D0.B8.D1.8F.D0.BC.D0.B8"> Список команд связных с многопользовательскими функциями </span></h4>
+<dl><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Chgrp&amp;action=edit&amp;redlink=1" class="new" title="Chgrp (page does not exist)">chgrp</a>&#160;</dt><dd> сменить группу для загрузки
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Chown&amp;action=edit&amp;redlink=1" class="new" title="Chown (page does not exist)">chown</a>&#160;</dt><dd> сменить хозяина для загрузки
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Dgroup&amp;action=edit&amp;redlink=1" class="new" title="Dgroup (page does not exist)">dgroup</a>&#160;</dt><dd> вывести группу по-умолчанию для залогинившегося пользователя 
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Groupadd&amp;action=edit&amp;redlink=1" class="new" title="Groupadd (page does not exist)">groupadd</a>&#160;</dt><dd> добавить новую группу
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Groupadmin&amp;action=edit&amp;redlink=1" class="new" title="Groupadmin (page does not exist)">groupadmin</a>&#160;</dt><dd> смена админ-статуса группы 
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Groupdel&amp;action=edit&amp;redlink=1" class="new" title="Groupdel (page does not exist)">groupdel</a>&#160;</dt><dd> удалить неиспользуемую группу
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Groups&amp;action=edit&amp;redlink=1" class="new" title="Groups (page does not exist)">groups</a>&#160;</dt><dd> вывести группы для залогинившегося пользователя (того под которым вы вводите эту команду) 
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Passwd&amp;action=edit&amp;redlink=1" class="new" title="Passwd (page does not exist)">passwd</a>&#160;</dt><dd> команда чтобы изменить собственный пароль
+</dd><dt> <a href="Useradd.html" title="Useradd">useradd</a>&#160;</dt><dd> добавить нового пользователя/сменить пользовательский пароль (если такой пользователь уже существует)
+</dd><dt> <a href="Usercommit.html" title="Usercommit">usercommit</a>&#160;</dt><dd> сменить определённую для пользователя commit-directory(папку окончательной загрузки)
+</dd><dt> <a href="Userdel.html" title="Userdel">userdel</a>&#160;</dt><dd> удалить пользователя
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Userdgroup&amp;action=edit&amp;redlink=1" class="new" title="Userdgroup (page does not exist)">userdgroup</a>&#160;</dt><dd> изменить группу пользователя по умолчанию
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Userdls&amp;action=edit&amp;redlink=1" class="new" title="Userdls (page does not exist)">userdls</a>&#160;</dt><dd> изменить количество одновременных загрузок 
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Usergroupadd&amp;action=edit&amp;redlink=1" class="new" title="Usergroupadd (page does not exist)">usergroupadd</a>&#160;</dt><dd> добавить группу для пользователя (позволяет добавлять пользователя сразу в несколько групп)
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Usergroupdel&amp;action=edit&amp;redlink=1" class="new" title="Usergroupdel (page does not exist)">usergroupdel</a>&#160;</dt><dd> удалить группу у пользователя (позволяет удалить одну из групп, в которую входит пользователь)
+</dd><dt> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Usermail&amp;action=edit&amp;redlink=1" class="new" title="Usermail (page does not exist)">usermail</a>&#160;</dt><dd> сменить адрес электронной почты пользователя
+</dd><dt> <a href="Users.html" title="Users">users</a>&#160;</dt><dd> вывести список пользователей, а также групп
+</dd><dt> <a href="Whoami.html" title="Whoami">whoami</a>&#160;</dt><dd> вывести имя залогинившегося пользователя (того под которым вы вводите эту команду)
+</dd></dl>
+<h4> <span class="mw-headline" id=".D0.92.D1.80.D0.B5.D0.BC.D0.B5.D0.BD.D0.BD.D0.BE.D0.B5_.D1.80.D0.B5.D1.88.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B4.D0.BB.D1.8F_.D0.BE.D0.B3.D1.80.D0.B0.D0.BD.D0.B8.D1.87.D0.B5.D0.BD.D0.B8.D1.8F_.D0.B4.D0.BE.D1.81.D1.82.D1.83.D0.BF.D0.B0_.D0.BA_.D0.B0.D0.B4.D0.BC.D0.B8.D0.BD.D0.B8.D1.81.D1.82.D1.80.D0.B8.D1.80.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D1.8E.2C_.D0.B5.D1.81.D0.BB.D0.B8_.D1.83_.D0.B2.D0.B0.D1.81_.D0.B5.D1.81.D1.82.D1.8C_.D0.B2.D1.8D.D0.B1-.D1.81.D0.B5.D1.80.D0.B2.D0.B5.D1.80.2C_.D0.BD.D0.B0_.D1.82.D0.BE.D0.B9_.D0.B6.D0.B5_.D0.BC.D0.B0.D1.88.D0.B8.D0.BD.D0.B5.2C_.D1.87.D1.82.D0.BE_.D0.B8_MLdonkey:"> Временное решение для ограничения доступа к администрированию, если у вас есть вэб-сервер, на той же машине, что и MLdonkey:</span></h4>
+<p>Если вы хотите видеть ваши загрузки, без доступа к администрировани, вы можете поместить в ваш вэб-сервер следующую страницу (для примера назоваём её 1.php):
+</p>
+<pre>
+   &lt;?php
+      $adr&lt;code&gt;'http://127.0.0.1:4080/submit?q&lt;/code&gt;vd';
+      $screen=file($adr);
+      $k=0;
+      $m=sizeof($screen);
+      for ($i&lt;code&gt;$k; $i&lt;&lt;/code&gt;$m; $i++) {
+   	echo $screen[[$i]];
+      }
+  &#160;?&gt;
+</pre>
+<p>Теперь вы можете смотреть состояние ваших загрузок через эту ссылку <a href="http://your.server.name/1.php" class="external free" rel="nofollow">http://your.server.name/1.php</a> если вы поместили вышеописанное содержимое в файл сназванием 1.php в корень каталога вашего вэб-сервера.
+</p><p>Замечание: Вам необходим сервер, с поддержкой PHP. Например <a href="http://www.apache.org/" class="external free" rel="nofollow">http://www.apache.org/</a>.
+</p><p>Замечание2: Вы будете видеть несколько адимистраторских кнопок, но они не будут работать&#160;! Я думаю для временного решения, это нормально.
+</p><p>Замечание3: Я полагаю что поздние PHP дополнения портят эту страницу (но это уже слишком сложно поправить полагаю).
+</p>
+<h2> <span class="mw-headline" id=".D0.9A.D0.BE.D0.BC.D0.BC.D0.B5.D0.BD.D1.82.D0.B0.D1.80.D0.B8.D0.B8_.D0.BA_.D0.BD.D0.BE.D0.B2.D0.BE.D0.B9_.D0.BC.D0.BD.D0.BE.D0.B3.D0.BE.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D1.82.D0.B5.D0.BB.D1.8C.D1.81.D0.BA.D0.BE.D0.B9_.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D0.B5"> Комментарии к новой многопользовательской системе </span></h2>
+<p>Большинство вещей упомянутых в старой версии этой статьи выполняются в MLdonkey. <br />
+</p><p>Смотрите файл<a href="http://cvs.savannah.nongnu.org/viewcvs/mldonkey/docs/multiuser.txt?root=mldonkey&amp;view=markup" class="external text" rel="nofollow">multiuser.txt из репозитория (на англ.)</a> для подробностей.
+</p>
+<h2> <span class="mw-headline" id=".D0.A5.D0.BE.D1.82.D0.B5.D0.BB.D0.BE.D1.81.D1.8C_.D0.B1.D1.8B_.D1.81.D0.B4.D0.B5.D0.BB.D0.B0.D1.82.D1.8C"> Хотелось бы сделать </span></h2>
+<ul><li> Сделать возможным интеграцию в существующие пользовательско-групповые системы, такие как phpbb, wikis, CMS(системы управления содержимым), с простым скриптом для конвертации пользователей и групп в их формат
+</li><li> Графический (GUI) протокол:
+</li></ul>
+<ul><li><ul><li><ul><li> Так же как ставить на паузу или в очередь файлы, пользователь может выбрать файлы для просмотра только из конкретной группы в GUI(ГИП) (если GUI(ГИП) поддерживает это), но подобное тому как сделаны постановка на паузу или в очередь, определение что пользователю доступно путём фильтрации показа должно быть сделано не средствами ядра. 
+</li></ul>
+</li></ul>
+</li></ul>
+<ul><li><ul><li> Отсылать источники только для тех файлов, к которым пользвоатель имеет доступ
+<ul><li>Если пользователь "Vasya" имеет только 1 свою загрузку и подключается через GUI протокол, а у MLDonkey в этот момент загружается 1000 файлов(разных пользователей), ядро не должны посылать источники для других файлов "Vasya"-е через GUI протокол (если это не было настроено отдельно).
+</li></ul>
+</li></ul>
+</li></ul>
+<p><br />
+</p>
+<ul><li> Расширения
+<ul><li> Потенциально, в будущем группы могут иметь флаги доступа для расширения функциональности
+<ul><li> Пример: группа "groupA" имеет флаг "уведомление", группа "groupB" же, не имеет такого флага
+<ul><li> When FileX completes and is in groupA, notification email is sent to all members, FileY completes and is in groupB, but no noticiation mail is sent to the group members (only owner).  This allows flexibility at the group level.  
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+<ul><li><ul><li><ul><li><ul><li> Когда файл "FileX" загрузился полностью и он принадлежит группе "GroupA", уведомление по электронной почте направляется всем членам этой группы, файл "FileY" завершается и принадлежит группе "groupB", но уведомление по электронной почте не отправляется для всех членов группы (а только лишь владельцу файла). Это обеспечивает гибкость на уровне группы.
+<ul><li> Нечто подобное можно сделать в виде флага отображающего символические ссылки на свежескачанные файлы, для всех членов группы, в общей папке загрузки, или допустим разрешить всем пользователям группы отменять загрузку файлов принадлежащих этой группе
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+<p><br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><a href="MultiUser.html" title="MultiUser">English</a></b>
+<span></span>
+<span></span>
+<span></span>
+&#160;&#8226;&#160;<span lang="ru"><strong class="selflink">Русский</strong></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 173/1000000
+Post-expand include size: 925/2097152 bytes
+Template argument size: 380/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2398-0!*!0!!en!*!edit=0 and timestamp 20230807162955 -->
+<div class="printfooter">
+Retrieved from "<a href="MultiUser_RU.html">http://mldonkey.sourceforge.net/MultiUser_RU</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=MultiUser_RU" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="MultiUser_RU.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:MultiUser_RU&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="MultiUser_RU.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=MultiUser_RU&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexd0ae.html?title=MultiUser_RU&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/MultiUser_RU.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/MultiUser_RU.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index6061.html?title=MultiUser_RU&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index75dd.html?title=MultiUser_RU&amp;oldid=5087" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 23 October 2010, at 01:44.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 8,779 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "MultiUser_RU", "wgTitle": "MultiUser RU", "wgAction": "view", "wgArticleId": 2398, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5087, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.135 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/MultiUser_RU by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:53:29 GMT -->
+</html>

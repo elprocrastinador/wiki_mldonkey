@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Merge_RU by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:37:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Merge RU - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Merge_RU skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Merge RU</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p><font size="5" color="#030355">Слияние (одновременная загрузка из нескольких сетей)</font>
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#.D0.A1.D0.B8.D0.BD.D1.82.D0.B0.D0.BA.D1.81.D0.B8.D1.81"><span class="tocnumber">1</span> <span class="toctext">Синтаксис</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#.D0.98.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5"><span class="tocnumber">2</span> <span class="toctext">Использование</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#.D0.A3.D1.87.D0.B5.D0.B1.D0.BD.D0.B8.D0.BA_.28.D0.B8.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BA.D1.86.D0.B8.D1.8F.29"><span class="tocnumber">3</span> <span class="toctext">Учебник (инструкция)</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#.D0.A1.D0.BC._.D1.82.D0.B0.D0.BA.D0.B6.D0.B5"><span class="tocnumber">4</span> <span class="toctext">См. также</span></a></li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id=".D0.A1.D0.B8.D0.BD.D1.82.D0.B0.D0.BA.D1.81.D0.B8.D1.81"> Синтаксис </span></h3>
+<p><code>~&gt; merge &lt;download num1&gt; &lt;download num2&gt;</code> <br />
+</p>
+<ul><li>&lt;&gt; - скобки при вводе команды не пишутся, даны лишь для примера.
+</li></ul>
+<h3> <span class="mw-headline" id=".D0.98.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5"> Использование </span></h3>
+<p>Эта команда позволяет загружать один и тот же файл из двух различных сетей одновременно. 
+</p><p>Из журнала изменений: 
+</p>
+<pre> 
+2004/08/16: Fabrice писал [...] 
+  - CommmonSwarming2: 
+      * Новая команда ''merge файл№1 файл№2'' обеспечивает слияния данных из файла №2  в файл №1&quot;. 
+          Замечание: Все данные загруженные ранее в файл №2 по текущий момент, будут потеряны. 
+
+</pre> 
+<p>Для начала нужно проверить существует ли файл в обоих сетях. Большинство сетей используют разные хэш аглоритмы, поэтому их проверка не может быть полностью автоматизирована (возможно ситуация измениться в будущем, при помощи коллег или служб подбных bitzi.com). 
+</p><p>Swarming на данный момент (9 декабря 2004) эксперементальная возможность, для того чтобы включить ее, необходимо перекомпилировать ядро mldonkey с опцией --enable-swarming2.  В случае некоректной работы, вы всё же сможете сохранить куски файла.
+</p>
+<h3> <span class="mw-headline" id=".D0.A3.D1.87.D0.B5.D0.B1.D0.BD.D0.B8.D0.BA_.28.D0.B8.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BA.D1.86.D0.B8.D1.8F.29"> Учебник (инструкция) </span></h3>
+<p>от пользователя b8_bavard&#160;:
+</p><p>Последние ядра программы (выше версии 2.5.28) содержат эксперементальную возможность: своминг(прим. перевод: одновременная работа между несколькими сетями) между сетями.
+Вы должны иметь возможность загрузки файла из нескольких сетей, таких как: Edonkey, Bittorrent, Gnutella1/2, fileTP and Fasttrack.
+</p><p>Для использования этой возможности, запустите различные загрузки этого файла из разных сетей (по крайне мере одна из загрузок <b>ДОЛЖНА БЫТЬ</b> из сети Edonkey или Bittorrent, так как только эти сети могут проверять целостность файла), и сразу же нажмите на паузу, прежде чем что-либо успеет скачаться из этих закачек.
+</p><p>После, введите в консоли команду:
+</p>
+<pre> merge &lt;file_num1&gt; &lt;file_num2&gt;
+</pre>
+<p>Где file_num1 это номер закачки, его можно посмотреть наведя мышку на скачиваемый файл или же щёлкнув по нему среди прочих параметров можно увидеть значение # (напротив символа решётки).
+Пример: 
+</p>
+<pre>  merge 7 12
+</pre>
+<p>выполнение такой команды скажет mldonkey, что файл со вторым номеров (в примере это 12) должен быть прикреплён к файлу с первым номером (в примере это 7), при этом файл с первым номером (в примере это 7) <b>ОБЯЗАТЕЛЬНО</b> должен быть из сети Edonkey или Bittorent.
+</p><p>Любые данные уже загруженные в загрузку номер 2 будут потеряны (на данный момент это так, но надеемся будет исправлено в будущем). 
+В ответ, MLdonkey должна ответить, что два файла были объедены.
+Вы можете прикреплять сколько угодно загрузок в файлу с первым номером (в примере это 7), но вы не можете прикреплять файлы, которые уже были прикреплены где-нибудь ещё.
+</p><p>Как только файлы(загрузки) будут прикреплены, это означает автоматическую "отмену" на любой из файлов загружаемых вами ранее. Окончательный файл будет именно файл(загрузка) с первым номером в нашей команде (в примере это 7) и отменить все другие загружаемые файлы (в нашем примере это 12).
+</p><p>Скорость и&#160;% загрузки есть сумма всех загрузок для всех загрузок добавленных к загрузке с первым номером, тогда как только текущая загрузка файла с перывым номером является показателем загрузки файла для всех добавленных загрузок
+(Т.е. только файл с первым номером, приоритетный, именно он дает вам общее количество загруженных байтов, в то время как другие загрузки (вторичные) лишь загружают байты и добавляют их к первичной закачке.
+</p><p>Вы не сможете разъединить файлы, но вы можете поставить в паузу те файлы, которые хотелось бы остановить, и ждать загрузки до конца, чтобы они сами собой убрались.
+</p><p>Эта возможность <b>АБСОЛЮТНО</b> эксперементальная, никаких гарантий&#160;!
+Перед объединение файлов из двух сетей вы <b>ДОЛЖНЫ БЫТЬ УВЕРЯНЫ</b> что это точно, один и тот же файл, иначе загрузка никогда не будет завершена.
+</p>
+<h3> <span class="mw-headline" id=".D0.A1.D0.BC._.D1.82.D0.B0.D0.BA.D0.B6.D0.B5"> См. также </span></h3>
+<p><a href="Mirror.html" title="Mirror">mirror (зеркало)</a>, только для загрузок через протокол <a href="FileTP.html" title="FileTP">FileTP</a>
+</p><p><br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><a href="Merge.html" title="Merge">English</a></b>
+<span></span>
+<span></span>
+<span></span>
+&#160;&#8226;&#160;<span lang="ru"><strong class="selflink">Русский</strong></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 168/1000000
+Post-expand include size: 897/2097152 bytes
+Template argument size: 292/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2351-0!*!0!!en!*!edit=0 and timestamp 20230806204556 -->
+<div class="printfooter">
+Retrieved from "<a href="Merge_RU.html">http://mldonkey.sourceforge.net/Merge_RU</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Merge_RU" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Merge_RU.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Merge_RU&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Merge_RU.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Merge_RU&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexa85b.html?title=Merge_RU&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Merge_RU.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Merge_RU.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index47a9.html?title=Merge_RU&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index3ebd.html?title=Merge_RU&amp;oldid=5131" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 28 October 2010, at 19:38.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 6,002 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Merge_RU", "wgTitle": "Merge RU", "wgAction": "view", "wgArticleId": 2351, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5131, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.073 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Merge_RU by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:38:01 GMT -->
+</html>

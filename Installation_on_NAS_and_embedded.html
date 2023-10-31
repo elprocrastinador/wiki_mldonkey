@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Installation_on_NAS_and_embedded by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:43:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Installation on NAS and embedded - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Installation_on_NAS_and_embedded skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Installation on NAS and embedded</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Installation"><span class="tocnumber">1</span> <span class="toctext">Installation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Using_pre-compiled_binaries_.28release_tarball.29"><span class="tocnumber">1.1</span> <span class="toctext">Using pre-compiled binaries (release tarball)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="#ARM9"><span class="tocnumber">1.1.1</span> <span class="toctext">ARM9</span></a>
+<ul>
+<li class="toclevel-4 tocsection-4"><a href="#Pre-compiled_mldonkey_cores_for_ARM_architectures_are_avaiable_for_download:"><span class="tocnumber">1.1.1.1</span> <span class="toctext">Pre-compiled mldonkey cores for ARM architectures are avaiable for download:</span></a></li>
+<li class="toclevel-4 tocsection-5"><a href="#FIRST_SOLUTION.28easy.29"><span class="tocnumber">1.1.1.2</span> <span class="toctext">FIRST SOLUTION(easy)</span></a></li>
+<li class="toclevel-4 tocsection-6"><a href="#SECOND_SOLUTION_.28CHROOT_MLNET.29"><span class="tocnumber">1.1.1.3</span> <span class="toctext">SECOND SOLUTION (CHROOT MLNET)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-7"><a href="#PowerPC.28PPC.29_and_MIPSEL"><span class="tocnumber">1.1.2</span> <span class="toctext">PowerPC(PPC) and MIPSEL</span></a>
+<ul>
+<li class="toclevel-4 tocsection-8"><a href="#PowerPC_and_MIPSEL_Precompiled_cores_are_aviable:"><span class="tocnumber">1.1.2.1</span> <span class="toctext">PowerPC and MIPSEL Precompiled cores are aviable:</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-9"><a href="#QNAP_System_-_QPKG"><span class="tocnumber">1.2</span> <span class="toctext">QNAP System - QPKG</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#FreeLink"><span class="tocnumber">1.3</span> <span class="toctext">FreeLink</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#PPC_and_MIPSel"><span class="tocnumber">1.3.1</span> <span class="toctext">PPC and MIPSel</span></a>
+<ul>
+<li class="toclevel-4 tocsection-12"><a href="#apt-get"><span class="tocnumber">1.3.1.1</span> <span class="toctext">apt-get</span></a></li>
+<li class="toclevel-4 tocsection-13"><a href="#compile_latest_SVN"><span class="tocnumber">1.3.1.2</span> <span class="toctext">compile latest SVN</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#OpenLink"><span class="tocnumber">1.4</span> <span class="toctext">OpenLink</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="#PowerPC"><span class="tocnumber">1.4.1</span> <span class="toctext">PowerPC</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#MIPSel"><span class="tocnumber">1.4.2</span> <span class="toctext">MIPSel</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-17"><a href="#Compile_from_Source"><span class="tocnumber">1.5</span> <span class="toctext">Compile from Source</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Additional_Info"><span class="tocnumber">2</span> <span class="toctext">Additional Info</span></a>
+<ul>
+<li class="toclevel-2 tocsection-19"><a href="#FreeLink_2"><span class="tocnumber">2.1</span> <span class="toctext">FreeLink</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#OpenLink_2"><span class="tocnumber">2.2</span> <span class="toctext">OpenLink</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h1> <span class="mw-headline" id="Installation">Installation</span></h1>
+<p>This guide has been copied from buffalo Nas Central Forum, it is intended for linkstation's boxes but these tips are mainly related to the installed OS: 
+Openlink, Debian, Gentoo or derived. A bunch of suggestions are a bit outdated.Lots of this suggestions could be applied to other type of NASes.
+</p><p>Few NAS distributions have added automated package management similar to Debian's apt-get, they are named IPKG, or QPKG. It is a good idea to search into hardware's specific forums in order to verify this chance.
+</p><p><br />
+</p>
+<h2> <span class="mw-headline" id="Using_pre-compiled_binaries_.28release_tarball.29"> Using pre-compiled binaries (release tarball)</span></h2>
+<h3> <span class="mw-headline" id="ARM9">ARM9</span></h3>
+<table>
+
+<tr valign="top">
+<td>
+<p>MLdonkey is reported to run well and stable on ARM9 boxes.
+Only emule sui feature has to be disabled cause mldonkey's implementation needs a 
+real FPU which is not present in SoftARM Linkstations.
+</p>
+<h4> <span class="mw-headline" id="Pre-compiled_mldonkey_cores_for_ARM_architectures_are_avaiable_for_download:">Pre-compiled mldonkey cores for ARM architectures are avaiable for download:</span></h4>
+<p><a href="http://mldonkey.sourceforge.net/forums/viewtopic.php?t=4825" class="external free" rel="nofollow">http://mldonkey.sourceforge.net/forums/viewtopic.php?t=4825</a>
+Cores are compiled on Debian Linux, unpack and use the core.. it has been reported to work well out-of-the-box on most NAS boxes..
+Sometimes problem arises.
+</p><p>There are possible issues about DNS resolutions or library version problems 
+(Linkstations have modified version of libc which could cause incompatibility).
+In order to solve these issues the cores are bundled with the exact shared libraries
+(zipped in archive) and libc version used to compile the cores.
+There are upcoming ARM's EABI cores which should solve these issues, so let's be updated and look at Alternative Hardware's forums for news.
+There are yet dirty solutions...
+</p>
+<h4> <span class="mw-headline" id="FIRST_SOLUTION.28easy.29">FIRST SOLUTION(easy)</span></h4>
+<p>The Library problem (if arises) has an easy solution, let's put the bundled libraries in a proper directory ("/new_libs_path" in this example) and call mlnet thru next script.
+For example Georg wrote following three liner scripts:
+</p><p><br />
+</p>
+<pre>LD_LIBRARY_PATH=/new_libs_path:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+/path_to_mldonkey/mlnet.static
+</pre>
+<p><br />
+This starts the static linked mlnet after setting the LD_LIBRARY_PATH environment variable as needed. And the variable is only set for the call of mlnet (the new added libraries are picked first to look for standard ones), thus the remainer of the installation is not affected.It is higly suggested to use a user to only run mldonkey.
+DNS issue seems to be solved and mldonkey works as it should.
+You can also try running mlnet by commandline:
+</p><p><br />
+</p>
+<pre>$ LD_LIBRARY_PATH=/new_libs_path:$LD_LIBRARY_PATH ./mldonkey_path/mlnet (arguments?)
+</pre>
+<p><br />
+</p>
+<h4> <span class="mw-headline" id="SECOND_SOLUTION_.28CHROOT_MLNET.29">SECOND SOLUTION (CHROOT MLNET)</span></h4>
+<p>A more complex solution is to "chroot" mldonkey.This is also a feature suggested to raise system security but this is quite difficult to set.
+Togeis has wrote a splendid walkthru:
+</p><p>This is a little howto running mldonkey on a opend Stock firmware. I am using 1.11-1.a.
+All steps are done as root user.
+</p><p>1) Make a new mldonkey User:
+If /mnt/disk1/home doesn't exist, make it:
+</p>
+<pre>mkdir /mnt/disk1/home
+</pre>
+<p>Adding user:
+</p>
+<pre>useradd -d /mnt/disk1/home/mldonkey -m mldonkey
+</pre>
+<p>I used a homedir an disk1 to prevent filling up /
+</p><p>2) Getting UID of created user:
+</p>
+<pre>grep mldonkey /etc/passwd|cut -d ":" -f3 1000
+</pre>
+<p>Now you have the UID you can use for starting mldonkey
+</p><p>3) Setting up chroot:
+- Make /dev/null and /dev/random
+</p>
+<pre>mkdir /mnt/disk1/home/mldonkey/dev
+mknod /mnt/disk1/home/mldonkey/dev/null c 1 3
+mknod /mnt/disk1/home/mldonkey/dev/urandom c 1 9
+</pre>
+<p>- Copy Libs:
+Use the libraries tarfile from fabtar
+</p>
+<pre>cp libraries.tar.bz2 /mnt/disk1/home/mldonkey
+cd /mnt/disk1/home/mldonkey
+tar -jxvf libraries.tar.bz2
+</pre>
+<p>- Make ./etc
+</p>
+<pre>mkdir /mnt/disk1/home/mldonkey/etc
+cp /etc/group /etc/hosts/ /etc/nsswitch.conf /etc/passwd /etc/resolv.conf /mnt/disk1/home/mldonkey/etc
+</pre>
+<p><br />
+4) Copy MLDonkey:
+Started mldonkey before:
+- You have to copy the existing directory form the old mldonkey directory to the new home directory /mnt/disk1/home/mldonkey
+- Edit your downloads.ini for the new root:
+</p>
+<pre>incoming_directory = incoming
+temp_directory = temp
+shared_directories = [
+shared1;   
+shared2;
+shared3]
+run_as_user = ""
+</pre>
+<p>Starting with a fresh install:
+I use the static build with gd support from fabtars tarfile.
+</p>
+<pre>cp mldonkey-2.9.0.CVS.static.arm-Linux_glibc-2.3.6.tar.bz2 /mnt/disk1/home/mldonkey
+cd /mnt/disk1/home/mldonkey; tar -xjvf mldonkey-2.9.0.CVS.static.arm-Linux_glibc-2.3.6.tar.bz2
+mv ./mldonkey-distrib-2.9.0.CVS/* .
+rm ./mldonkey-distrib-2.9.0.CVS
+</pre>
+<p><br />
+5) Setting up ownership
+</p>
+<pre>chown -R mldonkey:mldonkey /mnt/disk1/home/mldonkey
+chown -R root:root /mnt/disk1/home/mldonkey/lib /mnt/disk1/home/mldonkey/etc /mnt/disk1/home/mldonkey/dev
+</pre>
+<p>mldonkey is the user created at step 1. The user has its own group named the same.
+</p><p>6) Staring mldonkey with chroot
+Be sure you are root:
+</p>
+<pre>id
+getting --&gt; uid=0(root) gid=0(root)
+</pre>
+<p>Setting enviroment:
+</p>
+<pre>export MLDONKEY_CHROOT=/home/mldonkey
+</pre>
+<p>Starting mldonkey:
+</p>
+<pre>cd /mnt/disk1/home/mldonkey
+./mlnet -run_as_useruid 1000
+</pre>
+<p><br />
+1000 is the UID of the user mldonkey you get it in step 2
+</p><p>7) Starting mldonkey with nohup (detach mldonkey from the console)
+</p><p>- Install nohup if it doesn't exist:
+When you use a opend Stock firmware with wget installed, you don't have nohup, but you can install it by yourself.
+Get the file coreutils-6.7-r1.tbz2
+</p>
+<pre>cd /tmp
+wget <a href="http://downloads.nas-central.org/LSPro_ARM9/Distributions/Genlink/Binaries/armv5tejl-softfloat-linux-gnueabi/coreutils-6.7-r1.tbz2" class="external free" rel="nofollow">http://downloads.nas-central.org/LSPro_ARM9/Distributions/Genlink/Binaries/armv5tejl-softfloat-linux-gnueabi/coreutils-6.7-r1.tbz2</a>
+tar -C / -xjvf coreutils-6.7-r1.tbz2 ./usr/bin/nohup
+</pre>
+<p>- Starting mldonkey as root
+</p>
+<pre>cd ~mldonkdey
+nohup ./mlnet -run_as_useruid 1000 &amp;
+</pre>
+<p>Now you are able to close the terminal and mldonkey keeps on running.
+Output created by mldonkey is written to ./nohup
+</p><p>NOTES:
+Mindbender has pointed that overmentioned solutions are inelegant.
+You may consider to merge the tricks with a smarter way to launch mlnet, a more elegant way is for example this startup script:
+<a href="http://www.unet.univie.ac.at/~a0025690/scripts/mldonkey" class="external free" rel="nofollow">http://www.unet.univie.ac.at/~a0025690/scripts/mldonkey</a>
+</p><p>Someone told me that they had problems because su was missing.
+in case that is true for the arm9-boxes as well then we can just remove that command and just use the built in mldonkey thing you used.
+if su is missing replace this line
+</p>
+<pre>su - $USER -c"/usr/local/bin/mlnet&amp;"
+</pre>
+<p>with either
+</p>
+<pre>/usr/local/bin/mlnet -run_as_useruid 1000 &amp;
+</pre>
+<p>if you start it automatically at bootup from /etc/init.d/rcS by adding
+</p>
+<pre>echo "exec_sh mldonkey" &gt;&gt; /etc/init.d/rcS
+</pre>
+<p>then you do not need to install nohup btw.
+In case you are a script-guru, I suggest to mix the mindbender script/suggestions with the tricks about Library problems.
+</p>
+<h3> <span class="mw-headline" id="PowerPC.28PPC.29_and_MIPSEL">PowerPC(PPC) and MIPSEL</span></h3>
+<p>Over mentioned methods could be also applied on these archiectures please test and report about on software forums.
+</p>
+<h4> <span class="mw-headline" id="PowerPC_and_MIPSEL_Precompiled_cores_are_aviable:">PowerPC and MIPSEL Precompiled cores are aviable:</span></h4>
+<p>PPC: <a href="http://mldonkey.sourceforge.net/forums/viewtopic.php?t=4834" class="external free" rel="nofollow">http://mldonkey.sourceforge.net/forums/viewtopic.php?t=4834</a>
+Mipsel: <a href="http://mldonkey.sourceforge.net/forums/viewtopic.php?t=4890" class="external free" rel="nofollow">http://mldonkey.sourceforge.net/forums/viewtopic.php?t=4890</a>
+</p><p>PPC cores are reported to work well on PPC based NAS ( Synology DS207, tested by ZeusII ), no positive feedback about Linkstation PPC users at the moment.
+</p>
+<h2> <span class="mw-headline" id="QNAP_System_-_QPKG"> QNAP System - QPKG </span></h2>
+<p>QNAP Systems has added an integrated package management system into their NAS boxes.
+This is quite a simple way to add emule/edonkey p2p support to their products.
+</p><p>"Happy" QNAP users should first  try to install the official mldonkey bounded into their package repository, it is very easy and works straightforward.
+Only power users - expert modder - linux experts who are looking for particular features should need to try binaries bundled in tarballs.
+</p><p>more details:
+</p><p><a href="http://www.qnap.com/pro_features_QPKG.asp" class="external text" rel="nofollow">QNAP's site about Mldonkey</a>
+</p><p><a href="http://www.qnap.com/faq_detail.asp?q_id=461" class="external text" rel="nofollow">QNAP's site about QPKG</a>
+</p>
+<h2> <span class="mw-headline" id="FreeLink"> FreeLink </span></h2>
+<p>You may need to use the <a href="http://en.wikipedia.org/wiki/Unstable_(Debian)" class="extiw" title="w:Unstable (Debian)">Unstable (Debian)</a> branch: 
+</p>
+<ol><li><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Get_access_to_packages_from_the_Debian_unstable_branch&amp;action=edit&amp;redlink=1" class="new" title="Get access to packages from the Debian unstable branch (page does not exist)">Get access to packages from the Debian unstable branch</a>
+</li><li>Then install mldonkey by 
+</li></ol>
+<pre>apt-get install mldonkey-server
+</pre>
+<h3> <span class="mw-headline" id="PPC_and_MIPSel">PPC and MIPSel</span></h3>
+<h4> <span class="mw-headline" id="apt-get">apt-get</span></h4>
+<pre>apt-get update                   # update APT-Repository
+apt-get install mldonkey-server  # install MLDonkey
+</pre>
+<h4> <span class="mw-headline" id="compile_latest_SVN">compile latest SVN</span></h4>
+<p>If you would like to have the latest SVN-Version (better speed etc.) then you should do the following steps. But be careful: Currently the latest SVN-Version is very unstable on the ARM-System. It'll freeze after a few minutes. There's a patch (svn.debian.org <a href="http://svn.debian.org/wsvn/pkg-ocaml-maint/trunk/packages/mldonkey/trunk/debian/patches/arm_dynamic_loop_delay.dpatch?op=file&amp;rev=0&amp;sc=0" class="external autonumber" rel="nofollow">[1]</a>) which should fix the problem but i didn't have success, it's still unstable.
+</p>
+<pre>cd /mnt/disk1/share/source/
+apt-get install ssh cvs patch autoconf gcc g++ libc-dev make zlib1g-dev libbz2-dev libgd2-noxpm-dev
+cvs -d:pserver:anonymous@cvs.sv.gnu.org:/sources/mldonkey co -P mldonkey
+cd mldonkey
+./configure
+make 
+cp ./mlnet /root/.mldonkey/
+</pre>
+<p><br />
+</p>
+<h2> <span class="mw-headline" id="OpenLink"> OpenLink </span></h2>
+<h3> <span class="mw-headline" id="PowerPC">PowerPC</span></h3>
+<p>(outdated?)
+This project aims to offer the latest MLDonkey P2P client and additional utilities precompiled and packaged for the PPC LinkStation. This release is compiled without GUI support. See <a href="http://www.nongnu.org/mldonkey/" class="external free" rel="nofollow">http://www.nongnu.org/mldonkey/</a> for more information. You may download the latest version from the downloads area.
+</p><p>ppc-mldonkey-2.5.30.16–1
+</p>
+<ul><li><b> mldonkey-2.5.30.16</b>
+</li><li><b> ed2k_hash</b>
+</li><li><b> make_torrent</b>
+</li></ul>
+<p>A newer version of mldonkey, MLNet 2.8.1, compiled for a KuroBox Pro (PPC) is available at:
+<a href="http://cisler.net/kuro/mlnet/mlnet-2.8.1.tar.gz" class="external free" rel="nofollow">http://cisler.net/kuro/mlnet/mlnet-2.8.1.tar.gz</a>
+</p><p><br />
+</p>
+<h3> <span class="mw-headline" id="MIPSel">MIPSel</span></h3>
+<p>(outdated?)
+Older binaries + packages are available <a href="http://www.unet.univie.ac.at/~a0025690/LS2_mips.html" class="external text" rel="nofollow">here</a>.  
+But there was <a href="http://forum.nas-central.org/viewtopic.php?f=3&amp;t=1225" class="external text" rel="nofollow">feedback</a> that they did no work properly because of the missing libmagic.  So you would have to install the development tools which should fix this dependancy. 
+</p>
+<ol><li><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Precompiled_C_development_environment,_running_on_the_LS&amp;action=edit&amp;redlink=1" class="new" title="Precompiled C development environment, running on the LS (page does not exist)">Precompiled C development environment, running on the LS</a>
+</li><li>Then
+</li></ol>
+<pre>mkdir /mnt/hda/temp 
+cd /mnt/hda/temp 
+wget <a href="http://www.unet.univie.ac.at/~a0025690/mips-binaries/mldonkey_mips-2.7.6.tar.gz" class="external free" rel="nofollow">http://www.unet.univie.ac.at/~a0025690/mips-binaries/mldonkey_mips-2.7.6.tar.gz</a> 
+tar -xzvf mldonkey_mips-2.7.6.tar.gz 
+./install.sh
+</pre>
+<h2> <span class="mw-headline" id="Compile_from_Source"> Compile from Source </span></h2>
+<p>You can find the latest sources of mldonkey at the <a href="http://sourceforge.net/project/showfiles.php?group_id=156414" class="external text" rel="nofollow">mldonkey project</a> at sourceforge.
+First install the development tools.
+</p>
+<ol><li><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Precompiled_C_development_environment,_running_on_the_LS&amp;action=edit&amp;redlink=1" class="new" title="Precompiled C development environment, running on the LS (page does not exist)">Precompiled C development environment, running on the LS</a>
+</li><li>Then mldonkey can be compiled by:
+</li></ol>
+<pre>wget <a href="http://easynews.dl.sourceforge.net/sourceforge/mldonkey/mldonkey-2.8.4.tar.bz2" class="external free" rel="nofollow">http://easynews.dl.sourceforge.net/sourceforge/mldonkey/mldonkey-2.8.4.tar.bz2</a>
+tar -xjf mldonkey-*.tar.bz2
+cd mldonkey-* 
+./configure --enable-batch --disable-gui
+make
+make install
+</pre>
+<p><b>mldonkey version 2.8.4 compiled onto the following way (By HomeBunny - April 2007):</b>
+</p>
+<pre>cd /mnt/misc
+wget <a href="http://dfn.dl.sourceforge.net/sourceforge/mldonkey/mldonkey-2.8.4.tar.bz2" class="external free" rel="nofollow">http://dfn.dl.sourceforge.net/sourceforge/mldonkey/mldonkey-2.8.4.tar.bz2</a>
+bunzip2 mldonkey-2.8.4.tar.bz2
+tar xvf mldonkey-2.8.4.tar
+cd mldonkey-2.8.4
+./configure --enable-batch --disable-guia
+make
+make install
+
+WHEN YOU HAVE THIS PROBLEM: [[NOT ENOUGH FREE SPACE]] ONTO \root\.mldonkey
+<i>SOLUTION</i>&#160;: Move your installation to \mnt\share
+
+mkdir   /mnt/share/.mldonkey
+cp -Rdp /root/.mldonkey /mnt/share/.mldonkey
+rm -R   /root/.mldonkey
+ln - s  /mnt/share/.mldonkey /root/.mldonkey
+
+DON'T FORGET TO CHANGE THE Startscript:
+INSTALLEDPATH=/mnt/share/.mldonkey
+</pre>
+<p>you will need a startscript (/etc/init.d/mldonkey) for mldonkey.
+</p>
+<pre>#! /bin/sh
+export USER="root"
+NAME=mldonkey
+INSTALLEDPATH=/$USER/.mldonkey
+start()
+{
+su - $USER -c"/usr/local/bin/mlnet&amp;" 
+}
+stop()
+{
+su - $USER -c"kill -15 `cat $INSTALLEDPATH/mlnet.pid`"
+su - $USER -c"sleep 5"
+}
+case "$1" in
+    start)
+        echo -n "Starting mldonkey: "
+        start
+       &#160;;;
+    stop)
+        echo -n "Stopping mldonkey "
+        stop
+       &#160;;;
+    restart)
+        echo -n "Restarting mldonkey "
+        stop
+        start
+       &#160;;;
+    force)
+   	 echo -n "Forcing start of mldonkey "   
+    	 rm $INSTALLEDPATH/config_files_space.tmp
+    	 rm $INSTALLEDPATH/mlnet.pid
+   	 start
+       &#160;;;
+    *)
+        echo "Usage: /etc/init.d/$NAME {start|stop|restart|force}"
+        exit 1
+       &#160;;;
+esac
+exit 0
+</pre>
+<p>you can download it directly from here <a href="http://www.unet.univie.ac.at/~a0025690/scripts/mldonkey" class="external text" rel="nofollow">here</a>.
+</p>
+<pre>cd /etc/init.d
+wget <a href="http://www.unet.univie.ac.at/~a0025690/scripts/mldonkey" class="external free" rel="nofollow">http://www.unet.univie.ac.at/~a0025690/scripts/mldonkey</a>
+chmod 755 mldonkey
+</pre>
+<h1> <span class="mw-headline" id="Additional_Info"> Additional Info </span></h1>
+<p>mldonkey should be runnable now by executing
+</p>
+<pre>/etc/init.d/mldonkey start
+</pre>
+<p>I had to add .sh    That is what I use:
+</p>
+<pre>/etc/init.d/mldonkey.sh start
+</pre>
+<p>if you want mldonkey to be started automatically at startup:
+</p>
+<h2> <span class="mw-headline" id="FreeLink_2"> FreeLink </span></h2>
+<pre>ln -s /etc/init.d/mldonkey /etc/rc2.d/S99mldonkey
+</pre>
+<h2> <span class="mw-headline" id="OpenLink_2"> OpenLink </span></h2>
+<pre>ln -s /etc/init.d/mldonkey /etc/rc.d/rc2.d/S99mldonkey
+</pre>
+</td>
+</tr>
+</table>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 87/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2259-0!*!0!!en!*!edit=0 and timestamp 20230806230209 -->
+<div class="printfooter">
+Retrieved from "<a href="Installation_on_NAS_and_embedded.html">http://mldonkey.sourceforge.net/Installation_on_NAS_and_embedded</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Installation_on_NAS_and_embedded" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Installation_on_NAS_and_embedded.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Installation_on_NAS_and_embedded&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Installation_on_NAS_and_embedded.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Installation_on_NAS_and_embedded&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexcb97.html?title=Installation_on_NAS_and_embedded&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Installation_on_NAS_and_embedded.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Installation_on_NAS_and_embedded.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexcf13.html?title=Installation_on_NAS_and_embedded&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index92d1.html?title=Installation_on_NAS_and_embedded&amp;oldid=3938" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 8 June 2008, at 18:02.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 31,464 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Installation_on_NAS_and_embedded", "wgTitle": "Installation on NAS and embedded", "wgAction": "view", "wgArticleId": 2259, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3938, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.073 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Installation_on_NAS_and_embedded by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:44:03 GMT -->
+</html>

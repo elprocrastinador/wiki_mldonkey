@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/MLdonkeyCommandsExplained by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:33:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>MLdonkeyCommandsExplained - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-MLdonkeyCommandsExplained skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">MLdonkeyCommandsExplained</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>MLDonkey features a simple internal command interpreter. Most interfaces to MLDonkey like telnet-, web-interface or GUIs "console tab", provide a way to enter commands. Being universal, they often convenient, and sometimes the only way to reach some of the most advanced features of MLDonkey.
+</p><p>There are many commands available in MLdonkey, some are not too well
+known. This page tries to explain the commands in more detail.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#User_Commands"><span class="tocnumber">1</span> <span class="toctext">User Commands</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Group_Commands"><span class="tocnumber">2</span> <span class="toctext">Group Commands</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Server_Commands"><span class="tocnumber">3</span> <span class="toctext">Server Commands</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Search_Commands"><span class="tocnumber">4</span> <span class="toctext">Search Commands</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Friends_Commands"><span class="tocnumber">5</span> <span class="toctext">Friends Commands</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Download_Commands"><span class="tocnumber">6</span> <span class="toctext">Download Commands</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Upload_Commands"><span class="tocnumber">7</span> <span class="toctext">Upload Commands</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Global_Donkey_Commands"><span class="tocnumber">8</span> <span class="toctext">Global Donkey Commands</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Config_Commands"><span class="tocnumber">9</span> <span class="toctext">Config Commands</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Overnet_Commands"><span class="tocnumber">10</span> <span class="toctext">Overnet Commands</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Kademlia_Commands"><span class="tocnumber">11</span> <span class="toctext">Kademlia Commands</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Recovery_Commands"><span class="tocnumber">12</span> <span class="toctext">Recovery Commands</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Stats_Commands"><span class="tocnumber">13</span> <span class="toctext">Stats Commands</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Debug_and_Experimental_Commands"><span class="tocnumber">14</span> <span class="toctext">Debug and Experimental Commands</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Commands_not_yet_classified"><span class="tocnumber">15</span> <span class="toctext">Commands not yet classified</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#Old_Commands"><span class="tocnumber">16</span> <span class="toctext">Old Commands</span></a></li>
+</ul>
+</td></tr></table>
+<h4> <span class="mw-headline" id="User_Commands"> User Commands</span></h4>
+<p><a href="Auth.html" title="Auth">auth</a> &lt;user&gt; &lt;password&gt;: log in
+</p><p><a href="Useradd.html" title="Useradd">useradd</a> &lt;user&gt; &lt;passwd&gt; [&lt;mail&gt;]&#160;: add new mldonkey user/change user password
+</p><p><a href="Userdel.html" title="Userdel">userdel</a> &lt;user&gt;&#160;: remove a mldonkey user
+</p><p><a href="Users.html" title="Users">users</a>&#160;: print users
+</p><p><a href="Whoami.html" title="Whoami">whoami</a>&#160;: print logged-in user name
+</p>
+<h4> <span class="mw-headline" id="Group_Commands"> Group Commands</span></h4>
+<p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Groupadd&amp;action=edit&amp;redlink=1" class="new" title="Groupadd (page does not exist)">groupadd</a> &lt;group&gt; &lt;admin: true|false&gt;
+</p>
+<h4> <span class="mw-headline" id="Server_Commands"> Server Commands</span></h4>
+<p><a href="Vm.html" title="Vm">vm</a>&#160;: list connected servers
+</p><p><a href="Vma.html" title="Vma">vma</a>&#160;: list all known servers
+</p><p><a href="N.html" title="N">n</a> &lt;ip&gt; [&lt;port&gt;]&#160;: add a server
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Server_banner&amp;action=edit&amp;redlink=1" class="new" title="Server banner (page does not exist)">server_banner</a> &lt;num&gt;&#160;: print banner of connected server &lt;num&gt;
+</p><p><a href="Servers.html" title="Servers">servers</a> &lt;filename&gt;&#160;: add the servers from a server.met file
+</p><p><a href="C.html" title="C">c</a> [&lt;num&gt;]&#160;: connect to more servers (or to server &lt;num&gt;)
+</p><p><a href="X.html" title="X">x</a> &lt;num&gt;&#160;: disconnect from server
+</p><p><a href="Id.html" title="Id">id</a>&#160;: print ID on connected servers
+</p><p><a href="Preferred.html" title="Preferred">preferred</a> &lt;true/false&gt; &lt;ip&gt;&#160;: set the server with this IP as preferred
+</p><p><a href="Bs.html" title="Bs">bs</a> &lt;ip1&gt; [&lt;ip2&gt; ...]&#160;: add these IPs to the servers black list
+</p><p><a href="Bp.html" title="Bp">bp</a> &lt;port1&gt; [&lt;port2&gt; ...]&#160;: add these Ports to the port black list
+</p><p><a href="Rem.html" title="Rem">rem</a> &lt;serv1&gt; [&lt;serv2&gt; ...]&#160;: remove server (use arg 'all' for all servers)
+</p><p><a href="Remove_old_servers.html" title="Remove old servers">remove_old_servers</a>&#160;: remove servers that have not been connected for several days
+</p>
+<h4> <span class="mw-headline" id="Search_Commands"> Search Commands</span></h4>
+<p><a href="S.html" title="S">s</a> &lt;query&gt;&#160;: search for files on all networks (SpecialSearchArgs)
+</p><p><a href="Xs.html" title="Xs">xs</a>&#160;: extended search
+</p><p><a href="Vs.html" title="Vs">vs</a>&#160;: view all queries
+</p><p><a href="Vr.html" title="Vr">vr</a> &lt;num&gt;&#160;: view results of a search
+</p><p><a href="View_custom_queries.html" title="View custom queries">view_custom_queries</a>&#160;: view custom queries
+</p><p><a href="Forget.html" title="Forget">forget</a> &lt;num1&gt; [&lt;num2&gt; ...]&#160;: forget searches &lt;num1&gt; &lt;num2&gt; ...
+</p>
+<h4> <span class="mw-headline" id="Friends_Commands"> Friends Commands</span></h4>
+<p><a href="Friends.html" title="Friends">friends</a>&#160;: display all friends
+</p><p><a href="Files.html" title="Files">files</a> &lt;client num&gt;&#160;: print files from friend &lt;client num&gt;
+</p><p><a href="Vfr.html" title="Vfr">vfr</a>&#160;: view friends
+</p><p><a href="Gfr.html" title="Gfr">gfr</a> &lt;friend_num&gt;&#160;: ask friend files
+</p><p><a href="Friend_add.html" title="Friend add">friend_add</a> &lt;client_num&gt;&#160;: add client &lt;client num&gt; to friends
+</p><p><a href="Friend_remove.html" title="Friend remove">friend_remove</a> &lt;client_num&gt;&#160;: remove friend (use arg 'all' for all friends)
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Message&amp;action=edit&amp;redlink=1" class="new" title="Message (page does not exist)">message</a> [&lt;client num&gt; &lt;msg&gt;]&#160;: send message to client
+</p>
+<h4> <span class="mw-headline" id="Download_Commands"> Download Commands</span></h4>
+<p><a href="D.html" title="D">d</a> &lt;num&gt;&#160;: file to download
+</p><p><a href="Dllink.html" title="Dllink">dllink</a> &lt;link&gt;&#160;: download ed2k, sig2dat, torrent or other linkdownload ed2k, sig2dat, torrent or other link
+</p><p><a href="Dllinks.html" title="Dllinks">dllinks</a> &lt;file&gt;&#160;: download all the links contained in the file
+</p><p><a href="Dd.html" title="Dd">dd</a> &lt;size&gt; &lt;md4&gt;&#160;: download from size and md4
+</p><p><a href="Http.html" title="Http">http</a> &lt;url&gt; &lt;referer&gt;&#160;: start downloading this URL
+</p><p><a href="Mirror.html" title="Mirror">mirror</a> &lt;num&gt; &lt;url&gt; &lt;referer&gt;&#160;: add URL as mirror for num
+</p><p><a href="Merge.html" title="Merge">merge</a> &lt;file num1&gt; &lt;file num2&gt;&#160;: try to swarm downloads from file &lt;num2&gt; (secondary) to file &lt;num1&gt; (primary)
+</p><p><a href="Force_download.html" title="Force download">force_download</a>&#160;: force download of an already downloaded file
+</p><p><a href="Vd.html" title="Vd">vd</a> [&lt;num&gt;]&#160;: view file info
+</p><p><a href="Pause.html" title="Pause">pause</a> &lt;num&gt;&#160;: pause a download (use arg 'all' for all files)
+</p><p><a href="Resume.html" title="Resume">resume</a> &lt;num&gt;&#160;: resume a paused download (use arg 'all' for all files)
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Tracker&amp;action=edit&amp;redlink=1" class="new" title="Tracker (page does not exist)">tracker</a> &lt;num&gt; &lt;url&gt; [&lt;url&gt;...]&#160;:add URLs as trackers for &lt;num&gt;
+</p><p><a href="Cancel.html" title="Cancel">cancel</a> &lt;num&gt;&#160;: cancel download (use arg 'all' for all files)
+</p><p><a href="Priority.html" title="Priority">priority</a> &lt;priority&gt; &lt;file num 1&gt; [&lt;file num 2&gt; ...]&#160;: change file priorities
+</p><p><a href="Rename.html" title="Rename">rename</a> &lt;num&gt; "&lt;new name&gt;"&#160;: rename a file that is being downloaded
+</p><p><a href="Commit.html" title="Commit">commit</a>&#160;: move downloaded files to their incoming directories
+</p><p><a href="Startbt.html" title="Startbt">startbt</a> &lt;URL|file&gt;&#160;: start BT download
+</p>
+<h4> <span class="mw-headline" id="Upload_Commands"> Upload Commands</span></h4>
+<p><a href="Compute_torrent.html" title="Compute torrent">compute_torrent</a> &lt;filename&gt; &lt;comment&gt;&#160;: generates &lt;filename&gt;.torrent file for seeding
+</p><p><a href="Nu.html" title="Nu">nu</a> &lt;m&gt;&#160;: disable upload during &lt;m&gt; minutes (multiple of 5)
+</p><p><a href="Reshare.html" title="Reshare">reshare</a>&#160;: check shared files for removal
+</p><p><a href="Reshare_torrents.html" title="Reshare torrents">reshare_torrents</a>&#160;: recheck torrents/* directories for changes
+</p><p><a href="Seeded_torrents.html" title="Seeded torrents">seeded_torrents</a>&#160;: print all seeded .torrent files on this server
+</p><p><a href="Shares.html" title="Shares">shares</a>&#160;: displays shared directories
+</p><p><a href="Unshare.html" title="Unshare">unshare</a> &lt;dirname&gt;&#160;: remove a shared directory
+</p>
+<h4> <span class="mw-headline" id="Global_Donkey_Commands"> Global Donkey Commands</span></h4>
+<p><a href="Version.html" title="Version">version</a>&#160;: print mldonkey version
+</p><p><a href="Q.html" title="Q">q</a>&#160;: close telnet
+</p><p><a href="Save.html" title="Save">save</a> &lt;"options"|"sources"|"backup"&gt;&#160;: save options and/or sources or backup (empty for options and sources)
+</p><p><a href="Kill.html" title="Kill">kill</a>&#160;: save and kill the server
+</p><p><a href="%21.html" title="!">!</a> command&#160;: run shell commands remotely
+</p><p><a href="Close_fds.html" title="Close fds">close_fds</a>&#160;: close all files (use to free space on disk after remove)
+</p><p><a href="Close_all_sockets.html" title="Close all sockets">close_all_sockets</a>&#160;: close all opened sockets
+</p><p><a href="Activity.html" title="Activity">activity</a> &lt;minutes&gt;&#160;: print activity in the last &lt;minutes&gt; minutes
+</p>
+<h4> <span class="mw-headline" id="Config_Commands"> Config Commands</span></h4>
+<p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Alias&amp;action=edit&amp;redlink=1" class="new" title="Alias (page does not exist)">alias</a>&#160;: add an command alias for example: "alias ca cancel all" makes an alias "ca" performing "cancel all"
+</p><p><a href="Ansi.html" title="Ansi">ansi</a> &lt;bool&gt;&#160;: turn telnet interface ANSI sequences on or off
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Disable&amp;action=edit&amp;redlink=1" class="new" title="Disable (page does not exist)">disable</a> &lt;num&gt;&#160;: disable a particular network
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Enable&amp;action=edit&amp;redlink=1" class="new" title="Enable (page does not exist)">enable</a> &lt;num&gt;&#160;: enable a particular network
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Html_mods&amp;action=edit&amp;redlink=1" class="new" title="Html mods (page does not exist)">html_mods</a>&#160;: toggle html_mods
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Html_mods_style&amp;action=edit&amp;redlink=1" class="new" title="Html mods style (page does not exist)">html_mods_style</a>&#160;: select html_mods_style &lt;#&gt;
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Html_theme&amp;action=edit&amp;redlink=1" class="new" title="Html theme (page does not exist)">html_theme</a> &lt;theme&gt;&#160;: select html_theme
+</p><p><a href="Import.html" title="Import">import</a> &lt;dirname&gt;&#160;: import the config from dirname
+</p><p><a href="Portcommand.html" title="Portcommand">port</a> &lt;port&gt;&#160;: change ED2K-port
+</p><p><a href="Set.html" title="Set">set</a> &lt;option_name&gt; &lt;option_value&gt;&#160;: change option value
+</p><p><a href="Share.html" title="Share">share</a> &lt;priority&gt; &lt;dir&gt; [&lt;strategy&gt;]&#160;: share directory &lt;dir&gt; with &lt;priority&gt; [and sharing strategy &lt;strategy&gt;]
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Unalias&amp;action=edit&amp;redlink=1" class="new" title="Unalias (page does not exist)">unalias</a>&#160;: delete a command alias, example: "unalias ca"
+</p><p><a href="Urladd.html" title="Urladd">urladd</a> &lt;kind&gt; &lt;url&gt;&#160;: load this file from the web, kind is either server.met (if the downloaded file is a server.met)
+</p><p><a href="Urlremove.html" title="Urlremove">urlremove</a> &lt;url&gt;&#160;: remove URL from web_infos
+</p><p><a href="Vo.html" title="Vo">vo</a>&#160;: display basic options
+</p><p><a href="Voo.html" title="Voo">voo</a> [&lt;<a href="http://caml.inria.fr/pub/docs/manual-ocaml/libref/Str.html" class="external text" rel="nofollow">regexp</a> | num&gt;]: print options all, matching regexp (e.g."ED2K*") or viewnummer(only web-interface)
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Options&amp;action=edit&amp;redlink=1" class="new" title="Options (page does not exist)">options</a>&#160;: print options values by section
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Reset_md4&amp;action=edit&amp;redlink=1" class="new" title="Reset md4 (page does not exist)">reset_md4</a>&#160;: reset client_md4/client_private_key to random values
+</p>
+<h4> <span class="mw-headline" id="Overnet_Commands"> Overnet Commands</span></h4>
+<p><a href="Ov_boot.html" title="Ov boot">ov_boot</a> &lt;ip&gt; &lt;port&gt;&#160;: add an Overnet peer
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Ov_boots&amp;action=edit&amp;redlink=1" class="new" title="Ov boots (page does not exist)">ov_boots</a>&#160;: print boot peers
+</p><p><a href="Ov_dump_bucket.html" title="Ov dump bucket">ov_dump_bucket</a> &lt;bucket_nr&gt;&#160;: dumps a bucket
+</p><p><a href="Ov_dump_known_peers.html" title="Ov dump known peers">ov_dump_known_peers</a>&#160;: dumps known_peers
+</p><p><a href="Ov_link.html" title="Ov link">ov_link</a> &lt;fhalink&gt;&#160;: download fha:// link
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Ov_load&amp;action=edit&amp;redlink=1" class="new" title="Ov load (page does not exist)">ov_load</a> &lt;filename&gt;&#160;: load the peers from a contact.dat file
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Ov_md4&amp;action=edit&amp;redlink=1" class="new" title="Ov md4 (page does not exist)">ov_md4</a>&#160;: get client MD4 address on the Overnet/Kademlia network
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Ov_send_udp&amp;action=edit&amp;redlink=1" class="new" title="Ov send udp (page does not exist)">ov_send_udp</a>&#160;: send UDP message (&lt;ip&gt; &lt;port&gt; &lt;msg in hex&gt;)
+</p><p><a href="Ov_store.html" title="Ov store">ov_store</a>&#160;: dump the Overnet File Store
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Ov_view_stats_cmds&amp;action=edit&amp;redlink=1" class="new" title="Ov view stats cmds (page does not exist)">ov_view_stats_cmds</a>&#160;: Overnet Stats commands
+</p><p><a href="Ov_web.html" title="Ov web">ov_web</a>  &lt;urls&gt;&#160;: download .ocl URLS (no arg load default)
+</p>
+<h4> <span class="mw-headline" id="Kademlia_Commands"> Kademlia Commands</span></h4>
+<p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kad_boot&amp;action=edit&amp;redlink=1" class="new" title="Kad boot (page does not exist)">kad_boot</a> &lt;ip&gt; &lt;port&gt;&#160;: add an Kademlia peer
+</p><p><a href="Kad_dump_bucket.html" title="Kad dump bucket">kad_dump_bucket</a> &lt;bucket_nr&gt;&#160;: dumps a bucket
+</p><p><a href="Kad_dump_known_peers.html" title="Kad dump known peers">kad_dump_known_peers</a>&#160;: dumps known_peers
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kad_link&amp;action=edit&amp;redlink=1" class="new" title="Kad link (page does not exist)">kad_link</a> &lt;fhalink&gt;&#160;: download fha:// link
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kad_load&amp;action=edit&amp;redlink=1" class="new" title="Kad load (page does not exist)">kad_load</a> &lt;filename&gt;&#160;: load the peers from a contact.dat file
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kad_md4&amp;action=edit&amp;redlink=1" class="new" title="Kad md4 (page does not exist)">kad_md4</a>&#160;: get client MD4 address on the Overnet/Kademlia network
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kad_send_udp&amp;action=edit&amp;redlink=1" class="new" title="Kad send udp (page does not exist)">kad_send_udp</a>&#160;: send UDP message (&lt;ip&gt; &lt;port&gt; &lt;msg in hex&gt;)
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kad_store&amp;action=edit&amp;redlink=1" class="new" title="Kad store (page does not exist)">kad_store</a>&#160;:	dump the Kademlia File Store
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kad_view_stats_cmds&amp;action=edit&amp;redlink=1" class="new" title="Kad view stats cmds (page does not exist)">kad_view_stats_cmds</a>	: Kademlia Stats commands
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kad_web&amp;action=edit&amp;redlink=1" class="new" title="Kad web (page does not exist)">kad_web</a> &lt;urls&gt;&#160;: download .ocl URLs (no arg load default)
+</p>
+<h4> <span class="mw-headline" id="Recovery_Commands"> Recovery Commands</span></h4>
+<p><a href="Import_temp.html" title="Import temp">import_temp</a> &lt;temp_dir&gt;&#160;: import eDonkey / eMule / lMule temp directory
+</p><p><a href="Scan_temp.html" title="Scan temp">scan_temp</a>&#160;: print temp directory content
+</p><p><a href="Recover_bytes.html" title="Recover bytes">recover_bytes</a> &lt;file1&gt; [&lt; file2&gt; ...]&#160;: try to recover these files at byte level
+</p><p><a href="Recover_temp.html" title="Recover temp">recover_temp</a>&#160;: recover lost files from temp directory
+</p><p><a href="Verify_chunks.html" title="Verify chunks">verify_chunks</a> &lt;num&gt;&#160;: verify chunks of file &lt;num&gt;
+</p>
+<h4> <span class="mw-headline" id="Stats_Commands"> Stats Commands</span></h4>
+<p><a href="Block_list.html" title="Block list">block_list</a>&#160;: display the list of blocked IP ranges that were hit
+</p><p><a href="Downloaders.html" title="Downloaders">downloaders</a>	: display downloaders list
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Buildinfo&amp;action=edit&amp;redlink=1" class="new" title="Buildinfo (page does not exist)">buildinfo</a>&#160;:	print mldonkey core build information
+</p><p><a href="Bw_stats.html" title="Bw stats">bw_stats</a>&#160;: show bandwidth statistics
+</p><p><a href="Cs.html" title="Cs">cs</a>&#160;: show table of download/upload by ED2K clients brand
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Csbt&amp;action=edit&amp;redlink=1" class="new" title="Csbt (page does not exist)">csbt</a>&#160;: show table of download/upload by BT clients brand
+</p><p><a href="Csm.html" title="Csm">csm</a> show table of download/upload by eMule MODs
+</p><p><a href="Client_stats.html" title="Client stats">client_stats</a>&#160;: show breakdown of download/upload by clients brand
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Client_stats_bt&amp;action=edit&amp;redlink=1" class="new" title="Client stats bt (page does not exist)">client_stats_bt</a>&#160;: show breakdown of download/upload by clients brand
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Diskinfo&amp;action=edit&amp;redlink=1" class="new" title="Diskinfo (page does not exist)">diskinfo</a>&#160;:	print mldonkey disk information
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Gdstats&amp;action=edit&amp;redlink=1" class="new" title="Gdstats (page does not exist)">gdstats</a>&#160;: display graphical transfer statistics
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kad_boots&amp;action=edit&amp;redlink=1" class="new" title="Kad boots (page does not exist)">kad_boots</a>&#160;: print boot peers
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kad_buckets&amp;action=edit&amp;redlink=1" class="new" title="Kad buckets (page does not exist)">kad_buckets</a>&#160;: print buckets table status
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Kad_stats&amp;action=edit&amp;redlink=1" class="new" title="Kad stats (page does not exist)">kad_stats</a>&#160;:	Kademlia Stats
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Links&amp;action=edit&amp;redlink=1" class="new" title="Links (page does not exist)">links</a>&#160;: list links of shared files
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Ov_buckets&amp;action=edit&amp;redlink=1" class="new" title="Ov buckets (page does not exist)">ov_buckets</a>&#160;: print buckets table status
+</p><p><a href="Ov_stats.html" title="Ov stats">ov_stats</a>&#160;: Overnet Stats
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Runinfo&amp;action=edit&amp;redlink=1" class="new" title="Runinfo (page does not exist)">runinfo</a>&#160;: print mldonkey runtime information
+</p><p><a href="Sources.html" title="Sources">sources</a>&#160;: show sources currently known
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Sysinfo&amp;action=edit&amp;redlink=1" class="new" title="Sysinfo (page does not exist)">sysinfo</a>&#160;: print mldonkey core build, runtime and disk information
+</p><p><a href="Upstats.html" title="Upstats">upstats</a>&#160;: statistics on upload
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Reset_stats&amp;action=edit&amp;redlink=1" class="new" title="Reset stats (page does not exist)">reset_stats</a>	: reset session statistics
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Stats&amp;action=edit&amp;redlink=1" class="new" title="Stats (page does not exist)">stats</a>&#160;: display transfer statistics
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Torrents&amp;action=edit&amp;redlink=1" class="new" title="Torrents (page does not exist)">torrents</a>&#160;: print all .torrent files on this server
+</p><p><a href="Uploaders.html" title="Uploaders">uploaders</a>&#160;: show users currently uploading
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Uptime&amp;action=edit&amp;redlink=1" class="new" title="Uptime (page does not exist)">uptime</a>&#160;: core uptime
+</p><p><a href="Vu.html" title="Vu">vu</a>&#160;: view upload credits
+</p><p><a href="Portinfo.html" title="Portinfo">portinfo</a>&#160;: print mldonkey port usage information
+</p>
+<h4> <span class="mw-headline" id="Debug_and_Experimental_Commands"> Debug and Experimental Commands</span></h4>
+<p>Those commands may disappear or change without notification. Proceed with care&#160;;)
+</p><p><a href="Block_test.html" title="Block test" class="mw-redirect">block_test</a> &lt;ip&gt;&#160;: check whether an IP is blocked
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Clear_debug&amp;action=edit&amp;redlink=1" class="new" title="Clear debug (page does not exist)">clear_debug</a>&#160;: clear the table of clients being debugged
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Clear_log&amp;action=edit&amp;redlink=1" class="new" title="Clear log (page does not exist)">clear_log</a>&#160;:	clear log_file
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Close_log&amp;action=edit&amp;redlink=1" class="new" title="Close log (page does not exist)">close_log</a>&#160;: stop sending core messages to a file
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Debug_client&amp;action=edit&amp;redlink=1" class="new" title="Debug client (page does not exist)">debug_client</a> &lt;client num1&gt; [&lt;client num2&gt; ...]&#160;: log specific clients activity
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Debug_disk&amp;action=edit&amp;redlink=1" class="new" title="Debug disk (page does not exist)">debug_disk</a> &lt;disk&gt;&#160;: debug command (example: disk .)
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Debug_file&amp;action=edit&amp;redlink=1" class="new" title="Debug file (page does not exist)">debug_file</a> &lt;client nums&gt;&#160;: debug file state
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Debug_fileinfo&amp;action=edit&amp;redlink=1" class="new" title="Debug fileinfo (page does not exist)">debug_fileinfo</a>&#160;: debug command (example: file .)
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Debug_rlimit&amp;action=edit&amp;redlink=1" class="new" title="Debug rlimit (page does not exist)">debug_rlimit</a>&#160;: debug command
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Debug_socks&amp;action=edit&amp;redlink=1" class="new" title="Debug socks (page does not exist)">debug_socks</a>	: for debugging only
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Dump_heap&amp;action=edit&amp;redlink=1" class="new" title="Dump heap (page does not exist)">dump_heap</a>&#160;: dump heap for debug
+</p><p><a href="Dump_reliability.html" title="Dump reliability">dump_reliability</a>&#160;: dump the evaluated reliability of sources
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Log&amp;action=edit&amp;redlink=1" class="new" title="Log (page does not exist)">log</a>&#160;: dump current log state to console
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Log_file&amp;action=edit&amp;redlink=1" class="new" title="Log file (page does not exist)">log_file</a> &lt;file&gt;&#160;: output core messages to a file
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Mem_stats&amp;action=edit&amp;redlink=1" class="new" title="Mem stats (page does not exist)">mem_stats</a>&#160;: print memory stats
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Networks&amp;action=edit&amp;redlink=1" class="new" title="Networks (page does not exist)">networks</a>&#160;: print all networks
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Open_log&amp;action=edit&amp;redlink=1" class="new" title="Open log (page does not exist)">open_log</a>&#160;: enable logging to file
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Tsources&amp;action=edit&amp;redlink=1" class="new" title="Tsources (page does not exist)">tsources</a>&#160;: list source buckets
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Test_recover&amp;action=edit&amp;redlink=1" class="new" title="Test recover (page does not exist)">test_recover</a> &lt;num&gt;&#160;: print the segments downloaded in file
+</p><p><a href="Use_poll.html" title="Use poll">use_poll</a> &lt;bool&gt;&#160;: use poll instead of select
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Update_sources&amp;action=edit&amp;redlink=1" class="new" title="Update sources (page does not exist)">update_sources</a>&#160;: recompute order of connections to sources(experimental)
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Stdout&amp;action=edit&amp;redlink=1" class="new" title="Stdout (page does not exist)">stdout</a> &lt;true|false&gt;&#160;: reactivate log to stdout
+</p>
+<h4> <span class="mw-headline" id="Commands_not_yet_classified"> Commands not yet classified</span></h4>
+<p><a href="Vc.html" title="Vc">vc</a> &lt;num&gt;&#160;: view client
+</p><p><a href="Add_url.html" title="Add url" class="mw-redirect">add_url</a> &lt;kind&gt; &lt;url&gt;&#160;: load this file from the web. kind is either server.met (if the downloaded file is a server.met)
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Bw_toggle&amp;action=edit&amp;redlink=1" class="new" title="Bw toggle (page does not exist)">bw_toggle</a>&#160;: toggle between the two rate and opened connection sets
+</p><p><a href="Calendar.html" title="Calendar">calendar_add</a> &lt;hour&gt; "&lt;command&gt;"&#160;: add a command to be executed every day
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Vwi&amp;action=edit&amp;redlink=1" class="new" title="Vwi (page does not exist)">vwi</a>&#160;: print web_infos options
+</p><p><a href="Confirm.html" title="Confirm">confirm</a> &lt;yes|no|what&gt;&#160;: confirm cancellation
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Gdremove&amp;action=edit&amp;redlink=1" class="new" title="Gdremove (page does not exist)">gdremove</a>&#160;: remove graphical transfer statistics files
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Message_log&amp;action=edit&amp;redlink=1" class="new" title="Message log (page does not exist)">message_log</a>	: message_log [refresh delay in seconds]
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Preview&amp;action=edit&amp;redlink=1" class="new" title="Preview (page does not exist)">preview</a> &lt;file number&gt;&#160;: start previewer for file &lt;file number&gt;
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Reload_messages&amp;action=edit&amp;redlink=1" class="new" title="Reload messages (page does not exist)">reload_messages</a>&#160;: reload messages file
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Rm_old_torrents&amp;action=edit&amp;redlink=1" class="new" title="Rm old torrents (page does not exist)">rm_old_torrents</a>&#160;: remove all old .torrent files
+</p><p><a href="Rss.html" title="Rss">rss</a>	: print RSS feeds
+</p><p><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Vcal&amp;action=edit&amp;redlink=1" class="new" title="Vcal (page does not exist)">vcal</a>&#160;: print calendar
+</p><p><a href="View_custom_queries.html" title="View custom queries">view_custom_queries</a>	: view custom queries
+</p>
+<h4> <span class="mw-headline" id="Old_Commands"> Old Commands</span></h4>
+<p><a href="Add_user.html" title="Add user" class="mw-redirect">add_user</a>, <a href="Remove_user.html" title="Remove user" class="mw-redirect">remove_user</a>, <a href="Add_url.html" title="Add url" class="mw-redirect">add_url</a>, <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Default_incoming&amp;action=edit&amp;redlink=1" class="new" title="Default incoming (page does not exist)">commit_to</a>, <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Set_brothers&amp;action=edit&amp;redlink=1" class="new" title="Set brothers (page does not exist)">set_brothers</a>
+</p><p><br />
+</p>
+<ul><li> &lt; &gt;&#160;: required parameter<br />
+</li><li> [&lt; &gt;]&#160;: optionnal parameter<br />
+</li><li> &lt; 1 | 2 &gt;&#160;: alternative parameter
+</li></ul>
+<p><br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><strong class="selflink">English</strong></b>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 230/1000000
+Post-expand include size: 756/2097152 bytes
+Template argument size: 799/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1488-0!*!0!!en!*!edit=0 and timestamp 20230806205949 -->
+<div class="printfooter">
+Retrieved from "<a href="MLdonkeyCommandsExplained.html">http://mldonkey.sourceforge.net/MLdonkeyCommandsExplained</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=MLdonkeyCommandsExplained" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="MLdonkeyCommandsExplained.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:MLdonkeyCommandsExplained&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="MLdonkeyCommandsExplained.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=MLdonkeyCommandsExplained&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index03ea.html?title=MLdonkeyCommandsExplained&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/MLdonkeyCommandsExplained.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/MLdonkeyCommandsExplained.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index9d83.html?title=MLdonkeyCommandsExplained&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexde4b.html?title=MLdonkeyCommandsExplained&amp;oldid=4926" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 27 August 2010, at 15:46.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 138,323 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "MLdonkeyCommandsExplained", "wgTitle": "MLdonkeyCommandsExplained", "wgAction": "view", "wgArticleId": 1488, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4926, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.088 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/MLdonkeyCommandsExplained by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:34:39 GMT -->
+</html>
