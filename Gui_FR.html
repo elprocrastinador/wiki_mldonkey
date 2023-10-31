@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Gui_FR by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:32:48 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Gui FR - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Gui_FR skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Gui FR</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Technical_background"><span class="tocnumber">1</span> <span class="toctext">Technical background</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#MLdonkey_Gui_clients"><span class="tocnumber">2</span> <span class="toctext">MLdonkey Gui clients</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Test_tableau"><span class="tocnumber">3</span> <span class="toctext">Test tableau</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Feature_List"><span class="tocnumber">4</span> <span class="toctext">Feature List</span></a></li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id="Technical_background"> Technical background</span></h3>
+<p>Unlike most P2P clients, such as eDonkey2000, MLdonkey application does not contain user interface; it's merely a P2P engine built for exchanging files, and interaction with the user is left to the <a href="UserInterfaces_FR.html" title="UserInterfaces FR">UserInterfaces_FR</a>. Albeit it might seem to be inconvenient at the first glance, such an open architecture actually provides great flexibility, allowing third parties to implement and customize the way MLdonkey's status displays look to the end user.
+</p><p>Another benefit of having core separated from the user interface is remote manageability. It doesn't make any difference whether the core and the interface part are running on the same computer or on two boxes half the world apart, or even what operating system do these machines run. This architecture allows you to go on vacation without losing control over the whole download process, taking a peek at what's going on back at home by the means of a <a href="Wapui.html" title="Wapui">web browser||WebUI</a>, <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Telnet&amp;action=edit&amp;redlink=1" class="new" title="Telnet (page does not exist)">|TelnetUI</a> or even <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=WAP&amp;action=edit&amp;redlink=1" class="new" title="WAP (page does not exist)">WAP</a>-enabled cellphone.
+</p><p>Yet another way to monitor the progress of your downloads is by utilizing one of numerous MLdonkey <a href="Gui.html" title="Gui">Guis</a>. While it lacks the universality (you'll have to install the program on the computer you're going to perform the monitoring from), it's so far the prettiest looking one.
+</p>
+<h3> <span class="mw-headline" id="MLdonkey_Gui_clients"> MLdonkey Gui clients</span></h3>
+<ul><li> <a href="Sancho.html" title="Sancho">Sancho</a> - Excellent Java multiplatform GUI for mldonkey
+</li><li> <a href="KMLdonkey.html" title="KMLdonkey">KMLdonkey</a> - a nice GUI for KDE, written in C++
+</li><li> <a href="MLdonkeyGtkUi.html" title="MLdonkeyGtkUi">MLdonkeyGtkUi</a> - The original mldonkey GUI (comes with CVS)
+</li><li> <a href="G2Gui.html" title="G2Gui">G2Gui</a> - Written with the purpose of providing a nice GUI for beginners (dead)
+</li><li> <a href="CocoDonkey.html" title="CocoDonkey">CocoDonkey</a> - a GUI for Mac OS X, written in Cocoa
+</li><li> <a href="XDonkey.html" title="XDonkey">xDonkey</a> -  an other most recent GUI for Mac OS X, written in Cocoa
+</li><li> <a href="MlMac.html" title="MlMac">mlMac</a> - Nice GUI for Mac OS X, written in Cocoa
+</li><li> <a href="MLdonkeyWatch.html" title="MLdonkeyWatch">MLdonkeyWatch</a> - Nice Delphi app for MS Windows
+</li><li> <a href="PhpEselGui.html" title="PhpEselGui">phpEselGui</a> - a GUI for mldonkey written in PHP
+</li><li> <a href="Saman.html" title="Saman">saman</a> - Another GUI for mldonkey written in PHP
+</li><li> <a href="Platero.html" title="Platero">Platero</a> - A mldonkey GUI for KDE
+</li><li> <a href="Alemula.html" title="Alemula">Alemula</a> - Another mldonkey GUI in PHP
+</li><li> <a href="Zuul.html" title="Zuul">Zuul</a> - PHP Front-End for mldonkey
+</li><li> <a href="JMoule.html" title="JMoule">JMoule</a> - A very simple GUI written in Java
+</li><li> <a href="Web-GMUI.html" title="Web-GMUI">Web-GMUI</a> - A multiuser GUI written in PHP
+</li></ul>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="Test_tableau"> Test tableau </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<caption> <b>Liste des interface graphique</b>
+</caption>
+<tr style="font-style:bold;color:blue;">
+<th>  Nom </th>
+<th> Connection </th>
+<th> Langage </th>
+<th> Démarrer/arrêter </th>
+<th> Chat </th>
+<th> Multi Language </th>
+<th> Théme </th>
+<th> Version actuelle </th>
+<th> OS
+</th></tr>
+<tr style="color:green;background-color:#ffffcc;">
+<td>Sancho
+</td>
+<td>GUI-Protocol
+</td>
+<td>Java
+</td>
+<td>yes
+</td>
+<td> yes
+</td>
+<td> yes
+</td>
+<td> no
+</td>
+<td> 0.9.4-58
+</td>
+<td> Linux/Unix/Mac/Windows
+</td></tr>
+<tr>
+<td> MLdonkeyGtkUi
+</td>
+<td>
+</td>
+<td> Gtk+
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>  2.8.6
+</td>
+<td>
+</td></tr>
+<tr>
+<td> WebUI
+</td>
+<td> HTTP
+</td>
+<td>  OCaml
+</td>
+<td>  non/oui
+</td>
+<td>  non
+</td>
+<td>  non
+</td>
+<td>  non
+</td>
+<td>  oui
+</td>
+<td>  toutes plateformes
+</td></tr>
+<tr>
+<td> CocoDonkey
+</td>
+<td> Telnet
+</td>
+<td>  Cocoa
+</td>
+<td>  oui
+</td>
+<td>  non
+</td>
+<td>  non
+</td>
+<td>  non
+</td>
+<td> 0.25
+</td>
+<td>  Mac
+</td></tr>
+<tr>
+<td> mlMac
+</td>
+<td> GUI-Protocol
+</td>
+<td>  Cocoa
+</td>
+<td>  oui
+</td>
+<td>  non
+</td>
+<td>  oui
+</td>
+<td>  non
+</td>
+<td>  0.7.5
+</td>
+<td>  Mac
+</td></tr>
+<tr>
+<td> MLdonkeyWatch
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td></tr>
+<tr>
+<td> phpEselGui
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td></tr>
+<tr>
+<td> Alemula
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td></tr>
+<tr>
+<td> saman
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td></tr>
+<tr>
+<td> JMoule
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td></tr>
+<tr>
+<td> Web-GMUI
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td></tr>
+<tr>
+<td> xDonkey
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td></tr>
+</table>
+<h3> <span class="mw-headline" id="Feature_List"> Feature List</span></h3>
+<table>
+
+<tr>
+<td>		</td>
+<td><b><a href="Sancho.html" title="Sancho">Sancho</a>/<a href="MLdonkeyGtkUi.html" title="MLdonkeyGtkUi">MLdonkeyGtkUi</a></b></td>
+<td><b><a href="WebUI.html" title="WebUI">WebUI</a></b></td>
+<td><b><a href="CocoDonkey.html" title="CocoDonkey">CocoDonkey</a></b></td>
+<td><b><a href="MlMac.html" title="MlMac">mlMac</a></b></td>
+<td><b><a href="MLdonkeyWatch.html" title="MLdonkeyWatch">MLdonkeyWatch</a></b></td>
+<td><b><a href="PhpEselGui.html" title="PhpEselGui">phpEselGui</a></b></td>
+<td><b><a href="Alemula.html" title="Alemula">Alemula</a></b></td>
+<td><b><a href="Saman.html" title="Saman">saman</a></b></td>
+<td><b><a href="JMoule.html" title="JMoule">JMoule</a></b></td>
+<td><b><a href="Web-GMUI.html" title="Web-GMUI">Web-GMUI</a></b>
+</td></tr>
+<tr>
+<td> <b>Connection</b>		</td>
+<td>GUI-Protocol	</td>
+<td>HTTP		</td>
+<td>Telnet	</td>
+<td>GUI-Protocol	</td>
+<td>GUI-Protocol	</td>
+<td>Telnet	</td>
+<td>?	</td>
+<td>Telnet	</td>
+<td>GUI-Protocol	</td>
+<td>Telnet
+</td></tr>
+<tr>
+<td> <b>Prog. Language</b>		</td>
+<td>Java		</td>
+<td><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=OCaml&amp;action=edit&amp;redlink=1" class="new" title="OCaml (page does not exist)">OCaml</a>	</td>
+<td>?		</td>
+<td>Cocoa		</td>
+<td>Cocoa		</td>
+<td>PHP		</td>
+<td>?	</td>
+<td>PHP		</td>
+<td>Java		</td>
+<td>PHP
+</td></tr>
+<tr>
+<td> <b>Launch/Kill core</b>	</td>
+<td>yes		</td>
+<td>no/yes	</td>
+<td>yes		</td>
+<td>yes		</td>
+<td>no/yes	</td>
+<td>no/yes	</td>
+<td>?	</td>
+<td>no/yes	</td>
+<td>no		</td>
+<td>yes
+</td></tr>
+<tr>
+<td> <b>Charts</b>			</td>
+<td>no		</td>
+<td>no		</td>
+<td>yes		</td>
+<td>no		</td>
+<td>yes		</td>
+<td>yes		</td>
+<td>?	</td>
+<td>no		</td>
+<td>no		</td>
+<td>no
+</td></tr>
+<tr>
+<td> <b>Chat</b>			</td>
+<td>yes (a)	</td>
+<td>no		</td>
+<td>no		</td>
+<td>no		</td>
+<td>yes		</td>
+<td>no		</td>
+<td>?	</td>
+<td>no		</td>
+<td>no		</td>
+<td>no
+</td></tr>
+<tr>
+<td> <b>Multi Language</b>		</td>
+<td>yes		</td>
+<td>no		</td>
+<td>no		</td>
+<td>yes		</td>
+<td>no		</td>
+<td>no		</td>
+<td>?	</td>
+<td>yes		</td>
+<td>no		</td>
+<td>yes
+</td></tr>
+<tr>
+<td> <b>Customize</b>		</td>
+<td>no		</td>
+<td>no		</td>
+<td>no		</td>
+<td>no		</td>
+<td>no		</td>
+<td>yes		</td>
+<td>?	</td>
+<td>yes		</td>
+<td>yes		</td>
+<td>yes
+</td></tr>
+<tr>
+<td> <b>Latest Release</b>		</td>
+<td>05.06/?	</td>
+<td>?		</td>
+<td>?		</td>
+<td>?		</td>
+<td>?		</td>
+<td>?		</td>
+<td>04.03	</td>
+<td>05.03		</td>
+<td>?		</td>
+<td>12.05
+</td></tr>
+<tr>
+<td> <b><a href="Linux.html" title="Linux">Linux</a>/<a href="Unix.html" title="Unix">Unix</a></b>	</td>
+<td>yes		</td>
+<td>yes		</td>
+<td>no (d)	</td>
+<td>no (d)	</td>
+<td>no (b)	</td>
+<td>yes (b)	</td>
+<td>yes	</td>
+<td>yes		</td>
+<td>yes		</td>
+<td>yes
+</td></tr>
+<tr>
+<td> <b><a href="Windows.html" title="Windows">Windows</a></b>		</td>
+<td>yes (c)	</td>
+<td>yes		</td>
+<td>no		</td>
+<td>no		</td>
+<td>yes		</td>
+<td>yes		</td>
+<td>?	</td>
+<td>yes		</td>
+<td>yes		</td>
+<td>?
+</td></tr>
+<tr>
+<td> <b><a href="MacOSX.html" title="MacOSX">MacOSX</a></b>		</td>
+<td>yes (e)	</td>
+<td>yes		</td>
+<td>yes		</td>
+<td>yes		</td>
+<td>no		</td>
+<td>no		</td>
+<td>?	</td>
+<td>yes		</td>
+<td>yes		</td>
+<td>?
+</td></tr></table>
+<p>(a) irc, yahoo		<br />
+(b) works with wine	<br />
+(c) avaiable at <a href="http://www.scherthan.com/" class="external free" rel="nofollow">http://www.scherthan.com</a> <br />
+(d) may work with GNUstep <br />
+(e) needs the x11 environment <br />
+</p><p>_Please help to fill the gaps or add new features. Please use TABs and not spaces to keep the table editable. Thanks, <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Luculus&amp;action=edit&amp;redlink=1" class="new" title="Luculus (page does not exist)">luculus</a>_
+</p><p>_Some of the above entries for mlMac seem incorrect. mlmac runs on Mac OS X, launches the core on start, kills core on quit (or you can leave it running)._
+</p><p>The phpEselGUI connects to the core on the telnet port (4000)
+and parses the output of the telnet session to get the
+necessary information. _(is this still true? ... Yes, it is true, we are thinking to change)_
+</p><p>The other GUIs connect to the GUI port (4001) and talk to the
+core using the <a href="GuiProtocol.html" title="GuiProtocol">GuiProtocol</a>.
+</p><p>Using the telnet approach might seem to be an easier task than
+implementing the <a href="GuiProtocol.html" title="GuiProtocol">GuiProtocol</a> at first, but it can get quite
+tedious to maintain the code when the telnet output changes
+across versions.
+<br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><a href="Gui.html" title="Gui">English</a></b>
+<span></span>
+&#160;&#8226;&#160;<span lang="fr"><strong class="selflink">Français</strong></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 149/1000000
+Post-expand include size: 693/2097152 bytes
+Template argument size: 129/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:2149-0!*!0!!en!*!edit=0 and timestamp 20230806203323 -->
+<div class="printfooter">
+Retrieved from "<a href="Gui_FR.html">http://mldonkey.sourceforge.net/Gui_FR</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Gui_FR" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Gui_FR.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Gui_FR&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Gui_FR.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Gui_FR&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexa391.html?title=Gui_FR&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Gui_FR.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Gui_FR.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index7e0e.html?title=Gui_FR&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexc08c.html?title=Gui_FR&amp;oldid=4404" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 21 April 2009, at 13:52.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 8,857 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Gui_FR", "wgTitle": "Gui FR", "wgAction": "view", "wgArticleId": 2149, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4404, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.055 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Gui_FR by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:32:54 GMT -->
+</html>

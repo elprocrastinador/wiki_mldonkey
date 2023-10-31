@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/File_completed_cmd by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:45:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>File completed cmd - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-File_completed_cmd skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">File completed cmd</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>The <tt>file_completed_cmd</tt> script/program is called each time a download is committed. (Note, this does not work on MinGW).
+</p><p>Until MLDonkey 2.7.0 this script was called when a download was completed. This was changed because the filename of the committed file in the incoming directory could not be computed 100% correctly due to naming collisions with
+files already present in incoming directory. The final name that the completed file will get can only be computed when commit really takes place.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Arguments_and_environment"><span class="tocnumber">1</span> <span class="toctext">Arguments and environment</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Old_cores"><span class="tocnumber">2</span> <span class="toctext">Old cores</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Common_problems"><span class="tocnumber">3</span> <span class="toctext">Common problems</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Scripts"><span class="tocnumber">4</span> <span class="toctext">Scripts</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Minimal_auto-commit"><span class="tocnumber">4.1</span> <span class="toctext">Minimal auto-commit</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Winpopup_notification"><span class="tocnumber">4.2</span> <span class="toctext">Winpopup notification</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Indexing_your_file_on_bitzi.com"><span class="tocnumber">4.3</span> <span class="toctext">Indexing your file on bitzi.com</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Scan_file_for_virus_and_delete_if_infected"><span class="tocnumber">4.4</span> <span class="toctext">Scan file for virus and delete if infected</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Virus_scanning_and_quarantining_using_Bitdefender"><span class="tocnumber">4.5</span> <span class="toctext">Virus scanning and quarantining using Bitdefender</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Yet_another_virus_scanning_script"><span class="tocnumber">4.6</span> <span class="toctext">Yet another virus scanning script</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Dispatching_completed_files_to_several_directories"><span class="tocnumber">4.7</span> <span class="toctext">Dispatching completed files to several directories</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="#Dispatch_downloaded_files_using_users_as_filter."><span class="tocnumber">4.7.1</span> <span class="toctext">Dispatch downloaded files using users as filter.</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#Logging_downloads.2C_displaying_duration.2C_etc"><span class="tocnumber">4.8</span> <span class="toctext">Logging downloads, displaying duration, etc</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Logging_downloads_into_MySQL_database"><span class="tocnumber">4.9</span> <span class="toctext">Logging downloads into MySQL database</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Logging_downloads_into_SQLite_database"><span class="tocnumber">4.10</span> <span class="toctext">Logging downloads into SQLite database</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-16"><a href="#See_also"><span class="tocnumber">5</span> <span class="toctext">See also</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Arguments_and_environment"> Arguments and environment </span></h2>
+<p>The received arguments are:
+</p>
+<pre>
+cmd &lt;md4-hash&gt; &lt;size&gt; &lt;file-name&gt;
+</pre>
+<ul><li> <tt>md4-hash</tt>: The <a href="Md4-hash.html" title="Md4-hash">MD4 hash</a> of the file.
+</li><li> <tt>size</tt>: The size of the file in bytes.
+</li><li> <tt>file-name</tt>: The file name for the download. With MLDonkey 2.7.0 or before, this is the name under which it will be committed, unless the user selects another one.
+</li></ul>
+<p>Since MLDonkey 2.7.1 the arguments are set as environmental variables as well as the old arguments for backward compatibility reasons. Here are the environmental variables thar MLDonkey will set for the command:
+</p>
+<ul><li> <tt>TEMPNAME</tt>: Temp file name, including path.
+</li><li> <tt>FILEID</tt>: The <a href="Md4-hash.html" title="Md4-hash">MD4 hash</a> of the file (same as <tt>$1</tt>).
+</li><li> <tt>FILESIZE</tt>: The size of the file in bytes (same as <tt>$2</tt>).
+</li><li> <tt>FILENAME</tt>: The file name for the download (same as <tt>$3</tt>).
+</li><li> <tt>FILEHASH</tt>: Internal hash.
+</li><li> <tt>DURATION</tt>: Download duration in seconds.
+</li><li> <tt>INCOMING</tt>: Directory used for commit.
+</li><li> <tt>NETWORK</tt>: Network name used for downloading.
+</li><li> <tt>ED2K_HASH</tt>: ed2k hash if MD4 is known.
+</li><li> <tt>DLFILES</tt>: Number of downloading files. (since 2.7.5)
+</li><li> <tt>FILE_OWNER</tt>: The user who owns the downloaded file.
+</li><li> <tt>FILE_GROUP</tt>: The group which owns the downloaded file.
+</li><li> <tt>USER_MAIL</tt>: E-mail of the user who owns the downloaded file.
+</li></ul>
+<p><tt>FILE_GROUP_*</tt> are present since 2.8.5:
+</p>
+<ul><li> <tt>FILE_GROUP_CNT</tt>: Number of other users besides <tt>FILE_OWNER</tt> who could see the file.
+</li><li> List of those other users:
+<ul><li> <tt>FILE_GROUP_USER_n</tt>: User name <tt>n</tt>.
+</li><li> <tt>FILE_GROUP_DIR_n</tt>: User <tt>n</tt> commit directory.
+</li></ul>
+</li></ul>
+<p><tt>file_completed_cmd</tt> must be activated by setting <tt>file_completed_cmd</tt> variable. Like from telnet:
+</p>
+<pre>
+set file_completed_cmd &quot;/home/mldonkey/file_completed_cmd&quot;
+</pre>
+<h2> <span class="mw-headline" id="Old_cores"> Old cores </span></h2>
+<p>Old cores delay the auto commit operation 30 seconds. Therefore, you have to insert (or activate) in the scripts the auto-commit line from below before you start operations on the actual file, even if you have <a href="Auto_commit.html" title="Auto commit">auto_commit</a> activated in your core. Of course, if you have the commit in your script, you can disable the option in the core.
+</p><p>Since MLDonkey 2.7.1 <tt>file_completed_cmd</tt> is called after commit took place, so you don't need the auto-commit lines in your script.
+</p>
+<h2> <span class="mw-headline" id="Common_problems"> Common problems </span></h2>
+<p>If command is a shell script, specifying the script interpreter (i.e. <tt>#!/bin/bash</tt>) is essential or nothing will happen, even if the script has the executable bit. This is a common source of problems with this feature. All scripts need the interpreter specified for the shell, so it's hardly surprising. One could choose to invoke a script with <tt>/bin/bash script</tt> too.
+</p>
+<h2> <span class="mw-headline" id="Scripts"> Scripts </span></h2>
+<h3> <span class="mw-headline" id="Minimal_auto-commit"> Minimal auto-commit </span></h3>
+<pre>
+#!/bin/bash
+echo -e &quot;commit\nq&quot; | nc localhost 4000
+</pre>
+<p>If this does not work, try:
+</p>
+<pre>
+#!/bin/bash
+{ echo commit; sleep 2; } | telnet localhost 4000
+</pre>
+<p>Or with if you have to supply a password:
+</p>
+<pre>
+#!/bin/bash
+echo -e &quot;auth this_is_my_username this_is_my_password\ncommit\nq&quot; | nc localhost 4000
+</pre>
+<p><b>From here on this is again valid for all versions of MLDonkey</b>
+</p><p><i>Sending the auth command first is a general need, omitted for brevity in the following examples.</i>
+</p>
+<h3> <span class="mw-headline" id="Winpopup_notification"> Winpopup notification </span></h3>
+<p>Another script for Winpopup notification (original version found in mldonkey-users mailing list):
+</p>
+<pre>
+#!/bin/bash
+# file_completed_cmd interface
+HASH=&quot;$1&quot;
+SIZE=&quot;$2&quot;
+FILENAME=&quot;$3&quot;
+
+INCOMING=&quot;incoming&quot;
+
+STATION_LMNAME=&quot;MYBOX&quot;
+STATION_IP=192.168.1.1
+
+{
+  echo &quot;New file: $FILENAME&quot;
+  echo &quot;Hash: $HASH&quot;
+  echo &quot;Size: $SIZE&quot;
+  echo &quot;===========================&quot;
+  ls -F &quot;$INCOMING&quot;; } | smbclient -M &quot;$STATION_LMNAME&quot; -I $STATION_IP
+</pre>
+<h3> <span class="mw-headline" id="Indexing_your_file_on_bitzi.com"> Indexing your file on bitzi.com </span></h3>
+<p>You will need the <a href="http://bitzi.com/bitcollider/" class="external text" rel="nofollow">bitcollider program</a>
+</p>
+<pre>
+#!/bin/bash
+# file_completed_cmd interface
+HASH=&quot;$1&quot;
+SIZE=&quot;$2&quot;
+FILENAME=&quot;$3&quot;
+INCOMING=&quot;incoming&quot;
+DISPLAY=${DISPLAY:-:0.0}
+
+nice bitcollider &quot;$INCOMING/$FILENAME&quot; &amp;
+</pre>
+<h3> <span class="mw-headline" id="Scan_file_for_virus_and_delete_if_infected"> Scan file for virus and delete if infected </span></h3>
+<p>Scan file for viruses and delete if infected. Alternatively you can activate quarantine code to move infected or untestable files into quarantine directory. (See next script for a solution using Bitdefender, which is more reliable)
+</p>
+<pre>
+#!/bin/bash
+# you need netcat and clamav (http://www.clamav.net) package
+
+# file_completed_cmd interface
+HASH=&quot;$1&quot;
+SIZE=&quot;$2&quot;
+FILENAME=&quot;$3&quot;
+
+# some handy variables
+ROOTDIR=&quot;/home/nouser/mldonkey&quot;
+INCOMING=&quot;incoming&quot;
+# dir for quarantining infected files, on same level as incoming. See bottom of this script.
+QUARANTINE=&quot;quarantine&quot;
+
+# forcing commit in core, you might need to change &quot;netcat&quot; to &quot;nc&quot;
+# depending on your distry, eg. Debian has nc and SuSE has netcat.
+echo -e &quot;commit\nq&quot; | netcat localhost 4000
+
+# if you experience problems uncomment follow line to compensate
+# for a commit action that doesnt move but copy
+#sleep 5
+
+# invoking clam antivirus scan on file and delete it if virus was found
+# since clamscan can't disinfect. Log results into file scan.log
+# This way, you get entries like &quot;filename: status&quot; in the log, if you
+# use the --log option you cant see which files were scanned.
+# Hint: Better make the following one line.
+clamscan --remove -r --tgz --unzip --unrar --jar --tar --lha --no-summary \
+   --stdout &quot;$ROOTDIR/$INCOMING/$FILENAME&quot; &gt;&gt; $ROOTDIR/scan.log
+
+# same as above but quarantinging instead of deleting. This moves all files that are infected
+# or caused clamscan to throw an error to quarantine directory.
+# Hint: Better make the if line one line only.
+# to use this feature uncomment lines below and comment the above
+#if  clamscan -r --tgz --unzip --unrar --jar --tar --lha --no-summary \
+#   --stdout &quot;$ROOTDIR/$INCOMING/$FILENAME&quot; &gt;&gt; $ROOTDIR/scan.log&#160;; then
+#       echo &quot;$FILENAME left in $ROOTDIR/$INCOMING&quot; &gt;&gt; $ROOTDIR/scan.log;
+#  else
+#       mv &quot;$ROOTDIR/$INCOMING/$FILENAME&quot; &quot;$ROOTDIR/$QUARANTINE/&quot;
+#       echo &quot;$FILENAME moved to $ROOTDIR/$QUARANTINE&quot; &gt;&gt; $ROOTDIR/scan.log;
+#fi
+</pre>
+<h3> <span class="mw-headline" id="Virus_scanning_and_quarantining_using_Bitdefender"> Virus scanning and quarantining using Bitdefender </span></h3>
+<p>Virus scanning and quarantining using Bitdefender. Bitdefender can also disinfect files, which you should attempt manually with the files in quaratinging directory.
+</p>
+<pre>
+#!/bin/bash
+# you need netcat and Bitdefender (www.bitdefender.com) package
+
+# when we are executed
+EXECDATE=`date`
+
+# file_completed_cmd interface
+HASH=&quot;$1&quot;
+SIZE=&quot;$2&quot;
+FILENAME=&quot;$3&quot;
+
+# some handy variables
+ROOTDIR=&quot;/home/nouser/mldonkey&quot;
+INCOMING=&quot;incoming&quot;
+# fasttrack and bittorent download subdirs
+FTDIR=&quot;Fasttrack&quot;
+BTDIR=&quot;BT&quot;
+# default file root
+FILEROOT=&quot;$ROOTDIR/$INCOMING&quot;
+
+# dir for quarantining infected files, on same level as incoming, has to exist
+QUARANTINE=&quot;quarantine&quot;
+
+# forcing commit in core, you might need to change &quot;netcat&quot; to &quot;nc&quot;
+# depending on your distry, eg. Debian has nc and SuSE has netcat.
+echo -e &quot;commit\nq&quot; | netcat localhost 4000
+
+# lets figure out whether file came from ft or bt
+# ugly but works
+if test -e &quot;$ROOTDIR/$INCOMING/$FTDIR/$FILENAME&quot;; then
+        FILEROOT=&quot;$ROOTDIR/$INCOMING/$FTDIR&quot;&#160;;
+fi
+if test -e &quot;$ROOTDIR/$INCOMING/$BTDIR/$FILENAME&quot;; then
+        FILEROOT=&quot;$ROOTDIR/$INCOMING/$BTDIR&quot;&#160;;
+fi
+
+# if you experience problems uncomment follow line to compensate
+# for a commit action that doesnt move but copy
+#sleep 5
+
+# scan the file check output of bdc for infected or suspicious files
+# if found then quarantine else leave in incoming
+if bdc --all --arc &quot;$FILEROOT/$FILENAME&quot; | grep ^[[S]].'''ect.'''files.*:[[1-9|I\]] &gt; /dev/null; then
+        mv &quot;$FILEROOT/$FILENAME&quot; &quot;$ROOTDIR/$QUARANTINE/&quot;
+        echo &quot;$EXECDATE  $FILENAME is bad. Moved to $ROOTDIR/$QUARANTINE&quot; &gt;&gt; $ROOTDIR/scan.log;
+   else
+        echo &quot;$EXECDATE  $FILENAME is ok. Left in $FILEROOT&quot; &gt;&gt; $ROOTDIR/scan.log;
+fi
+
+# and exit properly
+exit 0
+</pre>
+<h3> <span class="mw-headline" id="Yet_another_virus_scanning_script"> Yet another virus scanning script </span></h3>
+<p>This one tries to be more resource friendly by skipping large files and files that should be considered safe, such as video files. It also tries to detect some fakes (currently only misnamed RAR and ZIP archives), and moves them to a quarantine folder (without scanning them). Requires the Z shell. (Warning, the script is not thoroughly tested yet)
+</p>
+<pre>
+#!/bin/zsh
+# Warning! This script assumes you are running mldonkey &gt; 2.7.0 where the
+# file_completed_cmd is run after the file is committed, and the arguments are
+# passed as environment variables
+
+# Change the following variables to customize for your needs
+MAXSIZE=1073741824             # 1GB
+SAFE_TYPES=(ISO RIFF MPEG MP3) # these are matched against `file -b | awk '{print $1}'`
+DATE=&quot;date +'%x [%T]: '&quot;       # timestamps for the logfile
+LOGFILE=&quot;/data/scan.log&quot;       # location of the logfile
+QUARANTINE=&quot;/data/quarantine&quot;  # location of quarantine folder
+CLAMAVOPTS=&quot;-r --tgz --unzip --unrar --jar --tar --lha --no-summary --stdout&quot;
+
+
+FILEPATH=&quot;$INCOMING/$FILENAME&quot;
+
+function log {
+	print -- &quot;$(eval $DATE) $@&quot; &gt;&gt; $LOGFILE
+}
+
+function filter_size {
+	if [[ $FILESIZE -ge $MAXSIZE ]]&#160;; then
+		log &quot;filter_size($FILESIZE) SKIPPED $FILENAME&quot;
+		return 1
+	fi
+	return 0
+}
+
+function filter_type {
+	FILETYPE=$(file -b $FILEPATH | awk '{print $1}')
+	for t in $SAFE_TYPES&#160;; do
+		if [[ $FILETYPE == $t ]]; then
+			log &quot;filter_type($FILETYPE) SKIPPED $FILENAME&quot;
+			return 1
+		fi
+	done
+	return 0
+}
+
+# Find files that aren't what they say they are (currently detects .rar and .zip fakes
+function check_suffix {
+	suffix=${FILENAME:e:l}
+	for s in $@; do
+		if [[ $suffix == $s ]]; then return 0; fi
+	done
+	return 1
+}
+
+function filter_fake {
+	FILETYPE=$(file -b $FILEPATH | awk '{print $1}')
+	if (check_suffix 'rar' &amp;&amp; [[ $FILETYPE&#160;!= &quot;RAR&quot; ]]) \
+	 ||(check_suffix 'zip' &amp;&amp; [[ $FILETYPE&#160;!= &quot;Zip&quot; ]])&#160;; then
+		log &quot;filter_fake($FILETYPE) QUARN $FILENAME&quot;
+		mv -- &quot;$FILEPATH&quot; &quot;$QUARANTINE&quot;
+		return 1
+	fi
+	return 0		
+}
+
+if filter_fake &amp;&amp; filter_size &amp;&amp; filter_type&#160;; then
+	eval &quot;clamscan $CLAMAVOPTS &quot;$FILEPATH&quot;&quot; &gt;&gt; $LOGFILE
+	if [[ $?&#160;!= 0 ]]&#160;; then
+		log &quot;clamscan(INFECTED) QUARN $FILENAME&quot;
+		mv -- &quot;$FILEPATH&quot; &quot;$QUARANTINE&quot;
+	fi
+fi
+</pre>
+<h3> <span class="mw-headline" id="Dispatching_completed_files_to_several_directories"> Dispatching completed files to several directories </span></h3>
+<p>A more complex script for dispatching completed files on several directories, if you have several partitions (don't forget to share them all!):
+</p>
+<pre>
+#!/bin/bash
+# file_completed_cmd interface
+HASH=&quot;$1&quot;
+SIZE=&quot;$2&quot;
+FILENAME=&quot;$3&quot;
+
+INCOMING=&quot;incoming&quot;
+DIRS=&quot;/disk1/incoming /disk2/incoming&quot;
+MINFREEKB=1024
+
+export LC_ALL=C
+SIZEKB=$[[(SIZE+1023)/1024]]
+REQUIREDKB=$[[SIZEKB+MINFREEKB]]
+
+# not necessary with auto_commit = true
+#echo -e &quot;commit\nq&quot;|nc localhost 4000
+
+for dir in $DIRS; do
+  DIRFREEKB=$(df -k &quot;$dir&quot; | gawk 'NR &gt; 1 { print $4 }')
+  if [[ $DIRFREEKB -ge $REQUIREDKB ]]; then
+    mv &quot;$INCOMING/$FILENAME&quot; &quot;$dir&quot; &amp;&amp; exit
+  fi
+done
+# no free space, keep file in incoming
+</pre>
+<p>Also this is a perl script that moves file to specific directory according to its extension.
+</p>
+<pre>
+#!/usr/bin/perl
+use strict;
+use File::Basename;
+
+# file_completed_cmd interface
+my ($hash, $size, $file) = @ARGV;
+exit if&#160;!$hash ||&#160;!$size ||&#160;!$file;
+
+my $incoming='/home/mldonkey/incoming/';
+my $minfreekb=1024;
+
+# Define extensions here&#160;!!!
+
+my&#160;%dispatch = (
+# video
+   '.avi .mpg .mpeg .wmv .divx' =&gt; '/var/ftp/incoming/mldonkey/',
+# image
+   '.iso .bin .cue' =&gt; '/var/ftp/incoming/mldonkey/',
+# soft
+   '.sh .exe .gz .bz2 .tar .tgz' =&gt; '/var/ftp/pub/mldonkey/',
+# audio
+   '.mp3 .wma .ogg .mod .xm' =&gt; '/var/ftp/pub/mldonkey/',
+);
+
+my $sizekb=($size+1023)/1024;
+my $requiredkb=$sizekb+$minfreekb;
+
+sub enough_space {
+    my ($dir) = @_;
+    my $dirfreekb = -1;
+    if(open(DF, &quot;df -k $dir|&quot;)) {
+      my $headers = &lt;DF&gt;;
+      my $line = &lt;DF&gt;; chomp $line;
+      close DF;
+      $dirfreekb = ( split(/[[ \t]]+/, $line) )[[3]] if defined $line;
+    }
+    $dirfreekb &gt;= $requiredkb;
+}
+
+sub move_if_ok {
+    my ($file, $dir) = @_;
+    enough_space($dir) &amp;&amp; system ('mv', $file, $dir) &lt;code&gt;&lt;/code&gt; 0
+}
+
+my $ext = (fileparse($file, '\.[[^.]]+$'))[[2]];
+while(my ($exts, $extdir) = each&#160;%dispatch) {
+  my @exts = split / +/, $exts;
+  if((grep { $_ eq $ext } @exts) &gt; 0) {
+    move_if_ok($incoming.$file, $extdir) &amp;&amp; last
+  }
+}
+</pre>
+<p>MLdonkey has already builtin features for auto commiting files (since 2.04), sending an email, or sending a notification to MLchat client, when a file is completed, see below.
+</p><p>COMMENT: methinks the name of this option is misleading. Firstly, it sounds like it's asking for <i>the command line</i> which is going to be executed when a file gets "completed", so I filled it with "/usr/bin/myNotifierApp $FILENAME finished!". Perhaps the option should be called <code>file_completed_script</code> or some such.
+And secondly: given the new (2.7.1's post-commit) behaviour of this option, perhaps it should be called <code>file_commited_cmd</code>. Or surely that could be a new option, leaving <code>file_completed_cmd</code> with its original purpose (i.e., pre-commit) and limitations.
+</p>
+<h4> <span class="mw-headline" id="Dispatch_downloaded_files_using_users_as_filter."> Dispatch downloaded files using users as filter. </span></h4>
+<p>I'm using one MLDonkey core in a home network, around 6 users. And I want to protect privacy, then I had to have separated incoming files. The problem is when the destination disk is full, the file stays in incoming.
+</p>
+<pre>
+#!/bin/bash
+# you need netcat and clamav (http://www.clamav.net) package
+
+# file_completed_cmd interface
+HASH=&quot;$1&quot;
+SIZE=&quot;$2&quot;
+FILENAME=&quot;$3&quot;
+
+# some handy variables
+ROOTDIR=&quot;/home/mldonkey/.mldonkey&quot;
+ADMININC=&quot;incoming&quot;
+PAPAINC=&quot;/home/parents/papa/&quot;
+MAMAINC=&quot;/home/parents/Downloads&quot;
+IGNACIOINC=&quot;/home/ignacio&quot;
+DAVIDINC=&quot;/home/david&quot;
+DrEaMuXINC=&quot;/home/dreamux/Incoming&quot;
+DrEaMuX=&quot;/home/dreamux&quot;
+TIMENOW=`date`
+
+# dir for quarantining infected files, on same level as incoming. See bottom of this script.
+QUARANTINE=&quot;incoming/QUARENTENA&quot;
+
+# lets figure out wheather file came from
+if test -e &quot;$ROOTDIR/incoming/files/$FILENAME&quot;; then
+        INCOMING=&quot;incoming/files&quot;
+fi
+if test -e &quot;$ROOTDIR/incoming/directories/$FILENAME&quot;; then
+        INCOMING=&quot;incoming/directories&quot;
+fi
+# This moves all files that are infected
+# or caused clamscan to throw an error to quarantine directory.
+# Hint: Better make the if line one line only.
+# to use this feature uncomment lines below and comment the above
+
+echo -en &quot;\e[1;33m########################################## &quot;${TIMENOW}&quot; ###########################################\e[0m&quot; &gt;&gt; $ROOTDIR/scan.log; echo &quot;&quot; &gt;&gt; $ROOTDIR/scan.log
+if echo &quot;&quot;; clamscan -r --tgz --unzip --unrar --jar --tar --lha --no-summary --stdout &quot;$ROOTDIR/$INCOMING/$FILENAME&quot; &gt;&gt; $ROOTDIR/scan.log; then
+chmod 775 &quot;$ROOTDIR/$INCOMING/$FILENAME&quot;
+if test &quot;$FILE_OWNER&quot; == &quot;papa&quot;; then
+        chmod 755 -R &quot;$ROOTDIR/$INCOMING/$FILENAME&quot;
+        chown papa:mldonkey &quot;$ROOTDIR/$INCOMING/$FILENAME&quot;
+        mv &quot;$ROOTDIR/$INCOMING/$FILENAME&quot; &quot;${PAPAINC}&quot;
+        echo -en &quot;\e[1;32m$FILENAME\e[0m left in \e[1;34m&quot;${PAPAINC}&quot;\e[0m&quot; &gt;&gt; $ROOTDIR/scan.log; echo &quot;&quot; &gt;&gt; $ROOTDIR/scan.log
+fi
+
+if test &quot;$FILE_OWNER&quot; == &quot;ignacio&quot;; then
+#       chmod 755 -R &quot;$ROOTDIR/$INCOMING/$FILENAME&quot;
+        chown ignacio:mldonkey &quot;$ROOTDIR/$INCOMING/$FILENAME&quot;
+        mv &quot;$ROOTDIR/$INCOMING/$FILENAME&quot; &quot;${IGNACIOINC}&quot;
+        echo -en &quot;\e[1;32m$FILENAME\e[0m left in \e[1;34m&quot;${IGNACIOINC}&quot;\e[0m&quot; &gt;&gt; $ROOTDIR/scan.log; echo &quot;&quot; &gt;&gt; $ROOTDIR/scan.log
+fi
+
+if test &quot;$FILE_OWNER&quot; == &quot;david&quot;; then
+        chmod 755 -R &quot;$ROOTDIR/$INCOMING/$FILENAME&quot;
+        chown david:mldonkey &quot;$ROOTDIR/$INCOMING/$FILENAME&quot;
+        mv &quot;$ROOTDIR/$INCOMING/$FILENAME&quot; &quot;${DAVIDINC}&quot;
+        echo -en &quot;\e[1;32m$FILENAME\e[0m left in \e[1;34m&quot;${DAVIDINC}&quot;\e[0m&quot; &gt;&gt; $ROOTDIR/scan.log; echo &quot;&quot; &gt;&gt; $ROOTDIR/scan.log
+fi
+
+if test &quot;$FILE_OWNER&quot; == &quot;mama&quot;; then
+        chmod 755 -R &quot;$ROOTDIR/$INCOMING/$FILENAME&quot;
+        chown mama:mldonkey &quot;$ROOTDIR/$INCOMING/$FILENAME&quot;
+        mv &quot;$ROOTDIR/$INCOMING/$FILENAME&quot; &quot;${MAMAINC}&quot;
+        echo -en &quot;\e[1;32m$FILENAME\e[0m left in \e[1;34m&quot;${MAMAINC}&quot;\e[0m&quot; &gt;&gt; $ROOTDIR/scan.log; echo &quot;&quot; &gt;&gt; $ROOTDIR/scan.log
+fi
+if test &quot;$FILE_OWNER&quot; == &quot;dreamux&quot;; then
+        chmod 755 -R &quot;$ROOTDIR/$INCOMING/$FILENAME&quot;
+        chown dreamux:mldonkey &quot;$ROOTDIR/$INCOMING/$FILENAME&quot;
+        mv &quot;$ROOTDIR/$INCOMING/$FILENAME&quot; &quot;${DrEaMuXINC}&quot;
+        echo -en &quot;\e[1;32m$FILENAME\e[0m left in \e[1;34m&quot;${DrEaMuX}&quot;\e[0m&quot; &gt;&gt; $ROOTDIR/scan.log; echo &quot;&quot; &gt;&gt; $ROOTDIR/scan.log
+fi
+
+else
+        mv &quot;$ROOTDIR/$INCOMING/$FILENAME&quot; &quot;$ROOTDIR/$QUARANTINE/&quot;
+        chmod 777 -R &quot;$ROOTDIR/$QUARANTINE/$FILENAME&quot;
+        echo -en &quot;\e[1;31m$FILENAME\e[0m moved to \e[1;34m$ROOTDIR/$QUARANTINE\e[0m&quot; &gt;&gt; $ROOTDIR/scan.log; echo -en &quot;&quot; &gt;&gt; $ROOTDIR/scan.log
+
+fi
+echo -en &quot;\e[1;33m########################################## &quot;${TIMENOW}&quot; ###########################################\e[0m&quot; &gt;&gt; $ROOTDIR/scan.log; echo &quot;&quot; &gt;&gt; $ROOTDIR/scan.log
+echo -en &quot;&quot; &gt;&gt; $ROOTDIR/scan.log; echo &quot;&quot; &gt;&gt; $ROOTDIR/scan.log;
+#
+</pre>
+<p>It works pretty good.
+</p>
+<h3> <span class="mw-headline" id="Logging_downloads.2C_displaying_duration.2C_etc"> Logging downloads, displaying duration, etc </span></h3>
+<p>Using the latest environment variables.
+</p>
+<pre>
+#!/usr/bin/env perl
+# -.- by eydaimon -.-
+use POSIX;
+use strict;
+use warnings;
+
+
+#variables
+# (&quot;TEMPNAME&quot;,  temp_name);
+# (&quot;FILEID&quot;,    file_id);
+# (&quot;FILESIZE&quot;,  size);
+# (&quot;FILENAME&quot;,  filename);
+# (&quot;FILEHASH&quot;,  string_of_uids info.G.file_uids);
+# (&quot;DURATION&quot;,  duration);
+# (&quot;INCOMING&quot;,  incoming);
+# (&quot;NETWORK&quot;,   network.network_name);
+# (&quot;ED2K_HASH&quot;, ed2k_hash)]
+#
+
+my $IN_FILE=&quot;$ENV{INCOMING}/$ENV{FILENAME}&quot;;
+
+my $FILETYPE=`file -b &quot;$IN_FILE&quot;`;
+my $FILESIZE=nicefilesize($ENV{FILESIZE});
+my $DATE=`date`;
+my $DURATION = s_to_long($ENV{DURATION});
+my $RATE = rate();
+chomp $FILESIZE;
+chomp $FILETYPE;
+chomp $DATE;
+my $donkey = &quot;&quot;;
+if ($ENV{NETWORK} eq &quot;Donkey&quot;) {
+$donkey = qq|
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td  class=heading&gt;ED2Khash:
+&lt;td class=ed2khash&gt;&lt;a href=&quot;$ENV{ED2K_HASH}&quot;&gt;link&lt;/a&gt;
+|;
+}
+
+my $outfile = &quot;file_completed_cmd_log.html&quot;;
+if (! -f  $outfile) {
+    open FH, &quot;&gt;$outfile&quot;;
+    print FH $_ for (&lt;DATA&gt;);
+} else { open FH, &quot;&gt;&gt;$outfile&quot;; }
+
+print FH qq|
+&lt;div class=table&gt;&lt;span class=raised&gt;$DATE&lt;/span&gt;
+&lt;table&gt;&lt;tr&gt;
+&lt;td class=heading&gt;Filename:
+&lt;td class=filename&gt;$ENV{FILENAME}
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=heading&gt;Filetype:
+&lt;td class=filetype&gt;$FILETYPE
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=heading&gt;Filesize:
+&lt;td class=filesize&gt;$FILESIZE
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=heading&gt;Duration:
+&lt;td class=duration&gt;$DURATION
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=heading&gt;Rate:
+&lt;td class=duration&gt;$RATE
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td  class=heading&gt;Network:
+&lt;td class=network&gt;$ENV{NETWORK}
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td  class=heading&gt;Fileid:
+&lt;td class=filesid&gt;$ENV{FILEID}
+$donkey
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;br&gt;&lt;p&gt;
+|;
+close FH;
+
+sub s_to_long {
+    my ($secs) = @_;
+    my $days = int($secs / 24 / 60 /60);
+    return strftime &quot;${days}d&#160;%Hh&#160;%Mm&#160;%Ss&quot;,$secs,0,0,0,0,0,0;
+}
+sub rate {
+    my $kbs = $ENV{FILESIZE}/1024;
+    return sprintf &quot;%0.2f Kb/sec&quot;, $kbs/$ENV{DURATION};
+}
+
+
+sub nicefilesize {                                            
+    my ($fs) = @_;
+    my @ext = qw(b Kb Mb Gb Tb Pb);
+    my $n=0; while($fs!~/^0./) { $fs/=1024; $n++; }
+    $fs *= 1024; $n--;
+    return sprintf &quot;%0.2f$ext[$n]&quot;,$fs;
+}
+
+__DATA__
+&lt;STYLE TYPE=&quot;text/css&quot;&gt;
+.float {
+    position: fixed;
+    left: auto;
+    top: 140px;
+    right: 2px;
+}
+.date {
+font-weight: bold;
+color: blue;
+}
+.filename {
+color: magenta;
+}
+.filetype {
+color: green;
+}
+.filesize {
+color: black;
+}
+  body {
+      background-color: #8080B0;
+      font-family: arial;
+            /*
+            margin-left&#160;: 10% ! important;
+            margin-right&#160;: 10% ! important;
+            margin-bottom&#160;: 10px ! important;
+            margin-top&#160;: 10px ! important;
+            */
+  }
+    .raised {
+        font-family: arial;
+        border: ridge black 2px;
+        position: relative;
+        top: -12px;
+        left: 12px;
+        padding: 4px;
+        background:#afafdf;
+        font-size: 13px;
+        font-weight: bold;
+        color: black;
+    }
+  .table {
+      background-color: #ddf;
+      margin-top: 15px;
+         border: ridge black 3px;
+  }
+  .me { font-size: 10pt; color: red }
+  .them { font-size: 10pt; color: blue }
+  .time { font-size: 10pt; color: black }
+  .msg { font-size: 10pt; color: black }
+  .heading { font-weight: bold; font-size: 12pt; color: black }
+  .caption {
+      font-weight: bold; text-align: left; font-size: 12pt; color: black;
+      background: #7fffd4;
+  }
+&lt;/STYLE&gt;
+
+</pre>
+<h3> <span class="mw-headline" id="Logging_downloads_into_MySQL_database"> Logging downloads into MySQL database </span></h3>
+<p>This script will insert into MySQL database the following fields: filename, filetype, filesize, duration, end, rate, network, hash, ed2klink, fileowner, filegroup.
+</p><p>MySQL table:
+</p>
+<pre>
+CREATE TABLE `mldonkey` (
+  `index` int(11) NOT NULL auto_increment,
+  `filename` varchar(255) NOT NULL,
+  `filetype` varchar(255) default NULL,
+  `filesize` bigint(20) default NULL,
+  `duration` int(11) default NULL,
+  `end` int(11) default NULL,
+  `rate` int(11) default NULL,
+  `network` varchar(30) default NULL,
+  `hash` varchar(50) default NULL,
+  `ed2klink` varchar(255) default NULL,
+  `fileowner` varchar(50) default NULL,
+  `filegroup` varchar(50) default NULL,
+  PRIMARY KEY  (`index`)
+) ENGINE=MyISAM;
+</pre>
+<p>PHP script which fills the MySQL table:
+</p>
+<pre>
+#!/usr/bin/env php
+
+&lt;?php
+$host = 'localhost';
+$dbname = 'mldonkey';
+$dbuser = 'mldonkey';
+$dbpass = '';
+
+$path = $_ENV['INCOMING'] . &quot;/&quot; . $_ENV['FILENAME'];
+$fileowner = $_ENV['FILE_OWNER'];
+$filegroup = $_ENV['FILE_GROUP'];
+
+$filename = htmlentities($_ENV['FILENAME'], ENT_QUOTES);
+$filetype = htmlentities(`file -b &quot;$path&quot;`, ENT_QUOTES);
+$filesize = $_ENV['FILESIZE'];
+$end = time();
+$duration = $_ENV['DURATION'];
+
+$rate = ($_ENV['FILESIZE'] / $_ENV['DURATION']);
+$network = $_ENV['NETWORK'];
+$hash = substr($_ENV['FILEID'], 9, 32);
+if ($network == &quot;Donkey&quot;) {
+    $ed2klink = $_ENV['ED2K_HASH'];
+}
+
+$connect = mysql_connect($hostname, $dbuser, $dbpass) or die (mysql_error());
+mysql_select_db($dbname, $connect);
+$insert = &quot;INSERT INTO mldonkey (filename, filetype, filesize, duration, end, rate, network, hash, ed2klink, fileowner, filegroup) VALUES ('$filename', '$filetype', '$filesize', '$duration', '$end', '$rate', '$network', '$hash', '$ed2klink', '$fileowner', '$filegroup')&quot;;
+$results = mysql_query($insert) or die(mysql_error());
+mysql_close($connect);
+?&gt;
+</pre>
+<h3> <span class="mw-headline" id="Logging_downloads_into_SQLite_database"> Logging downloads into SQLite database </span></h3>
+<pre>
+#!/bin/bash
+DB=&quot;$( dirname $0)/$( basename $0).db.sqlite3&quot; 
+SQLITE=&quot;sqlite3&quot;
+SQL=&quot;$SQLITE $DB&quot;
+
+if [&#160;! -e &quot;$DB&quot; ]
+then
+        echo &quot;DB doesn't exist.. Creating it&quot;
+        $SQL &quot;CREATE TABLE downloaded (TIME TEXT, TEMPNAME TEXT, FILEID TEXT, FILESIZE NUMERIC, FILENAME TEXT, \
+          FILEHASH TEXT, DURATION NUMERIC, INCOMING TEXT, NETWORK TEXT, ED2K_HASH TEXT, DLFILES NUMERIC, \
+          FILE_OWNER TEXT, FILE_GROUP TEXT);&quot; &amp;&amp; echo &quot;successfully created DB&quot;
+fi
+
+
+echo &quot;inserting record into database&quot;
+$SQL &quot;INSERT INTO downloaded ( TIME, TEMPNAME, FILEID, FILESIZE, FILENAME, FILEHASH, DURATION, INCOMING, \
+      NETWORK, ED2K_HASH, DLFILES, FILE_OWNER, FILE_GROUP ) VALUES ( datetime('now'), \&quot;$TEMPNAME\&quot;, \
+      \&quot;$FILEID\&quot;, \&quot;$FILESIZE\&quot;, \&quot;$FILENAME\&quot;, \&quot;$FILEHASH\&quot;, \&quot;$DURATION\&quot;, \&quot;$INCOMING\&quot;, \&quot;$NETWORK\&quot;, \
+      \&quot;$ED2K_HASH\&quot;, \&quot;$DLFILES\&quot;, \&quot;$FILE_OWNER\&quot;, \&quot;$FILE_GROUP\&quot;  ); &quot;
+
+</pre>
+<h2> <span class="mw-headline" id="See_also"> See also </span></h2>
+<ul><li> <a href="TelnetCommandScripts.html" title="TelnetCommandScripts">TelnetCommandScripts</a>
+</li><li> <a href="Mail.html" title="Mail">mail</a>
+</li><li> <a href="WhereToStoreDownloadingFiles.html" title="WhereToStoreDownloadingFiles">WhereToStoreDownloadingFiles</a>
+</li><li> <a href="Auto_commit.html" title="Auto commit">auto_commit</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Smtp_server&amp;action=edit&amp;redlink=1" class="new" title="Smtp server (page does not exist)">smtp_server</a>
+</li><li> <a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Smtp_port&amp;action=edit&amp;redlink=1" class="new" title="Smtp port (page does not exist)">smtp_port</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 216/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1408-0!*!0!!en!*!edit=0 and timestamp 20230807162803 -->
+<div class="printfooter">
+Retrieved from "<a href="File_completed_cmd.html">http://mldonkey.sourceforge.net/File_completed_cmd</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=File_completed_cmd" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="File_completed_cmd.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:File_completed_cmd&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="File_completed_cmd.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=File_completed_cmd&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index1d76.html?title=File_completed_cmd&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/File_completed_cmd.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/File_completed_cmd.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index351a.html?title=File_completed_cmd&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexef40.html?title=File_completed_cmd&amp;oldid=5278" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 13 December 2013, at 00:05.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 45,533 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "File_completed_cmd", "wgTitle": "File completed cmd", "wgAction": "view", "wgArticleId": 1408, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5278, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.122 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/File_completed_cmd by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:45:33 GMT -->
+</html>
