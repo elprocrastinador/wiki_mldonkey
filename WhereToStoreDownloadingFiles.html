@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/WhereToStoreDownloadingFiles by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:45:02 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>WhereToStoreDownloadingFiles - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-WhereToStoreDownloadingFiles skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">WhereToStoreDownloadingFiles</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>Depending on what you want, you should consider where you put your files.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Clean_directory_structure"><span class="tocnumber">1</span> <span class="toctext">Clean directory structure</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Speed_priority"><span class="tocnumber">2</span> <span class="toctext">Speed priority</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Space_priority"><span class="tocnumber">3</span> <span class="toctext">Space priority</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Both_Speed_and_Space"><span class="tocnumber">4</span> <span class="toctext">Both Speed and Space</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#idea:"><span class="tocnumber">5</span> <span class="toctext">idea:</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#See_also:"><span class="tocnumber">6</span> <span class="toctext">See also:</span></a></li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id="Clean_directory_structure">Clean directory structure</span></h3>
+<p>If you want to keep your files ordered you may want to add an extra shared directory with subdirectories.
+</p><p>Example:<br />
+</p>
+<pre>incoming/
+~MyStuff/~Demos/
+~MyStuff/~Wallpapers/
+~MyStuff/~MyPictures/
+</pre>
+<p>you need to share this directory either with the command:
+</p>
+<pre>[[share]] 0 \&quot;~MyStuff\&quot;
+</pre>
+<p>Please also check that the \"default_sharing_strategy\" is set to  \"all_files\" in downloads.ini to insure that the subdirectories are shared as well.
+</p><p>Alternatively you can edit downloads.ini and adding this to the <a href="Shared_directories.html" title="Shared directories">shared_directories</a> section between the ~[[]] brackets:
+</p>
+<pre>
+  {     dirname = \&quot;~MyStuff\&quot;
+     networks = [[]]
+     strategy = all_files
+     priority = 0
+};
+</pre>
+<p>You can then move the files into these subdirectories, issue a \"reshare\" command so mldonkey knows they moved.
+</p><p>This way you can keep order and the files will still be available to the network.
+</p><p>_/snard4321_
+</p><p><br />
+</p>
+<h3> <span class="mw-headline" id="Speed_priority">Speed priority</span></h3>
+<p>Download files directly to a <b>fat32</b> partition
+</p><p>Reiserfs and ext3 don't really create 700MB files if you start a new download so if you download many files at the same time they get fragmented a lot.
+I could store my movies only with 4x to a CD because the HD was so fragmented with reiserfs that it was too slow for my faster CD-writer (48x)
+</p><p>_-- Since 2.02-10, MLdonkey allocates disk space by full chunks to lower fragmentation. /Pango_
+</p>
+<h3> <span class="mw-headline" id="Space_priority">Space priority</span></h3>
+<p>Download files to an <b>ext3</b> partition
+</p>
+<ul><li> Advantage:_ You can download files immediately w/o wasting space with useless zeros&#160;:)
+</li></ul>
+<ul><li> Disavantage:_ As mentioned above ... possibility of fragmentation which can affect reading speed of files
+</li></ul>
+<p>_e.g._ If you use mldonkey on a separate box (e.g. your router) with limited space available, you can start files w/o having the complete space available yet and transfer your completed files via network to your workstation / burning box to make room on your 'download box'.<br />On a 10MBit network the loss in speed doesn't matter.
+</p>
+<h3> <span class="mw-headline" id="Both_Speed_and_Space">Both Speed and Space</span></h3>
+<p>mount a bsd file system (ffs) wich is practically immune to fragmentation, if you have that option. a good idea is to use the softdep flag.
+</p><p>stats from my openbsd mldonkey disk:
+</p>
+<pre>
+bash# fsck -fv /dev/raid2a
+start /dev/raid2a wait fsck_ffs -f /dev/rraid2a
+...
+'''''' Last Mounted on /export/site/incoming
+...
+63 files, 14840505 used, 1153407 free (39 frags, 144171 blocks, 0.0% fragmentation)
+</pre>
+<p><br />
+ps. if someone like to try mounting ffs on linux have a look at this thread: <a href="http://cwrulug.cwru.edu/archive/cwrulug/200002/0197.html" class="external free" rel="nofollow">http://cwrulug.cwru.edu/archive/cwrulug/200002/0197.html</a> and please report back. don't have linux myself, i'm afraid.
+</p><p>_-- Another option which is included in linux out of the box is to download to an XFS formatted partition. XFS is very fast, is included in recent kernels and provides a defragmentation tool called xfs_fsr which works online, so you don't have to umount the partition prior to defragmentation. You could start xfs_fsr by cron at morning time and the behaviour of xfs_fsr is quite cron friendly. Debian includes xfs_fsr in the xfsdump package. Of course this is not as elegant as ffs in respect to fragmentation, but it is a stable and well know fs on linux. /boligrafo_
+</p>
+<h3> <span class="mw-headline" id="idea:">idea:</span></h3>
+<p>use the <a href="File_completed_cmd.html" title="File completed cmd">file_completed_cmd</a> option (a command that is called when a file is completely downloaded. Arguments are: &lt;file_name on disk&gt; &lt;md4-hash&gt; &lt;size&gt;), to launch a script that moves completed &lt;file_name on disk&gt; to another partition, such as a FAT32 partition. Just moving it should be enough to loose the fragmentation. anybody?
+</p><p>_Good idea, but having temp and incoming directories on separate filesystems should be enough. The only known drawback is that commiting will take some time, and MLdonkey will block until it's finished... /Pango_
+</p><p>_...which means you should \"./configure --enable-pthread=-pthread\" before compiling. See CompilationProblems for details._
+</p><p>_As far as I know that file copying is not threaded, did you check your information&#160;?_
+</p><p>I used to simply run a cronjob that copied the files * from one folder to another. Worked fine and is simple.
+</p><p>One good idea, in case you have more than one hard disk, is to have the temp directory in one disk and the incoming (or anywhere else you move your completed files to) in the other one, that way the copy is much faster and (in my opinion) is better for the hard disk too.
+</p>
+<h3> <span class="mw-headline" id="See_also:">See also:</span></h3>
+<ul><li> <a href="RelocatingTemp.html" title="RelocatingTemp">RelocatingTemp</a>
+</li><li> [<a href="http://www.fefe.de/readfrag/" class="external text" rel="nofollow">readfrag</a>]
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 59/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1747-0!*!0!!en!*!edit=0 and timestamp 20230807162811 -->
+<div class="printfooter">
+Retrieved from "<a href="WhereToStoreDownloadingFiles.html">http://mldonkey.sourceforge.net/WhereToStoreDownloadingFiles</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=WhereToStoreDownloadingFiles" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="WhereToStoreDownloadingFiles.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:WhereToStoreDownloadingFiles&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="WhereToStoreDownloadingFiles.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=WhereToStoreDownloadingFiles&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index5cee.html?title=WhereToStoreDownloadingFiles&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/WhereToStoreDownloadingFiles.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/WhereToStoreDownloadingFiles.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index38d3.html?title=WhereToStoreDownloadingFiles&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexc678.html?title=WhereToStoreDownloadingFiles&amp;oldid=5288" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 10 November 2018, at 22:56.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 28,979 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "WhereToStoreDownloadingFiles", "wgTitle": "WhereToStoreDownloadingFiles", "wgAction": "view", "wgArticleId": 1747, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5288, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.100 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/WhereToStoreDownloadingFiles by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:45:07 GMT -->
+</html>

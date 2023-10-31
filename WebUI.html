@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/WebUI by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:55:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>WebUI - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-WebUI skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">WebUI</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Open_the_WebUI"><span class="tocnumber">1</span> <span class="toctext">Open the WebUI</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Downloading_from_ed2k:.2F.2F.2C_fha:.2F.2F.2C_sig2dat:.2F.2F.2C_http:.2F.2F_and_ftp:.2F.2F_links"><span class="tocnumber">2</span> <span class="toctext">Downloading from ed2k://, fha://, sig2dat://, http:// and ftp:// links</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Searching_and_Downloading"><span class="tocnumber">3</span> <span class="toctext">Searching and Downloading</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#The_Downloads_Page"><span class="tocnumber">4</span> <span class="toctext">The Downloads Page</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Sharing_files"><span class="tocnumber">5</span> <span class="toctext">Sharing files</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Listing_shared_files"><span class="tocnumber">6</span> <span class="toctext">Listing shared files</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Customizing_the_Web_Interface"><span class="tocnumber">7</span> <span class="toctext">Customizing the Web Interface</span></a></li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id="Open_the_WebUI"> Open the WebUI</span></h3>
+<pre>Click this link: <a href="http://admin@127.0.0.1:4080/" class="external free" rel="nofollow">http://admin@127.0.0.1:4080</a>
+</pre>
+<h3> <span class="mw-headline" id="Downloading_from_ed2k:.2F.2F.2C_fha:.2F.2F.2C_sig2dat:.2F.2F.2C_http:.2F.2F_and_ftp:.2F.2F_links"> Downloading from ed2k://, fha://, sig2dat://, http:// and ftp:// links</span></h3>
+<p>Various <a href="Browser_Integration.html" title="Browser Integration">browser extensions</a> use WebUI to submit download links.
+</p><p>Input from WebUI's command line:
+</p><p>Right click over the ed2k link and select something like "Copy Link Location", then go to WebUI's page then paste the link over the text input near "Input" button, then click "Input" button. The WebUI will anwser "done" and your download can been seen if you click "Transfers" button.
+</p><p>It will work for ed2k://, fha://, sig2dat:// links, but you may need use the command "dllink" before http:// or ftp:// links. In fact always you can use dllink, but sometimes it is just implict. For no error use the command "dllink" and paste the URL.
+</p><p>Examples:
+<code>
+</p>
+<pre>dllink ed2k://|file|SuSE_Linux_V8.1_CD1.iso|681148416|259B098646798C556F5BF1CDC684D459|/
+dllink fha://|file|XDonkey.dmg|4095788|d9224da0048123a9f1e6eb4751c22347|
+dllink sig2dat://|File:Virtualdub-1_4_10.zip|Length:711077Bytes,694KB|UUHash:6QbuEMkaIrmrm7UBmZT9SqEU6GQ|
+dllink <a href="http://www.open-bits.org/download.php/406/Openoffice_1.1.4_Linuxintel_install.tar.gz.torrent" class="external free" rel="nofollow">http://www.open-bits.org/download.php/406/Openoffice_1.1.4_Linuxintel_install.tar.gz.torrent</a>
+dllink <a href="http://67.84.8.14:88/beethoven/karajan.rar" class="external free" rel="nofollow">http://67.84.8.14:88/beethoven/karajan.rar</a>
+dllink <a href="ftp://xdonkey.macdk.net/dl/XDonkey.dmg" class="external free" rel="nofollow">ftp://xdonkey.macdk.net/dl/XDonkey.dmg</a>
+</pre>
+<p></code>
+</p>
+<h3> <span class="mw-headline" id="Searching_and_Downloading"> Searching and Downloading</span></h3>
+<ul><li>Hit the button "Custom Search"
+</li></ul>
+<p>Now in the small frame, a few links are displayed. This are different Methods to search, which should be explained somewhere in this wiki   (Please link it here if you found it).
+If you searched Web Based (eg. Jigle, you have to start the Download manually as described above.
+(Maybe someone could write a Jigle Search Interface with automatic download links like maurice did&#160;:) )<br />
+<i>Configure your browser so that ed2k:// links are sent to the core (urlslave, etc)</i>
+</p><p><i>Can I use Boolean Search Options (and/or)&#160;?</i> I use the command line "s word1 word2" to search for word1 AND word2, since i failed
+to do it with the "custom search" form.
+</p>
+<ul><li>Start the Download
+</li></ul>
+<p>Hit the button "View Searches". And click the Search Number you want to look at. A click on the file you want directly downloads it then.
+</p>
+<ul><li>Forget searches
+</li></ul>
+<p>Hit the button "View Searches", press the "Forget" link besides the search you are no longer interested in.
+</p>
+<ul><li>Cancel Downloads
+</li></ul>
+<p>Read the Downloads Page Section below. Check the "Cancel"-box and then hit the "Submit-Changes" Button. Your download is canceled then and the Part files are deleted. (Therefore: use with caution).
+</p><p><i>Does anyone know anything about the extend search Button&#160;??? I don't feel it works.</i>
+<i>Extended Search is asynchronous, clicking on the button starts extended search, but you have to check search results from time to time to see the new results. The message "extended search done" is misleading, and should be modified in "extended search started", for example /Pango</i>
+</p>
+<h3> <span class="mw-headline" id="The_Downloads_Page"> The Downloads Page</span></h3>
+<p>The meaning of the output on the downloads page is following:
+</p>
+<ul><li>Num: the index number of the download (click on it to see sources)
+</li><li>P/R/C: means Pause/Resume/Cancel (use with caution!!)
+</li><li>File: the file name with a bar displaying percent downloaded graphically
+</li><li>Percent:&#160;% downloaded
+</li><li>Downloaded: Bytes downloaded
+</li><li>Size: Total size of file
+</li><li>Old: First number means number of days you are trying to downloading this file, second number (after ":") means number of days since your mldonkey has last seen the file complete (a dash "-" means not seen complete yet)
+</li><li>Rate: kBytes/sec currently downloading this file or dash "-" (not downloading at the moment)
+</li><li><i> 'Queued' </i>:  You have requested more files for downloading than specified with <i>max_concurrent_downloads</i>.
+</li></ul>
+<h3> <span class="mw-headline" id="Sharing_files"> Sharing files</span></h3>
+<p>To add a directory with files to share go to Options -&gt; Shares -&gt; Add Share, a window will pop up asking you a directory. You should inform a priority number, space, directory, then click "OK".
+</p><p><b>format:</b> <code>{priority} {path} (share strategy)</code>
+</p><p><b>examples:</b>
+</p>
+<ul><li> 0 "/pub/my books"
+</li><li> 0 "c:\shared files" all_files
+</li></ul>
+<p><br />
+Do <i>not</i> put a trailing backslash after paths in mlDonkey under windows or it will give you an error.
+The share strategy parameter is optional, it will default to "directory only"
+These are the predefined share strategies as defined in the <a href="Share.html" title="Share">share</a> page:
+</p>
+<ul><li> "all_files": recursively all files (default)
+</li><li> "only_directory": not recursive, all files
+</li><li> "mp3s": recursively .mp3 &lt; 10 MB
+</li><li> "avis": recursively .avi &gt; 500 MB
+</li></ul>
+<h3> <span class="mw-headline" id="Listing_shared_files"> Listing shared files</span></h3>
+<p>As of now, from web interface, it's quite unclear what files are shared; what files are being hashed, etc. The closest possibility would be to go to Transfers -&gt; Uploads; the list of your shared files will be there, but it might not be correct, and clicking 'Reshare' doesn't seem to help.
+</p>
+<h3> <span class="mw-headline" id="Customizing_the_Web_Interface"> Customizing the Web Interface</span></h3>
+<p>The current Web Interface is everything but compliant to any HTML standard and can cause problems with some browsers (flaws like a missing <code>&lt;!DOCTYPE&gt;</code> and <code>&lt;/FORM&gt;</code> tags appearing single between <code>&lt;/TR&gt;</code> and <code>&lt;/TR&gt;</code> can cause a lot of confusion).
+</p><p>However there is the possibility to write own HTML code that will get embedded in the <code>&lt;BODY&gt;</code> of the HTML pages. You need to create a folder <code>html_themes</code> in your mlnet folder and in this folder one (or more) subfolder(s) with a custom name of your choice. In each of these subfolders you need to provide a set of <code>.html</code>, <code>.css</code>, and <code>.js</code> files containing your custom HTML code. You can select each of this subfolders in Options -&gt; Style/Theme to load your set of files.
+</p><p>The files you need are:
+</p>
+<ul><li><code>frames.html</code>
+</li><li><code>header.html</code>
+</li><li><code>dheader.html</code>
+</li><li><code>commands.html</code>
+</li><li><code>h.css</code>
+</li><li><code>dh.css</code>
+</li><li><code>i.js</code>
+</li><li><code>di.js</code>
+</li></ul>
+<p>To get started you can copy the folders and files in <code>distrib/html_themes</code> from the mldonkey source folder to your <code>html_themes</code> folder and edit them.
+</p><p>Unfortunately I don't see a way to change the HTML header and add an appropriate <code>&lt;!DOCTYPE&gt;</code>.
+<br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><strong class="selflink">English</strong></b>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 151/1000000
+Post-expand include size: 496/2097152 bytes
+Template argument size: 179/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1744-0!*!0!!en!*!edit=0 and timestamp 20230807163107 -->
+<div class="printfooter">
+Retrieved from "<a href="WebUI.html">http://mldonkey.sourceforge.net/WebUI</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=WebUI" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="WebUI.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:WebUI&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="WebUI.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=WebUI&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index7e02.html?title=WebUI&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/WebUI.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/WebUI.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index755c.html?title=WebUI&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index11f1.html?title=WebUI&amp;oldid=4990" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 24 September 2010, at 13:38.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 153,539 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "WebUI", "wgTitle": "WebUI", "wgAction": "view", "wgArticleId": 1744, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4990, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.121 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/WebUI by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:55:38 GMT -->
+</html>

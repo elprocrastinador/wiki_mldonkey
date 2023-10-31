@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/WindowsSpecificAnnoyances by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:35:45 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>WindowsSpecificAnnoyances - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-WindowsSpecificAnnoyances skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">WindowsSpecificAnnoyances</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>Here is a list of annoyances. These are specific to <a href="Windows.html" title="Windows">Windows</a> and most of all they are not caused by mlDonkey.<br />
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Windows_Server_2003.2C_XP.2C_2000_.28all_versions.29"><span class="tocnumber">1</span> <span class="toctext">Windows Server 2003, XP, 2000 (all versions)</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Windows_XP_SP2"><span class="tocnumber">2</span> <span class="toctext">Windows XP SP2</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Windows_95.2F98.2FMe"><span class="tocnumber">3</span> <span class="toctext">Windows 95/98/Me</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Spywares"><span class="tocnumber">4</span> <span class="toctext">Spywares</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Layered_Service_Provider_.28LSP.29"><span class="tocnumber">5</span> <span class="toctext">Layered Service Provider (LSP)</span></a></li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id="Windows_Server_2003.2C_XP.2C_2000_.28all_versions.29"> Windows Server 2003, XP, 2000 (all versions) </span></h3>
+<p>In all these Windows version the maximum usable port number is limited to 5000.<br />
+Read [<a href="http://support.microsoft.com/kb/q196271/" class="external text" rel="nofollow">this</a>] how to change the registry.<br />
+Without this hack you can receive messages like this in MLDonkey logfile<br />
+</p>
+<pre>
+EXCEPTION connect failed: An operation on a socket could not be performed
+because the system lacked sufficient buffer space or because a queue was full.
+</pre>
+<h3> <span class="mw-headline" id="Windows_XP_SP2"> Windows XP SP2 </span></h3>
+<ul><li>About the half-opened connections limitation and the integrated firewall.
+<ul><li>Microsoft created this limitation to slow down worms propagation. It does not protect your computer, it only prevents them from attacking too many computers at a time. If this should be rather efficient, it also slows down P2P softwares that need to interrogate lots of sources. Thus, it is better to raise the value. This will be done with lvllord's patcher&#160;: <a href="http://www.lvllord.de/" class="external free" rel="nofollow">http://www.lvllord.de</a> (details on his site)
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="Windows_95.2F98.2FMe"> Windows 95/98/Me </span></h3>
+<p>This applies to all windows that do not belong to the NT family.
+As far as I know, mlDonkey will not run properly under these OSes.
+The problem comes in fact from OCaml that does not support them correctly (remember that OCaml is a portable language; it can not be universal)
+</p>
+<h3> <span class="mw-headline" id="Spywares"> Spywares </span></h3>
+<ul><li>Spywares/Adwares/Hijackers/Rootkits/....
+<ul><li>While browsing on the Internet under windows you are likely to get a spyware. It's a fact. We are not concerned with privacy protection, all we want is speed. Thus, the real problem comes from hijackers (and maybe rootkits). Hijackers change your homepage but sometimes they also change your internet connection settings. For example, they can force your computer to use a proxy. Thus mldonkey may have problems contacting servers (giving LowIDs) and other peers.
+</li><li> Rootkits are something else, harder to detect; normal users are not likely to come over.
+</li><li>There are plenty of spyware-removal tools available on the net. I use a combination of two and only two of them&#160;: <a href="http://www.spywareinfo.com/~merijn" class="external text" rel="nofollow">Spybot S&amp;D and HijackThis</a>. Both are free and they don't do the same thing. In our case, the most interessant is, it will analyse proxy parameters, services, homepage, BHOs, ActiveXs, shells... It finds everything but it can't tell you what's legitimate and what is not. It's up to you to decide (it also creates backups).
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="Layered_Service_Provider_.28LSP.29"> Layered Service Provider (LSP) </span></h3>
+<p>Firewalls, antiviruses, netlimiter, spywares. See <a href="http://www.safer-networking.org/en/dictionary/lsp.html" class="external text" rel="nofollow">Spybot S&amp;D's Dictionnary</a>
+</p><p>Windows NT family allows a very irritating thing. It's called Layer Service Providers. Applications that use this can act on other applications socket. With LSPs any application with enough privileges can analyse, block, modify any data that a process (running on the same box as the LSP) sends over the network or to itself.<br />
+This means that a spyware is able record all your surf.<br /><br />
+</p><p>Now, let's forget about spywares and concentrate on legitimate softwares.
+</p><p>I know 2 (must insist on the "I") applications that uses LSPs.
+</p>
+<ul><li>NOD32
+<ul><li>NOD32 is a powerful but light antivirus. It is composed of modules you can choose not to install. One of them is called IMON for InternetMONitor. This modules primarily scans POP3 and HTTP transfers, but is also monitors applications that use sockets. To do that, it needs LSP. IMON will cause troubles with mldonkey (not with eMule/eDonkey&#160;?). It's maybe because mldonkey is not a process with a window. Anyway, NOD will prevent it from opening more than ~50 connections. mlDonkey wil then bug (CPU hog) and generate a log that may go up to gigabytes. Open the "NOD32 Control Center". In the list, select "IMON" and then click on "Setup". Choose "Miscellaneous" and click on "Exclusion". Now, click on add and select every program that you know to be safe. Once you're done, click on OK.  Reboot (or relaunch NOD32; if you can kill it, tell me)
+</li></ul>
+</li></ul>
+<ul><li>NetLimiter
+<ul><li>NetLimiter can limit the bandwith used by a given socket (since the only one socket for one port). I heard it could cause trouble, but unlike NOD32, it doesn't interfere with all applications. You have to specify which one you want it to control.
+</li></ul>
+</li></ul>
+<ul><li>Heuristic method
+<ul><li>Run <a href="http://www.sysinternals.com/" class="external text" rel="nofollow">Process Explorer</a>. <div class="thumb tnone"><div class="thumbinner" style="width:252px;"><a href="File_Lspimonprocessexplorermain5ge.html" class="image"><img alt="Lspimonprocessexplorermain5ge.png" src="mediawiki/images/thumb/9/98/Lspimonprocessexplorermain5ge.png/250px-Lspimonprocessexplorermain5ge.png" width="250" height="188" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="File_Lspimonprocessexplorermain5ge.html" class="internal" title="Enlarge"><img src="mediawiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div></div></div></div><div class="thumb tnone"><div class="thumbinner" style="width:252px;"><a href="File_Lspimonprocessexplorerthreads1.html" class="image"><img alt="Lspimonprocessexplorerthreads1.png" src="mediawiki/images/thumb/6/65/Lspimonprocessexplorerthreads1.png/250px-Lspimonprocessexplorerthreads1.png" width="250" height="188" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="File_Lspimonprocessexplorerthreads1.html" class="internal" title="Enlarge"><img src="mediawiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div></div></div></div>
+</li><li>If the process is still monitored by a LSP, you should get something like that: <div class="thumb tnone"><div class="thumbinner" style="width:252px;"><a href="File_Lspimonprocessexplorerthreadse.html" class="image"><img alt="Lspimonprocessexplorerthreadse.png" src="mediawiki/images/thumb/a/a6/Lspimonprocessexplorerthreadse.png/250px-Lspimonprocessexplorerthreadse.png" width="250" height="188" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="File_Lspimonprocessexplorerthreadse.html" class="internal" title="Enlarge"><img src="mediawiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div></div></div></div>
+</li><li>A "normal" process: <div class="thumb tnone"><div class="thumbinner" style="width:252px;"><a href="File_Lspimonprocessexplorerthreadsm1.html" class="image"><img alt="Lspimonprocessexplorerthreadsm1.png" src="mediawiki/images/thumb/1/11/Lspimonprocessexplorerthreadsm1.png/250px-Lspimonprocessexplorerthreadsm1.png" width="250" height="188" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="File_Lspimonprocessexplorerthreadsm1.html" class="internal" title="Enlarge"><img src="mediawiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div></div></div></div>
+</li></ul>
+</li></ul>
+<p>See <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winsock/winsock/wspstartup_2.asp" class="external free" rel="nofollow">http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winsock/winsock/wspstartup_2.asp</a>
+<br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><strong class="selflink">English</strong></b>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 153/1000000
+Post-expand include size: 756/2097152 bytes
+Template argument size: 799/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1754-0!*!0!!en!2!edit=0 and timestamp 20230806224052 -->
+<div class="printfooter">
+Retrieved from "<a href="WindowsSpecificAnnoyances.html">http://mldonkey.sourceforge.net/WindowsSpecificAnnoyances</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=WindowsSpecificAnnoyances" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="WindowsSpecificAnnoyances.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:WindowsSpecificAnnoyances&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="WindowsSpecificAnnoyances.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=WindowsSpecificAnnoyances&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index49ca.html?title=WindowsSpecificAnnoyances&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/WindowsSpecificAnnoyances.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/WindowsSpecificAnnoyances.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index8f14.html?title=WindowsSpecificAnnoyances&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index52d3.html?title=WindowsSpecificAnnoyances&amp;oldid=4427" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 24 April 2009, at 13:43.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 35,353 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "WindowsSpecificAnnoyances", "wgTitle": "WindowsSpecificAnnoyances", "wgAction": "view", "wgArticleId": 1754, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4427, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.071 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/WindowsSpecificAnnoyances by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:36:01 GMT -->
+</html>

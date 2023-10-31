@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/WhatFirewallPortsToOpen by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:30:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>WhatFirewallPortsToOpen - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-WhatFirewallPortsToOpen skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">WhatFirewallPortsToOpen</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Joining_P2P_networks_with_MLDonkey_through_a_firewall"><span class="tocnumber">1</span> <span class="toctext">Joining P2P networks with MLDonkey through a firewall</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Incoming_connections"><span class="tocnumber">1.1</span> <span class="toctext">Incoming connections</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Some_infos_about_TOS"><span class="tocnumber">1.2</span> <span class="toctext">Some infos about TOS</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Sample_IPTABLES_script"><span class="tocnumber">1.3</span> <span class="toctext">Sample IPTABLES script</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Another_iptables_script._This_one_is_for_a_Gentoo_system_and_depends_on_lsof"><span class="tocnumber">1.4</span> <span class="toctext">Another iptables script. This one is for a Gentoo system and depends on lsof</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Windows_Internet_Connection_Sharing_.28ICS.29"><span class="tocnumber">1.5</span> <span class="toctext">Windows Internet Connection Sharing (ICS)</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Script_for_MLDonkey_on_a_Thomson.2FAlcatel_SpeedTouch_Pro_.28or_Home.E2.86.92Pro.29_ADSL_modem.2Frouter"><span class="tocnumber">1.6</span> <span class="toctext">Script for MLDonkey on a Thomson/Alcatel SpeedTouch Pro (or Home→Pro) ADSL modem/router</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Notes_about_P2P_networks"><span class="tocnumber">2</span> <span class="toctext">Notes about P2P networks</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#eDonkey2000"><span class="tocnumber">2.1</span> <span class="toctext">eDonkey2000</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Overnet"><span class="tocnumber">2.2</span> <span class="toctext">Overnet</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Kad"><span class="tocnumber">2.3</span> <span class="toctext">Kad</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Gnutella"><span class="tocnumber">2.4</span> <span class="toctext">Gnutella</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Gnutella2"><span class="tocnumber">2.5</span> <span class="toctext">Gnutella2</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#BitTorrent"><span class="tocnumber">2.6</span> <span class="toctext">BitTorrent</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Fasttrack"><span class="tocnumber">2.7</span> <span class="toctext">Fasttrack</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#OpenNap"><span class="tocnumber">2.8</span> <span class="toctext">OpenNap</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Direct_Connect"><span class="tocnumber">2.9</span> <span class="toctext">Direct Connect</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Soulseek"><span class="tocnumber">2.10</span> <span class="toctext">Soulseek</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-19"><a href="#See_also"><span class="tocnumber">3</span> <span class="toctext">See also</span></a></li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id="Joining_P2P_networks_with_MLDonkey_through_a_firewall">Joining P2P networks with MLDonkey through a firewall</span></h3>
+<p>Generally speaking, participation in a P2P network requires that your host is reachable on one or more TCP or UDP ports by other peers. If your host is directly connected to the Internet (it has a public IP address), you must check that no firewalls are blocking incoming traffic. The firewall can be on the router connecting to the Internet or can be on the host itself. The latter is the case of a Linux box running MLdonkey and with netfilter (iptables) enabled.
+</p><p>If your host is behind a router doing NAT (the host has a private IP address), you must ensure that traffic arriving to the incoming ports of the router will be forwarded to the host running the P2P program. <i>This is where the IPTABLES script further down the page comes into action.</i>
+</p><p>MLDonkey can participate in several P2P networks, each of them have some requirements about ports that should be opened or forwarded. Several ports are well-known but can be changed by the user. Here I try to summarize the ports used by the various networks, their historical default values, the  default values proposed by MLDonkey and the configuration file where you can change them.
+</p><p>If you want MLDonkey to participate only to some P2P networks, you can open only the relevant ports. I focus the discussion about incoming traffic, where firewalls generally block packets. I assume that there are no restrictions on outgoing connections and that the firewall eventually performs connection tracking, allowing incoming traffic related to outgoing connections.
+</p>
+<h4> <span class="mw-headline" id="Incoming_connections">Incoming connections</span></h4>
+<table border="1&#124;">
+<tr>
+<td><b>Network</b>         </td>
+<td><b>Type</b> </td>
+<td><b>Historical default</b> </td>
+<td><b>MLdonkey default</b>   </td>
+<td><b>Configuration file</b>
+</td></tr>
+<tr>
+<td>eDonkey2000    </td>
+<td>TCP    </td>
+<td>4662                 </td>
+<td>port = random (before 2.8.0: 4662) </td>
+<td>donkey.ini
+</td></tr>
+<tr>
+<td>eDonkey2000       </td>
+<td>UDP    </td>
+<td>4672 (eMule)         </td>
+<td>TCP port + 4 (before 2.8.0: 4666) </td>
+<td>donkey.ini
+</td></tr>
+<tr>
+<td>Kad                   </td>
+<td>TCP    </td>
+<td>6419 (eMule)      </td>
+<td>Kademlia.port = random </td>
+<td> donkey.ini, Kademlia section
+</td></tr>
+<tr>
+<td>Kad1                   </td>
+<td>UDP    </td>
+<td>6429 (eMule)      </td>
+<td>Same as TCP  </td>
+<td>donkey.ini, Kademlia section
+</td></tr>
+<tr>
+<td>Overnet</td>
+<td>TCP    </td>
+<td>4662                 </td>
+<td>Overnet.port = random </td>
+<td>donkey.ini, Overnet section
+</td></tr>
+<tr>
+<td>Overnet           </td>
+<td>UDP    </td>
+<td>No default           </td>
+<td>Same as TCP </td>
+<td>donkey.ini, Overnet section
+</td></tr>
+<tr>
+<td>Gnutella</td>
+<td>TCP    </td>
+<td>6346                 </td>
+<td>client_port = 6346   </td>
+<td>gnutella.ini
+</td></tr>
+<tr>
+<td>Gnutella</td>
+<td>UDP (??)  </td>
+<td>Same as TCP         </td>
+<td>client_port = 6346   </td>
+<td>gnutella.ini
+</td></tr>
+<tr>
+<td>Gnutella2</td>
+<td>TCP    </td>
+<td>No default           </td>
+<td>client_port = 6347   </td>
+<td>gnutella2.ini
+</td></tr>
+<tr>
+<td>Gnutella2</td>
+<td>UDP    </td>
+<td>Same as TCP          </td>
+<td>client_port = 6347   </td>
+<td>gnutella2.ini
+</td></tr>
+<tr>
+<td>BitTorrent    </td>
+<td>TCP    </td>
+<td>6881                 </td>
+<td>client_port = 6882   </td>
+<td>bittorrent.ini
+</td></tr>
+<tr>
+<td>FastTrack         </td>
+<td>TCP    </td>
+<td>1214                 </td>
+<td>client_port = 1214   </td>
+<td>fasttrack.ini
+</td></tr>
+<tr>
+<td>OpenNapster       </td>
+<td>TCP    </td>
+<td>6699                 </td>
+<td>client_port = 9999   </td>
+<td>opennap.ini
+</td></tr>
+<tr>
+<td>DirectConnect    </td>
+<td>TCP    </td>
+<td>1412                 </td>
+<td>client_port = 4444   </td>
+<td>directconnect.ini
+</td></tr>
+<tr>
+<td>Direct Connect    </td>
+<td>UDP    </td>
+<td>Same as TCP          </td>
+<td>client_port = 4444   </td>
+<td>directconnect.ini
+</td></tr>
+<tr>
+<td>Soulseek          </td>
+<td>TCP    </td>
+<td>2234                 </td>
+<td>client_port = 2234   </td>
+<td>soulseek.ini
+</td></tr></table>
+<p><b>Note:</b> Maybe you could try to <a href="BashScriptToFindPortsUsed.html" title="BashScriptToFindPortsUsed">run this bash script</a> to check what are the ports bound by MLDonkey. It will help you to find out what ports are opened (especially for Overnet which bind a random TCP/UDP port). As of latest 2.8.1 cvs the command <a href="Portinfo.html" title="Portinfo">portinfo</a> can be used from within mldonkey.
+</p>
+<h4> <span class="mw-headline" id="Some_infos_about_TOS">Some infos about TOS</span></h4>
+<p>In MLDonkey 2.5.30.17 TOS support has been re-added, more information about it here: <a href="https://savannah.nongnu.org/patch/?func=detailitem&amp;item_id=4127" class="external free" rel="nofollow">https://savannah.nongnu.org/patch/?func=detailitem&amp;item_id=4127</a>
+</p>
+<h4> <span class="mw-headline" id="Sample_IPTABLES_script">Sample IPTABLES script</span></h4>
+<pre>
+#!/bin/bash
+##
+# Shell script to insert iptables rules opening the required ports for MLDonkey.
+# Currently supported networks are Edonkey2000, Overnet, BitTorrent and OpenNap.
+
+# Please modify the following configuration settings according to your own
+# setup.
+
+IF=ppp0
+IPTABLES=/sbin/iptables
+MLDONKEY_HOST=192.168.1.2
+EDONKEY_PORT=4662
+KAD_PORT=8443
+OVERNET_PORT=5865
+BITTORRENT_PORT=6882
+OPENNAP_PORT=9999
+
+## MLDonkey acting as Edonkey2000 client
+$IPTABLES -I FORWARD -p tcp --dport $EDONKEY_PORT -j ACCEPT
+$IPTABLES -I FORWARD -p udp --dport $(($EDONKEY_PORT + 4)) -j ACCEPT
+$IPTABLES -t nat -I PREROUTING -i $IF -p tcp --dport $EDONKEY_PORT -j DNAT --to-destination $MLDONKEY_HOST
+$IPTABLES -t nat -I PREROUTING -i $IF -p udp --dport $(($EDONKEY_PORT + 4)) -j DNAT --to-destination $MLDONKEY_HOST
+
+## MLDonkey acting as Kad client
+$IPTABLES -I FORWARD -p tcp --dport $KAD_PORT -j ACCEPT
+$IPTABLES -I FORWARD -p udp --dport $KAD_PORT -j ACCEPT
+$IPTABLES -t nat -I PREROUTING -i $IF -p tcp --dport $KAD_PORT -j DNAT --to-destination $MLDONKEY_HOST
+$IPTABLES -t nat -I PREROUTING -i $IF -p udp --dport $KAD_PORT -j DNAT --to-destination $MLDONKEY_HOST
+
+## MLDonkey acting as Overnet client
+$IPTABLES -I FORWARD -p tcp --dport $OVERNET_PORT -j ACCEPT
+$IPTABLES -I FORWARD -p udp --dport $OVERNET_PORT -j ACCEPT
+$IPTABLES -t nat -I PREROUTING -i $IF -p tcp --dport $OVERNET_PORT -j DNAT --to-destination $MLDONKEY_HOST
+$IPTABLES -t nat -I PREROUTING -i $IF -p udp --dport $OVERNET_PORT -j DNAT --to-destination $MLDONKEY_HOST
+
+## MLDonkey acting as Edonkey2000 server
+# $IPTABLES -I FORWARD -p tcp --dport $(($EDONKEY_PORT - 1)) -j ACCEPT
+# $IPTABLES -t nat -I PREROUTING -i $IF -p tcp --dport $(($EDONKEY_PORT - 1)) -j DNAT --to-destination $MLDONKEY_HOST
+
+## MLDonkey acting as BitTorrent client
+$IPTABLES -I FORWARD -p tcp --dport $BITTORRENT_PORT -j ACCEPT
+$IPTABLES -t nat -I PREROUTING -i $IF -p tcp --dport $BITTORRENT_PORT -j DNAT --to-destination $MLDONKEY_HOST
+
+## MLDonkey acting as OpenNap client
+$IPTABLES -I FORWARD -p tcp --dport $OPENNAP_PORT -j ACCEPT
+$IPTABLES -t nat -I PREROUTING -i $IF -p tcp --dport $OPENNAP_PORT -j DNAT --to-destination $MLDONKEY_HOST
+</pre>
+<h4> <span class="mw-headline" id="Another_iptables_script._This_one_is_for_a_Gentoo_system_and_depends_on_lsof"> Another iptables script. This one is for a Gentoo system and depends on lsof</span></h4>
+<pre>
+#!/sbin/runscript
+
+depend() {
+    need mldonkey
+}
+
+start() {
+    UDP_PORTS=$(lsof -i -n | grep mlnet | grep -v -- '-' | grep UDP | cut -d ':' -f 2)
+    lsof -i -n | grep mlnet | grep -v -- '-' | grep TCP | cut -d ':' -f 2 | cut -d ' ' -f 1 | sort &gt; /tmp/ml_tcp_ports
+    egrep \&quot;^\ '''.'''_port\ *=\ '''[[ egrep -o \&quot;[0-9|0-9]]'''$\&quot; /home/p2p/.mldonkey/downloads.ini |]+\&quot; | sort &gt; /tmp/ml_ui_ports
+    TCP_PORTS=$(comm -2 -3 /tmp/ml_tcp_ports /tmp/ml_ui_ports)
+    rm /tmp/ml_tcp_ports
+    rm /tmp/ml_ui_ports
+
+    ebegin \&quot;Preparing mldonkey chain\&quot;
+    iptables -F mldonkey &gt; /dev/null 2&gt;&amp;1 || iptables -N mldonkey &gt; /dev/null 2&gt;&amp;1
+    eend $?
+
+    for port in $UDP_PORTS; do
+        ebegin \&quot;Adding UDP:$port to ACCEPT list\&quot;
+        iptables -A mldonkey -p udp --dport $port -j ACCEPT
+        eend $?
+    done
+
+    for port in $TCP_PORTS; do
+        ebegin \&quot;Adding TCP:$port to ACCEPT list\&quot;
+        iptables -A mldonkey -p tcp --dport $port -j ACCEPT
+        eend $?
+    done
+}
+
+stop () {
+    ebegin \&quot;Flushing mldonkey chain\&quot;
+    iptables -F mldonkey
+    eend $?
+}
+
+</pre>
+<h4> <span class="mw-headline" id="Windows_Internet_Connection_Sharing_.28ICS.29"> Windows Internet Connection Sharing (ICS)</span></h4>
+<ul><li> <a href="http://www.microsoft.com/windows2000/en/professional/help/howto_share_conn_config.htm" class="external text" rel="nofollow">Windows 2000</a>
+</li><li> <a href="http://www.microsoft.com/windowsxp/home/using/productdoc/en/hnw_services_add.asp" class="external text" rel="nofollow">Windows XP</a>
+</li></ul>
+<h4> <span class="mw-headline" id="Script_for_MLDonkey_on_a_Thomson.2FAlcatel_SpeedTouch_Pro_.28or_Home.E2.86.92Pro.29_ADSL_modem.2Frouter">Script for MLDonkey on a Thomson/Alcatel SpeedTouch Pro (or Home→Pro) ADSL modem/router</span></h4>
+<p>You can telnet to your modem/router then type in the following:
+</p>
+<pre>
+:nat create protocol&lt;code&gt;tcp inside_addr&lt;/code&gt;&lt;put_your_local_server_ip_here&gt;:4662 outside_addr=0.0.0.0:4662
+:nat create protocol&lt;code&gt;udp inside_addr&lt;/code&gt;&lt;put_your_local_server_ip_here&gt;:4666 outside_addr=0.0.0.0:4666
+:config save
+</pre>
+<p>Repeat the same procedure for any other port mentioned hereunder for any other P2P network.
+The <tt>:config save</tt> command make the changes permanent and they will survive a power down. The problem with this is your local server IP address may change if you use DHCP.
+You can look for the .PDF CLI reference guide at <a href="http://www.alcateldsl.com/support.htm" class="external text" rel="nofollow">Thomson/Alcatel's support page</a>.
+</p><p>The script from <a href="http://ipcheck.sourceforge.net/" class="external text" rel="nofollow"><tt>ipcheck.py</tt></a> can forward ports, doing the telnet for you. Its works under GNU/Linux and Windows. The ports are forwarded until the router is powered down. This example doesn't use <tt>ipcheck.py</tt> to register your dynamic IP address.
+</p>
+<pre>
+&quot;C:\Program Files\Python232\python&quot; ipcheck.py -T routerpassword --forward=4662/tcp,4666/udp -v xxx xxx xxx.dyndns.org
+</pre>
+<p>The Alcatel SpeedTouch Pro router has only 255 Network Address Translation table entries and it overflows with default settings. This is the only setting that seems to help.
+</p>
+<pre>
+set max_connections_per_second 1
+</pre>
+<h3> <span class="mw-headline" id="Notes_about_P2P_networks">Notes about P2P networks</span></h3>
+<h4> <span class="mw-headline" id="eDonkey2000">eDonkey2000</span></h4>
+<p>The eDonkey network is a network specialized in sharing really big files (between 30MB to 1.4 GB).
+</p>
+<ul><li> Files can be downloaded from different sources at the same time.
+</li><li> Files are identified by unique identifiers (MD4) that can be used to find new sources for a file.
+</li><li> Files are checked using checksums, and chunks (9500KB) that are corrupted are downloaded again.
+</li><li> Files chunks can be downloaded in any order.
+</li><li> Files are shared as soon as a checked chunk has been downloaded, to speed up the spreading of files.
+</li><li> Need some servers to be known, MLDonkey can use <code>servers.ini</code> file that is in the distribution.
+</li></ul>
+<p>Ports can be configured freely, those are the defaults:
+</p>
+<ul><li> TCP port 4662 client to client exchange.
+</li><li> UDP port 4672 for clients, where to listen for source asking.
+</li><li> TCP port 4661 for servers, it is the default port to listen.
+</li><li> UDP port 4665 for servers, it is 4661 + 4, where to listen for source asking requests.
+</li><li> UDP port 65535 for server access (reference is found in preferences.ini in emule\config)
+</li></ul>
+<p>Note that opening these ports not only resolves LowID issues for eMule but also eliminates the "firewalled" message from Kad too when all other publicised ports have been opened.
+</p>
+<h4> <span class="mw-headline" id="Overnet">Overnet</span></h4>
+<p><a href="http://www.overnet.com/" class="external text" rel="nofollow">Overnet</a> is a network using the same download protocol as edonkey, but a different search/localisation protocol, that doesn't need servers. It needs a <a href="ftp://ftp.berlios.de/pub/mldonkey/pango/goodies/ov_boots.txt" class="external text" rel="nofollow">(recent) list of Overnet peers</a> that you can connect to. For that, you can use the <code>servers.ini</code> file from the most recent distribution of MLDonkey. It contains a long list of Overnet peers. It can run over any port. The defaults it uses are:
+</p>
+<ul><li> TCP port 4662 to connect to other clients.
+</li><li> The UDP port used for searching and publishing has no default.
+</li></ul>
+<p>MLDonkey of course uses the ones set in donkey.ini (see table above)
+</p>
+<h4> <span class="mw-headline" id="Kad">Kad</span></h4>
+<p>Kad is a network started by the eMule project. It is similar to Overnet (both are based on the Kademlia algorithms, so don't require servers,...), but protocols are incompatibles.
+</p>
+<ul><li> TCP port 6419 to connect to other clients.
+</li><li> UDP port 6429 used to searching and publishing.
+</li></ul>
+<h4> <span class="mw-headline" id="Gnutella">Gnutella</span></h4>
+<p>A peers on a <a href="http://www.gnutella.com/" class="external text" rel="nofollow">Gnutella</a> network is referred to as a servent - it is both client and server to the network, allowing the user to both serve files to other Gnutella network members and to receive files from those members. Gnutella peers generally can run over any port, the default is
+</p>
+<ul><li> TCP port 6346
+</li></ul>
+<h4> <span class="mw-headline" id="Gnutella2">Gnutella2</span></h4>
+<p><a href="http://www.gnutella2.com/" class="external text" rel="nofollow">Gnutella2</a> was created by [Shareaza] to solve legacy Gnutella's problems, replacing the aging and underperforming "G1" with a fresh and innovative platform designed to grow. Gnutella2 is an architecture designed from the ground up to be extensible, and includes a range of new technologies to lift performance beyond traditional expectations of a distributed system. Gnutella2 is a fresh start.
+</p><p>Many problems have been identified with the legacy Gnutella network. For example there is ample research indicating that it cannot scale or that it uses too much overhead. But perhaps more importantly it lacks a clear set of network standards, which has led to a network of unequal clients and abusive behaviour, to the point that one client can consume 80% of the resources on the entire network!
+</p>
+<ul><li> TCP port, no default
+</li><li> UDP port, the same number of TCP port
+</li></ul>
+<h4> <span class="mw-headline" id="BitTorrent">BitTorrent</span></h4>
+<p>BitTorrent doesn't look like other P2P networks: it uses peer-to-peer file sharing mechanisms to help release huge files without the hassle and price of setting up big links, big servers, and mirrors (or in addition to that expensive approach).
+</p><p>It divides shared data (a single file or a directory) into pieces, typically of 256 KiB. A SHA-1 checksum is computed for each piece, and used to check the piece has been correctly downloaded. The checksums are stored in a .torrent file, along with filenames. The .torrent file also nominates a tracker, a Web resource that introduces peers to each other. Peers contact each other, learn what pieces they have available, request the rarest (least commonly seen) pieces first, and send requested pieces.
+</p><p>Design and protocol are described on <a href="http://bitconjurer.org/BitTorrent/" class="external text" rel="nofollow">the main site</a>.
+</p>
+<ul><li>TCP port 6881
+</li></ul>
+<h4> <span class="mw-headline" id="Fasttrack">Fasttrack</span></h4>
+<p>FastTrack is a protocol similar to the eDonkey2000 protocol, but it cannot download from users who do not have the complete file. The protocol was used by <a href="http://www.kazaa.com/" class="external text" rel="nofollow">KaZaa</a> and Morpheus, later the Sharman Networks bought rights and monopolised FastTrack protocol.
+</p><p>FastTrack users with the fastest Internet connections and the most powerful computers are automatically designated as Supernodes. A Supernode contains a list of some of the files made available by other users and where they are located. When you perform a search, your computer first searches the nearest Supernode to you, and then sends you immediate results. This first Supernode then refers your search to other Supernodes and so on.
+</p>
+<ul><li> TCP port 1214 is where clients and supernodes listen.
+</li></ul>
+<h4> <span class="mw-headline" id="OpenNap">OpenNap</span></h4>
+<p>OpenNap <a href="http://opennap.sourceforge.net/" class="external autonumber" rel="nofollow">[1]</a> is an open souce implementaion of the Napster client/server protocol. The sharing is based on a central server that provides the ability to search for particular files and initiate a direct transfer between the clients. In addition, chat forums similar to IRC are available. There are a few OpenNap networks which are interconnected to allow searching and downloading files from within each OpenNap network without connecting to all of its servers. The problem is that each network is not connected, thus requiering mulitple server connections for a larger file selection. Napster was originally ment for sharing MP3s only, but OpenNap is expanded to allow any file to be shared.
+</p><p>Only an open TCP port is required on the client, servers listen on several ports.
+</p>
+<ul><li> TCP port 6699 where the client receives PUTs from peers.
+</li><li> TCP port 8888 default port for servers.
+</li><li> TCP port 8875 for metaserver
+</li><li> TCP port 8889 where the ~OpenNap server listen for the stats
+</li></ul>
+<h4> <span class="mw-headline" id="Direct_Connect">Direct Connect</span></h4>
+<p>Direct Connect is a file sharing protocol based on servers (called hubs) run by volunteers. Thus you only share your files with the people connected to the same hubs as you are. The people running hubs usually set up lots of rules about who can connect to their hub, for example a minimum amount of shared files, open slots for connections, ban some material (eg. child pornography) etc. This is good because is gets rid of a lot of leechers. (people who just download, don't share).
+</p><p>Near zero documentation on <a href="http://www.neo-modus.com/" class="external text" rel="nofollow">the home page</a>, just some advertise: Direct Connect offers a community-oriented, open, user-controlled network. Direct Connect's network architecture is built on a peer-to-peer foundation; users run, control, and maintain the network. Users are able to share any type of file. These files are easily viewed through a familiar organized windows-explorer interface.
+</p><p>More info can be bought from programs compatible with the Direct Connect protocol, as <a href="http://dcplusplus.sourceforge.net/" class="external text" rel="nofollow">DC++</a>. It seems that a TCP and an UDP port are required, the defaults are:
+</p>
+<ul><li>TCP port 1412
+</li><li>UDP port same as TCP port.
+</li></ul>
+<h4> <span class="mw-headline" id="Soulseek">Soulseek</span></h4>
+<p>The <a href="http://www.slsknet.org/" class="external text" rel="nofollow">Soulseek Network</a> is a network similar to Napster. You connect on a single server, and there, you can search for (mainly audio) files, you can join rooms to chat with other users, and you can browse other users files. There is only one server on Soulseek, and the one you have in <code>soulseek.ini</code> is probably not up-to-date.
+</p><p>Documentation about the protocol used by this P2P network is scarce. The FAQ only mentions two used ports, the French FAQ adds that they are TCP ports. I will not spend time looking at a so poorly documented thing.
+</p><p>/devein: uh oh! soulseek protocol documentation&#160;: <a href="http://cvs.sourceforge.net/viewcvs.py/__checkout__/soleseek/SoleSeek/doc/protocol.html?rev=HEAD&amp;content-type=text/html" class="external autonumber" rel="nofollow">[2]</a>
+</p>
+<ul><li> TCP port 2234
+</li><li> TCP port 5534
+</li></ul>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="See_also">See also </span></h3>
+<p><a href="FireWall.html" title="FireWall">FireWall</a>
+<br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><strong class="selflink">English</strong></b>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 244/1000000
+Post-expand include size: 730/2097152 bytes
+Template argument size: 737/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1746-0!*!0!!en!*!edit=0 and timestamp 20230806191735 -->
+<div class="printfooter">
+Retrieved from "<a href="WhatFirewallPortsToOpen.html">http://mldonkey.sourceforge.net/WhatFirewallPortsToOpen</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=WhatFirewallPortsToOpen" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="WhatFirewallPortsToOpen.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="Talk_WhatFirewallPortsToOpen.html"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="WhatFirewallPortsToOpen.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=WhatFirewallPortsToOpen&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexc05c.html?title=WhatFirewallPortsToOpen&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/WhatFirewallPortsToOpen.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/WhatFirewallPortsToOpen.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexd87e.html?title=WhatFirewallPortsToOpen&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexba44.html?title=WhatFirewallPortsToOpen&amp;oldid=5268" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 1 October 2012, at 14:39.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 183,382 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "WhatFirewallPortsToOpen", "wgTitle": "WhatFirewallPortsToOpen", "wgAction": "view", "wgArticleId": 1746, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5268, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.089 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/WhatFirewallPortsToOpen by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:30:52 GMT -->
+</html>

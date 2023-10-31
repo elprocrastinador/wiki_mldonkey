@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/UsingDaemonTools by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:28:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>UsingDaemonTools - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-UsingDaemonTools skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">UsingDaemonTools</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<h4> <span class="mw-headline" id="to_use_d.j._bernsteins_daemontools_to_keep_your_mldonkey_running_.28Unix_and_bsd_only_i_think.29">to use d.j. bernsteins daemontools to keep your mldonkey running (Unix and bsd only i think)</span></h4>
+<p><a href="http://cr.yp.to/daemontools.html" class="external free" rel="nofollow">http://cr.yp.to/daemontools.html</a>
+</p><p>these are a few really simple (and therefore stable) programs that can keep a program like mldonkey running as a daemon, with an automatically rotated log and as a custom user (you really shouldn't run mldonkey as root). if mldonkey for any reason would crash, daemontools automatically restarts it.
+</p><p>it works by starting a small program at system startup (svscanboot) that starts another program (svscan) in the /service directory, with output and error messages logged through a third program (readproctitle).
+</p><p>svscan starts one process (supervise) for each subdirectory in /service, i.e. a softlink to your mldonkey directory does the trick. if you create a directory named log in your mldonkey dir, svscan will also create a supervise process maintaining an automatically rotated log for you.
+</p><p>the supervise process starts mldonkey through running the script ./run in your mldonkey dir, and ./log/run for the optional supervise process for the logger.
+</p><p>this may all sound very complicated but it is really quite transparent, just follow the installation instructions (to the dot). i also provide a walkthrough, with my ./run scripts included:
+</p>
+<ul><li> create a user named mldonkey
+</li></ul>
+<pre>
+server:~# useradd -d /home/mldonkey mldonkey
+</pre>
+<p>the option -d affect that a home directory is created if you want, you can change the path /home/mldonkey ( by example /var/mldonkey if you have a big /var partition for apache, ftp... ).
+</p><p>If you want to be able to login as user mldonkey, you have to set a password for user mldonkey.
+</p>
+<pre>
+server:~# passwd mldonkey
+Enter new UNIX password: ''''''*
+Retype new UNIX password: ''''''*
+passwd: password updated successfully
+</pre>
+<p>I sugger than after see /etc/password and modify for have the line of the user mldonkey as this:
+</p>
+<pre>
+mldonkey:*:1001:10::/path/to/mldonkey:/bin/csh
+</pre>
+<p><br />
+</p>
+<ul><li> then:
+</li></ul>
+<pre>
+mkdir -p /package
+chmod 1755 /package
+cd /package
+</pre>
+<ul><li> download the source package from <a href="http://cr.yp.to/daemontools/install.html" class="external free" rel="nofollow">http://cr.yp.to/daemontools/install.html</a>
+</li></ul>
+<ul><li> then:
+</li></ul>
+<pre>
+gunzip daemontools-0.76.tar
+tar -xpf daemontools-0.76.tar
+rm daemontools-0.76.tar
+cd admin/daemontools-0.76
+package/install # compile and install
+</pre>
+<ul><li> reboot (should be needed for bsd systems only)
+</li></ul>
+<ul><li> then:
+</li></ul>
+<pre>
+cd /path/to/your/mldonkey dir
+</pre>
+<ul><li> it is better to put the run file and its friends -outside- the mldonkey directory - otherwise running mldonkey as another user is useless, since this user can edit the run-file and become root after all (Habbie)]
+</li><li> create a file ./run and edit it to your liking. here's mine
+</li></ul>
+<pre>
+#!/bin/sh
+echo starting mldonkey
+# direct std err to std out, for log
+exec 2&gt;&amp;1
+# run mldonkey as user mldonkey
+exec setuidgid mldonkey /path/to/your/mldonkey dir/mldonkey
+# end
+</pre>
+<ul><li> then:
+</li></ul>
+<pre>
+chmod 700 run
+mkdir ./log
+</pre>
+<ul><li> create a file ./log/run and edit it to your liking. here's mine
+</li></ul>
+<pre>
+#!/bin/sh
+# run multilog logging program as user mldonkey
+# with tai64n time format and 3 logfiles of size 50000 kB
+exec setuidgid mldonkey multilog t s50000 n3 ./main
+# end
+</pre>
+<ul><li> then:
+</li></ul>
+<pre>
+chmod 700 ./log/run
+</pre>
+<ul><li> quit mldonkey if you have it running already
+</li></ul>
+<ul><li> then:
+</li></ul>
+<pre>
+chown -R mldonkey /path/to/your/mldonkey dir
+ln -s /path/to/your/mldonkey dir /service/mldonkey
+</pre>
+<p>that's it. as soon as the softlink is in the /service directory, daemontools will start and maintain your program.
+</p><p>you can check it with 'svstat /service/mldonkey'
+</p><p>IMPORTANT: you won't kill mldonkey the normal way now, or using 'kill', without having it automatically restarted. you have to use 'svc -d /service/mldonkey' to tell supervise to bring it down and keep it down. to bring it up again use 'svc -u /service/mldonkey'.
+</p><p>/kokamomi
+</p><p><br />
+</p>
+<hr />
+<p>Question: in OpenBSD if not put before ulimit -n 800 that run mldonkey, ( or a bigger number ) crash it, how make that daemon tools use ulimit?
+</p>
+<h3> <span class="mw-headline" id="This_is_correct.3F">This is correct?</span></h3>
+<p>Is possible that Daemon tools don't handle the <a href="Ulimit.html" title="Ulimit">ulimit</a> command before mldonkey, then you may to use a wrapper script, for example  <a href="http://cr.yp.to/daemontools/softlimit.html" class="external free" rel="nofollow">http://cr.yp.to/daemontools/softlimit.html</a>&#160;?? ( dont know if is this )
+</p><p>thanks to pango for the information.
+</p>
+<hr />
+<p>A temporary solution for the problem of daemon tools and OpenBSD 1is edit /etc/login.conf
+</p><p>BUT BE WARNED&#160;!! With this you will change the setting of default, all default users ( root isnt a default user, is daemon ) will have the setting changed, at the moment i dont know how nake that only the user mldonkey have this settings changed, if you know put it. And... this only will run when you run mldonkey as a user and not as root ( mldonkey or the user that you use for it ).
+Search this lines:
+</p>
+<pre>
+
+default:\
+       &#160;:path=/usr/bin /bin /usr/sbin /sbin /usr/X11R6/bin /usr/local/bin:\
+       &#160;:umask=022
+</pre>
+<p>and others more...
+</p><p>Then find the lines that seems as this in the part after default and before the \"#\" and modify as this:
+</p>
+<pre>
+:maxproc-max=512
+</pre>
+<p>if you like,  check changing to 1024
+</p>
+<pre>
+:maxproc-cur=256:\
+</pre>
+<p>or 512 if you before has the number of 1024 instead of 512
+</p>
+<pre>
+:openfiles-cur=1024:\
+</pre>
+<p><br />
+Note: svc -d /service/mldonkey will not kill the mldonkey process, issue additionally an svc -t /service/mldonkey to send a SIGTERM. /acs
+</p><p>---
+You can create a .login_conf in the Homedirectory of the mldonkey-user and put the above settings in it.
+</p>
+<h4> <span class="mw-headline" id="System-V_style_init_script">System-V style init script</span></h4>
+<p>You can create an init script (<tt>/etc/init.d/mldonkey</tt>) so mldonkey is started at system boot. This one is copied from <a href="http://lifewithqmail.org/" class="external autonumber" rel="nofollow">[1]</a> (just changed the service name).
+</p>
+<pre>
+#!/bin/sh
+
+PATH=/command:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+
+case \&quot;$1\&quot; in
+  start)
+    echo \&quot;Starting mldonkey\&quot;
+    if svok /service/mldonkey&#160;; then
+      svc -u /service/mldonkey
+    else
+      echo mldonkey service not running
+    fi
+   &#160;;;
+  stop)
+    echo \&quot;Stopping mldonkey...\&quot;
+    svc -d /service/mldonkey
+    svc -t /service/mldonkey
+   &#160;;;
+  stat)
+    svstat /service/mldonkey
+    svstat /service/mldonkey/log
+   &#160;;;
+  reload||hup)
+    echo \&quot;Sending HUP signal to mldonkey.\&quot;
+    svc -h /service/mldonkey
+   &#160;;;
+  pause)
+    echo \&quot;Pausing mldonkey\&quot;
+    svc -p /service/mldonkey
+   &#160;;;
+  cont)
+    echo \&quot;Continuing mldonkey\&quot;
+    svc -c /service/mldonkey
+   &#160;;;
+  restart||force-reload)
+    echo \&quot;Restarting mldonkey\&quot;
+    svc -d /service/mldonkey
+    svc -t /service/mldonkey
+    svc -u /service/mldonkey
+   &#160;;;
+  *)
+    echo \&quot;Usage: $0 {start||stop||restart||reload||stat||pause||cont}\&quot;
+    exit 1
+   &#160;;;
+esac
+
+exit 0
+</pre>
+<p>After this, you must create the proper symlinks in <tt>/etc/rc?.d</tt>. In Debian this can be accomplished with the command <tt>update-rc.d mldonkey defaults 50</tt>.
+</p><p>/atordo
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 149/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1725-0!*!0!!*!*!edit=0 and timestamp 20230806201639 -->
+<div class="printfooter">
+Retrieved from "<a href="UsingDaemonTools.html">http://mldonkey.sourceforge.net/UsingDaemonTools</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=UsingDaemonTools" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="UsingDaemonTools.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:UsingDaemonTools&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="UsingDaemonTools.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=UsingDaemonTools&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index977d.html?title=UsingDaemonTools&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/UsingDaemonTools.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/UsingDaemonTools.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index157a.html?title=UsingDaemonTools&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index9e62.html?title=UsingDaemonTools&amp;oldid=1725" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 1 January 2006, at 01:01.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 9,584 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "UsingDaemonTools", "wgTitle": "UsingDaemonTools", "wgAction": "view", "wgArticleId": 1725, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 1725, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.123 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/UsingDaemonTools by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:28:15 GMT -->
+</html>

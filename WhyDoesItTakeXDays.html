@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/WhyDoesItTakeXDays by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:48:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>WhyDoesItTakeXDays - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-WhyDoesItTakeXDays skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">WhyDoesItTakeXDays</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<h3> <span class="mw-headline" id="Why_does_it_take_X_days_to_download_file_.27.2A_with_size_xxx_MB.3F">Why does it take X days to download file '<b><i>* with size xxx MB?</span></h3></i></b>
+<h4> <span class="mw-headline" id="Your_line_speed_is_just_one_of_the_limiting_factors."> Your line speed is just one of the limiting factors. </span></h4>
+<p>Your download speed and the time it takes to complete a download
+depend on many different factors.
+</p><p>Some of them are:
+</p>
+<ul><li> Availability of the file
+</li></ul>
+<dl><dd> The donkey network works in another way than many other networks. Files are split into "chunks" that can be downloaded from different sources (sources are users that have this specific "chunk" and share it). Therefore it is unusual that you download one file from just one user. This permitts you to download well spread files much faster than a single users upload speed. However this means that not all users have to have all chunks of the file you want to download. That's why some files download very fast in the beginning (a lot of sources for those chunks
+</dd><dd> downloaded) and need a long time to complete (the last chunks are rare or even not available at all). Some users only connect from time to time and may just be the only ones that have your missing chunk or the only person that has all the chunks does not share this file anymore but it is still partially available on the network since people tried to download the file and still share the chunks they downloaded before the last full source (= source with all chunks) vanished. You can check if mldonkey found a full source by looking at the web-interface. In the download section you have a column called old. The first number shows the number of days you try to download the file (days since you added the file for download), the second number (after the colon ":") shows the number of days since mldonkey saw a full source. If there is a dash ("-"), mldonkey has yet to find a full source. This means that this file is probably no longer available on the net or at least not since you started downloading it. Usually files that got published on large donkey sites recently have an excellent availability and there should be a lot of full sources.
+</dd></dl>
+<dl><dd> Also, there exist some web sites indexing the files available on some networks (emugle.com, for instance) where you can look for files by their hash or name and find whether the file is shared full by no one. This isn't always fully reliable, though.
+</dd></dl>
+<ul><li> Number of people trying to get the file
+</li></ul>
+<dl><dd> Few sources and many people trying to get the file result in large queues. This means that you have to wait for a long time until you get a download slot or there are more sources available for this file.
+</dd></dl>
+<ul><li> Time your mldonkey runs
+</li></ul>
+<dl><dd> Sources are gathered from the network. This takes time. Connecting to sources and advancing in the queue takes time, too.
+</dd></dl>
+<dl><dd> This is the reason for mldonkey being somewhat slow in the beginning. Sit and wait at least one or two hours before complaining that the speed is too low. If possible stay online with the same IP for a longer time. Another problem is that many sources become invalid after a certain period of time (mostly DSL or dial-up users that have to reconnect and receive a new IP). That means that in case you did not use mldonkey for a longer period of time (one day or more) most of the sources stored by mldonkey have become invalid. When reconnecting shortly after you have been disconnected you will normally be able to keep your place in the queue since the client md4 is used for client identification rather than your IP.
+</dd></dl>
+<ul><li> Line speed
+</li></ul>
+<dl><dd> Line speed is of course on of the limiting factors, too. However as you may have read above there are other reasons for slow downloads. One important thing about your line speed is that in addition to the data of the files, protocol overhead (source discovery, server communication...) is sent, too. Additionally, your upstream might slow down your download. This sometimes happens on ADSL lines because response packets to sources are sent slowly and communication slows down.
+</dd></dl>
+<ul><li> Sum (DL) = Sum (UL)
+</li></ul>
+<dl><dd> A big problem for the network is that the total bytes downloaded has to be [less or (?)] equal to the total bytes uploaded. Now, a lot of people use ADSL, given the asymmetric nature of which, the average upload rate is always smaller than the download rate. And since every single bit downloaded has to be uploaded somewhere, the result is an overall limiting factor. An example might help: If 100 people had ADSL with 200KBits/sec upstream and 1000KBits/sec downstream, then everybody would be able to download at 200KBits/sec at most if all clients were treated equally.
+</dd></dl>
+<dl><dd> Furthermore, many people limit their client upload speed, which gets us to the same point.
+</dd></dl>
+<ul><li> <a href="EMuleCreditSystem.html" title="EMuleCreditSystem">Credit system</a>
+</li></ul>
+<dl><dd> Be sure you do not restrict your uploads too much, many clients will send you next to nothing if they never receive anything from you. That enforces the DL = UL rule on each couple of peers or one might say, enforces file trading, thus increasing popular files popularity even more and making rare files even more harder to get. It does not encourage uploading in general, but instead uploading to people who have stuff you want.
+</dd></dl>
+<ul><li> Ok I understood all of the above, it still takes forever...
+</li></ul>
+<dl><dd> If you have run the program a few weeks, have quite a few files available for others and your upload (sending) is running at much higher speeds than your downloads, then:
+<ul><li> You may have your firewall misconfigured. This happens to advanced computer persons as well! Double-Check; <a href="WhatFirewallPortsToOpen.html" title="WhatFirewallPortsToOpen">WhatFirewallPortsToOpen</a>
+</li><li> You may have turned off OverNet? Check: <a href="OvernetDoesntWork.html" title="OvernetDoesntWork">OvernetDoesntWork</a>
+</li><li> You may have turned off kademelia? <a href="http://en.wikipedia.org/wiki/Kad_Network" class="external text" rel="nofollow">Kad Network</a>
+</li><li> If you have a lot of files to download: set the ones that you want most to a higher priority.
+</li><li> If you have a lot of files to download, you may have too many. While this is now better in the newer (&gt; 2.6) versions of mlnet; try to stay below 200.
+</li><li> You may be blocking the donkey network with your bitttorrent (or other network) traffic.  If you download a lot of bittorrent, then your upload ratio will decline. See the <a href="EMuleCreditSystem.html" title="EMuleCreditSystem">credit system</a> above.
+</li><li> You may have someone interfering.  Download a <a href="http://www.bluetack.co.uk/config/level1.gz" class="external text" rel="nofollow">anti-p2p blocklist</a> or <a href="http://www2.openmedia.info:8080/p23.html" class="external text" rel="nofollow">this one</a> and save it as "guarding.p2p" in your mldonkey/mlnet directory. Then restart mlnet/mldonkey, or load the file with the command "set ip_blocking guarding.p2p".  When loading a guarding.p2p file mldonkey may pause for a few minutes.
+</li><li> If all that still does not work after a week, ask in the <a href="http://mldonkey.berlios.de/modules.php?name=Forums" class="external text" rel="nofollow">forums</a>.
+</li></ul>
+</dd><dd><i>/snard4321</i>
+</dd></dl>
+<hr />
+<p>This is probably a very incomplete list but it might give you an
+idea why mldonkey might seem slow to you.
+<br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><strong class="selflink">English</strong></b>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 131/1000000
+Post-expand include size: 665/2097152 bytes
+Template argument size: 582/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1748-0!*!0!!*!*!edit=0 and timestamp 20230807162856 -->
+<div class="printfooter">
+Retrieved from "<a href="WhyDoesItTakeXDays.html">http://mldonkey.sourceforge.net/WhyDoesItTakeXDays</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=WhyDoesItTakeXDays" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="WhyDoesItTakeXDays.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:WhyDoesItTakeXDays&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="WhyDoesItTakeXDays.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=WhyDoesItTakeXDays&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index3aa3.html?title=WhyDoesItTakeXDays&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/WhyDoesItTakeXDays.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/WhyDoesItTakeXDays.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexe397.html?title=WhyDoesItTakeXDays&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index071e.html?title=WhyDoesItTakeXDays&amp;oldid=4519" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 22 September 2009, at 20:48.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 16,688 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "WhyDoesItTakeXDays", "wgTitle": "WhyDoesItTakeXDays", "wgAction": "view", "wgArticleId": 1748, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 4519, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.115 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/WhyDoesItTakeXDays by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:48:22 GMT -->
+</html>
