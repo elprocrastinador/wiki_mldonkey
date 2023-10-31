@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Ovstats by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:39:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Ovstats - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Ovstats skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Ovstats</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Syntax"><span class="tocnumber">1</span> <span class="toctext">Syntax</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Description"><span class="tocnumber">2</span> <span class="toctext">Description</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#See_also"><span class="tocnumber">3</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#History"><span class="tocnumber">4</span> <span class="toctext">History</span></a></li>
+</ul>
+</td></tr></table>
+<h3> <span class="mw-headline" id="Syntax"> Syntax</span></h3>
+<p>~&gt; ovstats
+</p>
+<h3> <span class="mw-headline" id="Description"> Description</span></h3>
+<p><b>(obsolete)</b> Shows a list of known <a href="Overnet.html" title="Overnet">Overnet</a> peers and current search information. All peers are identified by an md4 and the peer with the md4 closest to a particular file's md4 is responsible for tracking available sources for that file.
+</p><p>For all files that you are trying to download, MLdonkey tries to find peers with md4 close to to those files. For example, in the sample output you can see that my search for file \"4AC7A501E7569A8F7F6C4A5BA49391D4\" has resulted in an increased number of peers with md4s starting with \"4A\" in the matrix, since these are likely to give me sources for that file.
+</p><p>Each file is identified by an md4. You are responsible for keeping track of the sources for the file with the md4 that closest matches you client md4 (see <a href="Ovmd4.html" title="Ovmd4">ovmd4</a> to find out your clinet md4), but all files consist of a set of chunks, each with their own md4.
+</p><p>In the matrix you can also see increased counts for client md4s that you're not trying to download from. These I beleive correspond to the the md4 of sources for the files that you are responsible for keping track of. In other words, these are source md4s that you report back to peers searching for files with and md4 similar to your clients md4.
+</p><p>Exactly why there's always at least 8 peers, I'm not sure.
+</p><p>This is as far as I've understood it, it's probably more complicated than this... /Kokamomi
+</p><p>Sample output:
+</p>
+<pre>
+Eval command: ovstats
+
+Overnet statistics:
+  Search hits: 454
+  Source hits: 129178
+  peers blocks (max peer number per block = 8)&#160;:
+    This is a list of known peers, sorted by the first byte of their md4 address ( 05FE15E90678... =&gt; block 05)
+    00:   8  01:   8  02:   8  03:   8  04:  23  05:   8  06:  12  07:   8  08:   8  09:   8  0A:   8  0B:   8  0C:   8  0D:   8  0E:   8  0F:   8
+    10:   8  11:   8  12:   8  13:   8  14:  26  15:  15  16:   8  17:   8  18:   8  19:   8  1A:   8  1B:   8  1C:   8  1D:   8  1E:   8  1F:   8
+    20:   8  21:   7  22:  21  23:   8  24:   8  25:   8  26:  67  27:  32  28:   8  29:   8  2A:   8  2B:   8  2C:   8  2D:   8  2E:   8  2F:   8
+    30:  29  31:   8  32:   8  33:   8  34:  35  35:   8  36:  37  37:   8  38:   8  39:   8  3A:   8  3B:   8  3C:   6  3D:  33  3E:   8  3F:   6
+    40:   8  41:   8  42:   8  43:   8  44:   8  45:   8  46:   8  47:   8  48:   8  49:   8  4A:  34  4B:   8  4C:   8  4D:  24  4E:   8  4F:   8
+    50:   8  51:   8  52:  34  53:   8  54:   8  55:   8  56:   8  57:   6  58:   8  59:   8  5A:   8  5B:  22  5C:   8  5D:   8  5E:   8  5F:   8
+    60:   8  61:  30  62:   8  63:   8  64:   8  65:   8  66:   8  67:   8  68:   8  69:   8  6A:   8  6B:   8  6C:   8  6D:   8  6E:   8  6F:   8
+    70:   8  71:  33  72:   8  73:   8  74:   8  75:   8  76:   8  77:   8  78:  20  79:   8  7A:   8  7B:   8  7C:   8  7D:   8  7E:   8  7F:   8
+    80:   8  81:   8  82:   8  83:   8  84:   8  85:   8  86:   8  87:   8  88:   8  89:  37  8A:   8  8B:   8  8C:   6  8D:   8  8E:   8  8F:   8
+    90:   8  91:   8  92:   8  93:   8  94:   8  95:   8  96:   8  97:   8  98:   8  99:   8  9A:   8  9B:   8  9C:   8  9D:   8  9E:   8  9F:   8
+    A0:   8  A1:  21  A2:   8  A3:   8  A4:   8  A5:   8  A6:   8  A7:  29  A8:   8  A9:   8  AA:   8  AB:   8  AC:   7  AD:   8  AE:   8  AF:   8
+    B0:  11  B1:   8  B2:   8  B3:  37  B4:   8  B5:  34  B6:   8  B7:   8  B8:   8  B9:   8  BA:   8  BB:   8  BC:   8  BD:   8  BE:   8  BF:   8
+    C0:   8  C1:   8  C2:   8  C3:   8  C4:   8  C5:   8  C6:   8  C7:   8  C8:  30  C9:   8  CA:  16  CB:   8  CC:   8  CD:   8  CE:   8  CF:   8
+    D0:   8  D1:   8  D2:   8  D3:   8  D4:   8  D5:   8  D6:   8  D7:   8  D8:   8  D9:   8  DA:   8  DB:   8  DC:   8  DD:   8  DE:  15  DF:   8
+    E0:   8  E1:   8  E2:  33  E3:  42  E4:  21  E5:   8  E6:   8  E7:   8  E8:   8  E9:   8  EA:  13  EB:   8  EC:   8  ED:   8  EE:   8  EF:   8
+    F0:   8  F1:   8  F2:   8  F3:   8  F4:   8  F5:   8  F6:   8  F7:   8  F8:  28  F9:  22  FA:   8  FB:   8  FC:   8  FD:   8  FE:   8  FF:   8
+  Number of known Overnet peers = 2690
+Search file for 4AC7A501E7569A8F7F6C4A5BA49391D4 (38 not_asked, 14 asked, 12 done, 0 hits, 185 results)
+Search file for 3DD15B02FC214D19C931C97C18C585D2 (38 not_asked, 13 asked, 13 done, 0 hits, 12 results)
+Search file for F89E89B6AADEEAA2DCDB238F3D6829B7 (38 not_asked, 9 asked, 17 done, 0 hits, 69 results)
+Search keyword for 7B6748846CC267DEE030AD3DED87E3F6 (0 not_asked, 31 asked, 42 done, 0 hits, 0 results) publish
+Search file for 364A5BDD2053D83067F060D8FA7500BC (38 not_asked, 13 asked, 13 done, 0 hits, 164 results)
+Search file for 34A45CFA3B68481578CB4D3A255001A7 (38 not_asked, 14 asked, 12 done, 0 hits, 1 results)
+Search file for 89B2260810832B3D8A73E5DBC8AB565D (38 not_asked, 16 asked, 10 done, 0 hits, 103 results)
+Search file for A7354214C55941D01B0DAB1EC72A24A7 (38 not_asked, 15 asked, 11 done, 0 hits, 0 results)
+Search file for 526A317BB84AA003801FE42ED74644B7 (38 not_asked, 7 asked, 19 done, 0 hits, 149 results)
+Search file for C87A32D98A32E94932EDDD326B1444CF (38 not_asked, 16 asked, 10 done, 0 hits, 25 results)
+Search file for E2F7CDE82461E520C170B5CB87E31F9F (38 not_asked, 14 asked, 12 done, 0 hits, 0 results)
+Search file for 3A3DF4571624156496C5E41D05190910 (38 not_asked, 8 asked, 18 done, 0 hits, 172 results)
+Search keyword for 279C4F9BB116E61A91364B48AB235E7F (6 not_asked, 34 asked, 24 done, 0 hits, 0 results) publish
+Search keyword for 733F092837C96DEBE4F4C73C4177E5D0 (0 not_asked, 47 asked, 19 done, 0 hits, 0 results) publish
+</pre>
+<h3> <span class="mw-headline" id="See_also"> See also</span></h3>
+<p><a href="Ov_stats.html" title="Ov stats">ov_stats</a>
+</p>
+<h3> <span class="mw-headline" id="History"> History</span></h3>
+<p>This command is now called <a href="Ov_stats.html" title="Ov stats">ov_stats</a> (as of MLdonkey 2.5-28i)
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 24/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1582-0!*!0!!en!*!edit=0 and timestamp 20230806205410 -->
+<div class="printfooter">
+Retrieved from "<a href="Ovstats.html">http://mldonkey.sourceforge.net/Ovstats</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Ovstats" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Ovstats.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Ovstats&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Ovstats.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Ovstats&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/indexf51d.html?title=Ovstats&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Ovstats.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Ovstats.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index8aa2.html?title=Ovstats&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexb81f.html?title=Ovstats&amp;oldid=1582" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 1 January 2006, at 01:01.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 2,968 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Ovstats", "wgTitle": "Ovstats", "wgAction": "view", "wgArticleId": 1582, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 1582, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.116 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Ovstats by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:39:34 GMT -->
+</html>

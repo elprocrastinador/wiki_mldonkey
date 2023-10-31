@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/Quickstart_guide by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:27:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Quickstart guide - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-Quickstart_guide skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Quickstart guide</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Download_and_Installation"><span class="tocnumber">1</span> <span class="toctext">Download and Installation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Install_binaries"><span class="tocnumber">1.1</span> <span class="toctext">Install binaries</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="#Linux"><span class="tocnumber">1.1.1</span> <span class="toctext">Linux</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-4"><a href="#Install_package"><span class="tocnumber">1.2</span> <span class="toctext">Install package</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Debian.2FUbuntu"><span class="tocnumber">1.2.1</span> <span class="toctext">Debian/Ubuntu</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#Red_Hat.2FFedora"><span class="tocnumber">1.2.2</span> <span class="toctext">Red Hat/Fedora</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#Gentoo"><span class="tocnumber">1.2.3</span> <span class="toctext">Gentoo</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-8"><a href="#Compile_from_source"><span class="tocnumber">1.3</span> <span class="toctext">Compile from source</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Installation_on_NAS_boxes_and_embedded"><span class="tocnumber">1.4</span> <span class="toctext">Installation on NAS boxes and embedded</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Software_appliance"><span class="tocnumber">1.5</span> <span class="toctext">Software appliance</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Initial_Setup_and_Usage"><span class="tocnumber">2</span> <span class="toctext">Initial Setup and Usage</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#Executing_Mldonkey"><span class="tocnumber">2.1</span> <span class="toctext">Executing Mldonkey</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Enabling_Access"><span class="tocnumber">2.2</span> <span class="toctext">Enabling Access</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Configuration_and_tuning"><span class="tocnumber">2.3</span> <span class="toctext">Configuration and tuning</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Using_Web_Interface"><span class="tocnumber">2.4</span> <span class="toctext">Using Web Interface</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Searching_for_files"><span class="tocnumber">2.5</span> <span class="toctext">Searching for files</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Manage_Downloads"><span class="tocnumber">2.6</span> <span class="toctext">Manage Downloads</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Emule_Network_Notes"><span class="tocnumber">3</span> <span class="toctext">Emule Network Notes</span></a></li>
+</ul>
+</td></tr></table>
+<h1> <span class="mw-headline" id="Download_and_Installation"> Download and Installation </span></h1>
+<p>There are several ways to obtain <a href="MLdonkey.html" title="MLdonkey">MLdonkey</a>&#160;:
+</p>
+<ul><li> download ready to run binaries for your <a href="http://en.wikipedia.org/wiki/Operating_system" class="extiw" title="w:Operating system">OS</a>/platform from main <a href="http://sourceforge.net/projects/mldonkey/files/" class="external text" rel="nofollow">Downloads Page</a>
+</li><li> install ready to run package with your <a href="http://en.wikipedia.org/wiki/Package_management_system" class="extiw" title="w:Package management system">package manager</a> of choice
+</li><li> download sources from main <a href="http://sourceforge.net/projects/mldonkey/files/" class="external text" rel="nofollow">Downloads Page</a> and <a href="OfficialFaq.html#Building_mldonkey" class="external text" rel="nofollow">compile yourself</a>
+</li><li> preinstalled with <a href="http://en.wikipedia.org/wiki/Software_appliance" class="extiw" title="w:Software appliance">software appliance</a>
+</li></ul>
+<p><br />
+Note that installing precompiled versions of any software (not only mldonkey) from untrusted sources may pose a security risk for your system.
+</p>
+<h2> <span class="mw-headline" id="Install_binaries"> Install binaries </span></h2>
+<p><a href="http://sourceforge.net/projects/mldonkey/files/" class="external text" rel="nofollow">Ready to run official binaries</a> available for Windows, Linux, Mac OS X.
+</p><p>More <a href="DownloadLinks.html" title="DownloadLinks">Download links</a>.
+</p>
+<h3> <span class="mw-headline" id="Linux"> Linux </span></h3>
+<p>Directly download <b>mldonkey-3.0.6.static.i386-Linux_glibc-2.7.tar.bz2</b>, then run
+</p>
+<pre> tar jxvf mldonkey-3.0.6.static.i386-Linux_glibc-2.7.tar.bz2
+</pre>
+<p>The binary file will be ok in the folder <b>mldonkey-3.0.6.static.i386-Linux_glibc-2.7</b>
+You could type
+</p>
+<pre> cd mldonkey-3.0.6.static.i386-Linux_glibc-2.7
+</pre>
+<p>and run
+</p>
+<pre> ./mlnet &gt; /dev/null 2&gt;&amp;1 &amp;
+</pre>
+<p>Then MLDonkey will be running as a daemon at the background.
+</p>
+<h2> <span class="mw-headline" id="Install_package"> Install package </span></h2>
+<p>Packages are prepared by distribution maintainers and provide easy way to manage software installation/upgrade. 
+Packages usually differ slightly from official version in order to better integrate with other software and system as a whole (installation paths, user management, daemon launching, etc).
+General recipe is to search for mldonkey in package database, review selected package information and then install (and configure). You may need to enable additional package repositories to get the latest version.
+</p>
+<h3> <span class="mw-headline" id="Debian.2FUbuntu">Debian/Ubuntu</span></h3>
+<p>Use <a href="http://en.wikipedia.org/wiki/Aptitude_(software)" class="extiw" title="w:Aptitude (software)">aptitude</a> to install from <a href="Debian.html" title="Debian">official debian repository</a>.
+</p>
+<pre>
+aptitude update
+apt-cache search mldonkey # aptitude search mldonkey
+aptitude install mldonkey-server
+</pre>
+<h3> <span class="mw-headline" id="Red_Hat.2FFedora">Red Hat/Fedora</span></h3>
+<p>Use <a href="http://en.wikipedia.org/wiki/Yellowdog_Updater,_Modified" class="extiw" title="w:Yellowdog Updater, Modified">yum</a> to install from <a href="https://fedoraproject.org/wiki/EPEL" class="external text" rel="nofollow">EPEL repository</a>.
+</p>
+<pre>
+yum search mldonkey
+yum info mldonkey-server
+yum install mldonkey-server
+</pre>
+<h3> <span class="mw-headline" id="Gentoo">Gentoo</span></h3>
+<pre>
+echo &quot;net-p2p/mldonkey ~x86&quot; &gt;&gt; /etc/portage/package.keywords
+emerge net-p2p/mldonkey
+</pre>
+<h2> <span class="mw-headline" id="Compile_from_source"> Compile from source </span></h2>
+<p>Usually&#160;:
+</p>
+<pre>
+tar -jxvf &lt;filename.tar.bz2&gt;
+cd mldonkey-&lt;version&gt;
+./configure --enable-batch
+make
+</pre>
+<p>But have a look at the <a href="OfficialFaq.html#Building_mldonkey" title="OfficialFaq">detailed instructions</a>. Windows users should follow <a href="Windows.html" title="Windows">Windows specific instructions</a>.
+Deal with <a href="CompilationProblems.html" title="CompilationProblems">CompilationProblems</a>.
+</p><p>After successful compilation install self-contained <code>mlnet</code> binary as appropriate (copy to <code>/usr/local/bin</code> or transfer to remote server or whatever).
+</p>
+<h2> <span class="mw-headline" id="Installation_on_NAS_boxes_and_embedded"> Installation on NAS boxes and embedded </span></h2>
+<p>In order to install mldonkey on a Linux embedded system or Linux based NAS, you can:
+</p>
+<ul><li> copy a precompiled core/files in a proper folder and execute 
+</li><li> use apt-get when you have a debian distribution or similar
+</li><li> use a custom package management system, Modders add IPKG support to a lot of boxes, and some manufacters like QNAP uses their own QPKG.
+</li></ul>
+<p><a href="Installation_on_NAS_and_embedded.html" title="Installation on NAS and embedded">more details</a>
+</p>
+<h2> <span class="mw-headline" id="Software_appliance"> Software appliance </span></h2>
+<p>A <a href="http://en.wikipedia.org/wiki/Software_appliance" class="extiw" title="w:Software appliance">software appliance</a> is a pre-packaged server that allows users to skip manual installation of MLDonkey and its dependencies, and instead deploy a self-contained, ready-to-use system that requires little to no setup.
+</p><p><a href="http://www.turnkeylinux.org/torrentserver" class="external text" rel="nofollow">TurnKey Torrent Server</a> is a free  MLDonkey-based file downloading and sharing appliance that combines MLDonkey for P2P file downloading, Samba for Windows-compatible file sharing and ClamAV for anti-virus scanning. It supports handling of all types of file downloads (torrent, e2dk, ftp, web, magnet). Files can be added to the download list using the <a href="https://addons.mozilla.org/en-US/firefox/addon/14043" class="external text" rel="nofollow">Torrent Server handler</a> extension for FireFox, or through a simple web interface (P2P-GUI) that allows you to manage the server remotely.
+</p><p>You can get it up and running in minutes on bare metal (e.g., an old computer), a virtual machine (e.g., VMWare, VirtualBox), or in the cloud (Amazon EC2).
+</p><p><a href="http://www.turnkeylinux.org/torrentserver" class="external free" rel="nofollow">http://www.turnkeylinux.org/torrentserver</a>
+</p>
+<h1> <span class="mw-headline" id="Initial_Setup_and_Usage"> Initial Setup and Usage </span></h1>
+<p>Once the daemon is running, connect to it as the admin user and change the password:
+</p>
+<pre>
+$ telnet 127.0.0.1 4000
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+Welcome to MLDonkey 2.8.5
+Welcome on mldonkey command-line
+
+Use&#160;? for help
+
+MLdonkey command-line:
+&gt; auth admin &quot;&quot;
+Full access enabled
+
+MLdonkey command-line:
+&gt; passwd newpasswd
+Password of user admin changed
+
+MLdonkey command-line:
+&gt;
+</pre>
+<h2> <span class="mw-headline" id="Executing_Mldonkey"> Executing Mldonkey </span></h2>
+<p>You need to open a console(telnet... a command prompt) on the PC running mldonkey.
+</p><p>In order to remotely access a Li/Unix device you need a telent/ssh application.
+</p><p>Under Windows OS the best one telnet/ssh application is <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" class="external text" rel="nofollow">Putty</a>
+</p><p>Unix's users should use the "ssh" command:
+</p><p><tt> $ ssh username@192.168.0.45 </tt>
+</p><p>"username" is the user on the remote computer where you like to execute mldonkey  and 192.168.0.45 is the fictional address of the remote computer on which mldonkey is intended to run.
+Having a working console you can execute mldonkey with this command:
+</p><p>$ mlnet
+</p><p>this is nice to see things working but closing the ssh console could kill the mldonkey application.
+</p><p>In case you like to execute mlnet in background unattended use this command and then you will be able to freely close the ssh shell:
+</p><p>$ mlnet &gt; /dev/null 2&gt;&amp;1 &amp;
+</p><p>More details about executing the application are collected in <a href="HowToStartMLdonkey.html" title="HowToStartMLdonkey">HowToStartMLdonkey</a>.
+</p>
+<h2> <span class="mw-headline" id="Enabling_Access"> Enabling Access </span></h2>
+<p>Having a running application doesn't suffice, you need to enable access from remote location, for example you like to enable your local network to access mldonkey interfaces.
+By default mldonkey permits only local access from 127.0.0.1, and you need to add new authorized ranges.
+Let's log into the PC running mldonkey (look at previous "executing mldonkey") and connect to the core directly from there:
+</p><p>$ telnet 127.0.0.1 4000
+</p><p>127.0.0.1 means the local machine and 4000 is the default port for the mldonkey's telnet interface.A new <b>&gt;</b> prompt should appear to confirm your successfully connection.
+For example, having a local network 192.168.x.x, netmask 255.255.0.0, in order to permit access to all your local network you can use  this command:
+</p><p><tt> &gt; set allowed_ips "127.0.0.1 192.168.255.255" </tt>
+</p><p>You can exit the interface using the command "quit"
+</p><p><tt> &gt; quit </tt>
+</p><p>More details about this topic: <a href="Allowed_ips.html" title="Allowed ips">Allowed_ips </a>
+</p>
+<h2> <span class="mw-headline" id="Configuration_and_tuning"> Configuration and tuning </span></h2>
+<p><a href="Simple_configuration.html" title="Simple configuration">Simple_configuration</a>
+</p>
+<h2> <span class="mw-headline" id="Using_Web_Interface"> Using Web Interface </span></h2>
+<p>In order to interact with MLDonkey, configure the application, search for files and manage downloads you have 3 ways
+</p>
+<ul><li> <b>telnet</b> interface, very useful for script-based MLDonkey's control
+</li><li> <b>Web interface</b>,  the most complete interface wich permits the deep control of telnet interface with the easiness of a graphical interface.
+</li><li> <b>GUI interface</b>
+</li></ul>
+<p><br />
+Web interface is accessible using a web browser (Firefox, Explorer, Opera, Safari) and connecting to a "page" which is artificialy created by MLDonkey in order to communicate to the user.
+Let's assume that you are accessing a remote computer running MLDonkey with IP address 192.168.0.45. Let's open your browser and write in the navigation/address bar. Simply write this address an press enter:
+http://192.168.0.45:4080
+</p><p><a href="File_Schermata1.html" class="image"><img alt="Schermata1.png" src="mediawiki/images/a/a7/Schermata1.png" width="1117" height="339" /></a>
+</p><p>4080 is the default port for MLDonkey's web interface.
+Web interface works like a normal internet page, simply it permits to communicate with your MLDonkey in the same way you do with the normal emule application.
+In the upper bar you can see buttons which permits to access to the main MLDonkey's functions:
+</p>
+<ul><li>Transfer:
+</li></ul>
+<p>Opens a page with the current active downloads
+</p>
+<ul><li>Search:
+</li></ul>
+<p>Opens a page which permits to search for files
+</p>
+<ul><li>Statistics:
+</li></ul>
+<p>...statistics regarding MLDonkey operation
+</p>
+<ul><li>Options:
+</li></ul>
+<p>This is the place you are looking in order to configure MLDonkey, there are options for basic and advanced tuning.
+</p>
+<ul><li>Help+:
+</li></ul>
+<p>The place for help, documentations, command lists (Longhelp)
+</p><p>There is also a field which can be used the same way than telnet interface. In this field, you can write the telnet commands in order to obtain particular operations. To enter a command, write it to this field and either press enter or click 'Input' button. You can see a list of available commands with 'longhelp' command.
+Command's output will be visualized in the browser as well.
+</p>
+<h2> <span class="mw-headline" id="Searching_for_files"> Searching for files </span></h2>
+<p>In a P2P network file searches are based on file name, file type, file size and other file details.
+In fact the file name usually reflects the nature of the content. For example a file named <i>my_birthday.avi</i> is a movie about someone's birthday.
+Let's see a real situation: you would like to download a public domain movie, Dr.Jekyll and Mr. Hyde in the original version of the year 1920.
+I suggest to not put too much words in a search but to put the less number of words which helps to identify the content in a non-ambiguous way.
+</p><p>In this case we can try with the words: <i>Jekyll Hyde 1920</i>.The search phase is visualized in the next sreenshots.
+</p>
+<ul><li> Push the button search (1) to access the search page
+</li><li> Input the file name and the type of the content (2) choosing from a menu.
+</li><li> Push the Search button (3) in order to effectively launch the search.
+</li><li> Click on search results (4) in order to visualize collected results.
+</li></ul>
+<p>Search results depends from hour/day/luck. Waiting a few seconds before clicking 'Search results' button permits MLDonkey to collect more results.
+</p><p><a href="File_Search-bis.html" class="image"><img alt="Search-bis.jpg" src="mediawiki/images/1/15/Search-bis.jpg" width="607" height="640" /></a>
+</p><p>In the next screenshot you have the search results panel:
+The second column is the name of the files which has matched your search criteria, the third column is the file size, and the fourth (<b>A</b>) is the estimated number of sources for this file.
+Every row (different colour) is a different file/result but you can note that the same file could appear in the network with different names. The file is recognized with a numerical way but every user is able to change the name based on his thoughts. Usually this is done in order to give a better description of the content or in order to correct name errors. Looking at the different names is a good way to estimate the quality of the content.
+</p><p>Tips:
+</p>
+<ul><li> The number of sources is the number of guys sharing that particular file. The greater the sources number -&gt; hopefully smaller download time. But this is not for sure...
+</li></ul>
+<ul><li> ... so sometimes it is better to wait some time (several hours or days) in order to obtain a better file.
+</li></ul>
+<p><a href="File_Search1.html" class="image"><img alt="Search1.jpg" src="mediawiki/images/2/2e/Search1.jpg" width="748" height="497" /></a>
+</p><p>Usually for the same content there are different versions of files. The files are different because different MLDonkey users have converted the same resource in a shareable file format but doing different quality choices, size choices or using different software for conversion.
+</p><p>I suggest to choose from the list the file which has the name most similar to the one you are looking for but with more "sources". I'll add a specific guide in order to do the best choices based on quality and resulting download speed.
+After choosing the file which fits your needs you have simply to click to the desired filename in order to start that download. Naturally you can start more than one download at one time.
+</p>
+<h2> <span class="mw-headline" id="Manage_Downloads"> Manage Downloads </span></h2>
+<p>Clicking on the <b>Transfers</b> button in the main menu you can access the transfers page. Here you can see the status of downloads, download progress, technical details about downloads and so on.
+</p><p>You can also decide to Pause download, Resume download (continue a paused download), or Cancel downloads. To do this, toggle a selection box to the left side of the file name. The letter in the header shows what operation is selected (<b>P</b>ause, <b>R</b>esume or <b>C</b>ancel). After selecting the operation, click 'Submit changes' button. You can select operation for multiple files at a time.
+</p><p>Clicking on the file row you'll see detailed information about a particular download.
+</p><p><a href="File_Search4-bis.html" class="image"><img alt="Search4-bis.jpg" src="mediawiki/images/e/e7/Search4-bis.jpg" width="1330" height="436" /></a>
+</p>
+<h1> <span class="mw-headline" id="Emule_Network_Notes"> Emule Network Notes </span></h1>
+<p>Mldonkey is a filesharing application which grant access to the wide Emule p2p network.The Emule ( aka eDonkey ) network is a big p2p which is sometimes wrongly compared with Bittorrent network. 
+</p><p><b>The main difference between Emule network and Bittorrent network is the search and share paradigm.</b>
+</p><p>In the bittorrent network you need a bittorrent web site in order to search for files and you are bound to the trackers in order to share your files (you have to subscribe).
+The Emule's search engine is integrated in to the emule's compatible clients and all searches spread immediately far and wide all the network.So you need a unique place, your program interface, in order to look for files which result in a very quick and integrated way to  search&amp;donwload  files.
+Emule network permits to simply share a file to all the world by simply moving the file in a shared folder. This is quite immediate and easy way to share things which you think worth spread.
+In fact common emule's users philosophy is:
+</p>
+<ul><li>  to share what is wothing based on quality and rarity
+</li><li>  to keep sharing valuable stuff
+</li><li>  help the network by contributing with new content
+</li><li>  helping selecting files based on comments and  file  naming
+</li><li> left client uploading as more as you can.
+</li></ul>
+<p>If you embrace the Emule(Edonkey) network you'll join the most reach p2p network.Emule offers the widest range of rare, old and new content ranging from videos to music and programs.
+In detail:
+</p>
+<ul><li> more than 4.000.000 users, extimation ranges between 4.000.000 and 8.000.000.
+</li><li> files are shared and preserved, this is a network for new and old content both
+</li><li> file corruption detection
+</li><li> easy share and contribuite
+</li></ul>
+<p>There are few suggestion about correct emule usage:
+</p>
+<ul><li> Network freedom and decentralization is a great advantage but this also grants stupid guys to pollute changin' names to the files or releasing originally empty or useless files.
+</li><li> This is quite important you read the guides about Emule network, so you 'll be able to correctly tune your client, set the correct server's lists and ipfilter for happy kademlia experience too.
+</li><li> Reading this guide you'll learn the easy ways to search and download the right contents and you'll learn about avoiding the fake ones.It is quite simply as far you read&amp;learn.
+</li><li> Share a file with Emule is so simple and you have to be careful to not share a private file or a wrong folder cause a mistake.
+</li></ul>
+<p>There is a last performance note:
+Usually Emule is  a bit slower than bittorrent but this depends on the chosen files,  it is suggested to launch more donwloads at once in order to optimize banwith usage and to left it run unattended.Choosing the right files to download is an art which is quite funny to learn.
+Good sharing, Good downloads
+don't forget to contribuite too..&#160;;-)
+</p><p><br />
+</p><p><br />
+</p><p><br />
+<br style="clear:both;" />
+</p>
+<hr />
+<p><small><a href="MLDonkey_Language_policy.html" title="MLDonkey:Language policy">Languages</a>:&#160;
+<b><strong class="selflink">English</strong></b>
+<span></span>
+&#160;&#8226;&#160;<span lang="fr"><a href="Quickstart_guide_FR.html" title="Quickstart guide FR">Français</a></span>
+<span></span>
+&#160;&#8226;&#160;<span lang="ru"><a href="Quickstart_guide_RU.html" title="Quickstart guide RU">Русский</a></span>
+&#160;&#8226;&#160;<span lang="zh"><a href="Quickstart_guide_ZH.html" title="Quickstart guide ZH">中文</a></span>
+<span></span>
+</small>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 279/1000000
+Post-expand include size: 1515/2097152 bytes
+Template argument size: 634/2097152 bytes
+Expensive parser function count: 12/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1618-0!*!0!!en!2!edit=0 and timestamp 20230807122410 -->
+<div class="printfooter">
+Retrieved from "<a href="Quickstart_guide.html">http://mldonkey.sourceforge.net/Quickstart_guide</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=Quickstart_guide" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="Quickstart_guide.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:Quickstart_guide&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="Quickstart_guide.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Quickstart_guide&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index81fe.html?title=Quickstart_guide&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Quickstart_guide.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Quickstart_guide.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/indexb572.html?title=Quickstart_guide&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/indexc32e.html?title=Quickstart_guide&amp;oldid=5194" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 2 January 2011, at 18:59.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 345,992 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Quickstart_guide", "wgTitle": "Quickstart guide", "wgAction": "view", "wgArticleId": 1618, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 5194, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.082 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/Quickstart_guide by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 16:28:13 GMT -->
+</html>

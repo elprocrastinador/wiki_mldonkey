@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- Mirrored from mldonkey.sourceforge.net/PacketFilter by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:42:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>PacketFilter - MLDonkey</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="mediawiki/opensearch_desc.php" title="MLDonkey (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="mediawiki/api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="MLDonkey Atom feed" href="mediawiki/index890f.html?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="mediawiki/loadeb8e.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/mediawiki/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr ns-0 ns-subject page-PacketFilter skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">PacketFilter</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">From MLDonkey</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Jump to: <a href="#mw-head">navigation</a>,
+					<a href="#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p><br />
+update as of 3.3:
+</p><p>Note: in previous versions of OpenBSD, the following syntax was supported:
+</p>
+<pre>   . . . flags S
+</pre>
+<p>This is no longer true. A mask must now always be specified.
+</p><p>use
+</p>
+<pre>   . . . flags S/SAFR
+</pre>
+<p>instead. (see <a href="http://www.openbsd.org/faq/pf/filter.html" class="external free" rel="nofollow">http://www.openbsd.org/faq/pf/filter.html</a>)
+</p><p>After reading pangos howto i decided to share some tips for those of us behind <a href="OpenBSD.html" title="OpenBSD">OpenBSD</a>'s pf/nat firewalls.
+</p><p>/etc/pf.conf:
+</p>
+<pre># assuming
+ext_if = \&quot;your external network adapter\&quot;
+[[port]] = \&quot;your [[eDonkey2000]] port (usually 4662)\&quot;
+[[mldonkey_ext]] = \&quot;you mldonkey udp source sharing (receiving) port (usually 4666)\&quot;
+[[overnet_port]] = \&quot;as you find in your mldonkey/downloads.ini\&quot;
+</pre>
+<p>The port values may be defined like this in pf.conf or in /etc/<a href="Services.html" title="Services">services</a>
+</p><p>This should go somewhere early on to prevent misconfigured clients using reserved namespace to bother <a href="MLdonkey.html" title="MLdonkey">MLdonkey</a> (you should have this even if you're not running <a href="MLdonkey.html" title="MLdonkey">MLdonkey</a>). Note that it's usefull to return a closed responce to outgoing connections so that none stays open until they timeout.
+</p>
+<pre># block from/to invalid namespace
+block in  quick on $ext_if inet from no-route to any
+block return-rst out quick on $ext_if proto tcp from any to no-route
+block return-icmp out quick on $ext_if proto udp from any to no-route
+</pre>
+<p>Asuming free out traffic:
+</p>
+<pre>pass out on $ext_if proto udp all keep state
+pass out on $ext_if proto tcp all modulate state
+</pre>
+<p>Or simply for any protocol:
+pass out all keep state
+</p><p>Add this to open <a href="Ports.html" title="Ports">Ports</a> to mldonkey:
+</p>
+<pre># edonkey data
+pass in on $ext_if proto tcp from any to $ext_if port = [[port]]   flags S keep state
+# mldonkey source propagation
+pass in on $ext_if proto udp from any to $ext_if port = [[mldonkey_ext]]   keep state
+# overnet data
+pass in on $ext_if proto tcp from any to $ext_if port = $[[overnet_port]] flags S keep state
+#overnet search
+pass in on $ext_if proto udp from any to $ext_if port = $[[overnet_port]]
+</pre>
+<p>Note: If, for any reason, you'd like to shut down <a href="Overnet.html" title="Overnet">Overnet</a>, you should remove it's pf entries, because overnet clients seem to have a long memory.
+</p><p>Note: You can also compress this using brackets to something like this:
+</p>
+<pre>pass in quick on $ext_if proto { tcp , udp } from any to $ext_if port { $[[port]] , $[[mldonkey_ext]] , $[[overnet_port]]  } flags S keep state
+</pre>
+<p>I added this recently, for a more cleaner operation (thus this does not adds much more security..) you can make the rule automatically turn itself off when you turn off your <a href="MLdonkey.html" title="MLdonkey">MLdonkey</a> client or remove <a href="Overnet.html" title="Overnet">Overnet</a> support by adding \"user&#160;!= unknown\" to the rule, like this:
+</p>
+<pre>pass in quick on $ext_if proto { tcp , udp } from any to $ext_if port { $[[port]], $[[mldonkey_ext]] , $[[overnet_port]]  } user&#160;!= unknown flags S keep state
+</pre>
+<p>This simply implies that if no one is listening to the port in question, pf discards the pass rule. You can use \"user = mldonkey_username_or_id\" to be more specific.. Goes even farther in our paranoid OBSD wolrd!&#160;:) This can also come in handy on other situations to restrict wich users can listen on wich sockets, wich users can talk to the net on wich sockets..
+</p><p>Now, if your <a href="MLdonkey.html" title="MLdonkey">MLdonkey</a> is running at another machine behind the firewall you need to configure nat as well
+/etc/nat.conf:
+</p>
+<pre># assuming
+ext_if=\&quot;your external network adapter\&quot;
+mldonkey_ip=\&quot;mldonkey.machine.ip.number\&quot;
+[[port]] = \&quot;your [[eDonkey2000]] port (usually 4662)\&quot;
+[[mldonkey_ext]] = \&quot;you mldonkey udp source sharing (receiving) port (usually 4666)\&quot;
+[[overnet_port]]=\&quot;as you find in your mldonkey/downloads.ini\&quot;
+...
+
+# redirect traffic
+rdr on $ext_if proto tcp from any to $ext_if/32 port [[port]] -&gt; $mldonkey_ip port [[port]]
+rdr on $ext_if proto udp from any to $ext_if/32 port [[mldonkey_ext]] -&gt; $mldonkey_ip port [[mldonkey_ext]]
+rdr on $ext_if proto tcp from any to $ext_if/32 port $[[overnet_port]] -&gt; $mldonkey_ip port $[[overnet_port]]
+rdr on $ext_if proto udp from any to $ext_if/32 port $[[overnet_port]] -&gt; $mldonkey_ip port $[[overnet_port]]
+</pre>
+<p>Note that openbsd 3.2 merges nat.conf into pf.conf.
+</p><p>No rights reserved. No liabilities accepted.
+</p>
+<h3> <span class="mw-headline" id="See_also:">See also:</span></h3>
+<ul><li> [<a href="http://www.openbsd.org/cgi-bin/man.cgi?query" class="external text" rel="nofollow"><code>pf&amp;apropos</code>0&amp;sektion<code>0&amp;manpath</code>OpenBSD+Current&amp;arch<code>i386&amp;format</code>html pf man page</a>]
+</li><li> [<a href="http://www.onlamp.com/pub/a/bsd/2003/03/06/ssn_openbsd.html" class="external text" rel="nofollow">onlamp's good introduction to pf/nat</a>]
+</li><li> [<a href="http://mldonkey.berlios.de/modules.php?name" class="external text" rel="nofollow"><code>Forums&amp;file</code>viewtopic&amp;t<code>748&amp;highlight</code>pf+conf&amp;sid=54b02bb9f8b9e1fafe16dd0defa483a5 Forum: Use state tables or not? (OpenBSD, others welcome&#160;;) )</a>]
+</li><li> [<a href="http://mldonkey.berlios.de/modules.php?name" class="external text" rel="nofollow"><code>Forums&amp;file</code>viewtopic&amp;t<code>503&amp;highlight</code>pf+conf&amp;sid=54b02bb9f8b9e1fafe16dd0defa483a5 Forum: Sticky: ( Firewall ) Which ports are used by MLDonkey&#160;?</a>]
+</li></ul>
+<p>/kokamomi &amp; SSteph&#160;;)
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 66/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key m156414_wiki:pcache:idhash:1587-0!*!0!!*!*!edit=0 and timestamp 20230806200648 -->
+<div class="printfooter">
+Retrieved from "<a href="PacketFilter.html">http://mldonkey.sourceforge.net/PacketFilter</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+					<li  id="pt-login"><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Special:UserLogin&amp;returnto=PacketFilter" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="PacketFilter.html"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=Talk:PacketFilter&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variants</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="PacketFilter.html" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://mldonkey.sourceforge.net/mediawiki/index.php?title=PacketFilter&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible "><span><a href="mediawiki/index4866.html?title=PacketFilter&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://mldonkey.sourceforge.net/mediawiki/index.php" id="searchform">
+		<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" name="search" type="text"  title="Search MLDonkey [f]" accesskey="f"  value="" />
+		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />
+		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(wiki.png);" href="Main_Page.html"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+	<h5>Navigation</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a href="Main_Page.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+					<li id="n-Forums"><a href="http://mldonkey.sourceforge.net/forums/">Forums</a></li>
+					<li id="n-Downloads"><a href="http://sourceforge.net/project/showfiles.php?group_id=156414">Downloads</a></li>
+					<li id="n-Links"><a href="DownloadLinks.html">Links</a></li>
+					<li id="n-Bugs"><a href="http://savannah.nongnu.org/bugs/?group=mldonkey">Bugs</a></li>
+					<li id="n-Tasks"><a href="http://savannah.nongnu.org/task/?group=mldonkey">Tasks</a></li>
+					<li id="n-Patches"><a href="http://savannah.nongnu.org/patch/?group=mldonkey">Patches</a></li>
+					<li id="n-All-pages"><a href="Special_AllPages.html">All pages</a></li>
+					<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+					<li id="n-randompage"><a href="Auth.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/PacketFilter.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/PacketFilter.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="Special_SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+									<li id="t-print"><a href="mediawiki/index6a95.html?title=PacketFilter&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="mediawiki/index403b.html?title=PacketFilter&amp;oldid=1587" title="Permanent link to this revision of the page">Permanent link</a></li>
+						</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> This page was last modified on 1 January 2006, at 01:01.</li>
+																							<li id="footer-info-viewcount">This page has been accessed 4,101 times.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a href="MLDonkey_Privacy_policy.html" title="MLDonkey:Privacy policy">Privacy policy</a></li>
+																							<li id="footer-places-about"><a href="MLDonkey_About.html" title="MLDonkey:About">About MLDonkey</a></li>
+																							<li id="footer-places-disclaimer"><a href="MLDonkey_General_disclaimer.html" title="MLDonkey:General disclaimer">Disclaimers</a></li>
+															</ul>
+											<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="http://sourceforge.net/projects/mldonkey"><img src="http://sourceforge.net/sflogo.php?group_id=156414/" alt="Sourceforge.net Logo" width="88" height="31" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		
+<script src="mediawiki/load8478.html?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "PacketFilter", "wgTitle": "PacketFilter", "wgAction": "view", "wgArticleId": 1587, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 1587, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script>		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		<!-- Served in 0.057 secs. -->			</body>
+
+<!-- Mirrored from mldonkey.sourceforge.net/PacketFilter by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 Aug 2023 17:42:22 GMT -->
+</html>
